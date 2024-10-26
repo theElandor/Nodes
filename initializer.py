@@ -17,11 +17,6 @@ G.add_nodes_from(nodes)
 G.add_edges_from(edges)
 # nx.draw(G, pos = None, ax = None, with_labels = True,font_size = 20, node_size = 2000, node_color = 'lightgreen')
 # plt.show()
-# server must create a process for each node(clients) and add connection
-# start a server
-# need to create N clients, each one contains a Node, which has a set of neighbors
-# we give to each neighbor the coordinates (IP and port) of the processes that it is connected to.
-# This way, the client can sand letters to neighbors!
 # for each node, we must reserve a port
 HOST = "localhost"
 PORT = 65000
@@ -47,9 +42,12 @@ while 1: # wait for RDY messages
         ready_clients += 1
         if ready_clients == len(ports):
             print(f"All {ready_clients} clients are ready")
-            break
+            break        
 #send information to processes via socket datagram
 for node, port in DNS.items():
-    message = str([node, list(G.edges(node))]).encode()
+    local_dns = utils.get_local_dns(DNS, node, list(G.edges(node)))
+    print(local_dns)    
+    message = str([node, list(G.edges(node))]).encode()    
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.sendto(message, ("localhost", port))
+    
