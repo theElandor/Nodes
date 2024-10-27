@@ -10,7 +10,7 @@ def read_graph(file):
 def get_local_dns(DNS:dict, node:int, edges:list):
     local_dns = {}
     for u,v in edges:        
-        for n in (u,v):            
+        for n in (u,v):
             if n != node:
-                local_dns[n] = DNS[u]
+                local_dns[n] = DNS[n]
     return local_dns

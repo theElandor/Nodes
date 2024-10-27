@@ -47,7 +47,11 @@ while 1: # wait for RDY messages
 for node, port in DNS.items():
     local_dns = utils.get_local_dns(DNS, node, list(G.edges(node)))
     print(local_dns)    
-    message = str([node, list(G.edges(node))]).encode()    
+    message = str([node, list(G.edges(node)), local_dns]).encode()
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.sendto(message, ("localhost", port))
-    
+
+WUN = 3
+message = str([3, -1, 0]).encode()
+wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+wake_up_socket.sendto(message, ("localhost", DNS[WUN]))
