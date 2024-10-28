@@ -1,8 +1,7 @@
 import sys
 import socket
-import abc
 
-class Node(metaclass=abc.ABCMeta):
+class Node:
     def __init__(self, HOSTNAME, BACK, PORT):
         """
         Paramters:
@@ -25,6 +24,8 @@ class Node(metaclass=abc.ABCMeta):
             res += (f"Edges: {self.edges}\n")
             res += (f"DNS: {self.local_dns}")
         return res
+    def _get_neighbors(self):
+        return [(key,val) for key, val in self.DNS.items()]
     def send_RDY(self):
         """
         This method will send a "RDY" message to the initializer,
@@ -54,17 +55,44 @@ class Node(metaclass=abc.ABCMeta):
             self.id, self.edges, self.local_dns = eval(data) # eval(data) is probably super unsafe
             self.setup = True # end of setup
             return
-    @abc.abstractmethod
-    def protocol(self):
-        """
-        Nodes should implement this method
-        """
-        pass
+    def _send(self, message, port):
+        forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        forward_socket.sendto(message, ("localhost", port))    
+    def _create_message(self, *args):
+        return list(args)
+        
 
 class RingNode(Node):
     def __init__(self, HOSTNAME, BACK, PORT):
         super().__init__(HOSTNAME, BACK, PORT)
-    def protocol(self):
+
+    def _send_to_other(self,sender:int, message:str):
+        """        
+        Function that sends given message to the "other" node, so
+        the only node in the local DNS which is != sender.
+        This implies that the node only has 2 neighbors (RingNode structure)
+        Parameters:
+            sender: node to exclude
+            message: message to forward
+        """
+        for v, address in self.local_dns.items(): # send message in other direction
+            if sender != v:
+                print(f"Sending to: {v}({address}) this message: "+message)
+                message = message.encode()
+                self._send(message, address)
+                break
+
+
+    def _leader_election_initialize(self):
+        self.count = 1
+        self.ringsize = 1
+        self.known = False
+        message = self._create_message("Election", self.id, 1)
+        dest_id, dest_port = self._get_neighbors()[0]
+        self._send(message, dest_port)
+        self.min = self.id    
+
+    def count_protocol(self):
         while 1:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
@@ -72,14 +100,26 @@ class RingNode(Node):
             print(f"Origin: {origin}, Sender: {sender}, Counter: {counter}")
             if origin == self.id and counter != 0:
                 print(f"Received back my message! Nodes in network: {counter}")
-                break    
-            for v, address in self.local_dns.items(): # send message in other direction
-                if sender != v:            
-                    print(f"Sending to: {v}({address}) this message: {str([origin, self.id, int(counter)+1])}")
-                    forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                    forward_message = str([origin, self.id, int(counter)+1]).encode()
-                    forward_socket.sendto(forward_message, ("localhost", address))
-                    break
+                break
+            forward_message = str([origin, self.id, int(counter)+1])
+            self._send_to_other(sender, forward_message)
+
+    # def leader_election_protocol(self): # work in progress
+    #     # implements leader election on ring network!
+    #     state = "ASLEEP" # ASLEEP, AWAKE, FOLLOWER, LEADER
+    #     while True:
+    #         msg = self.s.recv(self.BUFFER_SIZE)
+    #         data = msg.decode("utf-8")
+    #         command, origin, counter = eval(data)
+    #         if state == "ASLEEP":
+    #             self._leader_election_initialize()
+    #             if command == "WAKEUP":
+    #                 continue
+    #             else:
+    #                 message = self._create_message("Election", origin, counter+1)
+                    
+                
+
     
 if len(sys.argv) != 4:
     raise ValueError('Please provide host, initializer PORT and port number.')
@@ -88,4 +128,4 @@ NODE.send_RDY()
 NODE.bind_to_port()
 NODE.wait_for_instructions()
 print(NODE)
-NODE.protocol()
+NODE.count_protocol()
