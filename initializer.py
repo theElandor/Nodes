@@ -26,13 +26,14 @@ table.field_names = ["Node", "Port"]
 for key, val in DNS.items():
     table.add_row([key, val])
 print(table)
-command = f"python3 client.py localhost {PORT}"
+command = f"python3 client.py localhost {PORT} "
 for port in ports:
     process = sp.Popen(f'start cmd /K {command+str(port)}', shell=True)
+    print(command+str(port))
 confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 confirmation_socket.bind(("", PORT))
 ready_clients = 0
-while 1: # wait for RDY messages
+while 1: # wait for RDY messages    
     data,addr = confirmation_socket.recvfrom(4096)
     command, target_port = data.decode("utf-8").split(" ")
     if command != "RDY":
