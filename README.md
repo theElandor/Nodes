@@ -1,7 +1,7 @@
 # DistributedAlgorithms
 Framework to develop distributed algorithms on fixed
 graph structures.
-## Todos
-+ Handle different IP addresses
-+ Debug "All the way" leader election algorithm
-+ Make tests with different topologies
+## Open Issues
++ Right now we only support "localhost";
++ Only the test topology is being tested;
++ Missing "turn off nodes" logic after leader election;
