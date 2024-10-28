@@ -19,13 +19,20 @@ class Initializer(metaclass=abc.ABCMeta):
         self.G = G
         self.ports = [65432+x for x in range(N)] # one port for each node
         self.DNS = {node:port for node,port in zip(G.nodes(), self.ports)}
+
     def __str__(self):
         table = PrettyTable()
         table.field_names = ["Node", "Port"]
         for key, val in self.DNS.items():
             table.add_row([key, val])
         return table.__str__()
+
     def initialize_clients(self):
+        """
+        This method creates a process for each client (node), comunicating
+        what is the port that they should use to wait for messages. Then,
+        it waits for a confirmation message (RDY) from all of them.
+        """
         command = f"python3 client.py localhost {self.PORT} "
         for port in self.ports:
             process = sp.Popen(f'start cmd /K {command+str(port)}', shell=True)
@@ -47,10 +54,21 @@ class Initializer(metaclass=abc.ABCMeta):
                     break
     @abc.abstractmethod
     def setup_clients(self):
+        """
+        This method should send to all of the nodes in the network
+        the information needed to properly work. This includes:
+        + The ID in the network;
+        + The list of connections (edges) with neighboors (nodes);
+        + The local dns that they need to comunicate to other nodes;
+        """
         pass
 
     @abc.abstractmethod
     def wakeup(self):
+        """
+        Wakeup protocol: sends a wakeup message to one (of more) of
+        the nodes in the network.
+        """
         pass
 
 class RingNetworkInitializer(Initializer):
@@ -79,7 +97,7 @@ print(f"Nodes: {N} \nEdges: {len(edges)}")
 nodes = [x+1 for x in range(N)]
 G.add_nodes_from(nodes)
 G.add_edges_from(edges)
-# for each node, we must reserve a port
+
 init = RingNetworkInitializer("localhost", 65000, G)
 print(init)
 init.initialize_clients()
