@@ -90,7 +90,6 @@ class RingNode(Node):
         _, dest_port = self._get_neighbors()[0]
         self._send(message, dest_port)
         self.min = self.id
-        self.ROLE = "UNDEFINED"
 
     def _leader_election_check(self):
         print(f"Count: {self.count}")
@@ -98,10 +97,10 @@ class RingNode(Node):
         print(f"Min: {self.min}")
         if self.count == self.ringsize:            
             if self.id == self.min:
-                self.ROLE = "LEADER"
+                self.state = "LEADER"
             else:
-                self.ROLE = "FOLLOWER"
-            print(f"Elected {self.ROLE}")
+                self.state = "FOLLOWER"
+            print(f"Elected {self.state}")
 
     def count_protocol(self):
         """
@@ -122,22 +121,23 @@ class RingNode(Node):
         """
         Leader election: All the way version
         """        
-        state = "ASLEEP"
+        self.state = "ASLEEP"
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
             command,origin,sender,counter = eval(data)
-            if state == "ASLEEP":
+            if self.state == "ASLEEP":
                 self._leader_election_initialize()
                 if command == "WAKEUP":
+                    self.state = "AWAKE"
                     continue
                 else:
                     message = self._create_message("Election", origin,self.id,counter+1)
                     self._send_to_other(sender, message)
                     self.min = min(self.min, origin)
                     self.count += 1
-                state = "AWAKE"
-            elif state == "AWAKE":
+                    self.state = "AWAKE"
+            elif self.state == "AWAKE":
                 if self.id != origin:
                     message = self._create_message("Election", origin,self.id,counter+1)
                     self._send_to_other(sender, message)
