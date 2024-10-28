@@ -64,7 +64,7 @@ class Initializer(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def wakeup(self):
+    def wakeup(self, message:str):
         """
         Wakeup protocol: sends a wakeup message to one (of more) of
         the nodes in the network.
@@ -82,11 +82,10 @@ class RingNetworkInitializer(Initializer):
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.sendto(message, ("localhost", port))
 
-    def wakeup(self):
-        WUN = 3
-        message = str([3, -1, 0]).encode()
+    def wakeup(self, wake_up_node, message):
         wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        wake_up_socket.sendto(message, ("localhost", self.DNS[WUN]))
+        wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
+
 
 G = nx.Graph()
 if len(sys.argv) != 2:
@@ -102,4 +101,6 @@ init = RingNetworkInitializer("localhost", 65000, G)
 print(init)
 init.initialize_clients()
 init.setup_clients()
-init.wakeup()
+#count_wakeup_message = str([3, -1, 0]).encode()
+LE_wakeup_message = str(["WAKEUP", -1,-1,-1])
+init.wakeup(3, LE_wakeup_message.encode())

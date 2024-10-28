@@ -25,7 +25,7 @@ class Node:
             res += (f"DNS: {self.local_dns}")
         return res
     def _get_neighbors(self):
-        return [(key,val) for key, val in self.DNS.items()]
+        return [(key,val) for key, val in self.local_dns.items()]
     def send_RDY(self):
         """
         This method will send a "RDY" message to the initializer,
@@ -57,9 +57,9 @@ class Node:
             return
     def _send(self, message, port):
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        forward_socket.sendto(message, ("localhost", port))    
+        forward_socket.sendto(message.encode(), ("localhost", port))    
     def _create_message(self, *args):
-        return list(args)
+        return str(list(args))
         
 
 class RingNode(Node):
@@ -76,9 +76,8 @@ class RingNode(Node):
             message: message to forward
         """
         for v, address in self.local_dns.items(): # send message in other direction
-            if sender != v:
+            if sender != v:                
                 print(f"Sending to: {v}({address}) this message: "+message)
-                message = message.encode()
                 self._send(message, address)
                 break
 
@@ -87,12 +86,27 @@ class RingNode(Node):
         self.count = 1
         self.ringsize = 1
         self.known = False
-        message = self._create_message("Election", self.id, 1)
-        dest_id, dest_port = self._get_neighbors()[0]
+        message = self._create_message("Election", self.id, self.id, 1)
+        _, dest_port = self._get_neighbors()[0]
         self._send(message, dest_port)
-        self.min = self.id    
+        self.min = self.id
+        self.ROLE = "UNDEFINED"
+
+    def _leader_election_check(self):
+        print(f"Count: {self.count}")
+        print(f"Ringsize: {self.ringsize}")
+        print(f"Min: {self.min}")
+        if self.count == self.ringsize:            
+            if self.id == self.min:
+                self.ROLE = "LEADER"
+            else:
+                self.ROLE = "FOLLOWER"
+            print(f"Elected {self.ROLE}")
 
     def count_protocol(self):
+        """
+        Simple distributed algorithm to count nodes in a ring network.
+        """
         while 1:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
@@ -104,23 +118,38 @@ class RingNode(Node):
             forward_message = str([origin, self.id, int(counter)+1])
             self._send_to_other(sender, forward_message)
 
-    # def leader_election_protocol(self): # work in progress
-    #     # implements leader election on ring network!
-    #     state = "ASLEEP" # ASLEEP, AWAKE, FOLLOWER, LEADER
-    #     while True:
-    #         msg = self.s.recv(self.BUFFER_SIZE)
-    #         data = msg.decode("utf-8")
-    #         command, origin, counter = eval(data)
-    #         if state == "ASLEEP":
-    #             self._leader_election_initialize()
-    #             if command == "WAKEUP":
-    #                 continue
-    #             else:
-    #                 message = self._create_message("Election", origin, counter+1)
-                    
-                
+    def leader_election_protocol(self):
+        """
+        Leader election: All the way version
+        """        
+        state = "ASLEEP"
+        while True:
+            msg = self.s.recv(self.BUFFER_SIZE)
+            data = msg.decode("utf-8")
+            command,origin,sender,counter = eval(data)
+            if state == "ASLEEP":
+                self._leader_election_initialize()
+                if command == "WAKEUP":
+                    continue
+                else:
+                    message = self._create_message("Election", origin,self.id,counter+1)
+                    self._send_to_other(sender, message)
+                    self.min = min(self.min, origin)
+                    self.count += 1
+                state = "AWAKE"
+            elif state == "AWAKE":
+                if self.id != origin:
+                    message = self._create_message("Election", origin,self.id,counter+1)
+                    self._send_to_other(sender, message)
+                    self.min = min(self.min, origin)
+                    self.count += 1
+                    if self.known:
+                        self._leader_election_check()
+                else:
+                    self.ringsize = counter
+                    self.known = True
+                    self._leader_election_check()
 
-    
 if len(sys.argv) != 4:
     raise ValueError('Please provide host, initializer PORT and port number.')
 NODE = RingNode(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
@@ -128,4 +157,4 @@ NODE.send_RDY()
 NODE.bind_to_port()
 NODE.wait_for_instructions()
 print(NODE)
-NODE.count_protocol()
+NODE.leader_election_protocol()
