@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+import networkx as nx
 def read_graph(file):
     with open(file) as f:
         data = f.read().splitlines()
@@ -14,3 +16,7 @@ def get_local_dns(DNS:dict, node:int, edges:list):
             if n != node:
                 local_dns[n] = DNS[n]
     return local_dns
+
+def draw_graph(G:nx.Graph):
+    nx.draw(G, pos = None, ax = None, with_labels = True,font_size = 20, node_size = 2000, node_color = 'lightgreen')
+    plt.show()
