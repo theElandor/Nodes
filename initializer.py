@@ -17,7 +17,8 @@ class Initializer(metaclass=abc.ABCMeta):
         self.HOSTNAME = HOSTNAME
         self.PORT = PORT
         self.G = G
-        self.ports = [65432+x for x in range(N)] # one port for each node
+        self.N = G.number_of_nodes()
+        self.ports = [65432+x for x in range(self.N)] # one port for each node
         self.DNS = {node:port for node,port in zip(G.nodes(), self.ports)}
 
     def __str__(self):
@@ -77,30 +78,36 @@ class RingNetworkInitializer(Initializer):
     
     def setup_clients(self):
         for node, port in self.DNS.items():
-            local_dns = utils.get_local_dns(self.DNS, node, list(G.edges(node)))
-            message = str([node, list(G.edges(node)), local_dns]).encode()
+            local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
+            message = str([node, list(self.G.edges(node)), local_dns]).encode()
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.sendto(message, ("localhost", port))
 
-    def wakeup(self, wake_up_node, message):
+    def wakeup(self, wake_up_node:int, message:str):
+        """
+        Method do send the wake up message to a specific node to start the computation.
+        Parameters:
+            wake_up_node: integer representing the ID of the node to wake up.
+            message: wake up message to send. It might vary based on the protocol.
+        """
         wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
-
-
-G = nx.Graph()
-if len(sys.argv) != 2:
-    raise ValueError('Please provide exactly one argument.')
-N, edges = utils.read_graph(sys.argv[1])
-print("Graph info")
-print(f"Nodes: {N} \nEdges: {len(edges)}")
-nodes = [x+1 for x in range(N)]
-G.add_nodes_from(nodes)
-G.add_edges_from(edges)
-
-init = RingNetworkInitializer("localhost", 65000, G)
-print(init)
-init.initialize_clients()
-init.setup_clients()
-#count_wakeup_message = str([3, -1, 0]).encode()
-LE_wakeup_message = str(["WAKEUP", -0,0,0])
-init.wakeup(3, LE_wakeup_message.encode())
+    
+    def wait_for_number_of_messages(self):
+        """
+        Methods that opens a socket to wait for a message from all nodes
+        containing the number of messages sent by the node.
+        If it obtains this information from all of the nodes, it prints the sum.
+        """
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.bind(("", self.PORT))
+        received_messages = 0
+        counts = []
+        while 1: # wait for RDY messages    
+            data,addr = s.recvfrom(4096)            
+            command, messages = eval(data.decode("utf-8"))
+            counts.append(int(messages))
+            received_messages += 1
+            if received_messages == self.N:
+                print(f"The protocol used {sum(counts)} number of messages to terminate computation!")
+                break

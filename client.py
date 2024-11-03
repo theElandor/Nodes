@@ -57,18 +57,19 @@ class Node:
             return
     def _send(self, message, port):
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        forward_socket.sendto(message.encode(), ("localhost", port))    
+        forward_socket.sendto(message.encode(), ("localhost", port))
     def _create_message(self, *args):
-        return str(list(args))
+        return str(list(args)) 
         
 
 class RingNode(Node):
     def __init__(self, HOSTNAME, BACK, PORT):
         super().__init__(HOSTNAME, BACK, PORT)
+        self.total_messages = 0
 
     def _send_to_other(self,sender:int, message:str):
         """        
-        Function that sends given message to the "other" node, so
+        Primitive that sends given message to the "other" node, so
         the only node in the local DNS which is != sender.
         This implies that the node only has 2 neighbors (RingNode structure)
         Parameters:
@@ -80,27 +81,7 @@ class RingNode(Node):
                 print(f"Sending to: {v}({address}) this message: "+message)
                 self._send(message, address)
                 break
-
-
-    def _leader_election_initialize(self):
-        self.count = 1
-        self.ringsize = 1
-        self.known = False
-        message = self._create_message("Election", self.id, self.id, 1)
-        _, dest_port = self._get_neighbors()[0]
-        self._send(message, dest_port)
-        self.min = self.id
-
-    def _leader_election_check(self):
-        print(f"Count: {self.count}")
-        print(f"Ringsize: {self.ringsize}")
-        print(f"Min: {self.min}")
-        if self.count == self.ringsize:            
-            if self.id == self.min:
-                self.state = "LEADER"
-            else:
-                self.state = "FOLLOWER"
-            print(f"Elected {self.state}")
+        self.total_messages += 1
 
     def count_protocol(self):
         """
@@ -116,6 +97,38 @@ class RingNode(Node):
                 break
             forward_message = str([origin, self.id, int(counter)+1])
             self._send_to_other(sender, forward_message)
+
+    def _leader_election_initialize(self):
+        """
+        Primitive for leader_election algorithm to initialize nodes.
+        """
+        self.count = 1 #         
+        self.ringsize = 1 # measures
+        self.known = False
+        message = self._create_message("Election", self.id, self.id, 1)
+        _, dest_port = self._get_neighbors()[0]        
+        self._send(message, dest_port) # need to manually increment the message count
+        self.total_messages += 1
+        self.min = self.id
+        
+    def _send_total_messages(self):
+        message = self._create_message("Message_count", self.total_messages)        
+        self._send(message, self.BACK)
+
+    def _leader_election_check(self):
+        """
+        Primitive for leader_election algorithm.
+        """        
+        print(f"Count: {self.count}")
+        print(f"Ringsize: {self.ringsize}")
+        print(f"Min: {self.min}")
+        if self.count == self.ringsize:
+            if self.id == self.min:
+                self.state = "LEADER"
+            else:
+                self.state = "FOLLOWER"
+            print(f"Elected {self.state}")
+            self._send_total_messages()
 
     def leader_election_protocol(self):
         """
