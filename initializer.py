@@ -1,6 +1,5 @@
 import networkx as nx
 import utils
-import sys
 import subprocess as sp
 import socket
 from prettytable import PrettyTable
@@ -16,6 +15,7 @@ class Initializer(metaclass=abc.ABCMeta):
         """
         self.HOSTNAME = HOSTNAME
         self.PORT = PORT
+        self.BUFFER_SIZE = 4096
         self.G = G
         self.N = G.number_of_nodes()
         self.ports = [65432+x for x in range(self.N)] # one port for each node
@@ -41,8 +41,8 @@ class Initializer(metaclass=abc.ABCMeta):
         confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         confirmation_socket.bind(("", self.PORT))
         ready_clients = 0
-        while 1: # wait for RDY messages    
-            data,addr = confirmation_socket.recvfrom(4096)
+        while 1: # wait for RDY messages
+            data,addr = confirmation_socket.recvfrom(self.BUFFER_SIZE)
             command, target_port = data.decode("utf-8").split(" ")
             if command != "RDY":
                 print("Something went wrong during initialization.")
@@ -104,7 +104,7 @@ class RingNetworkInitializer(Initializer):
         received_messages = 0
         counts = []
         while 1: # wait for RDY messages    
-            data,addr = s.recvfrom(4096)            
+            data,addr = s.recvfrom(self.BUFFER_SIZE)            
             command, messages = eval(data.decode("utf-8"))
             counts.append(int(messages))
             received_messages += 1
