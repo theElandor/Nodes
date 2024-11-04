@@ -4,6 +4,8 @@ import subprocess as sp
 import socket
 from prettytable import PrettyTable
 import abc
+from time import sleep
+from threading import Thread
 
 class Initializer(metaclass=abc.ABCMeta):
     def __init__(self, HOSTNAME:str, PORT:int, G:nx.Graph):
@@ -92,7 +94,17 @@ class RingNetworkInitializer(Initializer):
         """
         wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
-    
+
+    def wakeup_all(self, message:str):
+        """
+        Method to wake up all nodes in the network at the same time.
+        Differently from the normal wakeup, does not need a target node
+        as it tries to wakeup all nodes.
+        Parameters:
+            message: string containing the wakeup message    
+        """
+        ...
+        
     def wait_for_number_of_messages(self):
         """
         Methods that opens a socket to wait for a message from all nodes

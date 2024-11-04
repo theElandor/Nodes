@@ -7,7 +7,8 @@ graph structures.
 + Need to test on different topologies;
 + Missing "turn off nodes" logic after leader election;
 + Need a way to handle high number of nodes without creating a terminal for each node;
-+ Write a primitive to send messages in parallel;
++ Need a way to test algorithms when all of the nodes "simultaneously" start the computation,
+  so the most correct way possibile to wake up all of them "in parallel".
 ## Quickstart
 ```bash
 python3 server.py data/example/network.txt
