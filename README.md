@@ -8,10 +8,9 @@ graph structures.
 + Missing "turn off nodes" logic after leader election;
 + Need a way to handle high number of nodes without creating a terminal for each node;
 + Need a way to test algorithms when all of the nodes "simultaneously" 
-    start the computation,
+    start the computation, so the most correct way possibile to wake up all of them "in parallel".
 + Need to create a object to encapsulate the initializer, the client 
   and the wakeup message!
-  so the most correct way possibile to wake up all of them "in parallel".
 ## Quickstart
 ```bash
 python3 server.py data/example/network.txt
