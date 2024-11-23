@@ -62,14 +62,38 @@ class Node:
             print(f"Sending to: {self.reverse_local_dns[port]}) this message: "+message)
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         forward_socket.sendto(message.encode(), ("localhost", port))
+
+    def _send_random(self, message:str):
+        """
+        Primitive that sends given message to a random neighbor.
+        Parameters:
+            message: message to send
+        """
+        _, address = list(self.local_dns.items())[0]
+        self._send(message, address)
+        self.total_messages += 1
+
+    def _send_total_messages(self):
+        message = self._create_message("Message_count", self.total_messages)        
+        self._send(message, self.BACK)
+
     def _create_message(self, *args):
         return str(list(args)) 
-        
+
 
 class RingNode(Node):
+    """
+    This class encapsulates primitives and protocols that only work on Ring Networks.
+    Each protocol has its own method, and the primitives for that protocol have the
+    same prefix.
+    List of implemented protocols:
+    + Count nodes in network;
+    + Leader election "All the Way";
+    + Leader election "As far as it can";
+    """
     def __init__(self, HOSTNAME, BACK, PORT):
         super().__init__(HOSTNAME, BACK, PORT)
-        self.total_messages = 0
+        self.total_messages = 0        
 
     def _send_to_other(self,sender:int, message:str, silent=False):
         """        
@@ -86,20 +110,11 @@ class RingNode(Node):
                     print(f"Sending to: {v}({address}) this message: "+message)
                 self._send(message, address)
                 break
-        self.total_messages += 1
-
-    def _send_random(self, message):
-        v, address = list(self.local_dns.items())[0]
-        self._send(message, address)
-        self.total_messages += 1
-        
-    def _send_total_messages(self):
-        message = self._create_message("Message_count", self.total_messages)        
-        self._send(message, self.BACK)
+        self.total_messages += 1        
 
     def count_protocol(self):
         """
-        Simple distributed algorithm to count nodes in a ring network.
+        Simple distributed algorithm to count nodes in a ring network;
         """
         while 1:
             msg = self.s.recv(self.BUFFER_SIZE)
@@ -114,9 +129,9 @@ class RingNode(Node):
 
     def _leader_election_atw_initialize(self):
         """
-        Primitive for leader_election algorithm to initialize nodes.
+        Primitive for leader_election algorithm;
         """
-        self.count = 1 #         
+        self.count = 1 #
         self.ringsize = 1 # measures
         self.known = False
         message = self._create_message("Election", self.id, self.id, 1)
@@ -145,26 +160,28 @@ class RingNode(Node):
         """
         Leader election: All the way version
         Message format: <command, origin, sender, counter>
-        """        
+        """
         self.state = "ASLEEP"
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
-            command,origin,sender,counter = eval(data)
+            try:
+                command,origin,sender,counter = eval(data)
+            except:
+                command, origin,sender,counter = eval(data)[0],0,0,0
+            print(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
+            if command == "TERM":
+                if origin == self.id:
+                    print("Got back termination message.")
+                else:
+                    message = self._create_message("TERM", origin, self.id, counter+1)
+                    self._send_to_other(sender, message)
+                break
             if self.state == "ASLEEP":
                 self._leader_election_atw_initialize()
                 if command == "WAKEUP":
                     self.state = "AWAKE"
                     continue
-                elif command == "TERM":
-                    print("Received termination message")
-                    if origin == self.id:
-                        print("Got back termination message.")
-                    else:
-                        message = self._create_message("TERM", origin, self.id, counter+1)
-                        self._send_to_other(sender, message)
-                    self._send_total_messages()
-                    return
                 else:
                     message = self._create_message("Election", origin,self.id,counter+1)
                     self._send_to_other(sender, message)
@@ -183,6 +200,7 @@ class RingNode(Node):
                     self.ringsize = counter
                     self.known = True
                     self._leader_election_atw_check()
+        self._send_total_messages()
 
     def leader_election_AF_protocol(self):
         """

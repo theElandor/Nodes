@@ -55,59 +55,10 @@ class Initializer(metaclass=abc.ABCMeta):
                 if ready_clients == len(self.ports):
                     print(f"All {ready_clients} clients are ready")
                     break
-    @abc.abstractmethod
-    def setup_clients(self):
-        """
-        This method should send to all of the nodes in the network
-        the information needed to properly work. This includes:
-        + The ID in the network;
-        + The list of connections (edges) with neighboors (nodes);
-        + The local dns that they need to comunicate to other nodes;
-        """
-        pass
 
-    @abc.abstractmethod
-    def wakeup(self, message:str):
-        """
-        Wakeup protocol: sends a wakeup message to one (of more) of
-        the nodes in the network.
-        """
-        pass
-
-class RingNetworkInitializer(Initializer):
-    def __init__(self, HOSTNAME:str, PORT:int, G:nx.Graph):
-        super().__init__(HOSTNAME, PORT, G)
-    
-    def setup_clients(self):
-        for node, port in self.DNS.items():
-            local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
-            message = str([node, list(self.G.edges(node)), local_dns]).encode()
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.sendto(message, ("localhost", port))
-
-    def wakeup(self, wake_up_node:int, message:str):
-        """
-        Method do send the wake up message to a specific node to start the computation.
-        Parameters:
-            wake_up_node: integer representing the ID of the node to wake up.
-            message: wake up message to send. It might vary based on the protocol.
-        """
-        wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
-
-    def wakeup_all(self, message:str):
-        """
-        Method to wake up all nodes in the network at the same time.
-        Differently from the normal wakeup, does not need a target node
-        as it tries to wakeup all nodes.
-        Parameters:
-            message: string containing the wakeup message    
-        """
-        ...
-        
     def wait_for_number_of_messages(self):
         """
-        Methods that opens a socket to wait for a message from all nodes
+        Method that opens a socket to wait for a message from all nodes
         containing the number of messages sent by the node.
         If it obtains this information from all of the nodes, it prints the sum.
         """
@@ -116,10 +67,35 @@ class RingNetworkInitializer(Initializer):
         received_messages = 0
         counts = []
         while 1: # wait for RDY messages    
-            data,addr = s.recvfrom(self.BUFFER_SIZE)            
-            command, messages = eval(data.decode("utf-8"))
+            data,_ = s.recvfrom(self.BUFFER_SIZE)
+            _, messages = eval(data.decode("utf-8"))
             counts.append(int(messages))
             received_messages += 1
             if received_messages == self.N:
-                print(f"The protocol used {sum(counts)} number of messages to terminate computation!")
+                print(f"The protocol used {sum(counts)}  messages!")
                 break
+
+    def setup_clients(self):
+        """
+        This method sends to all of the nodes in the network
+        the information needed to properly work. This includes:
+        + The ID in the network;
+        + The list of connections (edges) with neighboors (nodes);
+        + The local dns that they need to comunicate to other nodes;
+        """
+        for node, port in self.DNS.items():
+            local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
+            message = str([node, list(self.G.edges(node)), local_dns]).encode()
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.sendto(message, ("localhost", port))
+
+    def wakeup(self, wake_up_node:int):
+        """
+        Method do send the wake up message to a specific node to start the computation.
+        Parameters:
+            wake_up_node: integer representing the ID of the node to wake up.
+        """
+        message = str(["WAKEUP"]).encode()
+        wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
+        pass

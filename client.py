@@ -2,7 +2,7 @@ import sys
 from nodes import RingNode
 
 if len(sys.argv) != 4:
-    raise ValueError('Please provide host, initializer PORT and port number.')
+    raise ValueError('Please provide HOST, initializer PORT and local PORT NUMBER.')
 NODE = RingNode(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
 NODE.send_RDY()
 NODE.bind_to_port()
