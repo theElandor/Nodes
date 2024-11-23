@@ -21,7 +21,7 @@ class Node:
         if self.setup:
             res += (f"ID: {self.id}\n")
             res += (f"Edges: {self.edges}\n")
-            res += (f"DNS: {self.local_dns}")            
+            res += (f"DNS: {self.local_dns}")
         return res
     def _get_neighbors(self):
         return [(key,val) for key, val in self.local_dns.items()]
@@ -88,6 +88,11 @@ class RingNode(Node):
                 break
         self.total_messages += 1
 
+    def _send_random(self, message):
+        v, address = list(self.local_dns.items())[0]
+        self._send(message, address)
+        self.total_messages += 1
+        
     def _send_total_messages(self):
         message = self._create_message("Message_count", self.total_messages)        
         self._send(message, self.BACK)
@@ -130,10 +135,11 @@ class RingNode(Node):
         if self.count == self.ringsize:
             if self.id == self.min:
                 self.state = "LEADER"
+                message = self._create_message("TERM", self.id, self.id, 1)
+                self._send_random(message)
             else:
                 self.state = "FOLLOWER"
             print(f"Elected {self.state}")
-            self._send_total_messages()
 
     def leader_election_atw_protocol(self):
         """
@@ -150,6 +156,15 @@ class RingNode(Node):
                 if command == "WAKEUP":
                     self.state = "AWAKE"
                     continue
+                elif command == "TERM":
+                    print("Received termination message")
+                    if origin == self.id:
+                        print("Got back termination message.")
+                    else:
+                        message = self._create_message("TERM", origin, self.id, counter+1)
+                        self._send_to_other(sender, message)
+                    self._send_total_messages()
+                    return
                 else:
                     message = self._create_message("Election", origin,self.id,counter+1)
                     self._send_to_other(sender, message)
@@ -190,7 +205,7 @@ class RingNode(Node):
                 else:
                     self.min = self.id
                     if origin < self.min:
-                        message = self._create_message("Election", origin, self.id)                        
+                        message = self._create_message("Election", origin, self.id)
                         self._send_to_other(sender, message)
                         self.min = origin
                     else:
@@ -208,10 +223,8 @@ class RingNode(Node):
                         self._send_to_other(sender, message)
                         self.state = "LEADER"
                         print(f"Elected {self.state}")
-                        self._send_total_messages()
                 if command == "Notify":
                     message = self._create_message("Notify", origin, self.id)
                     self._send_to_other(sender, message)
                     self.state = "FOLLOWER"
                     print(f"Elected {self.state}")
-                    self._send_total_messages()
