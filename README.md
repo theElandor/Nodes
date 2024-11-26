@@ -1,7 +1,7 @@
 # Nodes
 
 <div align="center">
-  <img src="https://theelandor.github.io/prova/images/nodes.png" alt="Nodes" width="300" />
+  <img src="https://theelandor.github.io/prova/images/nodes.png" alt="Nodes" width="250" />
 </div>
 
 This framework aims to streamline research and education in distributed algorithms and distributed AI. 
