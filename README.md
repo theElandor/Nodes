@@ -1,6 +1,8 @@
 # Nodes
-Framework to develop distributed algorithms on fixed
-graph structures.
+This framework aims to streamline research and education in distributed algorithms and distributed AI. 
+It provides a simple and intuitive interface for developing distributed algorithms by merely defining the 
+behavior of individual nodes and the graph structure. It is also suited for integration with ML and DL libraries
+like scikitlearn, TensorFlow or PyTorch.
 ## Implemented Algorithms
 + Leader election "All the Way";
 + Leader election "As far as it can";
