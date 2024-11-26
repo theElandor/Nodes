@@ -17,7 +17,7 @@ Clone/fork the repo and install the Nodes package in developer mode:
 cd Nodes
 python3 -m pip install -e .
 ```
-You can find an example (client and server files) contained in the **Tests** directory. Run the following
+You can find an example (client and server files) contained in the **Tests** directory. Use the following
 command to run it:
 ```bash
 cd Tests
