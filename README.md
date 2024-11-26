@@ -1,9 +1,5 @@
 # Nodes
 
-<div align="center">
-  <img src="https://theelandor.github.io/prova/images/nodes.png" alt="Nodes" width="250" />
-</div>
-
 This framework aims to streamline research and education in distributed algorithms and distributed AI. 
 It provides a simple and intuitive interface for developing distributed algorithms by merely defining the 
 behavior of individual nodes and the graph structure. It is also suited for integration with ML and DL libraries
