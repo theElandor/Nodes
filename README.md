@@ -1,6 +1,9 @@
 # DistributedAlgorithms
 Framework to develop distributed algorithms on fixed
 graph structures.
+## Implemented Algorithms
++ Leader election "All the Way";
++ Leader election "As far as it can";
 ## Open Issues
 + Add Linux support;
 + Right now we only support "localhost";

@@ -86,10 +86,6 @@ class RingNode(Node):
     This class encapsulates primitives and protocols that only work on Ring Networks.
     Each protocol has its own method, and the primitives for that protocol have the
     same prefix.
-    List of implemented protocols:
-    + Count nodes in network;
-    + Leader election "All the Way";
-    + Leader election "As far as it can";
     """
     def __init__(self, HOSTNAME, BACK, PORT):
         super().__init__(HOSTNAME, BACK, PORT)
