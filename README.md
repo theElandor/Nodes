@@ -1,4 +1,4 @@
-# DistributedAlgorithms
+# Nodes
 Framework to develop distributed algorithms on fixed
 graph structures.
 ## Implemented Algorithms
