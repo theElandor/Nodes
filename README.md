@@ -12,6 +12,14 @@ graph structures.
 + Need a way to test algorithms when all of the nodes "simultaneously";
 + Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);
 ## Quickstart
+Clone/fork the repo and install the Nodes package in developer mode:
 ```bash
-python3 server.py data/example/network.txt
+cd Nodes
+python3 -m pip install -e .
+```
+You can find an example (client and server files) contained in the **Tests** directory. Run the following
+command to run it:
+```bash
+cd Tests
+python3 server.py ..\data\example\network.txt
 ```
