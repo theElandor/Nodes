@@ -1,7 +1,8 @@
 import networkx as nx
 import sys
-import utils
-import initializers
+import Nodes.utils as utils
+import Nodes.initializers as initializers
+import os
 
 # GRAPH CREATION
 G = nx.Graph()
@@ -16,8 +17,9 @@ G.add_edges_from(edges)
 utils.draw_graph(G)
 
 # FRAMEWORK
-init = initializers.Initializer("localhost", 65000, G)
-print(init)
+client = os.path.abspath("./client.py")
+print(client)
+init = initializers.Initializer(client, "localhost", 65000, G)
 init.initialize_clients()
 init.setup_clients()
 init.wakeup(1)

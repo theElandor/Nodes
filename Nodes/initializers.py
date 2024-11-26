@@ -1,14 +1,12 @@
 import networkx as nx
-import utils
+import Nodes.utils as utils
 import subprocess as sp
 import socket
 from prettytable import PrettyTable
 import abc
-from time import sleep
-from threading import Thread
 
 class Initializer(metaclass=abc.ABCMeta):
-    def __init__(self, HOSTNAME:str, PORT:int, G:nx.Graph):
+    def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph):
         """
         Paramters:
             HOSTNAME: (IP address) IP of the initalizer
@@ -22,6 +20,7 @@ class Initializer(metaclass=abc.ABCMeta):
         self.N = G.number_of_nodes()
         self.ports = [65432+x for x in range(self.N)] # one port for each node
         self.DNS = {node:port for node,port in zip(G.nodes(), self.ports)}
+        self.client = client
 
     def __str__(self):
         table = PrettyTable()
@@ -31,15 +30,14 @@ class Initializer(metaclass=abc.ABCMeta):
         return table.__str__()
 
     def initialize_clients(self):
-        """
+        """ 
         This method creates a process for each client (node), comunicating
         what is the port that they should use to wait for messages. Then,
         it waits for a confirmation message (RDY) from all of them.
         """
-        command = f"python3 client.py localhost {self.PORT} "
+        command = f"python3 {self.client} localhost {self.PORT} "        
         for port in self.ports:
-            process = sp.Popen(f'start cmd /K {command+str(port)}', shell=True)
-            print(command+str(port))
+            process = sp.Popen(f'start cmd /K {command+str(port)}', shell=True)            
         confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         confirmation_socket.bind(("", self.PORT))
         ready_clients = 0

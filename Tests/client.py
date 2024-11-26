@@ -1,5 +1,5 @@
 import sys
-from nodes import RingNode
+from Nodes.nodes import RingNode
 
 if len(sys.argv) != 4:
     raise ValueError('Please provide HOST, initializer PORT and local PORT NUMBER.')
