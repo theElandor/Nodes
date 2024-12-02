@@ -1,1 +1,2 @@
-peppercorn
+networkx
+matplotlib

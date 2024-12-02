@@ -1,5 +1,6 @@
 import socket
-
+import os
+from art import *
 class Node:
     def __init__(self, HOSTNAME, BACK, PORT):
         """
@@ -13,16 +14,37 @@ class Node:
         self.PORT = PORT
         self.BUFFER_SIZE = 4096
         self.setup = False
-    def __str__(self):
-        res = ""
-        res += f"Hostname: {self.HOSTNAME}\n"
+        self.log_file = None
+    
+    def _print_info(self):
+        """
+        Prints basic informations about the node.
+        """
+        Art = Art=text2art(f"{self.id}",font='block',chr_ignore=True)
+        self._log(Art)
+        res = f"\nHostname: {self.HOSTNAME}\n"
         res += f"Invoker port: {self.BACK}\n"
         res += f"Listening on port {self.PORT}\n"
         if self.setup:
             res += (f"ID: {self.id}\n")
             res += (f"Edges: {self.edges}\n")
             res += (f"DNS: {self.local_dns}")
-        return res
+        self._log(res)
+
+    def _log(self, message):
+        """
+        Logging function to either print on terminal or on a log file.
+        Parameters:
+            - message (str): message to print.
+        """
+        if self.shell:
+            print(message)
+        else:
+            if not self.log_file:
+                path = os.path.join(self.exp_path, f"{self.id}.out")
+                self.log_file = open(path, "a")
+            self.log_file.write(message+"\n")
+        
     def _get_neighbors(self):
         return [(key,val) for key, val in self.local_dns.items()]
     def send_RDY(self):
@@ -45,13 +67,14 @@ class Node:
         This method is used to start listening for setup messages.
         """
         if not self.s:
-            print("You need to bind to a valid socket first!")
+            self._log("You need to bind to a valid socket first!")
             return
         while 1:
         # Receive up to 1,024 bytes in a datagram
             data = self.s.recv(self.BUFFER_SIZE)
             data = data.decode("utf-8")
-            self.id, self.edges, self.local_dns = eval(data) # eval(data) is probably super unsafe
+            # eval(data) is kinda unsafe
+            self.id, self.edges, self.local_dns, self.shell, self.exp_path = eval(data)
             self.setup = True # end of setup
             self.reverse_local_dns = {}
             for key, val in self.local_dns.items():
@@ -59,7 +82,7 @@ class Node:
             return
     def _send(self, message, port, log=False):
         if log:
-            print(f"Sending to: {self.reverse_local_dns[port]}) this message: "+message)
+            self._log(f"Sending to: {self.reverse_local_dns[port]}) this message: "+message)
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         forward_socket.sendto(message.encode(), ("localhost", port))
 
@@ -103,7 +126,7 @@ class RingNode(Node):
         for v, address in self.local_dns.items(): # send message in other direction
             if sender != v:                
                 if not silent:
-                    print(f"Sending to: {v}({address}) this message: "+message)
+                    self._log(f"Sending to: {v}({address}) this message: "+message)
                 self._send(message, address)
                 break
         self.total_messages += 1        
@@ -116,9 +139,9 @@ class RingNode(Node):
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
             origin, sender, counter = eval(data)
-            print(f"Origin: {origin}, Sender: {sender}, Counter: {counter}")
+            self._log(f"Origin: {origin}, Sender: {sender}, Counter: {counter}")
             if origin == self.id and counter != 0:
-                print(f"Received back my message! Nodes in network: {counter}")
+                self._log(f"Received back my message! Nodes in network: {counter}")
                 break
             forward_message = str([origin, self.id, int(counter)+1])
             self._send_to_other(sender, forward_message)
@@ -140,9 +163,9 @@ class RingNode(Node):
         """
         Primitive for leader_election algorithm.
         """
-        print(f"Count: {self.count}")
-        print(f"Ringsize: {self.ringsize}")
-        print(f"Min: {self.min}")
+        self._log(f"Count: {self.count}")
+        self._log(f"Ringsize: {self.ringsize}")
+        self._log(f"Min: {self.min}")
         if self.count == self.ringsize:
             if self.id == self.min:
                 self.state = "LEADER"
@@ -150,7 +173,7 @@ class RingNode(Node):
                 self._send_random(message)
             else:
                 self.state = "FOLLOWER"
-            print(f"Elected {self.state}")
+            self._log(f"Elected {self.state}")
 
     def leader_election_atw_protocol(self):
         """
@@ -165,10 +188,10 @@ class RingNode(Node):
                 command,origin,sender,counter = eval(data)
             except:
                 command, origin,sender,counter = eval(data)[0],0,0,0
-            print(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
+            self._log(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
             if command == "TERM":
                 if origin == self.id:
-                    print("Got back termination message.")
+                    self._log("Got back termination message.")
                 else:
                     message = self._create_message("TERM", origin, self.id, counter+1)
                     self._send_to_other(sender, message)
@@ -208,7 +231,7 @@ class RingNode(Node):
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
             command,origin,sender = eval(data)
-            print(f"Received: {command}, origin: {origin}, sender: {sender}")
+            self._log(f"Received: {command}, origin: {origin}, sender: {sender}")
             if self.state == "ASLEEP":
                 if command == "WAKEUP":
                     message = self._create_message("Election", self.id, self.id)
@@ -236,9 +259,9 @@ class RingNode(Node):
                         message = self._create_message("Notify", origin, self.id)
                         self._send_to_other(sender, message)
                         self.state = "LEADER"
-                        print(f"Elected {self.state}")
+                        self._log(f"Elected {self.state}")
                 if command == "Notify":
                     message = self._create_message("Notify", origin, self.id)
                     self._send_to_other(sender, message)
                     self.state = "FOLLOWER"
-                    print(f"Elected {self.state}")
+                    self._log(f"Elected {self.state}")

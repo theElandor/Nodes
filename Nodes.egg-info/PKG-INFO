@@ -7,4 +7,5 @@ Author-email: 283122@studenti.unimore.it
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Requires-Python: >=3.7, <4
-Requires-Dist: peppercorn
+Requires-Dist: networkx
+Requires-Dist: matplotlib

@@ -19,7 +19,7 @@ utils.draw_graph(G)
 # FRAMEWORK
 client = os.path.abspath("./client.py")
 print(client)
-init = initializers.Initializer(client, "localhost", 65000, G)
+init = initializers.Initializer(client, "localhost", 65000, G, shell=False)
 init.initialize_clients()
 init.setup_clients()
 init.wakeup(1)

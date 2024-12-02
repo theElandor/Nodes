@@ -3,15 +3,20 @@ import Nodes.utils as utils
 import subprocess as sp
 import socket
 from prettytable import PrettyTable
+import os
 import abc
 
 class Initializer(metaclass=abc.ABCMeta):
-    def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph):
+    def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
         """
         Paramters:
             HOSTNAME: (IP address) IP of the initalizer
             BACK: Port where the initializer is waiting for RDY messages
             G: Graph structure to build
+            shell (bool): Whether to use a new shell for each process. 
+            - True: The command is executed through a shell (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
+            - False: The command is executed directly without a shell. 
+              This is safer and more efficient but may cause issues with shell-specific commands.
         """
         self.HOSTNAME = HOSTNAME
         self.PORT = PORT
@@ -21,6 +26,9 @@ class Initializer(metaclass=abc.ABCMeta):
         self.ports = [65432+x for x in range(self.N)] # one port for each node
         self.DNS = {node:port for node,port in zip(G.nodes(), self.ports)}
         self.client = client
+        self.shell = shell
+        if not log_path:
+            self.log_path = os.path.join(os.path.split(self.client)[0], "logs")
 
     def __str__(self):
         table = PrettyTable()
@@ -36,8 +44,13 @@ class Initializer(metaclass=abc.ABCMeta):
         it waits for a confirmation message (RDY) from all of them.
         """
         command = f"python3 {self.client} localhost {self.PORT} "        
+        self.exp_path = utils.init_logs(self.log_path)
         for port in self.ports:
-            process = sp.Popen(f'start cmd /K {command+str(port)}', shell=True)            
+            if self.shell:
+                process = sp.Popen(f'start cmd /K {command+str(port)}', stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+            else:
+                full_command = ["python3", self.client, "localhost", str(self.PORT), str(port)]
+                process = sp.Popen(full_command)        
         confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         confirmation_socket.bind(("", self.PORT))
         ready_clients = 0
@@ -80,10 +93,16 @@ class Initializer(metaclass=abc.ABCMeta):
         + The ID in the network;
         + The list of connections (edges) with neighboors (nodes);
         + The local dns that they need to comunicate to other nodes;
+        + A boolean (True if logging on terminal, False to log on files)
+        + The path of the experiment directory (needed for logging)
         """
         for node, port in self.DNS.items():
             local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
-            message = str([node, list(self.G.edges(node)), local_dns]).encode()
+            message = str([node, 
+                           list(self.G.edges(node)), 
+                           local_dns, 
+                           self.shell,
+                           self.exp_path]).encode()
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.sendto(message, ("localhost", port))
 
