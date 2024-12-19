@@ -9,8 +9,7 @@ like scikitlearn, TensorFlow or PyTorch.
 + Leader election "As far as it can";
 ## Open Issues
 + Add Linux support;
-+ Need to test on different topologies;
-+ Need a way to test algorithms when all of the nodes "simultaneously";
++ Need to implement sync logic;
 + Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:

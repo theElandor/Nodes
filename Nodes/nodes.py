@@ -52,9 +52,11 @@ class Node:
         This method will send a "RDY" message to the initializer,
         confirming that this node is ready to receive instructions.
         """
-        message = str(f"RDY {self.PORT}").encode()
-        confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        confirmation_socket.sendto(message, (self.HOSTNAME, self.BACK))
+        message = self._create_message("RDY", self.PORT)
+        self._send(message, self.BACK)
+        # message = str(f"RDY {self.PORT}").encode()
+        # confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # confirmation_socket.sendto(message, (self.HOSTNAME, self.BACK))
     def bind_to_port(self):
         """
         Method to create a socket where the node can listen for setup messages
@@ -98,6 +100,10 @@ class Node:
 
     def _send_total_messages(self):
         message = self._create_message("Message_count", self.total_messages)        
+        self._send(message, self.BACK)
+
+    def _send_start_of_protocol(self):
+        message = self._create_message("SOP", self.PORT)
         self._send(message, self.BACK)
 
     def _create_message(self, *args):
@@ -176,17 +182,25 @@ class RingNode(Node):
             self._log(f"Elected {self.state}")
 
     def leader_election_atw_protocol(self):
+        """Leader election: All the way version. 
+
+        Note:
+            Message format: <command, origin, sender, counter>
+
+        Args:
+            None
+
+        Returns:
+            None        
         """
-        Leader election: All the way version
-        Message format: <command, origin, sender, counter>
-        """
-        self.state = "ASLEEP"
+        self._send_start_of_protocol()
+        self.state = "ASLEEP"        
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
-            try:
+            try: # generic message
                 command,origin,sender,counter = eval(data)
-            except:
+            except: # WAKEUP message
                 command, origin,sender,counter = eval(data)[0],0,0,0
             self._log(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
             if command == "TERM":
@@ -226,6 +240,7 @@ class RingNode(Node):
         Leader election "As Far as it can" protocol.
         Message format: <command, origin, sender>
         """
+        self._send_start_of_protocol()
         self.state = "ASLEEP"
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
