@@ -11,6 +11,7 @@ like scikitlearn, TensorFlow or PyTorch.
 + Add Linux support;
 + Need to implement sync logic;
 + Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);
++ Must add unidirectional links support
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash

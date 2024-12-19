@@ -5,11 +5,14 @@ import pause
 from datetime import datetime
 class Node:
     def __init__(self, HOSTNAME, BACK, PORT):
-        """
-        Paramters:
-            HOSTNAME: (IP address) IP of the initalizer
-            BACK: Port where the initalizer is listening for confirmation
-            PORT: Port on which this node has to listen
+        """Node base initializer
+        Args:
+            HOSTNAME: (str) IP of the initalizer.
+            BACK (int): Port where the initalizer is listening for confirmation.
+            PORT (int): Port on which this node has to listen
+
+        Returns:
+            None
         """
         self.HOSTNAME = HOSTNAME
         self.BACK = BACK
@@ -19,8 +22,7 @@ class Node:
         self.log_file = None
     
     def _print_info(self):
-        """
-        Prints basic informations about the node.
+        """Prints basic informations about the node.
         """
         Art = Art=text2art(f"{self.id}",font='block',chr_ignore=True)
         self._log(Art)
@@ -34,10 +36,12 @@ class Node:
         self._log(res)
 
     def _log(self, message):
-        """
-        Logging function to either print on terminal or on a log file.
-        Parameters:
-            - message (str): message to print.
+        """Logging function to either print on terminal or on a log file.
+        Args:
+            message (str): message to print.
+
+        Returns:
+            None
         """
         if self.shell:
             print(message)
@@ -51,9 +55,11 @@ class Node:
         
     def _get_neighbors(self):
         return [(key,val) for key, val in self.local_dns.items()]
+
     def send_RDY(self):
-        """
-        This method will send a "RDY" message to the initializer,
+        """Send RDY message to initializer.
+        
+        This method is used to send RDY message to the initializer,
         confirming that this node is ready to receive instructions.
         """
         message = self._create_message("RDY", self.PORT)
@@ -62,15 +68,13 @@ class Node:
         # confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # confirmation_socket.sendto(message, (self.HOSTNAME, self.BACK))
     def bind_to_port(self):
-        """
-        Method to create a socket where the node can listen for setup messages
+        """Method to create a socket where the node can listen for setup messages
         """
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # Accept UDP datagrams, on the given port, from any sender
         self.s.bind(("", self.PORT))
     def wait_for_instructions(self):
-        """
-        This method is used to start listening for setup messages.
+        """This method is used to start listening for setup messages.
         """
         if not self.s:
             self._log("You need to bind to a valid socket first!")
@@ -87,6 +91,16 @@ class Node:
                 self.reverse_local_dns[val] = key
             return
     def _send(self, message, port, log=False):
+        """Primitive to send messages.
+
+        Args:
+            message (str): message to send.
+            port (int): target port.
+            log (bool): weather or not to write the operation on log file.
+
+        Returns:
+            None
+        """
         if log:
             self._log(f"Sending to: {self.reverse_local_dns[port]}) this message: "+message)
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -103,14 +117,18 @@ class Node:
         self.total_messages += 1
 
     def _send_total_messages(self):
+        """Sends total number of messages sent to the initializer.
+        """
         message = self._create_message("Message_count", self.total_messages)        
         self._send(message, self.BACK)
 
     def _send_start_of_protocol(self):
+        """Sends SOP message to the initializer.
+        """
         message = self._create_message("SOP", self.PORT)
         self._send(message, self.BACK)
 
-    def _create_message(self, *args):
+    def _create_message(self, *args):                
         return str(list(args))
     
     def _wake_up_decoder(self, data):
@@ -134,13 +152,18 @@ class RingNode(Node):
         self.total_messages = 0        
 
     def _send_to_other(self,sender:int, message:str, silent=False):
-        """        
-        Primitive that sends given message to the "other" node, so
+        """Primitive that sends given message to the "other" node.
+
+        This primitive is used to send the given message to
         the only node in the local DNS which is != sender.
         This implies that the node only has 2 neighbors (RingNode structure)
-        Parameters:
-            sender: node to exclude
-            message: message to forward
+
+        Args:
+            sender (Node): node to exclude.
+            message (str): message to forward.
+        
+        Returns:
+            None
         """
         for v, address in self.local_dns.items(): # send message in other direction
             if sender != v:                
@@ -151,8 +174,13 @@ class RingNode(Node):
         self.total_messages += 1        
 
     def count_protocol(self):
-        """
-        Simple distributed algorithm to count nodes in a ring network;
+        """Simple distributed algorithm to count nodes in a ring network.
+
+        Args:
+            None
+
+        Returns:
+            None        
         """
         while 1:
             msg = self.s.recv(self.BUFFER_SIZE)
@@ -166,8 +194,12 @@ class RingNode(Node):
             self._send_to_other(sender, forward_message)
 
     def _leader_election_atw_initialize(self):
-        """
-        Primitive for leader_election algorithm;
+        """Primitive for leader_election algorithm.
+        Args:
+            None
+
+        Returns:
+            None
         """
         self.count = 1 #
         self.ringsize = 1 # measures
@@ -179,8 +211,12 @@ class RingNode(Node):
         self.min = self.id
 
     def _leader_election_atw_check(self):
-        """
-        Primitive for leader_election algorithm.
+        """Primitive for leader_election algorithm.
+        Args:
+            None
+        
+        Returns:
+            None
         """
         self._log(f"Count: {self.count}")
         self._log(f"Ringsize: {self.ringsize}")
@@ -248,9 +284,16 @@ class RingNode(Node):
         self._send_total_messages()
 
     def leader_election_AF_protocol(self):
-        """
-        Leader election "As Far as it can" protocol.
-        Message format: <command, origin, sender>
+        """Leader election: "As Far as it can" version.
+
+        Note:
+            Message format: <command, origin, sender>
+
+        Args:
+            None
+
+        Returns:
+            None                    
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"
@@ -300,5 +343,4 @@ class RingNode(Node):
                     self.state = "FOLLOWER"
                     self._log(f"Elected {self.state}")
                     break
-        print("Here")
         self._send_total_messages()
