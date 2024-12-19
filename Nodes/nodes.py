@@ -4,25 +4,30 @@ from art import *
 import pause
 from datetime import datetime
 class Node:
-    def __init__(self, HOSTNAME, BACK, PORT):
-        """Node base initializer
-        Args:
-            HOSTNAME: (str) IP of the initalizer.
-            BACK (int): Port where the initalizer is listening for confirmation.
-            PORT (int): Port on which this node has to listen
+    def __init__(self, HOSTNAME:str, BACK:int, PORT:int):
+        """!Node base initializer
 
-        Returns:
-            None
+        @param HOSTNAME (str): IP of the initalizer.
+        @param BACK (int): Port where the initalizer is listening for confirmation.
+        @param PORT (int): Port on which this node has to listen
+
+        @return None
         """
+        ## IP address of the node.
         self.HOSTNAME = HOSTNAME
+        ## Port of the initializer (server).
         self.BACK = BACK
+        ## Port used to receive messages.
         self.PORT = PORT
+        ## Max length of messages.
         self.BUFFER_SIZE = 4096
+        ## Flag to check if node is correctly setup.
         self.setup = False
+        ## Flag that indicates where to write output (terminal or log file).
         self.log_file = None
     
     def _print_info(self):
-        """Prints basic informations about the node.
+        """!Prints basic informations about the node.
         """
         Art = Art=text2art(f"{self.id}",font='block',chr_ignore=True)
         self._log(Art)
@@ -36,12 +41,11 @@ class Node:
         self._log(res)
 
     def _log(self, message):
-        """Logging function to either print on terminal or on a log file.
-        Args:
-            message (str): message to print.
+        """!Logging function to either print on terminal or on a log file.
+        
+        @param message (str): message to print.
 
-        Returns:
-            None
+        @return None
         """
         if self.shell:
             print(message)
@@ -57,24 +61,24 @@ class Node:
         return [(key,val) for key, val in self.local_dns.items()]
 
     def send_RDY(self):
-        """Send RDY message to initializer.
+        """!Send RDY message to initializer.
         
         This method is used to send RDY message to the initializer,
         confirming that this node is ready to receive instructions.
+        @return None
         """
         message = self._create_message("RDY", self.PORT)
         self._send(message, self.BACK)
-        # message = str(f"RDY {self.PORT}").encode()
-        # confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # confirmation_socket.sendto(message, (self.HOSTNAME, self.BACK))
+
     def bind_to_port(self):
-        """Method to create a socket where the node can listen for setup messages
+        """!Method to create a socket where the node can listen for setup messages-
         """
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # Accept UDP datagrams, on the given port, from any sender
         self.s.bind(("", self.PORT))
+
     def wait_for_instructions(self):
-        """This method is used to start listening for setup messages.
+        """!This method is used to start listening for setup messages.
         """
         if not self.s:
             self._log("You need to bind to a valid socket first!")
@@ -83,23 +87,33 @@ class Node:
         # Receive up to 1,024 bytes in a datagram
             data = self.s.recv(self.BUFFER_SIZE)
             data = data.decode("utf-8")
-            # eval(data) is kinda unsafe
-            self.id, self.edges, self.local_dns, self.shell, self.exp_path = eval(data)
+            id, edges, local_dns, shell, exp_path = eval(data)
+            ## Unique ID of the node.
+            self.id = id
+            ## Edges of the node.
+            self.edges = edges
+            ## DNS containing usefull ports and adresses to comunicate.
+            self.local_dns = local_dns
+            ## True if node outputs on terminal, false to use log files.
+            self.shell = shell
+            ## Path to the log directory.
+            self.exp_path = exp_path
+            ## Flag used to check if node passed the setup phase.
             self.setup = True # end of setup
+            ## Same as local_dns but with reversed key:value.
             self.reverse_local_dns = {}
+            
             for key, val in self.local_dns.items():
                 self.reverse_local_dns[val] = key
             return
     def _send(self, message, port, log=False):
-        """Primitive to send messages.
+        """!Primitive to send messages.
+        
+        @param message (str): message to send.
+        @param port (int): target port.
+        @param log (bool): weather or not to write the operation on log file.
 
-        Args:
-            message (str): message to send.
-            port (int): target port.
-            log (bool): weather or not to write the operation on log file.
-
-        Returns:
-            None
+        @return None
         """
         if log:
             self._log(f"Sending to: {self.reverse_local_dns[port]}) this message: "+message)
@@ -107,31 +121,41 @@ class Node:
         forward_socket.sendto(message.encode(), ("localhost", port))
 
     def _send_random(self, message:str):
-        """
-        Primitive that sends given message to a random neighbor.
-        Parameters:
-            message: message to send
+        """!Primitive that sends given message to a random neighbor.        
+        @param message (str): message to send.
+
+        @return None
         """
         _, address = list(self.local_dns.items())[0]
         self._send(message, address)
         self.total_messages += 1
 
     def _send_total_messages(self):
-        """Sends total number of messages sent to the initializer.
+        """!Sends total number of messages sent to the initializer.
         """
         message = self._create_message("Message_count", self.total_messages)        
         self._send(message, self.BACK)
 
     def _send_start_of_protocol(self):
-        """Sends SOP message to the initializer.
+        """!Sends SOP message to the initializer.
         """
         message = self._create_message("SOP", self.PORT)
         self._send(message, self.BACK)
 
-    def _create_message(self, *args):                
+    def _create_message(self, *args):
+        """!Utility function to wrap the message in a string.
+        """               
         return str(list(args))
     
     def _wake_up_decoder(self, data):
+        """!Method used to decode the WAKEUP or START_AT message.
+        
+        This method offers a quick way to decode the WAKEUP or
+        START_AT message, used for async or sync start.
+        You should always call this method at the beginning of
+        your protocol. Check leader_election_atw_protocol() as 
+        an example.
+        """
         command = eval(data)[0]
         if command == "WAKEUP": return command
         elif command == "START_AT":
@@ -142,7 +166,8 @@ class Node:
 
 
 class RingNode(Node):
-    """
+    """!Class that encapsulates primitives and protocols used in a Ring-shaped network.
+
     This class encapsulates primitives and protocols that only work on Ring Networks.
     Each protocol has its own method, and the primitives for that protocol have the
     same prefix.
@@ -152,18 +177,16 @@ class RingNode(Node):
         self.total_messages = 0        
 
     def _send_to_other(self,sender:int, message:str, silent=False):
-        """Primitive that sends given message to the "other" node.
+        """!Primitive that sends given message to the "other" node.
 
         This primitive is used to send the given message to
         the only node in the local DNS which is != sender.
         This implies that the node only has 2 neighbors (RingNode structure)
 
-        Args:
-            sender (Node): node to exclude.
-            message (str): message to forward.
+        @param sender (Node): node to exclude.
+        @param message (str): message to forward.
         
-        Returns:
-            None
+        @return None
         """
         for v, address in self.local_dns.items(): # send message in other direction
             if sender != v:                
@@ -174,13 +197,7 @@ class RingNode(Node):
         self.total_messages += 1        
 
     def count_protocol(self):
-        """Simple distributed algorithm to count nodes in a ring network.
-
-        Args:
-            None
-
-        Returns:
-            None        
+        """!Simple distributed algorithm to count nodes in a ring network.
         """
         while 1:
             msg = self.s.recv(self.BUFFER_SIZE)
@@ -194,12 +211,7 @@ class RingNode(Node):
             self._send_to_other(sender, forward_message)
 
     def _leader_election_atw_initialize(self):
-        """Primitive for leader_election algorithm.
-        Args:
-            None
-
-        Returns:
-            None
+        """!Primitive for leader_election algorithm.
         """
         self.count = 1 #
         self.ringsize = 1 # measures
@@ -211,12 +223,7 @@ class RingNode(Node):
         self.min = self.id
 
     def _leader_election_atw_check(self):
-        """Primitive for leader_election algorithm.
-        Args:
-            None
-        
-        Returns:
-            None
+        """!Primitive for leader_election algorithm.
         """
         self._log(f"Count: {self.count}")
         self._log(f"Ringsize: {self.ringsize}")
@@ -231,16 +238,9 @@ class RingNode(Node):
             self._log(f"Elected {self.state}")
 
     def leader_election_atw_protocol(self):
-        """Leader election: All the way version. 
+        """!Leader election: All the way version.
 
-        Note:
-            Message format: <command, origin, sender, counter>
-
-        Args:
-            None
-
-        Returns:
-            None        
+            Message format: <command, origin, sender, counter>              
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"
@@ -284,16 +284,9 @@ class RingNode(Node):
         self._send_total_messages()
 
     def leader_election_AF_protocol(self):
-        """Leader election: "As Far as it can" version.
+        """!Leader election: "As Far as it can" version.
 
-        Note:
-            Message format: <command, origin, sender>
-
-        Args:
-            None
-
-        Returns:
-            None                    
+            Message format: <command, origin, sender>                        
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"

@@ -96,6 +96,9 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">RingNode Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class that encapsulates primitives and protocols used in a Ring-shaped network.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RingNode:</div>
 <div class="dyncontent">
@@ -109,19 +112,26 @@ Inheritance diagram for RingNode:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1220fbc3615280ff3365a6f723ad1c0c" id="r_a1220fbc3615280ff3365a6f723ad1c0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1220fbc3615280ff3365a6f723ad1c0c">__init__</a> (self, <a class="el" href="class_nodes_1_1nodes_1_1_node.html#a29322ef1497cedc6acc40a2fa6a84f63">HOSTNAME</a>, <a class="el" href="class_nodes_1_1nodes_1_1_node.html#ad3aabf1e376db1033336d30367473014">BACK</a>, <a class="el" href="class_nodes_1_1nodes_1_1_node.html#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>)</td></tr>
+<tr class="memdesc:a1220fbc3615280ff3365a6f723ad1c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1nodes_1_1_node.html">Node</a> base initializer.  <br /></td></tr>
 <tr class="separator:a1220fbc3615280ff3365a6f723ad1c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98156a830870d6ee2d88263239acb724" id="r_a98156a830870d6ee2d88263239acb724"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98156a830870d6ee2d88263239acb724">count_protocol</a> (self)</td></tr>
+<tr class="memdesc:a98156a830870d6ee2d88263239acb724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple distributed algorithm to count nodes in a ring network.  <br /></td></tr>
 <tr class="separator:a98156a830870d6ee2d88263239acb724"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9ae62e2ec39335d502e700e8e471bfb" id="r_ac9ae62e2ec39335d502e700e8e471bfb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9ae62e2ec39335d502e700e8e471bfb">leader_election_atw_protocol</a> (self)</td></tr>
+<tr class="memdesc:ac9ae62e2ec39335d502e700e8e471bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leader election: All the way version.  <br /></td></tr>
 <tr class="separator:ac9ae62e2ec39335d502e700e8e471bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c1b10d4a6b7894f98aeea6d8dffe502" id="r_a0c1b10d4a6b7894f98aeea6d8dffe502"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c1b10d4a6b7894f98aeea6d8dffe502">leader_election_AF_protocol</a> (self)</td></tr>
+<tr class="memdesc:a0c1b10d4a6b7894f98aeea6d8dffe502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leader election: "As Far as it can" version.  <br /></td></tr>
 <tr class="separator:a0c1b10d4a6b7894f98aeea6d8dffe502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_nodes_1_1nodes_1_1_node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_nodes_1_1nodes_1_1_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_nodes_1_1nodes_1_1_node.html">Node</a></td></tr>
 <tr class="memitem:ae4b911403d502aa1c95f13676c53c4d7 inherit pub_methods_class_nodes_1_1nodes_1_1_node" id="r_ae4b911403d502aa1c95f13676c53c4d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#ae4b911403d502aa1c95f13676c53c4d7">send_RDY</a> (self)</td></tr>
+<tr class="memdesc:ae4b911403d502aa1c95f13676c53c4d7 inherit pub_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send RDY message to initializer.  <br /></td></tr>
 <tr class="separator:ae4b911403d502aa1c95f13676c53c4d7 inherit pub_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad34c58ccab775f892b8c87cb352a3f41 inherit pub_methods_class_nodes_1_1nodes_1_1_node" id="r_ad34c58ccab775f892b8c87cb352a3f41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#ad34c58ccab775f892b8c87cb352a3f41">bind_to_port</a> (self)</td></tr>
+<tr class="memdesc:ad34c58ccab775f892b8c87cb352a3f41 inherit pub_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to create a socket where the node can listen for setup messages-.  <br /></td></tr>
 <tr class="separator:ad34c58ccab775f892b8c87cb352a3f41 inherit pub_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6a1033744075eb30c97193e28911345 inherit pub_methods_class_nodes_1_1nodes_1_1_node" id="r_ab6a1033744075eb30c97193e28911345"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#ab6a1033744075eb30c97193e28911345">wait_for_instructions</a> (self)</td></tr>
+<tr class="memdesc:ab6a1033744075eb30c97193e28911345 inherit pub_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to start listening for setup messages.  <br /></td></tr>
 <tr class="separator:ab6a1033744075eb30c97193e28911345 inherit pub_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -144,67 +154,90 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a3e202b201e6255d975cd6d3aff1f5a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_nodes_1_1nodes_1_1_node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_nodes_1_1nodes_1_1_node')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_nodes_1_1nodes_1_1_node.html">Node</a></td></tr>
 <tr class="memitem:a29322ef1497cedc6acc40a2fa6a84f63 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a29322ef1497cedc6acc40a2fa6a84f63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a29322ef1497cedc6acc40a2fa6a84f63">HOSTNAME</a> = HOSTNAME</td></tr>
+<tr class="memdesc:a29322ef1497cedc6acc40a2fa6a84f63 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP address of the node.  <br /></td></tr>
 <tr class="separator:a29322ef1497cedc6acc40a2fa6a84f63 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3aabf1e376db1033336d30367473014 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_ad3aabf1e376db1033336d30367473014"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#ad3aabf1e376db1033336d30367473014">BACK</a> = BACK</td></tr>
+<tr class="memdesc:ad3aabf1e376db1033336d30367473014 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port of the initializer (server).  <br /></td></tr>
 <tr class="separator:ad3aabf1e376db1033336d30367473014 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a> = PORT</td></tr>
+<tr class="memdesc:a6dde884e19bdc8f342ffec8fc17e7c91 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port used to receive messages.  <br /></td></tr>
 <tr class="separator:a6dde884e19bdc8f342ffec8fc17e7c91 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd8d62179f75714af34ae50caa397a73 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_acd8d62179f75714af34ae50caa397a73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#acd8d62179f75714af34ae50caa397a73">BUFFER_SIZE</a> = 4096</td></tr>
+<tr class="memdesc:acd8d62179f75714af34ae50caa397a73 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max length of messages.  <br /></td></tr>
 <tr class="separator:acd8d62179f75714af34ae50caa397a73 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3edb8d112555957f8bf2581e8122c4d6 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a3edb8d112555957f8bf2581e8122c4d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a3edb8d112555957f8bf2581e8122c4d6">setup</a> = False</td></tr>
+<tr class="memdesc:a3edb8d112555957f8bf2581e8122c4d6 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to check if node is correctly setup.  <br /></td></tr>
 <tr class="separator:a3edb8d112555957f8bf2581e8122c4d6 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a949f08ec7aa35516dd0d88cb8c10191e inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a949f08ec7aa35516dd0d88cb8c10191e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a949f08ec7aa35516dd0d88cb8c10191e">log_file</a> = None</td></tr>
+<tr class="memdesc:a949f08ec7aa35516dd0d88cb8c10191e inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag that indicates where to write output (terminal or log file).  <br /></td></tr>
 <tr class="separator:a949f08ec7aa35516dd0d88cb8c10191e inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c70a33f98b6d677c787feef116d8110 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a7c70a33f98b6d677c787feef116d8110"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a7c70a33f98b6d677c787feef116d8110">setup</a> = (f&quot;ID: {self.id}\n&quot;)</td></tr>
+<tr class="memdesc:a7c70a33f98b6d677c787feef116d8110 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag used to check if node passed the setup phase.  <br /></td></tr>
 <tr class="separator:a7c70a33f98b6d677c787feef116d8110 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3d4fbb9cf8a069dc079bb329a7e58b9 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a></td></tr>
+<tr class="memdesc:ae3d4fbb9cf8a069dc079bb329a7e58b9 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if node outputs on terminal, false to use log files.  <br /></td></tr>
 <tr class="separator:ae3d4fbb9cf8a069dc079bb329a7e58b9 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3691308f2a4c2f6983f2880d32e29c84 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a3691308f2a4c2f6983f2880d32e29c84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a3691308f2a4c2f6983f2880d32e29c84">s</a> = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td></tr>
 <tr class="separator:a3691308f2a4c2f6983f2880d32e29c84 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf2488b95c97e0378c9bf49de3b50f28 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_acf2488b95c97e0378c9bf49de3b50f28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#acf2488b95c97e0378c9bf49de3b50f28">id</a></td></tr>
+<tr class="memitem:acf2488b95c97e0378c9bf49de3b50f28 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_acf2488b95c97e0378c9bf49de3b50f28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#acf2488b95c97e0378c9bf49de3b50f28">id</a> = id</td></tr>
+<tr class="memdesc:acf2488b95c97e0378c9bf49de3b50f28 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the node.  <br /></td></tr>
 <tr class="separator:acf2488b95c97e0378c9bf49de3b50f28 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fa67019b889650b66f9d78490bf661b inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a5fa67019b889650b66f9d78490bf661b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a5fa67019b889650b66f9d78490bf661b">edges</a></td></tr>
+<tr class="memitem:a5fa67019b889650b66f9d78490bf661b inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a5fa67019b889650b66f9d78490bf661b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a5fa67019b889650b66f9d78490bf661b">edges</a> = edges</td></tr>
+<tr class="memdesc:a5fa67019b889650b66f9d78490bf661b inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edges of the node.  <br /></td></tr>
 <tr class="separator:a5fa67019b889650b66f9d78490bf661b inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6761695dc2d75a5b213a08883bcb0604 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a6761695dc2d75a5b213a08883bcb0604"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a6761695dc2d75a5b213a08883bcb0604">local_dns</a></td></tr>
+<tr class="memitem:a6761695dc2d75a5b213a08883bcb0604 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a6761695dc2d75a5b213a08883bcb0604"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a6761695dc2d75a5b213a08883bcb0604">local_dns</a> = local_dns</td></tr>
+<tr class="memdesc:a6761695dc2d75a5b213a08883bcb0604 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">DNS containing usefull ports and adresses to comunicate.  <br /></td></tr>
 <tr class="separator:a6761695dc2d75a5b213a08883bcb0604 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2a36aae87a86f29406d0f98243473f0 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_aa2a36aae87a86f29406d0f98243473f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#aa2a36aae87a86f29406d0f98243473f0">exp_path</a> = eval(data)</td></tr>
+<tr class="memitem:aa2a36aae87a86f29406d0f98243473f0 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_aa2a36aae87a86f29406d0f98243473f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#aa2a36aae87a86f29406d0f98243473f0">exp_path</a> = exp_path</td></tr>
+<tr class="memdesc:aa2a36aae87a86f29406d0f98243473f0 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if node outputs on terminal, false to use log files.  <br /></td></tr>
 <tr class="separator:aa2a36aae87a86f29406d0f98243473f0 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1830d2fefd4f3c73b288d09671b4b8e inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_ac1830d2fefd4f3c73b288d09671b4b8e"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#ac1830d2fefd4f3c73b288d09671b4b8e">reverse_local_dns</a> = {}</td></tr>
+<tr class="memdesc:ac1830d2fefd4f3c73b288d09671b4b8e inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag used to check if node passed the setup phase.  <br /></td></tr>
 <tr class="separator:ac1830d2fefd4f3c73b288d09671b4b8e inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a3a8b5b1efb5371437df54f26eedee30a" id="r_a3a8b5b1efb5371437df54f26eedee30a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a8b5b1efb5371437df54f26eedee30a">_send_to_other</a> (self, int sender, str message, silent=False)</td></tr>
+<tr class="memdesc:a3a8b5b1efb5371437df54f26eedee30a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive that sends given message to the "other" node.  <br /></td></tr>
 <tr class="separator:a3a8b5b1efb5371437df54f26eedee30a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53fe7217d195b05b31d5ced406c0ee29" id="r_a53fe7217d195b05b31d5ced406c0ee29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53fe7217d195b05b31d5ced406c0ee29">_leader_election_atw_initialize</a> (self)</td></tr>
+<tr class="memdesc:a53fe7217d195b05b31d5ced406c0ee29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive for leader_election algorithm.  <br /></td></tr>
 <tr class="separator:a53fe7217d195b05b31d5ced406c0ee29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73658ff7f67aecb2c947d76ca8f061f5" id="r_a73658ff7f67aecb2c947d76ca8f061f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73658ff7f67aecb2c947d76ca8f061f5">_leader_election_atw_check</a> (self)</td></tr>
+<tr class="memdesc:a73658ff7f67aecb2c947d76ca8f061f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive for leader_election algorithm.  <br /></td></tr>
 <tr class="separator:a73658ff7f67aecb2c947d76ca8f061f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_nodes_1_1nodes_1_1_node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_nodes_1_1nodes_1_1_node')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_nodes_1_1nodes_1_1_node.html">Node</a></td></tr>
 <tr class="memitem:a69505545682960ef73421ca9f488c83d inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a69505545682960ef73421ca9f488c83d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a69505545682960ef73421ca9f488c83d">_print_info</a> (self)</td></tr>
+<tr class="memdesc:a69505545682960ef73421ca9f488c83d inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints basic informations about the node.  <br /></td></tr>
 <tr class="separator:a69505545682960ef73421ca9f488c83d inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a785b4612798ae0b353c2e694e6e966f7 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a785b4612798ae0b353c2e694e6e966f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a785b4612798ae0b353c2e694e6e966f7">_log</a> (self, message)</td></tr>
+<tr class="memdesc:a785b4612798ae0b353c2e694e6e966f7 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logging function to either print on terminal or on a log file.  <br /></td></tr>
 <tr class="separator:a785b4612798ae0b353c2e694e6e966f7 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a197f075a47c984971ae676e17c160b80 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a197f075a47c984971ae676e17c160b80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a197f075a47c984971ae676e17c160b80">_get_neighbors</a> (self)</td></tr>
 <tr class="separator:a197f075a47c984971ae676e17c160b80 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd67886219d456e8ca8be1d96df3f184 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_acd67886219d456e8ca8be1d96df3f184"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#acd67886219d456e8ca8be1d96df3f184">_send</a> (self, message, port, log=False)</td></tr>
+<tr class="memdesc:acd67886219d456e8ca8be1d96df3f184 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive to send messages.  <br /></td></tr>
 <tr class="separator:acd67886219d456e8ca8be1d96df3f184 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bfa27b9fd43ad269d2d507884aa6fc7 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a2bfa27b9fd43ad269d2d507884aa6fc7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a2bfa27b9fd43ad269d2d507884aa6fc7">_send_random</a> (self, str message)</td></tr>
+<tr class="memdesc:a2bfa27b9fd43ad269d2d507884aa6fc7 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive that sends given message to a random neighbor.  <br /></td></tr>
 <tr class="separator:a2bfa27b9fd43ad269d2d507884aa6fc7 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60c844f78b889b81b662ac0a43d5e0be inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a60c844f78b889b81b662ac0a43d5e0be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a60c844f78b889b81b662ac0a43d5e0be">_send_total_messages</a> (self)</td></tr>
+<tr class="memdesc:a60c844f78b889b81b662ac0a43d5e0be inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends total number of messages sent to the initializer.  <br /></td></tr>
 <tr class="separator:a60c844f78b889b81b662ac0a43d5e0be inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48010de34c97ac935a1f16e4f5092620 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a48010de34c97ac935a1f16e4f5092620"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a48010de34c97ac935a1f16e4f5092620">_send_start_of_protocol</a> (self)</td></tr>
+<tr class="memdesc:a48010de34c97ac935a1f16e4f5092620 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends SOP message to the initializer.  <br /></td></tr>
 <tr class="separator:a48010de34c97ac935a1f16e4f5092620 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f3981c893e1ab6d2fc4e2b112920039 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a3f3981c893e1ab6d2fc4e2b112920039"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a3f3981c893e1ab6d2fc4e2b112920039">_create_message</a> (self, *args)</td></tr>
+<tr class="memdesc:a3f3981c893e1ab6d2fc4e2b112920039 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to wrap the message in a string.  <br /></td></tr>
 <tr class="separator:a3f3981c893e1ab6d2fc4e2b112920039 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e3538d38373bc73bb87858c5a2f09b inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a78e3538d38373bc73bb87858c5a2f09b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a78e3538d38373bc73bb87858c5a2f09b">_wake_up_decoder</a> (self, data)</td></tr>
+<tr class="memdesc:a78e3538d38373bc73bb87858c5a2f09b inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to decode the WAKEUP or START_AT message.  <br /></td></tr>
 <tr class="separator:a78e3538d38373bc73bb87858c5a2f09b inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre class="fragment">This class encapsulates primitives and protocols that only work on Ring Networks.
-Each protocol has its own method, and the primitives for that protocol have the
-same prefix.
-</pre> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="textblock"><p>Class that encapsulates primitives and protocols used in a Ring-shaped network. </p>
+<p>This class encapsulates primitives and protocols that only work on Ring Networks. Each protocol has its own method, and the primitives for that protocol have the same prefix. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1220fbc3615280ff3365a6f723ad1c0c" name="a1220fbc3615280ff3365a6f723ad1c0c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1220fbc3615280ff3365a6f723ad1c0c">&#9670;&#160;</a></span>__init__()</h2>
 
@@ -233,16 +266,19 @@ same prefix.
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Node base initializer
-Args:
-    HOSTNAME: (str) IP of the initalizer.
-    BACK (int): Port where the initalizer is listening for confirmation.
-    PORT (int): Port on which this node has to listen
 
-Returns:
-    None
-</pre> 
-<p>Reimplemented from <a class="el" href="class_nodes_1_1nodes_1_1_node.html#a1220fbc3615280ff3365a6f723ad1c0c">Node</a>.</p>
+<p><a class="el" href="class_nodes_1_1nodes_1_1_node.html">Node</a> base initializer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HOSTNAME</td><td>(str): IP of the initalizer. </td></tr>
+    <tr><td class="paramname">BACK</td><td>(int): Port where the initalizer is listening for confirmation. </td></tr>
+    <tr><td class="paramname">PORT</td><td>(int): Port on which this node has to listen</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_nodes_1_1nodes_1_1_node.html#a94676406469aacec1c8871c5b10036e6">Node</a>.</p>
 
 </div>
 </div>
@@ -269,13 +305,9 @@ Returns:
   </tr>
 </table>
 </div><div class="memdoc">
-<pre class="fragment">Primitive for leader_election algorithm.
-Args:
-    None
 
-Returns:
-    None
-</pre> 
+<p>Primitive for leader_election algorithm. </p>
+
 </div>
 </div>
 <a id="a53fe7217d195b05b31d5ced406c0ee29" name="a53fe7217d195b05b31d5ced406c0ee29"></a>
@@ -300,13 +332,9 @@ Returns:
   </tr>
 </table>
 </div><div class="memdoc">
-<pre class="fragment">Primitive for leader_election algorithm.
-Args:
-    None
 
-Returns:
-    None
-</pre> 
+<p>Primitive for leader_election algorithm. </p>
+
 </div>
 </div>
 <a id="a3a8b5b1efb5371437df54f26eedee30a" name="a3a8b5b1efb5371437df54f26eedee30a"></a>
@@ -345,19 +373,18 @@ Returns:
   </tr>
 </table>
 </div><div class="memdoc">
-<pre class="fragment">Primitive that sends given message to the "other" node.
 
-This primitive is used to send the given message to
-the only node in the local DNS which is != sender.
-This implies that the node only has 2 neighbors (RingNode structure)
+<p>Primitive that sends given message to the "other" node. </p>
+<p>This primitive is used to send the given message to the only node in the local DNS which is != sender. This implies that the node only has 2 neighbors (<a class="el" href="class_nodes_1_1nodes_1_1_ring_node.html" title="Class that encapsulates primitives and protocols used in a Ring-shaped network.">RingNode</a> structure)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sender</td><td>(<a class="el" href="class_nodes_1_1nodes_1_1_node.html">Node</a>): node to exclude. </td></tr>
+    <tr><td class="paramname">message</td><td>(str): message to forward.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
-Args:
-    sender (Node): node to exclude.
-    message (str): message to forward.
-
-Returns:
-    None
-</pre> 
 </div>
 </div>
 <a id="a98156a830870d6ee2d88263239acb724" name="a98156a830870d6ee2d88263239acb724"></a>
@@ -374,14 +401,9 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Simple distributed algorithm to count nodes in a ring network.
 
-Args:
-    None
+<p>Simple distributed algorithm to count nodes in a ring network. </p>
 
-Returns:
-    None        
-</pre> 
 </div>
 </div>
 <a id="a0c1b10d4a6b7894f98aeea6d8dffe502" name="a0c1b10d4a6b7894f98aeea6d8dffe502"></a>
@@ -398,17 +420,11 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Leader election: "As Far as it can" version.
 
-Note:
-    Message format: &lt;command, origin, sender&gt;
+<p>Leader election: "As Far as it can" version. </p>
+<p>Message format: &lt;command, origin, sender&gt; <br  />
+ </p>
 
-Args:
-    None
-
-Returns:
-    None                    
-</pre> 
 </div>
 </div>
 <a id="ac9ae62e2ec39335d502e700e8e471bfb" name="ac9ae62e2ec39335d502e700e8e471bfb"></a>
@@ -425,17 +441,11 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Leader election: All the way version. 
 
-Note:
-    Message format: &lt;command, origin, sender, counter&gt;
+<p>Leader election: All the way version. </p>
+<p>Message format: &lt;command, origin, sender, counter&gt; <br  />
+ </p>
 
-Args:
-    None
-
-Returns:
-    None        
-</pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

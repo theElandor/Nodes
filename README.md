@@ -11,7 +11,10 @@ like scikitlearn, TensorFlow or PyTorch.
 + Add Linux support;
 + Need to implement sync logic;
 + Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);
-+ Must add unidirectional links support
++ Must add unidirectional links support;
++ Must finish writing base documentation in doxygen;
++ Must add a "run tests" script;
++ Should find a way to write doxygen documentation in separate files.
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash

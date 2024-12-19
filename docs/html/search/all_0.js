@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_5f_5finit_5f_5f_0',['__init__',['../class_nodes_1_1initializers_1_1_initializer.html#a3327940d2b8598dae19fbca65b09f217',1,'Nodes.initializers.Initializer.__init__()'],['../class_nodes_1_1nodes_1_1_node.html#a1220fbc3615280ff3365a6f723ad1c0c',1,'Nodes.nodes.Node.__init__()'],['../class_nodes_1_1nodes_1_1_ring_node.html#a1220fbc3615280ff3365a6f723ad1c0c',1,'Nodes.nodes.RingNode.__init__()']]],
+  ['_5f_5finit_5f_5f_0',['__init__',['../class_nodes_1_1initializers_1_1_initializer.html#a3327940d2b8598dae19fbca65b09f217',1,'Nodes.initializers.Initializer.__init__()'],['../class_nodes_1_1nodes_1_1_node.html#a94676406469aacec1c8871c5b10036e6',1,'Nodes.nodes.Node.__init__()'],['../class_nodes_1_1nodes_1_1_ring_node.html#a1220fbc3615280ff3365a6f723ad1c0c',1,'Nodes.nodes.RingNode.__init__()']]],
   ['_5f_5finit_5f_5f_2epy_1',['__init__.py',['../____init_____8py.html',1,'']]],
   ['_5f_5fstr_5f_5f_2',['__str__',['../class_nodes_1_1initializers_1_1_initializer.html#a40b37c981a056437fd94276341c63fe8',1,'Nodes::initializers::Initializer']]],
   ['_5fcreate_5fmessage_3',['_create_message',['../class_nodes_1_1nodes_1_1_node.html#a3f3981c893e1ab6d2fc4e2b112920039',1,'Nodes::nodes::Node']]],
