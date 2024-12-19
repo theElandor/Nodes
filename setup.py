@@ -22,6 +22,6 @@ setup(
     ],
     packages=find_packages(include=['Nodes', 'Tests', "data/example", "data/example2"]),
     python_requires=">=3.7, <4",
-    install_requires=["networkx", "matplotlib", "art"],  # Optional
+    install_requires=["networkx", "matplotlib", "art", "pause"],  # Optional
     package_data={'data' :['Nodes/data/*']}
 )

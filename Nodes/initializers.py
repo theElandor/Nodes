@@ -5,6 +5,9 @@ import socket
 from prettytable import PrettyTable
 import os
 import abc
+import datetime
+import pause
+from datetime import timedelta
 
 class Initializer(metaclass=abc.ABCMeta):
     def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
@@ -18,7 +21,7 @@ class Initializer(metaclass=abc.ABCMeta):
                 - False: The command is executed directly without a shell. 
                 This is safer and more efficient but may cause issues with shell-specific commands.
         Returns:
-            None            
+            None
         """
         self.HOSTNAME = HOSTNAME
         self.PORT = PORT
@@ -91,7 +94,7 @@ class Initializer(metaclass=abc.ABCMeta):
             counts.append(int(messages))
             received_messages += 1
             if received_messages == self.N:
-                print(f"The protocol used {sum(counts)}  messages!")
+                print(f"The protocol used {sum(counts)} messages!")
                 break
 
     def setup_clients(self):
@@ -144,7 +147,6 @@ class Initializer(metaclass=abc.ABCMeta):
         message = str(["WAKEUP"]).encode()
         wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
-        pass
     def wakeup_all(self, delta:int):
         """
         Send the absolute wakeup time to the nodes.
@@ -153,5 +155,16 @@ class Initializer(metaclass=abc.ABCMeta):
         Returns:
             None
         """
+        wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        now = datetime.datetime.now()
+        start_time = now + timedelta(seconds=delta)        
+        year = start_time.year
+        month = start_time.month
+        day = start_time.day
+        hour = start_time.hour
+        minute = start_time.minute
+        second = start_time.second
+        for node, port in self.DNS.items():
+            message = str(["START_AT", year, month,day,hour, minute, second]).encode()
+            wake_up_socket.sendto(message, ("localhost", port))
 
-        

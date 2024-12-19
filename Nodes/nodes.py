@@ -1,6 +1,8 @@
 import socket
 import os
 from art import *
+import pause
+from datetime import datetime
 class Node:
     def __init__(self, HOSTNAME, BACK, PORT):
         """
@@ -42,8 +44,10 @@ class Node:
         else:
             if not self.log_file:
                 path = os.path.join(self.exp_path, f"{self.id}.out")
-                self.log_file = open(path, "a")
-            self.log_file.write(message+"\n")
+                #self.log_file = open(path, "a")
+                self.log_file = path
+            with open(self.log_file,"a") as f:
+                f.write(message+"\n")
         
     def _get_neighbors(self):
         return [(key,val) for key, val in self.local_dns.items()]
@@ -107,7 +111,16 @@ class Node:
         self._send(message, self.BACK)
 
     def _create_message(self, *args):
-        return str(list(args)) 
+        return str(list(args))
+    
+    def _wake_up_decoder(self, data):
+        command = eval(data)[0]
+        if command == "WAKEUP": return command
+        elif command == "START_AT":
+            y,mo,d,h,mi,s = eval(data)[1:]
+            pause.until(datetime(y, mo, d, h, mi, s))
+            return "WAKEUP" # from now on it's like I received a wakeup message
+
 
 
 class RingNode(Node):
@@ -194,18 +207,18 @@ class RingNode(Node):
             None        
         """
         self._send_start_of_protocol()
-        self.state = "ASLEEP"        
+        self.state = "ASLEEP"
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
             try: # generic message
                 command,origin,sender,counter = eval(data)
             except: # WAKEUP message
-                command, origin,sender,counter = eval(data)[0],0,0,0
-            self._log(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
+                command = self._wake_up_decoder(data)
+            if command != "WAKEUP": self._log(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
+            else: self._log(f"Received {command}")
             if command == "TERM":
-                if origin == self.id:
-                    self._log("Got back termination message.")
+                if origin == self.id: self._log("Got back termination message.")
                 else:
                     message = self._create_message("TERM", origin, self.id, counter+1)
                     self._send_to_other(sender, message)
@@ -227,8 +240,7 @@ class RingNode(Node):
                     self._send_to_other(sender, message)
                     self.min = min(self.min, origin)
                     self.count += 1
-                    if self.known:
-                        self._leader_election_atw_check()
+                    if self.known: self._leader_election_atw_check()
                 else:
                     self.ringsize = counter
                     self.known = True
@@ -245,8 +257,14 @@ class RingNode(Node):
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
-            command,origin,sender = eval(data)
-            self._log(f"Received: {command}, origin: {origin}, sender: {sender}")
+            try: # generic message
+                command,origin,sender = eval(data)
+            except: # WAKEUP message
+                command = self._wake_up_decoder(data)                
+            if command != "WAKEUP":
+                self._log(f"Received: {command}, origin: {origin}, sender: {sender}")
+            else:
+                self._log(f"Received: {command}")
             if self.state == "ASLEEP":
                 if command == "WAKEUP":
                     message = self._create_message("Election", self.id, self.id)
@@ -275,8 +293,12 @@ class RingNode(Node):
                         self._send_to_other(sender, message)
                         self.state = "LEADER"
                         self._log(f"Elected {self.state}")
+                        break
                 if command == "Notify":
                     message = self._create_message("Notify", origin, self.id)
                     self._send_to_other(sender, message)
                     self.state = "FOLLOWER"
                     self._log(f"Elected {self.state}")
+                    break
+        print("Here")
+        self._send_total_messages()
