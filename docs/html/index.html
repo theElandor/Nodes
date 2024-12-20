@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nodes: Main Page</title>
+<title>Nodes: Nodes</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,10 +83,36 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Nodes Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title"><a class="el" href="namespace_nodes.html">Nodes</a> </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__c_1_2_users_2eros_2_documenti_2_nodes_2_r_e_a_d_m_e"></a></p>
+<p>This framework aims to streamline research and education in distributed algorithms and distributed AI. It provides a simple and intuitive interface for developing distributed algorithms by merely defining the behavior of individual nodes and the graph structure. It is also suited for integration with ML and DL libraries like scikitlearn, TensorFlow or PyTorch. </p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Implemented Algorithms</h1>
+<ul>
+<li>Leader election "All the Way";</li>
+<li>Leader election "As far as it can"; </li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Open Issues</h1>
+<ul>
+<li>Add Linux support;</li>
+<li>Need to implement sync logic;</li>
+<li>Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);</li>
+<li>Must add unidirectional links support;</li>
+<li>Must finish writing base documentation in doxygen;</li>
+<li>Must add a "run tests" script;</li>
+<li>Should find a way to write doxygen documentation in separate files. </li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Quickstart</h1>
+<p>Clone/fork the repo and install the <a class="el" href="namespace_nodes.html">Nodes</a> package in developer mode: </p><div class="fragment"><div class="line">cd Nodes</div>
+<div class="line">python3 -m pip install -e .</div>
+</div><!-- fragment --><p> You can find an example (client and server files) contained in the <b>Tests</b> directory. Use the following command to run it: </p><div class="fragment"><div class="line">cd Tests</div>
+<div class="line">python3 server.py ..\data\example\network.txt</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 <!-- start footer part -->

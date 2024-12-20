@@ -104,40 +104,55 @@ Inheritance diagram for Initializer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3327940d2b8598dae19fbca65b09f217" id="r_a3327940d2b8598dae19fbca65b09f217"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3327940d2b8598dae19fbca65b09f217">__init__</a> (self, str <a class="el" href="#ad5bc32b75da65fe60067f501a4bb6665">client</a>, str <a class="el" href="#a29322ef1497cedc6acc40a2fa6a84f63">HOSTNAME</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>, nx.Graph <a class="el" href="#a86d8d92aba9ecf9bbf89f69cb3e49588">G</a>, <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a>=True, <a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a>=None)</td></tr>
+<tr class="memitem:a3327940d2b8598dae19fbca65b09f217" id="r_a3327940d2b8598dae19fbca65b09f217"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3327940d2b8598dae19fbca65b09f217">__init__</a> (self, str <a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a>, str <a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>, nx.Graph <a class="el" href="#ab892b6eaa2237016a1493b3596934688">G</a>, <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a>=True, <a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a>=None)</td></tr>
+<tr class="memdesc:a3327940d2b8598dae19fbca65b09f217"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> initializer :)  <br /></td></tr>
 <tr class="separator:a3327940d2b8598dae19fbca65b09f217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40b37c981a056437fd94276341c63fe8" id="r_a40b37c981a056437fd94276341c63fe8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40b37c981a056437fd94276341c63fe8">__str__</a> (self)</td></tr>
 <tr class="separator:a40b37c981a056437fd94276341c63fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6841f84faac255a5dfc05049fbeed3e" id="r_ae6841f84faac255a5dfc05049fbeed3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6841f84faac255a5dfc05049fbeed3e">initialize_clients</a> (self)</td></tr>
+<tr class="memdesc:ae6841f84faac255a5dfc05049fbeed3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that initializes all of the nodes of the graph.  <br /></td></tr>
 <tr class="separator:ae6841f84faac255a5dfc05049fbeed3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3ea9392b73529c059a4d53251b1d9f2" id="r_af3ea9392b73529c059a4d53251b1d9f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3ea9392b73529c059a4d53251b1d9f2">wait_for_number_of_messages</a> (self)</td></tr>
+<tr class="memdesc:af3ea9392b73529c059a4d53251b1d9f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for a message containing the number of messages from each node.  <br /></td></tr>
 <tr class="separator:af3ea9392b73529c059a4d53251b1d9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74ae263e75b4c2a7445595acfb820340" id="r_a74ae263e75b4c2a7445595acfb820340"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74ae263e75b4c2a7445595acfb820340">setup_clients</a> (self)</td></tr>
+<tr class="memdesc:a74ae263e75b4c2a7445595acfb820340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method needed to provide usefull information to nodes after initialization.  <br /></td></tr>
 <tr class="separator:a74ae263e75b4c2a7445595acfb820340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acec386101adb8fe5e52de07df4e5d279" id="r_acec386101adb8fe5e52de07df4e5d279"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acec386101adb8fe5e52de07df4e5d279">wakeup</a> (self, int wake_up_node)</td></tr>
+<tr class="memdesc:acec386101adb8fe5e52de07df4e5d279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method do send the wake up message to a specific node to start the computation.  <br /></td></tr>
 <tr class="separator:acec386101adb8fe5e52de07df4e5d279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab539094b081a8cd3d7902f6877f57141" id="r_ab539094b081a8cd3d7902f6877f57141"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab539094b081a8cd3d7902f6877f57141">wakeup_all</a> (self, int delta)</td></tr>
+<tr class="memdesc:ab539094b081a8cd3d7902f6877f57141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that sends the absolute wakeup time to the nodes.  <br /></td></tr>
 <tr class="separator:ab539094b081a8cd3d7902f6877f57141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a29322ef1497cedc6acc40a2fa6a84f63" id="r_a29322ef1497cedc6acc40a2fa6a84f63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29322ef1497cedc6acc40a2fa6a84f63">HOSTNAME</a> = HOSTNAME</td></tr>
-<tr class="separator:a29322ef1497cedc6acc40a2fa6a84f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a> = PORT</td></tr>
+<tr class="memitem:aeb83097cf1a9938f9fb206559361d700" id="r_aeb83097cf1a9938f9fb206559361d700"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a> = HOSTNAME</td></tr>
+<tr class="memdesc:aeb83097cf1a9938f9fb206559361d700"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> node hostname.  <br /></td></tr>
+<tr class="separator:aeb83097cf1a9938f9fb206559361d700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a> = PORT</td></tr>
+<tr class="memdesc:a6dde884e19bdc8f342ffec8fc17e7c91"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> port.  <br /></td></tr>
 <tr class="separator:a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd8d62179f75714af34ae50caa397a73" id="r_acd8d62179f75714af34ae50caa397a73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd8d62179f75714af34ae50caa397a73">BUFFER_SIZE</a> = 4096</td></tr>
+<tr class="memdesc:acd8d62179f75714af34ae50caa397a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum buffer size.  <br /></td></tr>
 <tr class="separator:acd8d62179f75714af34ae50caa397a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86d8d92aba9ecf9bbf89f69cb3e49588" id="r_a86d8d92aba9ecf9bbf89f69cb3e49588"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86d8d92aba9ecf9bbf89f69cb3e49588">G</a> = G</td></tr>
-<tr class="separator:a86d8d92aba9ecf9bbf89f69cb3e49588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cc2e7240164328fdc3f0e5e21032c56" id="r_a8cc2e7240164328fdc3f0e5e21032c56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cc2e7240164328fdc3f0e5e21032c56">N</a> = G.number_of_nodes()</td></tr>
-<tr class="separator:a8cc2e7240164328fdc3f0e5e21032c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab892b6eaa2237016a1493b3596934688" id="r_ab892b6eaa2237016a1493b3596934688"><td class="memItemLeft" align="right" valign="top">nx.Graph&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab892b6eaa2237016a1493b3596934688">G</a> = G</td></tr>
+<tr class="memdesc:ab892b6eaa2237016a1493b3596934688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Graph.  <br /></td></tr>
+<tr class="separator:ab892b6eaa2237016a1493b3596934688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7722c8ecbb62d99aee7ce68b1752f337" id="r_a7722c8ecbb62d99aee7ce68b1752f337"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7722c8ecbb62d99aee7ce68b1752f337">N</a> = G.number_of_nodes()</td></tr>
+<tr class="memdesc:a7722c8ecbb62d99aee7ce68b1752f337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of nodes in the graph.  <br /></td></tr>
+<tr class="separator:a7722c8ecbb62d99aee7ce68b1752f337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1727dd10541fc3f639dd2a323d5958be" id="r_a1727dd10541fc3f639dd2a323d5958be"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1727dd10541fc3f639dd2a323d5958be">ports</a> = [65432+x for x in range(self.N)]</td></tr>
+<tr class="memdesc:a1727dd10541fc3f639dd2a323d5958be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available ports, one for each node of the graph.  <br /></td></tr>
 <tr class="separator:a1727dd10541fc3f639dd2a323d5958be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ccda0d1c5ca74655cf096ce48585cf5" id="r_a9ccda0d1c5ca74655cf096ce48585cf5"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ccda0d1c5ca74655cf096ce48585cf5">DNS</a> = {node:port for node,port in zip(G.nodes(), self.ports)}</td></tr>
+<tr class="memdesc:a9ccda0d1c5ca74655cf096ce48585cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">DNS server holding tuples &lt;node:port&gt;  <br /></td></tr>
 <tr class="separator:a9ccda0d1c5ca74655cf096ce48585cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5bc32b75da65fe60067f501a4bb6665" id="r_ad5bc32b75da65fe60067f501a4bb6665"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5bc32b75da65fe60067f501a4bb6665">client</a> = client</td></tr>
-<tr class="separator:ad5bc32b75da65fe60067f501a4bb6665"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3d4fbb9cf8a069dc079bb329a7e58b9" id="r_ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a> = shell</td></tr>
+<tr class="memitem:a285ab2eac3a34c09303eca6543753e83" id="r_a285ab2eac3a34c09303eca6543753e83"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a> = client</td></tr>
+<tr class="memdesc:a285ab2eac3a34c09303eca6543753e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">path of the client size  <br /></td></tr>
+<tr class="separator:a285ab2eac3a34c09303eca6543753e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3d4fbb9cf8a069dc079bb329a7e58b9" id="r_ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a> = shell</td></tr>
+<tr class="memdesc:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean.  <br /></td></tr>
 <tr class="separator:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc5db119bfad5e0486768006c6be2f4e" id="r_adc5db119bfad5e0486768006c6be2f4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a> = os.path.join(os.path.split(self.client)[0], &quot;logs&quot;)</td></tr>
 <tr class="separator:adc5db119bfad5e0486768006c6be2f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -188,17 +203,23 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Args:
-    HOSTNAME (str): IP address of the initalizer.
-    BACK (int): Port where the initializer is waiting for RDY messages.
-    G (nx.Graph): Graph structure to build.
-    shell (bool): Whether to use a new shell for each process. 
-        - True: The command is executed through a shell (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
-        - False: The command is executed directly without a shell. 
-        This is safer and more efficient but may cause issues with shell-specific commands.
-Returns:
-    None
-</pre> 
+
+<p><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> initializer :) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HOSTNAME</td><td>(str): IP address of the initalizer. </td></tr>
+    <tr><td class="paramname">BACK</td><td>(int): Port where the initializer is waiting for RDY messages. </td></tr>
+    <tr><td class="paramname">G</td><td>(nx.Graph): Graph structure to build. </td></tr>
+    <tr><td class="paramname">shell</td><td>(bool): Whether to use a new shell for each process.<ul>
+<li>True: The command is executed through a shell (e.g., <code>cmd.exe</code> on Windows, <code>/bin/sh</code> on Unix).</li>
+<li>False: The command is executed directly without a shell. This is safer and more efficient but may cause issues with shell-specific commands. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -233,14 +254,11 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment"> This method creates a process for each client (node), comunicating
-what is the port that they should use to wait for messages. Then,
-it waits for a confirmation message (RDY) from all of them.
-Args:
-    None
-Returns:
-    None
-</pre> 
+
+<p>Method that initializes all of the nodes of the graph. </p>
+<p>This method creates a process for each client (node), comunicating what is the port that they should use to wait for messages. Then, it waits for a confirmation message (RDY) from all of them. <br  />
+ </p>
+
 </div>
 </div>
 <a id="a74ae263e75b4c2a7445595acfb820340" name="a74ae263e75b4c2a7445595acfb820340"></a>
@@ -257,18 +275,16 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">This method sends to all of the nodes in the network
-the information needed to properly work. This includes:
-+ The ID in the network;
-+ The list of connections (edges) with neighboors (nodes);
-+ The local dns that they need to comunicate to other nodes;
-+ A boolean (True if logging on terminal, False to log on files)
-+ The path of the experiment directory (needed for logging)
-Args:
-    None
-Returns:
-    None
-</pre> 
+
+<p>Method needed to provide usefull information to nodes after initialization. </p>
+<p>This method sends to all of the nodes in the network the information needed to properly work. This includes:</p><ul>
+<li>The ID in the network;</li>
+<li>The list of connections (edges) with neighboors (nodes);</li>
+<li>The local dns that they need to comunicate to other nodes;</li>
+<li>A boolean (True if logging on terminal, False to log on files)</li>
+<li>The path of the experiment directory (needed for logging) </li>
+</ul>
+
 </div>
 </div>
 <a id="af3ea9392b73529c059a4d53251b1d9f2" name="af3ea9392b73529c059a4d53251b1d9f2"></a>
@@ -285,14 +301,10 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Method that opens a socket to wait for a message from all nodes
-containing the number of messages sent by the node.
-If it obtains this information from all of the nodes, it prints the sum.
-Args:
-    None
-Returns:
-    None
-</pre> 
+
+<p>Wait for a message containing the number of messages from each node. </p>
+<p>Method that opens a socket to wait for a message from all nodes containing the number of messages sent by the node. If it obtains this information from all of the nodes, it prints the sum. </p>
+
 </div>
 </div>
 <a id="acec386101adb8fe5e52de07df4e5d279" name="acec386101adb8fe5e52de07df4e5d279"></a>
@@ -313,12 +325,19 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Method do send the wake up message to a specific node to start the computation.
-Args:
-    wake_up_node (int): represents the ID of the node to wake up.
-Returns:
-    None
-</pre> 
+
+<p>Method do send the wake up message to a specific node to start the computation. </p>
+<p><br  />
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wake_up_node</td><td>(int): represents the ID of the node to wake up.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None <br  />
+ </dd></dl>
+
 </div>
 </div>
 <a id="ab539094b081a8cd3d7902f6877f57141" name="ab539094b081a8cd3d7902f6877f57141"></a>
@@ -339,12 +358,17 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Send the absolute wakeup time to the nodes.
-Args:
-    delta (int): integer representing the absolute delta time to start the nodes.
-Returns:
-    None
-</pre> 
+
+<p>Method that sends the absolute wakeup time to the nodes. </p>
+<p>Method needed to wakeup nodes all at once. The only way to do it is sync them with local clock, and wait for them to start up. Some algorithms perform worse in terms of number of messages when all nodes wakeup together.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>(int): integer representing the absolute delta time to start the nodes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -360,19 +384,23 @@ Returns:
       </table>
 </div><div class="memdoc">
 
+<p>Maximum buffer size. </p>
+
 </div>
 </div>
-<a id="ad5bc32b75da65fe60067f501a4bb6665" name="ad5bc32b75da65fe60067f501a4bb6665"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5bc32b75da65fe60067f501a4bb6665">&#9670;&#160;</a></span>client</h2>
+<a id="a285ab2eac3a34c09303eca6543753e83" name="a285ab2eac3a34c09303eca6543753e83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a285ab2eac3a34c09303eca6543753e83">&#9670;&#160;</a></span>client</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">client = client</td>
+          <td class="memname">str client = client</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>path of the client size </p>
 
 </div>
 </div>
@@ -387,6 +415,8 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>DNS server holding tuples &lt;node:port&gt; </p>
 
 </div>
 </div>
@@ -404,31 +434,35 @@ Returns:
 
 </div>
 </div>
-<a id="a86d8d92aba9ecf9bbf89f69cb3e49588" name="a86d8d92aba9ecf9bbf89f69cb3e49588"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86d8d92aba9ecf9bbf89f69cb3e49588">&#9670;&#160;</a></span>G</h2>
+<a id="ab892b6eaa2237016a1493b3596934688" name="ab892b6eaa2237016a1493b3596934688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab892b6eaa2237016a1493b3596934688">&#9670;&#160;</a></span>G</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">G = G</td>
+          <td class="memname">nx.Graph G = G</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Graph. </p>
+
 </div>
 </div>
-<a id="a29322ef1497cedc6acc40a2fa6a84f63" name="a29322ef1497cedc6acc40a2fa6a84f63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29322ef1497cedc6acc40a2fa6a84f63">&#9670;&#160;</a></span>HOSTNAME</h2>
+<a id="aeb83097cf1a9938f9fb206559361d700" name="aeb83097cf1a9938f9fb206559361d700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb83097cf1a9938f9fb206559361d700">&#9670;&#160;</a></span>HOSTNAME</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">HOSTNAME = HOSTNAME</td>
+          <td class="memname">str HOSTNAME = HOSTNAME</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> node hostname. </p>
 
 </div>
 </div>
@@ -446,17 +480,19 @@ Returns:
 
 </div>
 </div>
-<a id="a8cc2e7240164328fdc3f0e5e21032c56" name="a8cc2e7240164328fdc3f0e5e21032c56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cc2e7240164328fdc3f0e5e21032c56">&#9670;&#160;</a></span>N</h2>
+<a id="a7722c8ecbb62d99aee7ce68b1752f337" name="a7722c8ecbb62d99aee7ce68b1752f337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7722c8ecbb62d99aee7ce68b1752f337">&#9670;&#160;</a></span>N</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">N = G.number_of_nodes()</td>
+          <td class="memname">int N = G.number_of_nodes()</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Number of nodes in the graph. </p>
 
 </div>
 </div>
@@ -472,6 +508,8 @@ Returns:
       </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> port. </p>
+
 </div>
 </div>
 <a id="a1727dd10541fc3f639dd2a323d5958be" name="a1727dd10541fc3f639dd2a323d5958be"></a>
@@ -485,6 +523,8 @@ Returns:
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Available ports, one for each node of the graph. </p>
 
 </div>
 </div>
@@ -500,10 +540,12 @@ Returns:
       </table>
 </div><div class="memdoc">
 
+<p>Boolean. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/web/Documenti/Nodes/Nodes/<a class="el" href="initializers_8py.html">initializers.py</a></li>
+<li>C:/Users/eros/Documenti/Nodes/Nodes/<a class="el" href="initializers_8py.html">initializers.py</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

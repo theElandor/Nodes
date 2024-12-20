@@ -97,12 +97,14 @@ $(function(){ initResizable(false); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab43642473847c904a73d0d5f94040d20" id="r_ab43642473847c904a73d0d5f94040d20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab43642473847c904a73d0d5f94040d20">read_graph</a> (file)</td></tr>
+<tr class="memdesc:ab43642473847c904a73d0d5f94040d20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function needed to read input graph.  <br /></td></tr>
 <tr class="separator:ab43642473847c904a73d0d5f94040d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a902798d69a3c4e982d69e35ae0687111" id="r_a902798d69a3c4e982d69e35ae0687111"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a902798d69a3c4e982d69e35ae0687111">get_local_dns</a> (dict DNS, int node, list edges)</td></tr>
 <tr class="separator:a902798d69a3c4e982d69e35ae0687111"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90c6f2c7fbf5b13a5766ffd9acfd22fa" id="r_a90c6f2c7fbf5b13a5766ffd9acfd22fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90c6f2c7fbf5b13a5766ffd9acfd22fa">draw_graph</a> (nx.Graph G)</td></tr>
 <tr class="separator:a90c6f2c7fbf5b13a5766ffd9acfd22fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35c836af404f78732a35e33b5211bafe" id="r_a35c836af404f78732a35e33b5211bafe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35c836af404f78732a35e33b5211bafe">init_logs</a> (path)</td></tr>
+<tr class="memdesc:a35c836af404f78732a35e33b5211bafe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the logs directory.  <br /></td></tr>
 <tr class="separator:a35c836af404f78732a35e33b5211bafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -163,14 +165,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Function used to initialize the directory containing the nodes logs.
-It will be automatically called by the initializer when the "shell"
-parameter is set to false. Otherwise, standard output and error are used for logging.
-Paramters:
-    - path (str): path of the directory that will contain the logs of each node.
-    If not specified, the initializer will create it in the same directory
-    of the client file.
-</pre> 
+
+<p>Initializes the logs directory. </p>
+<p>Function used to initialize the directory containing the nodes logs. It will be automatically called by the initializer when the "shell" parameter is set to false. Otherwise, standard output and error are used for logging.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>(str): path of the directory that will contain the logs of each node. If not specified, the initializer will create it in the same directory of the client file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
 </div>
 </div>
 <a id="ab43642473847c904a73d0d5f94040d20" name="ab43642473847c904a73d0d5f94040d20"></a>
@@ -187,6 +192,8 @@ Paramters:
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Function needed to read input graph. </p>
 
 </div>
 </div>

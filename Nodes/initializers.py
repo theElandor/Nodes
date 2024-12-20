@@ -11,27 +11,35 @@ from datetime import timedelta
 
 class Initializer(metaclass=abc.ABCMeta):
     def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
-        """
-        Args:
-            HOSTNAME (str): IP address of the initalizer.
-            BACK (int): Port where the initializer is waiting for RDY messages.
-            G (nx.Graph): Graph structure to build.
-            shell (bool): Whether to use a new shell for each process. 
+        """!Initializer initializer :)
+        
+        @param  HOSTNAME (str): IP address of the initalizer.
+        @param  BACK (int): Port where the initializer is waiting for RDY messages.
+        @param  G (nx.Graph): Graph structure to build.
+        @param  shell (bool): Whether to use a new shell for each process. 
                 - True: The command is executed through a shell (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
                 - False: The command is executed directly without a shell. 
                 This is safer and more efficient but may cause issues with shell-specific commands.
-        Returns:
-            None
+        @return None
         """
-        self.HOSTNAME = HOSTNAME
-        self.PORT = PORT
-        self.BUFFER_SIZE = 4096
-        self.G = G
-        self.N = G.number_of_nodes()
-        self.ports = [65432+x for x in range(self.N)] # one port for each node
-        self.DNS = {node:port for node,port in zip(G.nodes(), self.ports)}
-        self.client = client
-        self.shell = shell
+        ## Initializer node hostname.
+        self.HOSTNAME:str = HOSTNAME
+        ## Initializer port
+        self.PORT:int = PORT
+        ## Maximum buffer size
+        self.BUFFER_SIZE:int = 4096
+        ## Graph
+        self.G:nx.Graph = G
+        ## Number of nodes in the graph
+        self.N:int = G.number_of_nodes()
+        ## Available ports, one for each node of the graph
+        self.ports:list = [65432+x for x in range(self.N)] # one port for each node
+        ## DNS server holding tuples <node:port>
+        self.DNS:dict = {node:port for node,port in zip(G.nodes(), self.ports)}
+        ## path of the client size
+        self.client:str = client
+        ## Boolean
+        self.shell:bool = shell
         if not log_path:
             self.log_path = os.path.join(os.path.split(self.client)[0], "logs")
 
@@ -43,13 +51,12 @@ class Initializer(metaclass=abc.ABCMeta):
         return table.__str__()
 
     def initialize_clients(self):
-        """ This method creates a process for each client (node), comunicating
+        """!Method that initializes all of the nodes of the graph.
+
+        This method creates a process for each client (node), comunicating
         what is the port that they should use to wait for messages. Then,
-        it waits for a confirmation message (RDY) from all of them.
-        Args:
-            None
-        Returns:
-            None
+        it waits for a confirmation message (RDY) from all of them.    
+
         """
         command = f"python3 {self.client} localhost {self.PORT} "        
         self.exp_path = utils.init_logs(self.log_path)
@@ -76,13 +83,11 @@ class Initializer(metaclass=abc.ABCMeta):
                     break
     
     def wait_for_number_of_messages(self):
-        """Method that opens a socket to wait for a message from all nodes
+        """!Wait for a message containing the number of messages from each node.
+
+        Method that opens a socket to wait for a message from all nodes
         containing the number of messages sent by the node.
         If it obtains this information from all of the nodes, it prints the sum.
-        Args:
-            None
-        Returns:
-            None
         """
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.bind(("", self.PORT))
@@ -98,17 +103,15 @@ class Initializer(metaclass=abc.ABCMeta):
                 break
 
     def setup_clients(self):
-        """This method sends to all of the nodes in the network
+        """!Method needed to provide usefull information to nodes after initialization.
+
+        This method sends to all of the nodes in the network
         the information needed to properly work. This includes:
         + The ID in the network;
         + The list of connections (edges) with neighboors (nodes);
         + The local dns that they need to comunicate to other nodes;
         + A boolean (True if logging on terminal, False to log on files)
         + The path of the experiment directory (needed for logging)
-        Args:
-            None
-        Returns:
-            None
         """
         confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         confirmation_socket.bind(("", self.PORT))
@@ -138,22 +141,25 @@ class Initializer(metaclass=abc.ABCMeta):
             exit(0)
 
     def wakeup(self, wake_up_node:int):
-        """Method do send the wake up message to a specific node to start the computation.
-        Args:
-            wake_up_node (int): represents the ID of the node to wake up.
-        Returns:
-            None
+        """!Method do send the wake up message to a specific node to start the computation.        
+
+        @param wake_up_node (int): represents the ID of the node to wake up.
+
+        @return None    
         """
         message = str(["WAKEUP"]).encode()
         wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
     def wakeup_all(self, delta:int):
-        """
-        Send the absolute wakeup time to the nodes.
-        Args:
-            delta (int): integer representing the absolute delta time to start the nodes.
-        Returns:
-            None
+        """!Method that sends the absolute wakeup time to the nodes.
+        
+        Method needed to wakeup nodes all at once. The only way to do it is sync them
+        with local clock, and wait for them to start up. Some algorithms perform worse
+        in terms of number of messages when all nodes wakeup together.
+
+        @param delta (int): integer representing the absolute delta time to start the nodes.
+        
+        @return None
         """
         wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         now = datetime.datetime.now()

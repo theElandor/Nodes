@@ -4,6 +4,8 @@ from art import *
 import pause
 from datetime import datetime
 class Node:
+    """!Main class, encapsulate foundamental primitives.
+    """
     def __init__(self, HOSTNAME:str, BACK:int, PORT:int):
         """!Node base initializer
 

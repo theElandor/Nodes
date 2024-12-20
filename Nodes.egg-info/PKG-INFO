@@ -10,3 +10,4 @@ Requires-Python: >=3.7, <4
 Requires-Dist: networkx
 Requires-Dist: matplotlib
 Requires-Dist: art
+Requires-Dist: pause

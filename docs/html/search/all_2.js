@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['client_0',['client',['../class_nodes_1_1initializers_1_1_initializer.html#ad5bc32b75da65fe60067f501a4bb6665',1,'Nodes::initializers::Initializer']]],
-  ['count_1',['count',['../class_nodes_1_1nodes_1_1_ring_node.html#ad43c3812e6d13e0518d9f8b8f463ffcf',1,'Nodes::nodes::RingNode']]],
-  ['count_5fprotocol_2',['count_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#a98156a830870d6ee2d88263239acb724',1,'Nodes::nodes::RingNode']]]
+  ['back_0',['BACK',['../class_nodes_1_1nodes_1_1_node.html#ad3aabf1e376db1033336d30367473014',1,'Nodes::nodes::Node']]],
+  ['bind_5fto_5fport_1',['bind_to_port',['../class_nodes_1_1nodes_1_1_node.html#ad34c58ccab775f892b8c87cb352a3f41',1,'Nodes::nodes::Node']]],
+  ['buffer_5fsize_2',['BUFFER_SIZE',['../class_nodes_1_1initializers_1_1_initializer.html#acd8d62179f75714af34ae50caa397a73',1,'Nodes.initializers.Initializer.BUFFER_SIZE'],['../class_nodes_1_1nodes_1_1_node.html#acd8d62179f75714af34ae50caa397a73',1,'Nodes.nodes.Node.BUFFER_SIZE']]]
 ];

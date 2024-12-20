@@ -3,6 +3,8 @@ import networkx as nx
 import os
 import datetime
 def read_graph(file):
+    """!Function needed to read input graph.
+    """
     with open(file) as f:
         data = f.read().splitlines()
         nodes = int(data[0])
@@ -24,14 +26,17 @@ def draw_graph(G:nx.Graph):
     plt.show()
 
 def init_logs(path):
-    """
+    """!Initializes the logs directory.
+    
     Function used to initialize the directory containing the nodes logs.
     It will be automatically called by the initializer when the "shell"
     parameter is set to false. Otherwise, standard output and error are used for logging.
-    Paramters:
-        - path (str): path of the directory that will contain the logs of each node.
+
+    @param path (str): path of the directory that will contain the logs of each node.
         If not specified, the initializer will create it in the same directory
         of the client file.
+
+    @return None
     """
     if not os.path.isdir(path):
         os.makedirs(path)
