@@ -7,12 +7,12 @@ like scikitlearn, TensorFlow or PyTorch.
 ## Implemented Algorithms
 + Leader election "All the Way";
 + Leader election "As far as it can";
++ Leader election "Controlled Distance";
 ## Open Issues
 + Add Linux support;
-+ Need to implement sync logic;
++ Need to improve sync logic;
 + Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);
 + Must add unidirectional links support;
-+ Must finish writing base documentation in doxygen;
 + Must add a "run tests" script;
 + Should find a way to write doxygen documentation in separate files.
 ## Quickstart

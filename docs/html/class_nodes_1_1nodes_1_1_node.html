@@ -404,6 +404,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Primitive to send messages. </p>
+<p>Primitive to send given message to specified port. Make sure to increment the self.total_messages parameter by 1 if you use this inside your algorithm.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">message</td><td>(str): message to send. </td></tr>
@@ -444,8 +445,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Primitive that sends given message to a random neighbor. </p>
-<p><br  />
- </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">message</td><td>(str): message to send.</td></tr>
   </table>
@@ -576,7 +576,9 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Send RDY message to initializer. </p>
-<p>This method is used to send RDY message to the initializer, confirming that this node is ready to receive instructions. </p><dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+<p>This method is used to send RDY message to the initializer, confirming that this node is ready to receive instructions.</p>
+<dl class="section return"><dt>Returns</dt><dd>None <br  />
+ </dd></dl>
 
 </div>
 </div>

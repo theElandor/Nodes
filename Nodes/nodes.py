@@ -27,7 +27,7 @@ class Node:
         self.setup = False
         ## Flag that indicates where to write output (terminal or log file).
         self.log_file = None
-    
+
     def _print_info(self):
         """!Prints basic informations about the node.
         """
@@ -67,7 +67,8 @@ class Node:
         
         This method is used to send RDY message to the initializer,
         confirming that this node is ready to receive instructions.
-        @return None
+        
+        @return None        
         """
         message = self._create_message("RDY", self.PORT)
         self._send(message, self.BACK)
@@ -110,6 +111,9 @@ class Node:
             return
     def _send(self, message, port, log=False):
         """!Primitive to send messages.
+
+        Primitive to send given message to specified port. Make sure to increment
+        the self.total_messages parameter by 1 if you use this inside your algorithm.
         
         @param message (str): message to send.
         @param port (int): target port.
@@ -123,7 +127,7 @@ class Node:
         forward_socket.sendto(message.encode(), ("localhost", port))
 
     def _send_random(self, message:str):
-        """!Primitive that sends given message to a random neighbor.        
+        """!Primitive that sends given message to a random neighbor.
         @param message (str): message to send.
 
         @return None
@@ -135,7 +139,7 @@ class Node:
     def _send_total_messages(self):
         """!Sends total number of messages sent to the initializer.
         """
-        message = self._create_message("Message_count", self.total_messages)        
+        message = self._create_message("Message_count", self.total_messages)
         self._send(message, self.BACK)
 
     def _send_start_of_protocol(self):
@@ -196,7 +200,39 @@ class RingNode(Node):
                     self._log(f"Sending to: {v}({address}) this message: "+message)
                 self._send(message, address)
                 break
-        self.total_messages += 1        
+        self.total_messages += 1
+    def _send_to_both(self, message:str, silent=False):
+        """!Primitive that sends given message to both neighbors.
+
+        This primitive is used to send the given message to
+        both connected nodes (neighbors).
+
+        @param message (str): message to send.
+
+        @return None
+        """
+        for v,address in self.local_dns.items():
+            if not silent:
+                self._log(f"Sending to: {v}({address}) this message: "+message)
+                self._send(message, address)
+                self.total_messages += 1
+            
+    def _send_back(self,sender:int, message:str, silent=False):
+        """!Primitive that sends given message the specified node.
+
+        This primitive is basically the same as a standard _send,
+        but it is more readable and automatically increases
+        self.total_messages.
+
+        @param sender (Node): target node.
+        @param message (str): message to send.
+        @return None
+        """
+        port = self.local_dns[sender]       
+        if not silent:
+            self._log(f"Sending to: {sender}({port}) this message: "+message)
+        self._send(message, port)
+        self.total_messages += 1
 
     def count_protocol(self):
         """!Simple distributed algorithm to count nodes in a ring network.
@@ -242,7 +278,7 @@ class RingNode(Node):
     def leader_election_atw_protocol(self):
         """!Leader election: All the way version.
 
-            Message format: <command, origin, sender, counter>              
+        Message format: <command, origin, sender, counter>              
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"
@@ -288,7 +324,7 @@ class RingNode(Node):
     def leader_election_AF_protocol(self):
         """!Leader election: "As Far as it can" version.
 
-            Message format: <command, origin, sender>                        
+        Message format: <command, origin, sender>                        
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"
@@ -339,3 +375,105 @@ class RingNode(Node):
                     self._log(f"Elected {self.state}")
                     break
         self._send_total_messages()
+
+    def _leader_election_controlled_distance_initialize(self):
+        """!Primtive for the controlled distance algorithm.
+        """
+        self.limit = 1
+        self.count = 0 # back messages
+        message = self._create_message("Forth", self.id, self.id, self.limit)
+        self._send_to_both(message)
+
+    def _leader_election_controlled_distance_process_message(self, origin:int, sender:int, limit:int):
+        """!Primitive for the controlled distance algorithm.
+
+        @param origin (int): generator of the message.
+        @param sender (int): sender of the message.
+        @param limit (int): hops left for this message.
+
+        @return None
+        """
+        limit = limit - 1
+        self._log(f"Process message received {limit}")
+        if limit == 0:# end of travel
+            message = self._create_message("Back", origin, self.id, -1)
+            self._send_back(sender, message)
+        else:
+            message = self._create_message("Forth", origin, self.id, limit)
+            self._send_to_other(sender, message)
+        
+    def _leader_election_controlled_distance_check(self, origin):
+        """!Primitive for the controlled distance algorithm.
+
+        @param origin (int): generator of the message.
+
+        @return None
+        """
+        self.count += 1
+        if self.count == 2:
+            self.count = 0
+            self.limit = 2 * self.limit
+            message = self._create_message("Forth", origin, origin, self.limit)
+            self._send_to_both(message)
+            
+            
+    def leader_election_controlled_distance_protocol(self):
+        """!Leader election: controlled_distance version
+
+        Message format: <command, origin, sender, limit>.
+        In this case, the message has to bring the "hops left" information,
+        since the protocol procedes in states.
+        """
+        self._send_start_of_protocol()
+        self.state = "ASLEEP"
+        while True:
+            msg = self.s.recv(self.BUFFER_SIZE)
+            data = msg.decode("utf-8")
+            try: # generic message
+                command,origin,sender,limit = eval(data)
+            except: # WAKEUP message
+                command = self._wake_up_decoder(data)
+            if command != "WAKEUP":
+                self._log(f"Received: {command}, origin: {origin}, sender: {sender}, limit:{limit}")
+            else:
+                self._log(f"Received: {command}")
+            if self.state == "ASLEEP":              
+                if command == "WAKEUP":
+                    self.state = "CANDIDATE"
+                    self._leader_election_controlled_distance_initialize()
+                elif command == "Forth":
+                    if origin < self.id:
+                        self._leader_election_controlled_distance_process_message(origin, sender, limit)
+                        self.state = "DEFEATED"
+                    else:
+                        self._leader_election_controlled_distance_initialize()
+                        self.state = "CANDIDATE"
+            elif self.state == "CANDIDATE":
+                if command == "Forth":
+                    if origin < self.id:
+                        self._leader_election_controlled_distance_process_message(origin, sender, limit)
+                        self.state = "DEFEATED"
+                    elif origin == self.id:
+                        # command origin sender limit
+                        message = self._create_message("Notify", self.id, self.id, -1)
+                        self._send_to_other(sender, message)
+                        self.state = "LEADER"
+                        self._log("Elected LEADER")
+                        break
+                if command == "Back":
+                    if origin == self.id:
+                        self._leader_election_controlled_distance_check(origin)
+            elif self.state == "DEFEATED":
+                if command == "Forth":
+                    self._leader_election_controlled_distance_process_message(origin, sender, limit)
+                elif command == "Back":
+                    message = self._create_message("Back", origin, self.id, -1)
+                    self._send_to_other(sender, message)
+                elif command == "Notify":
+                     message = self._create_message("Notify", origin, self.id, -1)
+                     self._send_to_other(sender, message)
+                     self.state = "FOLLOWER"
+                     self._log("Elected FOLLOWER")
+                     break
+        self._send_total_messages()
+        
