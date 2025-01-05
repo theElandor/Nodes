@@ -9,12 +9,17 @@ like scikitlearn, TensorFlow or PyTorch.
 + Leader election "As far as it can";
 + Leader election "Controlled Distance";
 ## Open Issues
+### General
 + Add Linux support;
 + Need to improve sync logic;
 + Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);
 + Must add unidirectional links support;
 + Must add a "run tests" script;
-+ Should find a way to write doxygen documentation in separate files.
++ Need validation for read_graph function;
++ Find a way to handle different message format, use JSON instead of eval();
+### Performance
++ Keep log files opened;
++ Re-use sockets instead of creating new ones;
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash

@@ -44,7 +44,7 @@ class Node:
 
     def _log(self, message):
         """!Logging function to either print on terminal or on a log file.
-        
+
         @param message (str): message to print.
 
         @return None
@@ -54,21 +54,21 @@ class Node:
         else:
             if not self.log_file:
                 path = os.path.join(self.exp_path, f"{self.id}.out")
-                #self.log_file = open(path, "a")
+                # self.log_file = open(path, "a")
                 self.log_file = path
-            with open(self.log_file,"a") as f:
+            with open(self.log_file, "a") as f:
                 f.write(message+"\n")
-        
+
     def _get_neighbors(self):
-        return [(key,val) for key, val in self.local_dns.items()]
+        return [(key, val) for key, val in self.local_dns.items()]
 
     def send_RDY(self):
         """!Send RDY message to initializer.
-        
+
         This method is used to send RDY message to the initializer,
         confirming that this node is ready to receive instructions.
-        
-        @return None        
+
+        @return None
         """
         message = self._create_message("RDY", self.PORT)
         self._send(message, self.BACK)
@@ -102,10 +102,10 @@ class Node:
             ## Path to the log directory.
             self.exp_path = exp_path
             ## Flag used to check if node passed the setup phase.
-            self.setup = True # end of setup
+            self.setup = True  # end of setup
             ## Same as local_dns but with reversed key:value.
             self.reverse_local_dns = {}
-            
+
             for key, val in self.local_dns.items():
                 self.reverse_local_dns[val] = key
             return
@@ -114,7 +114,7 @@ class Node:
 
         Primitive to send given message to specified port. Make sure to increment
         the self.total_messages parameter by 1 if you use this inside your algorithm.
-        
+
         @param message (str): message to send.
         @param port (int): target port.
         @param log (bool): weather or not to write the operation on log file.
@@ -150,12 +150,12 @@ class Node:
 
     def _create_message(self, *args):
         """!Utility function to wrap the message in a string.
-        """               
+        """
         return str(list(args))
-    
+
     def _wake_up_decoder(self, data):
         """!Method used to decode the WAKEUP or START_AT message.
-        
+
         This method offers a quick way to decode the WAKEUP or
         START_AT message, used for async or sync start.
         You should always call this method at the beginning of
@@ -163,12 +163,12 @@ class Node:
         an example.
         """
         command = eval(data)[0]
-        if command == "WAKEUP": return command
+        if command == "WAKEUP":
+            return command
         elif command == "START_AT":
-            y,mo,d,h,mi,s = eval(data)[1:]
+            y, mo, d, h, mi, s = eval(data)[1:]
             pause.until(datetime(y, mo, d, h, mi, s))
-            return "WAKEUP" # from now on it's like I received a wakeup message
-
+            return "WAKEUP"  # from now on it's like I received a wakeup message
 
 
 class RingNode(Node):
@@ -179,10 +179,12 @@ class RingNode(Node):
     same prefix.
     """
     def __init__(self, HOSTNAME, BACK, PORT):
+        """!RingNode init function.
+        """
         super().__init__(HOSTNAME, BACK, PORT)
-        self.total_messages = 0        
+        self.total_messages = 0
 
-    def _send_to_other(self,sender:int, message:str, silent=False):
+    def _send_to_other(self, sender: int, message: str, silent=False):
         """!Primitive that sends given message to the "other" node.
 
         This primitive is used to send the given message to
@@ -191,17 +193,18 @@ class RingNode(Node):
 
         @param sender (Node): node to exclude.
         @param message (str): message to forward.
-        
+
         @return None
         """
-        for v, address in self.local_dns.items(): # send message in other direction
-            if sender != v:                
+        for v, address in self.local_dns.items():  # send message in other direction
+            if sender != v:
                 if not silent:
                     self._log(f"Sending to: {v}({address}) this message: "+message)
                 self._send(message, address)
                 break
         self.total_messages += 1
-    def _send_to_both(self, message:str, silent=False):
+
+    def _send_to_both(self, message: str, silent=False):
         """!Primitive that sends given message to both neighbors.
 
         This primitive is used to send the given message to
@@ -211,13 +214,13 @@ class RingNode(Node):
 
         @return None
         """
-        for v,address in self.local_dns.items():
+        for v, address in self.local_dns.items():
             if not silent:
                 self._log(f"Sending to: {v}({address}) this message: "+message)
                 self._send(message, address)
                 self.total_messages += 1
-            
-    def _send_back(self,sender:int, message:str, silent=False):
+
+    def _send_back(self, sender: int, message: str, silent=False):
         """!Primitive that sends given message the specified node.
 
         This primitive is basically the same as a standard _send,
@@ -255,7 +258,7 @@ class RingNode(Node):
         self.ringsize = 1 # measures
         self.known = False
         message = self._create_message("Election", self.id, self.id, 1)
-        _, dest_port = self._get_neighbors()[0]        
+        _, dest_port = self._get_neighbors()[0]
         self._send(message, dest_port) # need to manually increment the message count
         self.total_messages += 1
         self.min = self.id
@@ -278,7 +281,7 @@ class RingNode(Node):
     def leader_election_atw_protocol(self):
         """!Leader election: All the way version.
 
-        Message format: <command, origin, sender, counter>              
+        Message format: <command, origin, sender, counter>
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"
@@ -289,8 +292,10 @@ class RingNode(Node):
                 command,origin,sender,counter = eval(data)
             except: # WAKEUP message
                 command = self._wake_up_decoder(data)
-            if command != "WAKEUP": self._log(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
-            else: self._log(f"Received {command}")
+            if command != "WAKEUP":
+                self._log(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
+            else:
+                self._log(f"Received {command}")
             if command == "TERM":
                 if origin == self.id: self._log("Got back termination message.")
                 else:
@@ -314,27 +319,28 @@ class RingNode(Node):
                     self._send_to_other(sender, message)
                     self.min = min(self.min, origin)
                     self.count += 1
-                    if self.known: self._leader_election_atw_check()
+                    if self.known:
+                        self._leader_election_atw_check()
                 else:
                     self.ringsize = counter
                     self.known = True
                     self._leader_election_atw_check()
         self._send_total_messages()
-
+        
     def leader_election_AF_protocol(self):
         """!Leader election: "As Far as it can" version.
 
-        Message format: <command, origin, sender>                        
+        Message format: <command, origin, sender>
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
-            try: # generic message
-                command,origin,sender = eval(data)
-            except: # WAKEUP message
-                command = self._wake_up_decoder(data)                
+            try:  # generic message
+                command, origin, sender = eval(data)
+            except:  # WAKEUP message
+                command = self._wake_up_decoder(data)
             if command != "WAKEUP":
                 self._log(f"Received: {command}, origin: {origin}, sender: {sender}")
             else:
@@ -378,6 +384,7 @@ class RingNode(Node):
 
     def _leader_election_controlled_distance_initialize(self):
         """!Primtive for the controlled distance algorithm.
+
         """
         self.limit = 1
         self.count = 0 # back messages
@@ -401,7 +408,7 @@ class RingNode(Node):
         else:
             message = self._create_message("Forth", origin, self.id, limit)
             self._send_to_other(sender, message)
-        
+
     def _leader_election_controlled_distance_check(self, origin):
         """!Primitive for the controlled distance algorithm.
 
@@ -415,10 +422,9 @@ class RingNode(Node):
             self.limit = 2 * self.limit
             message = self._create_message("Forth", origin, origin, self.limit)
             self._send_to_both(message)
-            
-            
+
     def leader_election_controlled_distance_protocol(self):
-        """!Leader election: controlled_distance version
+        """!Leader election: controlled_distance version.
 
         Message format: <command, origin, sender, limit>.
         In this case, the message has to bring the "hops left" information,
@@ -429,15 +435,15 @@ class RingNode(Node):
         while True:
             msg = self.s.recv(self.BUFFER_SIZE)
             data = msg.decode("utf-8")
-            try: # generic message
-                command,origin,sender,limit = eval(data)
+            try:  # generic message
+                command, origin, sender, limit = eval(data)
             except: # WAKEUP message
                 command = self._wake_up_decoder(data)
             if command != "WAKEUP":
                 self._log(f"Received: {command}, origin: {origin}, sender: {sender}, limit:{limit}")
             else:
                 self._log(f"Received: {command}")
-            if self.state == "ASLEEP":              
+            if self.state == "ASLEEP":
                 if command == "WAKEUP":
                     self.state = "CANDIDATE"
                     self._leader_election_controlled_distance_initialize()
