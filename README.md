@@ -9,6 +9,9 @@ like scikitlearn, TensorFlow or PyTorch.
 + Leader election "As far as it can";
 + Leader election "Controlled Distance";
 ## Open Issues
+### Critical
++ Find a way to handle different message format, use JSON instead of eval();
++ Add a separate thread for each node that receives messages and stores them in a shared queue;
 ### General
 + Add Linux support;
 + Need to improve sync logic;
@@ -16,7 +19,6 @@ like scikitlearn, TensorFlow or PyTorch.
 + Must add unidirectional links support;
 + Must add a "run tests" script;
 + Need validation for read_graph function;
-+ Find a way to handle different message format, use JSON instead of eval();
 ### Performance
 + Keep log files opened;
 + Re-use sockets instead of creating new ones;
