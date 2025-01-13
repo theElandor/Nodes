@@ -18,6 +18,7 @@ like scikitlearn, TensorFlow or PyTorch.
 + Must add unidirectional links support;
 + Must add a "run tests" script;
 + Need validation for read_graph function;
++ Fix BUFFER SIZE variable;
 ### Performance
 + Re-use sockets instead of creating new ones;
 ## Quickstart
