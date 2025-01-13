@@ -105,10 +105,8 @@ class Node:
         else:
             if not self.log_file:
                 path = os.path.join(self.exp_path, f"{self.id}.out")
-                # self.log_file = open(path, "a")
-                self.log_file = path
-            with open(self.log_file, "a") as f:
-                f.write(message+"\n")
+                self.log_file = open(path, "a")
+            self.log_file.write(message + "\n")
 
     def _get_neighbors(self):
         return [(key, val) for key, val in self.local_dns.items()]
@@ -235,6 +233,8 @@ class Node:
             self.listener.stop()
         if self.s:
             self.s.close()
+        if self.log_file:
+            self.log_file.close()
 
 class RingNode(Node):
     """!Class that encapsulates primitives and protocols used in a Ring-shaped network.
@@ -243,13 +243,14 @@ class RingNode(Node):
     Each protocol has its own method, and the primitives for that protocol have the
     same prefix.
     """
+    
     def __init__(self, HOSTNAME, BACK, PORT):
         """!RingNode init function.
         """
         super().__init__(HOSTNAME, BACK, PORT)
         self.total_messages = 0
 
-    def _send_to_other(self, sender: int, message: str, silent=False):
+    def _send_to_other(self, sender: int, message: str, silent=False):        
         """!Primitive that sends given message to the "other" node.
 
         This primitive is used to send the given message to
@@ -260,7 +261,7 @@ class RingNode(Node):
         @param message (str): message to forward.
 
         @return None
-        """
+        """        
         for v, address in self.local_dns.items():  # send message in other direction
             if sender != v:
                 if not silent:
@@ -303,8 +304,7 @@ class RingNode(Node):
         self.total_messages += 1
 
     def count_protocol(self):
-        """!Simple distributed algorithm to count nodes in a ring network.
-        """
+        """!Count nodes in a ring-shaped network."""        
         while 1:
             data = self.receive_message()
             if not data: continue
@@ -317,8 +317,7 @@ class RingNode(Node):
             self._send_to_other(sender, forward_message)
 
     def _leader_election_atw_initialize(self):
-        """!Primitive for leader_election algorithm.
-        """
+        """!Primitive for leader_election algorithm."""
         self.count = 1 #
         self.ringsize = 1 # measures
         self.known = False
@@ -329,8 +328,7 @@ class RingNode(Node):
         self.min = self.id
 
     def _leader_election_atw_check(self):
-        """!Primitive for leader_election algorithm.
-        """
+        """!Primitive for leader_election algorithm."""
         self._log(f"Count: {self.count}")
         self._log(f"Ringsize: {self.ringsize}")
         self._log(f"Min: {self.min}")
@@ -450,9 +448,7 @@ class RingNode(Node):
         self.cleanup()
 
     def _leader_election_controlled_distance_initialize(self):
-        """!Primtive for the controlled distance algorithm.
-
-        """
+        """!Primtive for the controlled distance algorithm."""
         self.limit = 1
         self.count = 0 # back messages
         message = self._create_message("Forth", self.id, self.id, self.limit)

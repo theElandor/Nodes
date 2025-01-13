@@ -19,7 +19,6 @@ like scikitlearn, TensorFlow or PyTorch.
 + Must add a "run tests" script;
 + Need validation for read_graph function;
 ### Performance
-+ Keep log files opened;
 + Re-use sockets instead of creating new ones;
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
