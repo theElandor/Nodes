@@ -135,7 +135,7 @@ class Initializer(metaclass=abc.ABCMeta):
                 print(f"{target_port} started the protocol!")
                 ready_clients += 1
         if ready_clients == len(self.ports):
-            print(f"All {ready_clients} clients are ready")
+            print(f"All {ready_clients} clients started the protocol!")
         else:            
             print(f"Did not receive SOP message from some clients.\nReceived: {ready_clients} messages")
             exit(0)

@@ -1,13 +1,49 @@
 import socket
 import os
-from art import *
+from art import text2art
 import pause
 from datetime import datetime
-class Node:
-    """!Main class, encapsulate foundamental primitives.
-    """
+import threading
+import queue
+from typing import Optional
+
+class MessageListener(threading.Thread):
+    """!Thread that continuously listens for incoming messages and puts them in a queue."""
+    
+    def __init__(self, socket: socket.socket, message_queue: queue.Queue):
+        """!Initialize the message listener thread.
+        
+        @param socket (socket): The socket to listen on.
+        @param message_queue (queue): Queue to store received messages.
+
+        @return None
+        """
+        super().__init__()
+        self.socket = socket
+        self.message_queue = message_queue
+        self.running = True
+        self.daemon = True  # Thread will exit when main program exits
+        
+    def run(self):
+        """!Listen for messages."""
+        while self.running:
+            try:
+                data, addr = self.socket.recvfrom(4096)  # Using standard buffer size
+                message = data.decode("utf-8")
+                self.message_queue.put(message)
+            except socket.error:
+                if self.running:  # Only log if we're still meant to be running
+                    print("Socket error occurred in listener thread")
+                    
+    def stop(self):
+        """Stop the listener thread."""
+        self.running = False
+
+class Node:    
+    """!Main class, encapsulate foundamental primitives."""
+    
     def __init__(self, HOSTNAME:str, BACK:int, PORT:int):
-        """!Node base initializer
+        """!Node base initializer.
 
         @param HOSTNAME (str): IP of the initalizer.
         @param BACK (int): Port where the initalizer is listening for confirmation.
@@ -16,21 +52,36 @@ class Node:
         @return None
         """
         ## IP address of the node.
-        self.HOSTNAME = HOSTNAME
+        self.HOSTNAME:str = HOSTNAME
         ## Port of the initializer (server).
-        self.BACK = BACK
+        self.BACK:int = BACK
         ## Port used to receive messages.
-        self.PORT = PORT
+        self.PORT:int = PORT
         ## Max length of messages.
-        self.BUFFER_SIZE = 4096
+        self.BUFFER_SIZE:int = 4096
         ## Flag to check if node is correctly setup.
-        self.setup = False
+        self.setup:bool = False
         ## Flag that indicates where to write output (terminal or log file).
-        self.log_file = None
+        self.log_file:bool = None
+        # Queue used by the listener to add incoming messages.
+        self.message_queue: queue.Queue = queue.Queue()
+        # Socket used by the node to receive messages.
+        self.s:socket = None
+        # Message listener that handles the message queue.
+        self.listener:MessageListener = None
+        ## True if node outputs on terminal, false to use log files.
+        self.shell:bool = None
+        # Unique ID of the Node.
+        self.id:int = None
+        # Connections of the node
+        self.edges:dict = None
+        ## DNS containing usefull ports and adresses to comunicate.        
+        self.local_dns:dict = None
+        ## Path to the log directory.
+        self.exp_path:str = None
 
     def _print_info(self):
-        """!Prints basic informations about the node.
-        """
+        """!Print basic informations about the node."""
         Art = Art=text2art(f"{self.id}",font='block',chr_ignore=True)
         self._log(Art)
         res = f"\nHostname: {self.HOSTNAME}\n"
@@ -43,7 +94,7 @@ class Node:
         self._log(res)
 
     def _log(self, message):
-        """!Logging function to either print on terminal or on a log file.
+        """!Log function to either print on terminal or on a log file.
 
         @param message (str): message to print.
 
@@ -74,8 +125,8 @@ class Node:
         self._send(message, self.BACK)
 
     def bind_to_port(self):
-        """!Method to create a socket where the node can listen for setup messages-
-        """
+        """!Create a socket where the node can listen for setup messages."""
+        
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # Accept UDP datagrams, on the given port, from any sender
         self.s.bind(("", self.PORT))
@@ -93,19 +144,13 @@ class Node:
             id, edges, local_dns, shell, exp_path = eval(data)
             ## Unique ID of the node.
             self.id = id
-            ## Edges of the node.
-            self.edges = edges
-            ## DNS containing usefull ports and adresses to comunicate.
-            self.local_dns = local_dns
-            ## True if node outputs on terminal, false to use log files.
+            self.edges = edges            
+            self.local_dns = local_dns            
             self.shell = shell
-            ## Path to the log directory.
             self.exp_path = exp_path
-            ## Flag used to check if node passed the setup phase.
-            self.setup = True  # end of setup
-            ## Same as local_dns but with reversed key:value.
+            self.setup = True
             self.reverse_local_dns = {}
-
+            
             for key, val in self.local_dns.items():
                 self.reverse_local_dns[val] = key
             return
@@ -145,6 +190,8 @@ class Node:
     def _send_start_of_protocol(self):
         """!Sends SOP message to the initializer.
         """
+        self.listener = MessageListener(self.s, self.message_queue)
+        self.listener.start()
         message = self._create_message("SOP", self.PORT)
         self._send(message, self.BACK)
 
@@ -169,7 +216,25 @@ class Node:
             y, mo, d, h, mi, s = eval(data)[1:]
             pause.until(datetime(y, mo, d, h, mi, s))
             return "WAKEUP"  # from now on it's like I received a wakeup message
+        
+    def receive_message(self, timeout: Optional[float] =None) -> Optional[str]:
+        """!Get a message from the queue.
+        
+        @param timeout (int): How long to wait for the message.
+        
+        @return message (str): The message if one was received, None if timeout occured.        
+        """
+        try:
+            return self.message_queue.get(timeout=timeout)
+        except queue.Empty:
+            return None
 
+    def cleanup(self):
+        """!Cleanup resources before shutting down."""
+        if self.listener:
+            self.listener.stop()
+        if self.s:
+            self.s.close()
 
 class RingNode(Node):
     """!Class that encapsulates primitives and protocols used in a Ring-shaped network.
@@ -241,8 +306,8 @@ class RingNode(Node):
         """!Simple distributed algorithm to count nodes in a ring network.
         """
         while 1:
-            msg = self.s.recv(self.BUFFER_SIZE)
-            data = msg.decode("utf-8")
+            data = self.receive_message()
+            if not data: continue
             origin, sender, counter = eval(data)
             self._log(f"Origin: {origin}, Sender: {sender}, Counter: {counter}")
             if origin == self.id and counter != 0:
@@ -286,8 +351,8 @@ class RingNode(Node):
         self._send_start_of_protocol()
         self.state = "ASLEEP"
         while True:
-            msg = self.s.recv(self.BUFFER_SIZE)
-            data = msg.decode("utf-8")
+            data = self.receive_message()
+            if not data: continue
             try: # generic message
                 command,origin,sender,counter = eval(data)
             except: # WAKEUP message
@@ -326,6 +391,7 @@ class RingNode(Node):
                     self.known = True
                     self._leader_election_atw_check()
         self._send_total_messages()
+        self.cleanup()
         
     def leader_election_AF_protocol(self):
         """!Leader election: "As Far as it can" version.
@@ -335,8 +401,8 @@ class RingNode(Node):
         self._send_start_of_protocol()
         self.state = "ASLEEP"
         while True:
-            msg = self.s.recv(self.BUFFER_SIZE)
-            data = msg.decode("utf-8")
+            data = self.receive_message()
+            if not data:continue
             try:  # generic message
                 command, origin, sender = eval(data)
             except:  # WAKEUP message
@@ -381,6 +447,7 @@ class RingNode(Node):
                     self._log(f"Elected {self.state}")
                     break
         self._send_total_messages()
+        self.cleanup()
 
     def _leader_election_controlled_distance_initialize(self):
         """!Primtive for the controlled distance algorithm.
@@ -433,8 +500,8 @@ class RingNode(Node):
         self._send_start_of_protocol()
         self.state = "ASLEEP"
         while True:
-            msg = self.s.recv(self.BUFFER_SIZE)
-            data = msg.decode("utf-8")
+            data = self.receive_message()
+            if not data: continue
             try:  # generic message
                 command, origin, sender, limit = eval(data)
             except: # WAKEUP message
@@ -482,4 +549,5 @@ class RingNode(Node):
                      self._log("Elected FOLLOWER")
                      break
         self._send_total_messages()
+        self.cleanup()
         

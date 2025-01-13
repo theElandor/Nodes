@@ -11,7 +11,6 @@ like scikitlearn, TensorFlow or PyTorch.
 ## Open Issues
 ### Critical
 + Find a way to handle different message format, use JSON instead of eval();
-+ Add a separate thread for each node that receives messages and stores them in a shared queue;
 ### General
 + Add Linux support;
 + Need to improve sync logic;

@@ -111,28 +111,34 @@ Inheritance diagram for Node:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a94676406469aacec1c8871c5b10036e6" id="r_a94676406469aacec1c8871c5b10036e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94676406469aacec1c8871c5b10036e6">__init__</a> (self, str <a class="el" href="#a29322ef1497cedc6acc40a2fa6a84f63">HOSTNAME</a>, int <a class="el" href="#ad3aabf1e376db1033336d30367473014">BACK</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>)</td></tr>
+<tr class="memitem:a94676406469aacec1c8871c5b10036e6" id="r_a94676406469aacec1c8871c5b10036e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94676406469aacec1c8871c5b10036e6">__init__</a> (self, str <a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a>, int <a class="el" href="#ad3aabf1e376db1033336d30367473014">BACK</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>)</td></tr>
 <tr class="memdesc:a94676406469aacec1c8871c5b10036e6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1nodes_1_1_node.html" title="Main class, encapsulate foundamental primitives.">Node</a> base initializer.  <br /></td></tr>
 <tr class="separator:a94676406469aacec1c8871c5b10036e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4b911403d502aa1c95f13676c53c4d7" id="r_ae4b911403d502aa1c95f13676c53c4d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4b911403d502aa1c95f13676c53c4d7">send_RDY</a> (self)</td></tr>
 <tr class="memdesc:ae4b911403d502aa1c95f13676c53c4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send RDY message to initializer.  <br /></td></tr>
 <tr class="separator:ae4b911403d502aa1c95f13676c53c4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad34c58ccab775f892b8c87cb352a3f41" id="r_ad34c58ccab775f892b8c87cb352a3f41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad34c58ccab775f892b8c87cb352a3f41">bind_to_port</a> (self)</td></tr>
-<tr class="memdesc:ad34c58ccab775f892b8c87cb352a3f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to create a socket where the node can listen for setup messages-.  <br /></td></tr>
+<tr class="memdesc:ad34c58ccab775f892b8c87cb352a3f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a socket where the node can listen for setup messages.  <br /></td></tr>
 <tr class="separator:ad34c58ccab775f892b8c87cb352a3f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6a1033744075eb30c97193e28911345" id="r_ab6a1033744075eb30c97193e28911345"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6a1033744075eb30c97193e28911345">wait_for_instructions</a> (self)</td></tr>
 <tr class="memdesc:ab6a1033744075eb30c97193e28911345"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is used to start listening for setup messages.  <br /></td></tr>
 <tr class="separator:ab6a1033744075eb30c97193e28911345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a574780314adb11f36f894e4ed1c411ab" id="r_a574780314adb11f36f894e4ed1c411ab"><td class="memItemLeft" align="right" valign="top">Optional[str]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a574780314adb11f36f894e4ed1c411ab">receive_message</a> (self, Optional[float] timeout=None)</td></tr>
+<tr class="memdesc:a574780314adb11f36f894e4ed1c411ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a message from the queue.  <br /></td></tr>
+<tr class="separator:a574780314adb11f36f894e4ed1c411ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37fb1155ee1039a3244d04bb04ae15e3" id="r_a37fb1155ee1039a3244d04bb04ae15e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37fb1155ee1039a3244d04bb04ae15e3">cleanup</a> (self)</td></tr>
+<tr class="memdesc:a37fb1155ee1039a3244d04bb04ae15e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleanup resources before shutting down.  <br /></td></tr>
+<tr class="separator:a37fb1155ee1039a3244d04bb04ae15e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a29322ef1497cedc6acc40a2fa6a84f63" id="r_a29322ef1497cedc6acc40a2fa6a84f63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29322ef1497cedc6acc40a2fa6a84f63">HOSTNAME</a> = HOSTNAME</td></tr>
-<tr class="memdesc:a29322ef1497cedc6acc40a2fa6a84f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP address of the node.  <br /></td></tr>
-<tr class="separator:a29322ef1497cedc6acc40a2fa6a84f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3aabf1e376db1033336d30367473014" id="r_ad3aabf1e376db1033336d30367473014"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3aabf1e376db1033336d30367473014">BACK</a> = BACK</td></tr>
+<tr class="memitem:aeb83097cf1a9938f9fb206559361d700" id="r_aeb83097cf1a9938f9fb206559361d700"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a> = HOSTNAME</td></tr>
+<tr class="memdesc:aeb83097cf1a9938f9fb206559361d700"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP address of the node.  <br /></td></tr>
+<tr class="separator:aeb83097cf1a9938f9fb206559361d700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3aabf1e376db1033336d30367473014" id="r_ad3aabf1e376db1033336d30367473014"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3aabf1e376db1033336d30367473014">BACK</a> = BACK</td></tr>
 <tr class="memdesc:ad3aabf1e376db1033336d30367473014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port of the initializer (server).  <br /></td></tr>
 <tr class="separator:ad3aabf1e376db1033336d30367473014"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a> = PORT</td></tr>
+<tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a> = PORT</td></tr>
 <tr class="memdesc:a6dde884e19bdc8f342ffec8fc17e7c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port used to receive messages.  <br /></td></tr>
 <tr class="separator:a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd8d62179f75714af34ae50caa397a73" id="r_acd8d62179f75714af34ae50caa397a73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd8d62179f75714af34ae50caa397a73">BUFFER_SIZE</a> = 4096</td></tr>
@@ -141,40 +147,44 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a3edb8d112555957f8bf2581e8122c4d6" id="r_a3edb8d112555957f8bf2581e8122c4d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3edb8d112555957f8bf2581e8122c4d6">setup</a> = False</td></tr>
 <tr class="memdesc:a3edb8d112555957f8bf2581e8122c4d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to check if node is correctly setup.  <br /></td></tr>
 <tr class="separator:a3edb8d112555957f8bf2581e8122c4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a949f08ec7aa35516dd0d88cb8c10191e" id="r_a949f08ec7aa35516dd0d88cb8c10191e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a949f08ec7aa35516dd0d88cb8c10191e">log_file</a> = None</td></tr>
+<tr class="memitem:a949f08ec7aa35516dd0d88cb8c10191e" id="r_a949f08ec7aa35516dd0d88cb8c10191e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a949f08ec7aa35516dd0d88cb8c10191e">log_file</a> = None</td></tr>
 <tr class="memdesc:a949f08ec7aa35516dd0d88cb8c10191e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag that indicates where to write output (terminal or log file).  <br /></td></tr>
 <tr class="separator:a949f08ec7aa35516dd0d88cb8c10191e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f36dc063a991f65a570a5dfa68cd36" id="r_a35f36dc063a991f65a570a5dfa68cd36"><td class="memItemLeft" align="right" valign="top">queue.Queue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35f36dc063a991f65a570a5dfa68cd36">message_queue</a> = queue.Queue()</td></tr>
+<tr class="separator:a35f36dc063a991f65a570a5dfa68cd36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a8e8728be6eeb6f96e27ec12c457432" id="r_a3a8e8728be6eeb6f96e27ec12c457432"><td class="memItemLeft" align="right" valign="top">socket&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a8e8728be6eeb6f96e27ec12c457432">s</a> = None</td></tr>
+<tr class="separator:a3a8e8728be6eeb6f96e27ec12c457432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e027ffa043575312851d123228ae8eb" id="r_a6e027ffa043575312851d123228ae8eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_nodes_1_1nodes_1_1_message_listener.html">MessageListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e027ffa043575312851d123228ae8eb">listener</a> = None</td></tr>
+<tr class="separator:a6e027ffa043575312851d123228ae8eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17c078c585cf23010143f7fa1cf0d77e" id="r_a17c078c585cf23010143f7fa1cf0d77e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17c078c585cf23010143f7fa1cf0d77e">shell</a> = None</td></tr>
+<tr class="memdesc:a17c078c585cf23010143f7fa1cf0d77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if node outputs on terminal, false to use log files.  <br /></td></tr>
+<tr class="separator:a17c078c585cf23010143f7fa1cf0d77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7441ef0865bcb3db9b8064dd7375c1ea" id="r_a7441ef0865bcb3db9b8064dd7375c1ea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7441ef0865bcb3db9b8064dd7375c1ea">id</a> = None</td></tr>
+<tr class="memdesc:a7441ef0865bcb3db9b8064dd7375c1ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the node.  <br /></td></tr>
+<tr class="separator:a7441ef0865bcb3db9b8064dd7375c1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83f612859c2dda54db3ca0fb16f5fac5" id="r_a83f612859c2dda54db3ca0fb16f5fac5"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83f612859c2dda54db3ca0fb16f5fac5">edges</a> = None</td></tr>
+<tr class="memdesc:a83f612859c2dda54db3ca0fb16f5fac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the node.  <br /></td></tr>
+<tr class="separator:a83f612859c2dda54db3ca0fb16f5fac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeacd8487e486493f0c34de577ad6d4c" id="r_adeacd8487e486493f0c34de577ad6d4c"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adeacd8487e486493f0c34de577ad6d4c">local_dns</a> = None</td></tr>
+<tr class="memdesc:adeacd8487e486493f0c34de577ad6d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">DNS containing usefull ports and adresses to comunicate.  <br /></td></tr>
+<tr class="separator:adeacd8487e486493f0c34de577ad6d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1e3155c173718c915909744ff64575e" id="r_ad1e3155c173718c915909744ff64575e"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1e3155c173718c915909744ff64575e">exp_path</a> = None</td></tr>
+<tr class="memdesc:ad1e3155c173718c915909744ff64575e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the log directory.  <br /></td></tr>
+<tr class="separator:ad1e3155c173718c915909744ff64575e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c70a33f98b6d677c787feef116d8110" id="r_a7c70a33f98b6d677c787feef116d8110"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c70a33f98b6d677c787feef116d8110">setup</a> = (f&quot;ID: {self.id}\n&quot;)</td></tr>
-<tr class="memdesc:a7c70a33f98b6d677c787feef116d8110"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag used to check if node passed the setup phase.  <br /></td></tr>
+<tr class="memdesc:a7c70a33f98b6d677c787feef116d8110"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the node.  <br /></td></tr>
 <tr class="separator:a7c70a33f98b6d677c787feef116d8110"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3d4fbb9cf8a069dc079bb329a7e58b9" id="r_ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a></td></tr>
-<tr class="memdesc:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if node outputs on terminal, false to use log files.  <br /></td></tr>
-<tr class="separator:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3691308f2a4c2f6983f2880d32e29c84" id="r_a3691308f2a4c2f6983f2880d32e29c84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3691308f2a4c2f6983f2880d32e29c84">s</a> = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td></tr>
-<tr class="separator:a3691308f2a4c2f6983f2880d32e29c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf2488b95c97e0378c9bf49de3b50f28" id="r_acf2488b95c97e0378c9bf49de3b50f28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf2488b95c97e0378c9bf49de3b50f28">id</a> = id</td></tr>
-<tr class="memdesc:acf2488b95c97e0378c9bf49de3b50f28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the node.  <br /></td></tr>
-<tr class="separator:acf2488b95c97e0378c9bf49de3b50f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fa67019b889650b66f9d78490bf661b" id="r_a5fa67019b889650b66f9d78490bf661b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fa67019b889650b66f9d78490bf661b">edges</a> = edges</td></tr>
-<tr class="memdesc:a5fa67019b889650b66f9d78490bf661b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edges of the node.  <br /></td></tr>
-<tr class="separator:a5fa67019b889650b66f9d78490bf661b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6761695dc2d75a5b213a08883bcb0604" id="r_a6761695dc2d75a5b213a08883bcb0604"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6761695dc2d75a5b213a08883bcb0604">local_dns</a> = local_dns</td></tr>
-<tr class="memdesc:a6761695dc2d75a5b213a08883bcb0604"><td class="mdescLeft">&#160;</td><td class="mdescRight">DNS containing usefull ports and adresses to comunicate.  <br /></td></tr>
-<tr class="separator:a6761695dc2d75a5b213a08883bcb0604"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2a36aae87a86f29406d0f98243473f0" id="r_aa2a36aae87a86f29406d0f98243473f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2a36aae87a86f29406d0f98243473f0">exp_path</a> = exp_path</td></tr>
-<tr class="memdesc:aa2a36aae87a86f29406d0f98243473f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if node outputs on terminal, false to use log files.  <br /></td></tr>
-<tr class="separator:aa2a36aae87a86f29406d0f98243473f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1830d2fefd4f3c73b288d09671b4b8e" id="r_ac1830d2fefd4f3c73b288d09671b4b8e"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1830d2fefd4f3c73b288d09671b4b8e">reverse_local_dns</a> = {}</td></tr>
-<tr class="memdesc:ac1830d2fefd4f3c73b288d09671b4b8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag used to check if node passed the setup phase.  <br /></td></tr>
+<tr class="memdesc:ac1830d2fefd4f3c73b288d09671b4b8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the node.  <br /></td></tr>
 <tr class="separator:ac1830d2fefd4f3c73b288d09671b4b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a69505545682960ef73421ca9f488c83d" id="r_a69505545682960ef73421ca9f488c83d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69505545682960ef73421ca9f488c83d">_print_info</a> (self)</td></tr>
-<tr class="memdesc:a69505545682960ef73421ca9f488c83d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints basic informations about the node.  <br /></td></tr>
+<tr class="memdesc:a69505545682960ef73421ca9f488c83d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print basic informations about the node.  <br /></td></tr>
 <tr class="separator:a69505545682960ef73421ca9f488c83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a785b4612798ae0b353c2e694e6e966f7" id="r_a785b4612798ae0b353c2e694e6e966f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a785b4612798ae0b353c2e694e6e966f7">_log</a> (self, message)</td></tr>
-<tr class="memdesc:a785b4612798ae0b353c2e694e6e966f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logging function to either print on terminal or on a log file.  <br /></td></tr>
+<tr class="memdesc:a785b4612798ae0b353c2e694e6e966f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log function to either print on terminal or on a log file.  <br /></td></tr>
 <tr class="separator:a785b4612798ae0b353c2e694e6e966f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a197f075a47c984971ae676e17c160b80" id="r_a197f075a47c984971ae676e17c160b80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a197f075a47c984971ae676e17c160b80">_get_neighbors</a> (self)</td></tr>
 <tr class="separator:a197f075a47c984971ae676e17c160b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,7 +338,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logging function to either print on terminal or on a log file. </p>
+<p>Log function to either print on terminal or on a log file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">message</td><td>(str): message to print.</td></tr>
@@ -362,7 +372,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Prints basic informations about the node. </p>
+<p>Print basic informations about the node. </p>
 
 </div>
 </div>
@@ -556,7 +566,57 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Method to create a socket where the node can listen for setup messages-. </p>
+<p>Create a socket where the node can listen for setup messages. </p>
+
+</div>
+</div>
+<a id="a37fb1155ee1039a3244d04bb04ae15e3" name="a37fb1155ee1039a3244d04bb04ae15e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37fb1155ee1039a3244d04bb04ae15e3">&#9670;&#160;</a></span>cleanup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cleanup </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cleanup resources before shutting down. </p>
+
+</div>
+</div>
+<a id="a574780314adb11f36f894e4ed1c411ab" name="a574780314adb11f36f894e4ed1c411ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a574780314adb11f36f894e4ed1c411ab">&#9670;&#160;</a></span>receive_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[str] receive_message </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[float] </td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get a message from the queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout</td><td>(int): How long to wait for the message.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>message (str): The message if one was received, None if timeout occured. <br  />
+ </dd></dl>
 
 </div>
 </div>
@@ -577,8 +637,7 @@ Protected Member Functions</h2></td></tr>
 
 <p>Send RDY message to initializer. </p>
 <p>This method is used to send RDY message to the initializer, confirming that this node is ready to receive instructions.</p>
-<dl class="section return"><dt>Returns</dt><dd>None <br  />
- </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
 </div>
 </div>
@@ -634,63 +693,14 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5fa67019b889650b66f9d78490bf661b" name="a5fa67019b889650b66f9d78490bf661b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5fa67019b889650b66f9d78490bf661b">&#9670;&#160;</a></span>edges</h2>
+<a id="a83f612859c2dda54db3ca0fb16f5fac5" name="a83f612859c2dda54db3ca0fb16f5fac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f612859c2dda54db3ca0fb16f5fac5">&#9670;&#160;</a></span>edges</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">edges = edges</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Edges of the node. </p>
-
-</div>
-</div>
-<a id="aa2a36aae87a86f29406d0f98243473f0" name="aa2a36aae87a86f29406d0f98243473f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2a36aae87a86f29406d0f98243473f0">&#9670;&#160;</a></span>exp_path</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">exp_path = exp_path</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>True if node outputs on terminal, false to use log files. </p>
-<p>Path to the log directory. </p>
-
-</div>
-</div>
-<a id="a29322ef1497cedc6acc40a2fa6a84f63" name="a29322ef1497cedc6acc40a2fa6a84f63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29322ef1497cedc6acc40a2fa6a84f63">&#9670;&#160;</a></span>HOSTNAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">HOSTNAME = HOSTNAME</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>IP address of the node. </p>
-
-</div>
-</div>
-<a id="acf2488b95c97e0378c9bf49de3b50f28" name="acf2488b95c97e0378c9bf49de3b50f28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf2488b95c97e0378c9bf49de3b50f28">&#9670;&#160;</a></span>id</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">id = id</td>
+          <td class="memname">dict edges = None</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -699,19 +709,83 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6761695dc2d75a5b213a08883bcb0604" name="a6761695dc2d75a5b213a08883bcb0604"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6761695dc2d75a5b213a08883bcb0604">&#9670;&#160;</a></span>local_dns</h2>
+<a id="ad1e3155c173718c915909744ff64575e" name="ad1e3155c173718c915909744ff64575e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e3155c173718c915909744ff64575e">&#9670;&#160;</a></span>exp_path</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">local_dns = local_dns</td>
+          <td class="memname">str exp_path = None</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Path to the log directory. </p>
+
+</div>
+</div>
+<a id="aeb83097cf1a9938f9fb206559361d700" name="aeb83097cf1a9938f9fb206559361d700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb83097cf1a9938f9fb206559361d700">&#9670;&#160;</a></span>HOSTNAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">str HOSTNAME = HOSTNAME</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>IP address of the node. </p>
+
+</div>
+</div>
+<a id="a7441ef0865bcb3db9b8064dd7375c1ea" name="a7441ef0865bcb3db9b8064dd7375c1ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7441ef0865bcb3db9b8064dd7375c1ea">&#9670;&#160;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int id = None</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unique ID of the node. </p>
+
+</div>
+</div>
+<a id="a6e027ffa043575312851d123228ae8eb" name="a6e027ffa043575312851d123228ae8eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e027ffa043575312851d123228ae8eb">&#9670;&#160;</a></span>listener</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">listener = None</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adeacd8487e486493f0c34de577ad6d4c" name="adeacd8487e486493f0c34de577ad6d4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeacd8487e486493f0c34de577ad6d4c">&#9670;&#160;</a></span>local_dns</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict local_dns = None</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>DNS containing usefull ports and adresses to comunicate. </p>
+<p><br  />
+ </p>
 
 </div>
 </div>
@@ -728,6 +802,20 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Flag that indicates where to write output (terminal or log file). </p>
+
+</div>
+</div>
+<a id="a35f36dc063a991f65a570a5dfa68cd36" name="a35f36dc063a991f65a570a5dfa68cd36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f36dc063a991f65a570a5dfa68cd36">&#9670;&#160;</a></span>message_queue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">queue.Queue message_queue = queue.Queue()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -759,19 +847,18 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Flag used to check if node passed the setup phase. </p>
-<p>Same as local_dns but with reversed key:value. </p>
+<p>Unique ID of the node. </p>
 
 </div>
 </div>
-<a id="a3691308f2a4c2f6983f2880d32e29c84" name="a3691308f2a4c2f6983f2880d32e29c84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3691308f2a4c2f6983f2880d32e29c84">&#9670;&#160;</a></span>s</h2>
+<a id="a3a8e8728be6eeb6f96e27ec12c457432" name="a3a8e8728be6eeb6f96e27ec12c457432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a8e8728be6eeb6f96e27ec12c457432">&#9670;&#160;</a></span>s</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td>
+          <td class="memname">socket s = None</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -806,18 +893,18 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Flag used to check if node passed the setup phase. </p>
+<p>Unique ID of the node. </p>
 
 </div>
 </div>
-<a id="ae3d4fbb9cf8a069dc079bb329a7e58b9" name="ae3d4fbb9cf8a069dc079bb329a7e58b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">&#9670;&#160;</a></span>shell</h2>
+<a id="a17c078c585cf23010143f7fa1cf0d77e" name="a17c078c585cf23010143f7fa1cf0d77e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17c078c585cf23010143f7fa1cf0d77e">&#9670;&#160;</a></span>shell</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">shell</td>
+          <td class="memname">bool shell = None</td>
         </tr>
       </table>
 </div><div class="memdoc">
