@@ -79,6 +79,8 @@ class Node:
         self.local_dns:dict = None
         ## Path to the log directory.
         self.exp_path:str = None
+        ## Counts the number of messages sent during the execution of an algorithm.
+        self.total_messages = 0
 
     def _print_info(self):
         """!Print basic informations about the node."""
@@ -116,6 +118,8 @@ class Node:
 
         This method is used to send RDY message to the initializer,
         confirming that this node is ready to receive instructions.
+        This method does not increment the total_message counter as
+        this message is part of the initial handshake.
 
         @return None
         """
@@ -178,6 +182,30 @@ class Node:
         _, address = list(self.local_dns.items())[0]
         self._send(message, address)
         self.total_messages += 1
+
+    def _send_to_all(self, message: str, silent=False):
+        """!Primitive that sends given message to all neighbors.
+
+        This primitive is used to send the given message to
+        all neighbors.
+
+        @param message (str): message to send.
+
+        @return None
+        """
+        for v, address in self.local_dns.items():
+            if not silent:
+                self._log(f"Sending to: {v}({address}) this message: "+message)
+            self._send(message, address)
+            self.total_messages += 1
+
+    def _send_to_all_except(self,sender:int, message:str, silent:bool=False):
+        for v, address in self.local_dns.items():
+            if v == sender: continue
+            if not silent:
+                self._log(f"Sending to: {v}({address}) this message: "+message)
+            self._send(message, address)
+            self.total_messages += 1
 
     def _send_total_messages(self):
         """!Sends total number of messages sent to the initializer.
@@ -248,7 +276,7 @@ class RingNode(Node):
         """!RingNode init function.
         """
         super().__init__(HOSTNAME, BACK, PORT)
-        self.total_messages = 0
+        
 
     def _send_to_other(self, sender: int, message: str, silent=False):        
         """!Primitive that sends given message to the "other" node.
@@ -269,22 +297,6 @@ class RingNode(Node):
                 self._send(message, address)
                 break
         self.total_messages += 1
-
-    def _send_to_both(self, message: str, silent=False):
-        """!Primitive that sends given message to both neighbors.
-
-        This primitive is used to send the given message to
-        both connected nodes (neighbors).
-
-        @param message (str): message to send.
-
-        @return None
-        """
-        for v, address in self.local_dns.items():
-            if not silent:
-                self._log(f"Sending to: {v}({address}) this message: "+message)
-                self._send(message, address)
-                self.total_messages += 1
 
     def _send_back(self, sender: int, message: str, silent=False):
         """!Primitive that sends given message the specified node.
@@ -452,7 +464,7 @@ class RingNode(Node):
         self.limit = 1
         self.count = 0 # back messages
         message = self._create_message("Forth", self.id, self.id, self.limit)
-        self._send_to_both(message)
+        self._send_to_all(message)
 
     def _leader_election_controlled_distance_process_message(self, origin:int, sender:int, limit:int):
         """!Primitive for the controlled distance algorithm.
@@ -484,7 +496,7 @@ class RingNode(Node):
             self.count = 0
             self.limit = 2 * self.limit
             message = self._create_message("Forth", origin, origin, self.limit)
-            self._send_to_both(message)
+            self._send_to_all(message)
 
     def leader_election_controlled_distance_protocol(self):
         """!Leader election: controlled_distance version.

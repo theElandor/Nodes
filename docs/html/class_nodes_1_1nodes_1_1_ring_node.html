@@ -145,8 +145,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9d8366d34d048b4159fb80f5bf29c503" id="r_a9d8366d34d048b4159fb80f5bf29c503"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d8366d34d048b4159fb80f5bf29c503">total_messages</a> = 0</td></tr>
-<tr class="separator:a9d8366d34d048b4159fb80f5bf29c503"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad43c3812e6d13e0518d9f8b8f463ffcf" id="r_ad43c3812e6d13e0518d9f8b8f463ffcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad43c3812e6d13e0518d9f8b8f463ffcf">count</a> = 1 #</td></tr>
 <tr class="separator:ad43c3812e6d13e0518d9f8b8f463ffcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9022ab6c0800df8e19fc4a166f50685" id="r_ad9022ab6c0800df8e19fc4a166f50685"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9022ab6c0800df8e19fc4a166f50685">ringsize</a> = 1</td></tr>
@@ -203,6 +201,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ad1e3155c173718c915909744ff64575e inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_ad1e3155c173718c915909744ff64575e"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#ad1e3155c173718c915909744ff64575e">exp_path</a> = None</td></tr>
 <tr class="memdesc:ad1e3155c173718c915909744ff64575e inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the log directory.  <br /></td></tr>
 <tr class="separator:ad1e3155c173718c915909744ff64575e inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8366d34d048b4159fb80f5bf29c503 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a9d8366d34d048b4159fb80f5bf29c503"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a9d8366d34d048b4159fb80f5bf29c503">total_messages</a> = 0</td></tr>
+<tr class="memdesc:a9d8366d34d048b4159fb80f5bf29c503 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number of messages sent during the execution of an algorithm.  <br /></td></tr>
+<tr class="separator:a9d8366d34d048b4159fb80f5bf29c503 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c70a33f98b6d677c787feef116d8110 inherit pub_attribs_class_nodes_1_1nodes_1_1_node" id="r_a7c70a33f98b6d677c787feef116d8110"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a7c70a33f98b6d677c787feef116d8110">setup</a> = (f&quot;ID: {self.id}\n&quot;)</td></tr>
 <tr class="memdesc:a7c70a33f98b6d677c787feef116d8110 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the node.  <br /></td></tr>
 <tr class="separator:a7c70a33f98b6d677c787feef116d8110 inherit pub_attribs_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,9 +216,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a3a8b5b1efb5371437df54f26eedee30a" id="r_a3a8b5b1efb5371437df54f26eedee30a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a8b5b1efb5371437df54f26eedee30a">_send_to_other</a> (self, int sender, str message, silent=False)</td></tr>
 <tr class="memdesc:a3a8b5b1efb5371437df54f26eedee30a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive that sends given message to the "other" node.  <br /></td></tr>
 <tr class="separator:a3a8b5b1efb5371437df54f26eedee30a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bf3c9c49478b83118932cacc881be84" id="r_a0bf3c9c49478b83118932cacc881be84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bf3c9c49478b83118932cacc881be84">_send_to_both</a> (self, str message, silent=False)</td></tr>
-<tr class="memdesc:a0bf3c9c49478b83118932cacc881be84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive that sends given message to both neighbors.  <br /></td></tr>
-<tr class="separator:a0bf3c9c49478b83118932cacc881be84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50079fda1e042c9fa1de928452a24337" id="r_a50079fda1e042c9fa1de928452a24337"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50079fda1e042c9fa1de928452a24337">_send_back</a> (self, int sender, str message, silent=False)</td></tr>
 <tr class="memdesc:a50079fda1e042c9fa1de928452a24337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive that sends given message the specified node.  <br /></td></tr>
 <tr class="separator:a50079fda1e042c9fa1de928452a24337"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,6 +249,11 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2bfa27b9fd43ad269d2d507884aa6fc7 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a2bfa27b9fd43ad269d2d507884aa6fc7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a2bfa27b9fd43ad269d2d507884aa6fc7">_send_random</a> (self, str message)</td></tr>
 <tr class="memdesc:a2bfa27b9fd43ad269d2d507884aa6fc7 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive that sends given message to a random neighbor.  <br /></td></tr>
 <tr class="separator:a2bfa27b9fd43ad269d2d507884aa6fc7 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04461586f2d0b5f94eb687a2c6ade7aa inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a04461586f2d0b5f94eb687a2c6ade7aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a04461586f2d0b5f94eb687a2c6ade7aa">_send_to_all</a> (self, str message, silent=False)</td></tr>
+<tr class="memdesc:a04461586f2d0b5f94eb687a2c6ade7aa inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive that sends given message to all neighbors.  <br /></td></tr>
+<tr class="separator:a04461586f2d0b5f94eb687a2c6ade7aa inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a362ba66e9262919559261324fb1e3e68 inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a362ba66e9262919559261324fb1e3e68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a362ba66e9262919559261324fb1e3e68">_send_to_all_except</a> (self, int sender, str message, bool silent=False)</td></tr>
+<tr class="separator:a362ba66e9262919559261324fb1e3e68 inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60c844f78b889b81b662ac0a43d5e0be inherit pro_methods_class_nodes_1_1nodes_1_1_node" id="r_a60c844f78b889b81b662ac0a43d5e0be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1nodes_1_1_node.html#a60c844f78b889b81b662ac0a43d5e0be">_send_total_messages</a> (self)</td></tr>
 <tr class="memdesc:a60c844f78b889b81b662ac0a43d5e0be inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends total number of messages sent to the initializer.  <br /></td></tr>
 <tr class="separator:a60c844f78b889b81b662ac0a43d5e0be inherit pro_methods_class_nodes_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -523,50 +526,6 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0bf3c9c49478b83118932cacc881be84" name="a0bf3c9c49478b83118932cacc881be84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bf3c9c49478b83118932cacc881be84">&#9670;&#160;</a></span>_send_to_both()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">_send_to_both </td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>message</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>silent</em></span><span class="paramdefsep"> = </span><span class="paramdefval">False</span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Primitive that sends given message to both neighbors. </p>
-<p>This primitive is used to send the given message to both connected nodes (neighbors).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">message</td><td>(str): message to send.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
-
-</div>
-</div>
 <a id="a3a8b5b1efb5371437df54f26eedee30a" name="a3a8b5b1efb5371437df54f26eedee30a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a8b5b1efb5371437df54f26eedee30a">&#9670;&#160;</a></span>_send_to_other()</h2>
 
@@ -809,22 +768,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9d8366d34d048b4159fb80f5bf29c503" name="a9d8366d34d048b4159fb80f5bf29c503"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d8366d34d048b4159fb80f5bf29c503">&#9670;&#160;</a></span>total_messages</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int total_messages = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/eros/Documenti/Nodes/Nodes/<a class="el" href="nodes_8py.html">nodes.py</a></li>
+<li>C:/Users/web/Documenti/Nodes/Nodes/<a class="el" href="nodes_8py.html">nodes.py</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

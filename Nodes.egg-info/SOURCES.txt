@@ -10,5 +10,3 @@ Nodes.egg-info/dependency_links.txt
 Nodes.egg-info/requires.txt
 Nodes.egg-info/top_level.txt
 Tests/__init__.py
-Tests/client.py
-Tests/server.py

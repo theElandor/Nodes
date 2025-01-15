@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: Nodes
 Version: 1.0.0
 Summary: Distributed Algorithms Python Framework
@@ -11,3 +11,9 @@ Requires-Dist: networkx
 Requires-Dist: matplotlib
 Requires-Dist: art
 Requires-Dist: pause
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

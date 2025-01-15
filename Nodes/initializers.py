@@ -1,5 +1,6 @@
 import networkx as nx
 import Nodes.utils as utils
+from Nodes.nodes import MessageListener
 import subprocess as sp
 import socket
 from prettytable import PrettyTable
@@ -7,6 +8,8 @@ import os
 import abc
 import datetime
 import pause
+from typing import Optional
+import queue
 from datetime import timedelta
 
 class Initializer(metaclass=abc.ABCMeta):
@@ -36,12 +39,21 @@ class Initializer(metaclass=abc.ABCMeta):
         self.ports:list = [65432+x for x in range(self.N)] # one port for each node
         ## DNS server holding tuples <node:port>
         self.DNS:dict = {node:port for node,port in zip(G.nodes(), self.ports)}
-        ## path of the client size
+        ## path of the client file
         self.client:str = client
         ## Boolean
         self.shell:bool = shell
+        ## Message queue to store incoming messages
+        self.message_queue: queue.Queue = queue.Queue()
+
         if not log_path:
             self.log_path = os.path.join(os.path.split(self.client)[0], "logs")
+
+        ## Initialize message listener
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
+        self.s.bind(("", self.PORT))
+        self.listener = MessageListener(self.s, self.message_queue)
+        self.listener.start()
 
     def __str__(self):
         table = PrettyTable()
@@ -49,6 +61,18 @@ class Initializer(metaclass=abc.ABCMeta):
         for key, val in self.DNS.items():
             table.add_row([key, val])
         return table.__str__()
+    
+    def receive_message(self, timeout: Optional[float] =None) -> Optional[str]:
+        """!Get a message from the queue.
+        
+        @param timeout (int): How long to wait for the message.
+        
+        @return message (str): The message if one was received, None if timeout occured.        
+        """
+        try:
+            return self.message_queue.get(timeout=timeout)
+        except queue.Empty:
+            return None
 
     def initialize_clients(self):
         """!Method that initializes all of the nodes of the graph.
@@ -66,12 +90,12 @@ class Initializer(metaclass=abc.ABCMeta):
             else:
                 full_command = ["python3", self.client, "localhost", str(self.PORT), str(port)]
                 process = sp.Popen(full_command)        
-        confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        confirmation_socket.bind(("", self.PORT))
+        # confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # confirmation_socket.bind(("", self.PORT))
         ready_clients = 0
         while 1: # wait for RDY messages
-            data,addr = confirmation_socket.recvfrom(self.BUFFER_SIZE)
-            command, target_port = eval(data.decode("utf-8"))
+            data = self.receive_message()
+            command, target_port = eval(data)
             if command != "RDY":
                 print(f"Something went wrong during initialization.")
                 exit(0)
@@ -89,13 +113,11 @@ class Initializer(metaclass=abc.ABCMeta):
         containing the number of messages sent by the node.
         If it obtains this information from all of the nodes, it prints the sum.
         """
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.bind(("", self.PORT))
         received_messages = 0
         counts = []
         while 1: # wait for RDY messages    
-            data,_ = s.recvfrom(self.BUFFER_SIZE)
-            _, messages = eval(data.decode("utf-8"))
+            data = self.receive_message()
+            _, messages = eval(data)
             counts.append(int(messages))
             received_messages += 1
             if received_messages == self.N:
@@ -113,8 +135,6 @@ class Initializer(metaclass=abc.ABCMeta):
         + A boolean (True if logging on terminal, False to log on files)
         + The path of the experiment directory (needed for logging)
         """
-        confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        confirmation_socket.bind(("", self.PORT))
         ready_clients = 0        
         for node, port in self.DNS.items():
             local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
@@ -126,8 +146,8 @@ class Initializer(metaclass=abc.ABCMeta):
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)            
             s.sendto(message, ("localhost", port))            
             # capture confirmation message
-            data,_ = confirmation_socket.recvfrom(self.BUFFER_SIZE)
-            command, target_port = eval(data.decode("utf-8"))
+            data = self.receive_message()
+            command, target_port = eval(data)
             if command != "SOP":
                 print("Something went wrong during clients setup.")
                 exit(0)

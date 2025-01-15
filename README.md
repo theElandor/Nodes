@@ -19,6 +19,7 @@ like scikitlearn, TensorFlow or PyTorch.
 + Must add a "run tests" script;
 + Need validation for read_graph function;
 + Fix BUFFER SIZE variable;
++ Must encapsulate Initializer and Node to inherit the receive_message() function correctly;
 ### Performance
 + Re-use sockets instead of creating new ones;
 ## Quickstart
@@ -27,9 +28,8 @@ Clone/fork the repo and install the Nodes package in developer mode:
 cd Nodes
 python3 -m pip install -e .
 ```
-You can find an example (client and server files) contained in the **Tests** directory. Use the following
-command to run it:
+You can find an example (client and server files) contained in the **Tests** directory. To run the first example:
 ```bash
-cd Tests
-python3 server.py ..\data\example\network.txt
+cd Tests\example1
+python3 server.py network.txt
 ```

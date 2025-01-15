@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['s_0',['s',['../class_nodes_1_1nodes_1_1_node.html#a3a8e8728be6eeb6f96e27ec12c457432',1,'Nodes::nodes::Node']]],
+  ['s_0',['s',['../class_nodes_1_1initializers_1_1_initializer.html#a3691308f2a4c2f6983f2880d32e29c84',1,'Nodes.initializers.Initializer.s'],['../class_nodes_1_1nodes_1_1_node.html#a3a8e8728be6eeb6f96e27ec12c457432',1,'Nodes.nodes.Node.s']]],
   ['send_5frdy_1',['send_RDY',['../class_nodes_1_1nodes_1_1_node.html#ae4b911403d502aa1c95f13676c53c4d7',1,'Nodes::nodes::Node']]],
   ['setup_2',['setup',['../class_nodes_1_1nodes_1_1_node.html#a3edb8d112555957f8bf2581e8122c4d6',1,'Nodes.nodes.Node.setup'],['../class_nodes_1_1nodes_1_1_node.html#a7c70a33f98b6d677c787feef116d8110',1,'Nodes.nodes.Node.setup']]],
   ['setup_5fclients_3',['setup_clients',['../class_nodes_1_1initializers_1_1_initializer.html#a74ae263e75b4c2a7445595acfb820340',1,'Nodes::initializers::Initializer']]],

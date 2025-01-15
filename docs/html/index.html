@@ -87,7 +87,7 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title"><a class="el" href="namespace_nodes.html">Nodes</a> </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__c_1_2_users_2eros_2_documenti_2_nodes_2_r_e_a_d_m_e"></a></p>
+<div class="textblock"><p><a class="anchor" id="md__c_1_2_users_2web_2_documenti_2_nodes_2_r_e_a_d_m_e"></a></p>
 <p>This framework aims to streamline research and education in distributed algorithms and distributed AI. It provides a simple and intuitive interface for developing distributed algorithms by merely defining the behavior of individual nodes and the graph structure. It is also suited for integration with ML and DL libraries like scikitlearn, TensorFlow or PyTorch. </p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Implemented Algorithms</h1>
@@ -111,7 +111,9 @@ General</h2>
 <li>Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);</li>
 <li>Must add unidirectional links support;</li>
 <li>Must add a "run tests" script;</li>
-<li>Need validation for read_graph function; </li>
+<li>Need validation for read_graph function;</li>
+<li>Fix BUFFER SIZE variable;</li>
+<li>Must encapsulate Initializer and Node to inherit the receive_message() function correctly; </li>
 </ul>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Performance</h2>
@@ -122,8 +124,8 @@ Performance</h2>
 Quickstart</h1>
 <p>Clone/fork the repo and install the <a class="el" href="namespace_nodes.html">Nodes</a> package in developer mode: </p><div class="fragment"><div class="line">cd Nodes</div>
 <div class="line">python3 -m pip install -e .</div>
-</div><!-- fragment --><p> You can find an example (client and server files) contained in the <b>Tests</b> directory. Use the following command to run it: </p><div class="fragment"><div class="line">cd Tests</div>
-<div class="line">python3 server.py ..\data\example\network.txt</div>
+</div><!-- fragment --><p> You can find an example (client and server files) contained in the <b>Tests</b> directory. To run the first example: </p><div class="fragment"><div class="line">cd Tests\example1</div>
+<div class="line">python3 server.py network.txt</div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
