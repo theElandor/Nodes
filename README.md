@@ -5,12 +5,13 @@ It provides a simple and intuitive interface for developing distributed algorith
 behavior of individual nodes and the graph structure. It is also suited for integration with ML and DL libraries
 like scikitlearn, TensorFlow or PyTorch.
 ## Implemented Algorithms
++ Flooding on connected graph;
 + Leader election "All the Way";
 + Leader election "As far as it can";
 + Leader election "Controlled Distance";
 ## Open Issues
 ### Critical
-+ Find a way to handle different message format, use JSON instead of eval();
++ Fix message format (encapsulate in message class);
 ### General
 + Add Linux support;
 + Need to improve sync logic;
