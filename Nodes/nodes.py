@@ -264,6 +264,40 @@ class Node:
         if self.log_file:
             self.log_file.close()
 
+            
+    def flooding_protocol(self):
+        """!Flood information across the network.
+
+        Expected number of messages if there is a single initiator
+        is 2m-(n-1).
+        
+        Message format: <command, sender>
+        """
+        self._send_start_of_protocol()
+        self.state = "ASLEEP"
+        while True:
+            data = self.receive_message()
+            if not data: continue
+            try:
+                command, sender = eval(data)
+            except:
+                command = self._wake_up_decoder(data)
+            if command != "WAKEUP":
+                self._log(f"Received {command}, sender: {sender}")
+            else:
+                self._log(f"Received {command}")
+            if self.state == "ASLEEP":
+                if command in ["WAKEUP", "I"]:                    
+                    message = self._create_message("I", self.id)
+                    if command == "WAKEUP": self._send_to_all(message)
+                    else: self._send_to_all_except(sender, message)
+                    self.state = "DONE"
+                    self._log("Computation is DONE locally.")
+                    break
+                else: raise ValueError()
+        self.cleanup()
+        self._send_total_messages()
+
 class RingNode(Node):
     """!Class that encapsulates primitives and protocols used in a Ring-shaped network.
 
@@ -542,7 +576,7 @@ class RingNode(Node):
                         self._log("Elected LEADER")
                         break
                 if command == "Back":
-                    if origin == self.id:
+                    if origin == self.id: # don't really know if this is necessary
                         self._leader_election_controlled_distance_check(origin)
             elif self.state == "DEFEATED":
                 if command == "Forth":

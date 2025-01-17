@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['read_5fgraph_0',['read_graph',['../namespace_nodes_1_1utils.html#ab43642473847c904a73d0d5f94040d20',1,'Nodes::utils']]],
-  ['receive_5fmessage_1',['receive_message',['../class_nodes_1_1initializers_1_1_initializer.html#a574780314adb11f36f894e4ed1c411ab',1,'Nodes.initializers.Initializer.receive_message()'],['../class_nodes_1_1nodes_1_1_node.html#a574780314adb11f36f894e4ed1c411ab',1,'Nodes.nodes.Node.receive_message()']]],
-  ['run_2',['run',['../class_nodes_1_1nodes_1_1_message_listener.html#a08060e0924949738f75a0cdd8b49cef4',1,'Nodes::nodes::MessageListener']]]
+  ['leader_5felection_5faf_5fprotocol_0',['leader_election_AF_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#a0c1b10d4a6b7894f98aeea6d8dffe502',1,'Nodes::nodes::RingNode']]],
+  ['leader_5felection_5fatw_5fprotocol_1',['leader_election_atw_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#ac9ae62e2ec39335d502e700e8e471bfb',1,'Nodes::nodes::RingNode']]],
+  ['leader_5felection_5fcontrolled_5fdistance_5fprotocol_2',['leader_election_controlled_distance_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#a4d388c7b8a775a74099a372a4e3bef7e',1,'Nodes::nodes::RingNode']]]
 ];
