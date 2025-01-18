@@ -9,6 +9,7 @@ from typing import Optional
 from Nodes.messages import Message, FloodingMessage
 from Nodes.messages import CountMessage, SetupMessage
 from Nodes.messages import LeaderElectionAtwMessage
+from Nodes.messages import LeaderElectionAFMessage
 
 class MessageListener(threading.Thread):
     """!Thread that continuously listens for incoming messages and puts them in a queue."""
@@ -344,7 +345,7 @@ class RingNode(Node):
     def count_protocol(self):
         """!Count nodes in a ring-shaped network."""
         self._send_start_of_protocol()
-        while 1:
+        while True:
             data = self.receive_message()
             if not data: continue
             message = Message.deserialize(data)
@@ -374,9 +375,9 @@ class RingNode(Node):
         self.count = 1 #
         self.ringsize = 1 # measures
         self.known = False
-        message = self._create_message("Election", self.id, self.id, 1)
+        new_message = LeaderElectionAtwMessage("Election", 1, self.id, self.id)
         _, dest_port = self._get_neighbors()[0]
-        self._send(message, dest_port) # need to manually increment the message count
+        self._send(new_message, dest_port) # need to manually increment the message count
         self.total_messages += 1
         self.min = self.id
 
@@ -388,16 +389,16 @@ class RingNode(Node):
         if self.count == self.ringsize:
             if self.id == self.min:
                 self.state = "LEADER"
-                message = self._create_message("TERM", self.id, self.id, 1)
-                self._send_random(message)
+                new_message = LeaderElectionAtwMessage("TERM", 1, self.id, self.id)
+                self._send_random(new_message)
             else:
                 self.state = "FOLLOWER"
             self._log(f"Elected {self.state}")
 
     def leader_election_atw_protocol(self):
         """!Leader election: All the way version.
-
-        Message format: <command, origin, sender, counter>
+        
+        Recommended message class: LeaderElectionAtwMessage
         """
         self._send_start_of_protocol()
         self.state = "ASLEEP"
@@ -405,18 +406,22 @@ class RingNode(Node):
             data = self.receive_message()
             if not data: continue
             try: # generic message
-                command,origin,sender,counter = eval(data)
-            except: # WAKEUP message
-                command = self._wake_up_decoder(data)
+                message = Message.deserialize(data)
+                command = message.command
+                sender = message.sender
+            except Exception as e:
+                self._log(f"Error in decoding incoming message. {e}")
             if command != "WAKEUP":
+                origin = message.origin
+                counter = message.counter
                 self._log(f"Received {command}, origin: {origin}, sender: {sender}, counter: {counter}")
-            else:
+            else: # command or term
                 self._log(f"Received {command}")
             if command == "TERM":
                 if origin == self.id: self._log("Got back termination message.")
                 else:
-                    message = self._create_message("TERM", origin, self.id, counter+1)
-                    self._send_to_other(sender, message)
+                    new_message = LeaderElectionAtwMessage("TERM", counter+1, origin, self.id)
+                    self._send_to_other(sender, new_message)
                 break
             if self.state == "ASLEEP":
                 self._leader_election_atw_initialize()
@@ -424,15 +429,15 @@ class RingNode(Node):
                     self.state = "AWAKE"
                     continue
                 else:
-                    message = self._create_message("Election", origin,self.id,counter+1)
-                    self._send_to_other(sender, message)
+                    new_message = LeaderElectionAtwMessage("Election", counter+1, origin, self.id)
+                    self._send_to_other(sender, new_message)
                     self.min = min(self.min, origin)
                     self.count += 1
                     self.state = "AWAKE"
             elif self.state == "AWAKE":
                 if self.id != origin:
-                    message = self._create_message("Election", origin,self.id,counter+1)
-                    self._send_to_other(sender, message)
+                    new_message = LeaderElectionAtwMessage("Election", counter+1, origin, self.id)
+                    self._send_to_other(sender, new_message)
                     self.min = min(self.min, origin)
                     self.count += 1
                     if self.known:
@@ -454,46 +459,47 @@ class RingNode(Node):
         while True:
             data = self.receive_message()
             if not data:continue
-            try:  # generic message
-                command, origin, sender = eval(data)
-            except:  # WAKEUP message
-                command = self._wake_up_decoder(data)
+            try:
+                message = Message.deserialize(data)
+                command = message.command
+                sender = message.sender
+            except Exception as e:
+                self._log(f"Error while decoding message: {e}")
+            self._log(f"Received: {str(message)}")
             if command != "WAKEUP":
-                self._log(f"Received: {command}, origin: {origin}, sender: {sender}")
-            else:
-                self._log(f"Received: {command}")
+                origin = message.origin
             if self.state == "ASLEEP":
                 if command == "WAKEUP":
-                    message = self._create_message("Election", self.id, self.id)
+                    new_message = LeaderElectionAFMessage("Election", self.id, self.id)
                     _, dest_port = self._get_neighbors()[0]
-                    self._send(message, dest_port, log=True) # need to manually increment the message count
+                    self._send(new_message, dest_port, log=True) # need to manually increment the message count
                     self.total_messages += 1
                     self.min = self.id
                 else:
                     self.min = self.id
                     if origin < self.min:
-                        message = self._create_message("Election", origin, self.id)
-                        self._send_to_other(sender, message)
+                        new_message = LeaderElectionAFMessage("Election", self.id, origin)
+                        self._send_to_other(sender, new_message)
                         self.min = origin
                     else:
-                        message = self._create_message("Election", self.id, self.id)
-                        self._send_to_other(sender, message)
+                        new_message = LeaderElectionAFMessage("Election", self.id, self.id)
+                        self._send_to_other(sender, new_message)
                 self.state = "AWAKE"
             elif self.state == "AWAKE":
                 if command == "Election":
                     if origin < self.min:
-                        message = self._create_message("Election", origin, self.id)
-                        self._send_to_other(sender, message)
+                        new_message = LeaderElectionAFMessage("Election", self.id, origin)
+                        self._send_to_other(sender, new_message)
                         self.min = origin
                     elif origin == self.min:
-                        message = self._create_message("Notify", origin, self.id)
-                        self._send_to_other(sender, message)
+                        new_message = LeaderElectionAFMessage("Notify", self.id, origin)
+                        self._send_to_other(sender, new_message)
                         self.state = "LEADER"
                         self._log(f"Elected {self.state}")
                         break
                 if command == "Notify":
-                    message = self._create_message("Notify", origin, self.id)
-                    self._send_to_other(sender, message)
+                    new_message = LeaderElectionAFMessage("Notify", self.id, origin)
+                    self._send_to_other(sender, new_message)
                     self.state = "FOLLOWER"
                     self._log(f"Elected {self.state}")
                     break

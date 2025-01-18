@@ -30,8 +30,6 @@ class FloodingMessage(Message):
     def __str__(self):
         return super().__str__() + f"Origin: {self.origin}, Counter: {self.counter}"
     
-
-
 class SetupMessage(Message):
     def __init__(self, command:str, node:int, edges:list, local_dns:dict, shell:bool, exp_path:str, sender:int=None):
         super().__init__(command, sender)
@@ -59,4 +57,13 @@ class LeaderElectionAtwMessage(Message):
         rep = super().__str__()
         rep += f"Command: {self.command}, Sender:{self.sender}, "
         rep += f"Origin: {self.origin}, Counter:{self.counter}"
+        return rep
+
+class LeaderElectionAFMessage(Message):
+    def __init__(self, command:str, sender, origin:int):
+        super().__init__(command, sender)
+        self.origin = origin
+    def __str__(self):
+        rep = super().__str__()
+        rep += f"Origin: {self.origin}"
         return rep
