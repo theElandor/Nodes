@@ -21,8 +21,6 @@ like scikitlearn, TensorFlow or PyTorch.
 + Need validation for read_graph function;
 + Fix BUFFER SIZE variable;
 + Must encapsulate Initializer and Node to inherit the receive_message() function correctly;
-### Performance
-+ Re-use sockets instead of creating new ones;
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash

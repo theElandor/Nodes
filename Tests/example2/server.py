@@ -8,7 +8,7 @@ import os
 G = nx.erdos_renyi_graph(10, 0.5, seed=123, directed=False)
 n = G.number_of_nodes()
 m = G.number_of_edges()
-utils.draw_graph(G)
+#utils.draw_graph(G)
 print(f"Nodes: {n}")
 print(f"Edges: {m}")
 print(f"With flood algorithm, we expect {(2*m)-(n-1)} messages.")
