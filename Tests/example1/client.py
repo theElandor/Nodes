@@ -8,8 +8,5 @@ NODE.send_RDY()
 NODE.bind_to_port()
 NODE.wait_for_instructions()
 NODE._print_info()
-#NODE.leader_election_controlled_distance_protocol()
-#NODE.count_protocol()
-#NODE.leader_election_AF_protocol()
 NODE.leader_election_controlled_distance_protocol()
 
