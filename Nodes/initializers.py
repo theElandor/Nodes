@@ -11,8 +11,8 @@ from typing import Optional
 import queue
 from datetime import timedelta
 from Nodes.messages import Message
-from Nodes.messages import FloodingMessage
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
+from Nodes.messages import WakeupAllMessage
 
 class Initializer(metaclass=abc.ABCMeta):
     def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
@@ -193,6 +193,6 @@ class Initializer(metaclass=abc.ABCMeta):
         minute = start_time.minute
         second = start_time.second
         for node, port in self.DNS.items():
-            message = str(["START_AT", year, month,day,hour, minute, second]).encode()
-            wake_up_socket.sendto(message, ("localhost", port))
+            message = WakeupAllMessage(year, month,day,hour, minute, second)
+            wake_up_socket.sendto(message.serialize(), ("localhost", port))
 

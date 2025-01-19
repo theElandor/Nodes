@@ -27,6 +27,23 @@ class WakeUpMessage(Message):
 
     def __str__(self):
         return super().__str__()
+
+class WakeupAllMessage(Message):    
+    """!Message used to wake up all nodes at the same time."""
+    
+    def __init__(self, year, month, day, hour, minute, second, command:str="START_AT", sender=None):
+        super().__init__(command, sender)
+        self.year = year
+        self.month = month
+        self.day = day
+        self.hour = hour
+        self.minute = minute
+        self.second = second
+        
+    def __str__(self):
+        rep = super().__str__()
+        rep += f"y:{self.year}, mo:{self.month}, d:{self.day}, h:{self.hour}, mi:{self.minute}, s:{self.second}"
+        return rep
     
 class FloodingMessage(Message):
     """!Message Used in the flooding protocol."""
