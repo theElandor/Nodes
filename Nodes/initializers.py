@@ -7,10 +7,12 @@ from prettytable import PrettyTable
 import os
 import abc
 import datetime
-import pause
 from typing import Optional
 import queue
 from datetime import timedelta
+from Nodes.messages import Message
+from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
+from Nodes.messages import WakeupAllMessage
 
 class Initializer(metaclass=abc.ABCMeta):
     def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
@@ -89,18 +91,16 @@ class Initializer(metaclass=abc.ABCMeta):
                 process = sp.Popen(f'start cmd /K {command+str(port)}', stdout=sp.DEVNULL, stderr=sp.DEVNULL)
             else:
                 full_command = ["python3", self.client, "localhost", str(self.PORT), str(port)]
-                process = sp.Popen(full_command)        
-        # confirmation_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # confirmation_socket.bind(("", self.PORT))
+                process = sp.Popen(full_command)
         ready_clients = 0
         while 1: # wait for RDY messages
             data = self.receive_message()
-            command, target_port = eval(data)
-            if command != "RDY":
+            new_message = Message.deserialize(data)
+            if new_message.command != "RDY":
                 print(f"Something went wrong during initialization.")
                 exit(0)
             else:
-                print(f"{target_port} is ready!")
+                print(f"{new_message.sender} is ready!")
                 ready_clients += 1
                 if ready_clients == len(self.ports):
                     print(f"All {ready_clients} clients are ready")
@@ -117,15 +117,15 @@ class Initializer(metaclass=abc.ABCMeta):
         counts = []
         while 1: # wait for RDY messages    
             data = self.receive_message()
-            _, messages = eval(data)
-            counts.append(int(messages))
+            message = CountMessage.deserialize(data)
+            counts.append(message.counter)
             received_messages += 1
             if received_messages == self.N:
                 print(f"The protocol used {sum(counts)} messages!")
                 break
 
     def setup_clients(self):
-        """!Method needed to provide usefull information to nodes after initialization.
+        """!Provide usefull information to nodes after initialization.
 
         This method sends to all of the nodes in the network
         the information needed to properly work. This includes:
@@ -135,43 +135,45 @@ class Initializer(metaclass=abc.ABCMeta):
         + A boolean (True if logging on terminal, False to log on files)
         + The path of the experiment directory (needed for logging)
         """
-        ready_clients = 0        
+        ready_clients = 0
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         for node, port in self.DNS.items():
             local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
-            message = str([node, 
-                           list(self.G.edges(node)), 
-                           local_dns, 
-                           self.shell,
-                           self.exp_path]).encode()
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)            
-            s.sendto(message, ("localhost", port))            
+            message = SetupMessage("SETUP", node, list(self.G.edges(node)), local_dns, self.shell, self.exp_path)
+            s.sendto(message.serialize(), ("localhost", port))
             # capture confirmation message
-            data = self.receive_message()
-            command, target_port = eval(data)
-            if command != "SOP":
-                print("Something went wrong during clients setup.")
-                exit(0)
-            else:
-                print(f"{target_port} started the protocol!")
-                ready_clients += 1
-        if ready_clients == len(self.ports):
-            print(f"All {ready_clients} clients started the protocol!")
-        else:            
-            print(f"Did not receive SOP message from some clients.\nReceived: {ready_clients} messages")
-            exit(0)
+        acks = 0
+        while acks < len(self.DNS):
+            try:
+                data = self.receive_message()
+                if not data: continue
+                ans_message = Message.deserialize(data)
+                if ans_message.command != "SOP":
+                    print("Something went wrong during clients setup.")
+                    break
+                else:
+                    print(f"{ans_message.sender} started the protocol!")
+                    acks += 1
+            except Exception as e:
+                print(f"Error receiving ack from a node. {e}")
+        if acks < len(self.DNS):
+            print(f"Did not receive SOP message from some clients.\nReceived: {acks} messages")
+        else:
+            print(f"All {acks} clients started the protocol!")
 
     def wakeup(self, wake_up_node:int):
-        """!Method do send the wake up message to a specific node to start the computation.        
+        """!Send the wake up message to a specific node to start the computation.
 
         @param wake_up_node (int): represents the ID of the node to wake up.
 
         @return None    
         """
-        message = str(["WAKEUP"]).encode()
+        message = WakeUpMessage()
         wake_up_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        wake_up_socket.sendto(message, ("localhost", self.DNS[wake_up_node]))
+        wake_up_socket.sendto(message.serialize(), ("localhost", self.DNS[wake_up_node]))
+        
     def wakeup_all(self, delta:int):
-        """!Method that sends the absolute wakeup time to the nodes.
+        """!Send the absolute wakeup time to the nodes.
         
         Method needed to wakeup nodes all at once. The only way to do it is sync them
         with local clock, and wait for them to start up. Some algorithms perform worse
@@ -191,6 +193,6 @@ class Initializer(metaclass=abc.ABCMeta):
         minute = start_time.minute
         second = start_time.second
         for node, port in self.DNS.items():
-            message = str(["START_AT", year, month,day,hour, minute, second]).encode()
-            wake_up_socket.sendto(message, ("localhost", port))
+            message = WakeupAllMessage(year, month,day,hour, minute, second)
+            wake_up_socket.sendto(message.serialize(), ("localhost", port))
 

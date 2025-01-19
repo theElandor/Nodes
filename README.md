@@ -10,19 +10,12 @@ like scikitlearn, TensorFlow or PyTorch.
 + Leader election "As far as it can";
 + Leader election "Controlled Distance";
 ## Open Issues
-### Critical
-+ Fix message format (encapsulate in message class);
 ### General
 + Add Linux support;
-+ Need to improve sync logic;
-+ Need to encapsulate each protocol and its own helper functions in a Class (requires refactoring);
-+ Must add unidirectional links support;
 + Must add a "run tests" script;
 + Need validation for read_graph function;
 + Fix BUFFER SIZE variable;
-+ Must encapsulate Initializer and Node to inherit the receive_message() function correctly;
-### Performance
-+ Re-use sockets instead of creating new ones;
++ Encapsulate initial decoding of WAKEUP message;
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash

@@ -2,6 +2,7 @@ README.md
 setup.py
 Nodes/__init__.py
 Nodes/initializers.py
+Nodes/messages.py
 Nodes/nodes.py
 Nodes/utils.py
 Nodes.egg-info/PKG-INFO

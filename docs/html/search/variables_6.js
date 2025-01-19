@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['id_0',['id',['../class_nodes_1_1nodes_1_1_node.html#a7441ef0865bcb3db9b8064dd7375c1ea',1,'Nodes.nodes.Node.id'],['../class_nodes_1_1nodes_1_1_ring_node.html#acf2488b95c97e0378c9bf49de3b50f28',1,'Nodes.nodes.RingNode.id']]]
+  ['hostname_0',['HOSTNAME',['../class_nodes_1_1initializers_1_1_initializer.html#aeb83097cf1a9938f9fb206559361d700',1,'Nodes.initializers.Initializer.HOSTNAME'],['../class_nodes_1_1nodes_1_1_node.html#aeb83097cf1a9938f9fb206559361d700',1,'Nodes.nodes.Node.HOSTNAME']]],
+  ['hour_1',['hour',['../class_nodes_1_1messages_1_1_wakeup_all_message.html#a2f5f64dc14f3bf36059a21ca80fec1e5',1,'Nodes::messages::WakeupAllMessage']]]
 ];

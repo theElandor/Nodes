@@ -119,13 +119,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af3ea9392b73529c059a4d53251b1d9f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for a message containing the number of messages from each node.  <br /></td></tr>
 <tr class="separator:af3ea9392b73529c059a4d53251b1d9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74ae263e75b4c2a7445595acfb820340" id="r_a74ae263e75b4c2a7445595acfb820340"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74ae263e75b4c2a7445595acfb820340">setup_clients</a> (self)</td></tr>
-<tr class="memdesc:a74ae263e75b4c2a7445595acfb820340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method needed to provide usefull information to nodes after initialization.  <br /></td></tr>
+<tr class="memdesc:a74ae263e75b4c2a7445595acfb820340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide usefull information to nodes after initialization.  <br /></td></tr>
 <tr class="separator:a74ae263e75b4c2a7445595acfb820340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acec386101adb8fe5e52de07df4e5d279" id="r_acec386101adb8fe5e52de07df4e5d279"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acec386101adb8fe5e52de07df4e5d279">wakeup</a> (self, int wake_up_node)</td></tr>
-<tr class="memdesc:acec386101adb8fe5e52de07df4e5d279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method do send the wake up message to a specific node to start the computation.  <br /></td></tr>
+<tr class="memdesc:acec386101adb8fe5e52de07df4e5d279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the wake up message to a specific node to start the computation.  <br /></td></tr>
 <tr class="separator:acec386101adb8fe5e52de07df4e5d279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab539094b081a8cd3d7902f6877f57141" id="r_ab539094b081a8cd3d7902f6877f57141"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab539094b081a8cd3d7902f6877f57141">wakeup_all</a> (self, int delta)</td></tr>
-<tr class="memdesc:ab539094b081a8cd3d7902f6877f57141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that sends the absolute wakeup time to the nodes.  <br /></td></tr>
+<tr class="memdesc:ab539094b081a8cd3d7902f6877f57141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the absolute wakeup time to the nodes.  <br /></td></tr>
 <tr class="separator:ab539094b081a8cd3d7902f6877f57141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -148,9 +148,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a1727dd10541fc3f639dd2a323d5958be" id="r_a1727dd10541fc3f639dd2a323d5958be"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1727dd10541fc3f639dd2a323d5958be">ports</a> = [65432+x for x in range(self.N)]</td></tr>
 <tr class="memdesc:a1727dd10541fc3f639dd2a323d5958be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available ports, one for each node of the graph.  <br /></td></tr>
 <tr class="separator:a1727dd10541fc3f639dd2a323d5958be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ccda0d1c5ca74655cf096ce48585cf5" id="r_a9ccda0d1c5ca74655cf096ce48585cf5"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ccda0d1c5ca74655cf096ce48585cf5">DNS</a> = {node:port for node,port in zip(G.nodes(), self.ports)}</td></tr>
-<tr class="memdesc:a9ccda0d1c5ca74655cf096ce48585cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">DNS server holding tuples &lt;node:port&gt;  <br /></td></tr>
-<tr class="separator:a9ccda0d1c5ca74655cf096ce48585cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36a0205bcbcad637536f02bf6da7d04" id="r_ae36a0205bcbcad637536f02bf6da7d04"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae36a0205bcbcad637536f02bf6da7d04">DNS</a> = {node:port for node,port in zip(G.nodes(), self.ports)}</td></tr>
+<tr class="memdesc:ae36a0205bcbcad637536f02bf6da7d04"><td class="mdescLeft">&#160;</td><td class="mdescRight">DNS server holding tuples &lt;node:port&gt;  <br /></td></tr>
+<tr class="separator:ae36a0205bcbcad637536f02bf6da7d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a285ab2eac3a34c09303eca6543753e83" id="r_a285ab2eac3a34c09303eca6543753e83"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a> = client</td></tr>
 <tr class="memdesc:a285ab2eac3a34c09303eca6543753e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">path of the client file  <br /></td></tr>
 <tr class="separator:a285ab2eac3a34c09303eca6543753e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -318,7 +318,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Method needed to provide usefull information to nodes after initialization. </p>
+<p>Provide usefull information to nodes after initialization. </p>
 <p>This method sends to all of the nodes in the network the information needed to properly work. This includes:</p><ul>
 <li>The ID in the network;</li>
 <li>The list of connections (edges) with neighboors (nodes);</li>
@@ -368,9 +368,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Method do send the wake up message to a specific node to start the computation. </p>
-<p><br  />
-</p>
+<p>Send the wake up message to a specific node to start the computation. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wake_up_node</td><td>(int): represents the ID of the node to wake up.</td></tr>
@@ -401,7 +399,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Method that sends the absolute wakeup time to the nodes. </p>
+<p>Send the absolute wakeup time to the nodes. </p>
 <p>Method needed to wakeup nodes all at once. The only way to do it is sync them with local clock, and wait for them to start up. Some algorithms perform worse in terms of number of messages when all nodes wakeup together.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -446,14 +444,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9ccda0d1c5ca74655cf096ce48585cf5" name="a9ccda0d1c5ca74655cf096ce48585cf5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ccda0d1c5ca74655cf096ce48585cf5">&#9670;&#160;</a></span>DNS</h2>
+<a id="ae36a0205bcbcad637536f02bf6da7d04" name="ae36a0205bcbcad637536f02bf6da7d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae36a0205bcbcad637536f02bf6da7d04">&#9670;&#160;</a></span>DNS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">dict DNS = {node:port for node,port in zip(G.nodes(), self.ports)}</td>
+          <td class="memname">DNS = {node:port for node,port in zip(G.nodes(), self.ports)}</td>
         </tr>
       </table>
 </div><div class="memdoc">

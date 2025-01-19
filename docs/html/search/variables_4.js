@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['g_0',['G',['../class_nodes_1_1initializers_1_1_initializer.html#ab892b6eaa2237016a1493b3596934688',1,'Nodes::initializers::Initializer']]]
+  ['forth_5fcommand_0',['FORTH_COMMAND',['../namespace_nodes_1_1nodes.html#a497c9d623b04eb77cf5ee4d48b9ff5b9',1,'Nodes::nodes']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['port_0',['PORT',['../class_nodes_1_1initializers_1_1_initializer.html#a6dde884e19bdc8f342ffec8fc17e7c91',1,'Nodes.initializers.Initializer.PORT'],['../class_nodes_1_1nodes_1_1_node.html#a6dde884e19bdc8f342ffec8fc17e7c91',1,'Nodes.nodes.Node.PORT']]],
-  ['ports_1',['ports',['../class_nodes_1_1initializers_1_1_initializer.html#a1727dd10541fc3f639dd2a323d5958be',1,'Nodes::initializers::Initializer']]]
+  ['n_0',['N',['../class_nodes_1_1initializers_1_1_initializer.html#a7722c8ecbb62d99aee7ce68b1752f337',1,'Nodes::initializers::Initializer']]],
+  ['node_1',['node',['../class_nodes_1_1messages_1_1_setup_message.html#ae0682e96cacac1e6c208357a99dbd6d0',1,'Nodes::messages::SetupMessage']]],
+  ['notify_5fcommand_2',['NOTIFY_COMMAND',['../namespace_nodes_1_1nodes.html#a88e175767ced2144810a9c254543be07',1,'Nodes::nodes']]]
 ];
