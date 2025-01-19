@@ -14,7 +14,7 @@ print(f"Nodes: {N} \nEdges: {len(edges)}")
 nodes = [x+1 for x in range(N)]
 G.add_nodes_from(nodes)
 G.add_edges_from(edges)
-# utils.draw_graph(G)
+utils.draw_graph(G)
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")

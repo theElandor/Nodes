@@ -67,3 +67,15 @@ class LeaderElectionAFMessage(Message):
         rep = super().__str__()
         rep += f"Origin: {self.origin}"
         return rep
+    
+class ControlledDistanceMessage(Message):
+    # command sender origin limit
+    def __init__(self, command:str, sender:int, origin:int, limit:int):
+        super().__init__(command, sender)
+        self.origin = origin
+        self.limit = limit
+    def __str__(self):
+        rep = super().__str__()
+        rep += f" Origin: {self.origin} "
+        rep += f" Limit: {self.limit}"
+        return rep    

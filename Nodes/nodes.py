@@ -10,6 +10,7 @@ from Nodes.messages import Message, FloodingMessage
 from Nodes.messages import CountMessage, SetupMessage
 from Nodes.messages import LeaderElectionAtwMessage
 from Nodes.messages import LeaderElectionAFMessage
+from Nodes.messages import ControlledDistanceMessage
 
 class MessageListener(threading.Thread):
     """!Thread that continuously listens for incoming messages and puts them in a queue."""
@@ -510,8 +511,8 @@ class RingNode(Node):
         """!Primtive for the controlled distance algorithm."""
         self.limit = 1
         self.count = 0 # back messages
-        message = self._create_message("Forth", self.id, self.id, self.limit)
-        self._send_to_all(message)
+        new_message = ControlledDistanceMessage("Forth", self.id, self.id, self.limit)
+        self._send_to_all(new_message)
 
     def _leader_election_controlled_distance_process_message(self, origin:int, sender:int, limit:int):
         """!Primitive for the controlled distance algorithm.
@@ -525,11 +526,11 @@ class RingNode(Node):
         limit = limit - 1
         self._log(f"Process message received {limit}")
         if limit == 0:# end of travel
-            message = self._create_message("Back", origin, self.id, -1)
-            self._send_back(sender, message)
+            new_message = ControlledDistanceMessage("Back", self.id, origin, -1)
+            self._send_back(sender, new_message)
         else:
-            message = self._create_message("Forth", origin, self.id, limit)
-            self._send_to_other(sender, message)
+            new_message = ControlledDistanceMessage("Forth", self.id, origin, limit)
+            self._send_to_other(sender, new_message)
 
     def _leader_election_controlled_distance_check(self, origin):
         """!Primitive for the controlled distance algorithm.
@@ -542,8 +543,8 @@ class RingNode(Node):
         if self.count == 2:
             self.count = 0
             self.limit = 2 * self.limit
-            message = self._create_message("Forth", origin, origin, self.limit)
-            self._send_to_all(message)
+            new_message = ControlledDistanceMessage("Forth", origin, origin, self.limit)
+            self._send_to_all(new_message)
 
     def leader_election_controlled_distance_protocol(self):
         """!Leader election: controlled_distance version.
@@ -558,13 +559,16 @@ class RingNode(Node):
             data = self.receive_message()
             if not data: continue
             try:  # generic message
-                command, origin, sender, limit = eval(data)
-            except: # WAKEUP message
-                command = self._wake_up_decoder(data)
+                message = Message.deserialize(data)
+                command = message.command
+                sender = message.sender
+            except Exception as e:
+                self._log(f"Error while decoding message: {e}")
+                break
             if command != "WAKEUP":
-                self._log(f"Received: {command}, origin: {origin}, sender: {sender}, limit:{limit}")
-            else:
-                self._log(f"Received: {command}")
+                origin = message.origin
+                limit = message.limit
+            self._log(f"Received: {str(message)}")
             if self.state == "ASLEEP":
                 if command == "WAKEUP":
                     self.state = "CANDIDATE"
@@ -583,8 +587,8 @@ class RingNode(Node):
                         self.state = "DEFEATED"
                     elif origin == self.id:
                         # command origin sender limit
-                        message = self._create_message("Notify", self.id, self.id, -1)
-                        self._send_to_other(sender, message)
+                        new_message = ControlledDistanceMessage("Notify", self.id, self.id, -1)
+                        self._send_to_other(sender, new_message)
                         self.state = "LEADER"
                         self._log("Elected LEADER")
                         break
@@ -595,14 +599,14 @@ class RingNode(Node):
                 if command == "Forth":
                     self._leader_election_controlled_distance_process_message(origin, sender, limit)
                 elif command == "Back":
-                    message = self._create_message("Back", origin, self.id, -1)
-                    self._send_to_other(sender, message)
+                    new_message = ControlledDistanceMessage("Back", self.id, origin, -1)
+                    self._send_to_other(sender, new_message)
                 elif command == "Notify":
-                     message = self._create_message("Notify", origin, self.id, -1)
-                     self._send_to_other(sender, message)
-                     self.state = "FOLLOWER"
-                     self._log("Elected FOLLOWER")
-                     break
+                    new_message = ControlledDistanceMessage("Notfy", self.id, origin, -1)
+                    self._send_to_other(sender, new_message)
+                    self.state = "FOLLOWER"
+                    self._log("Elected FOLLOWER")
+                    break
         self._send_total_messages()
         self.cleanup()
         
