@@ -1,4 +1,5 @@
 import pickle
+from Nodes.const import Command
 
 class Message:    
     """!Basic Message Class. All messages should inherit from this class."""
@@ -22,7 +23,7 @@ class Message:
 class WakeUpMessage(Message):
     """!Message used from the initializer to wakeup nodes."""
     
-    def __init__(self, command:str="WAKEUP", sender:int=None):
+    def __init__(self, command="WAKEUP", sender:int=None):
         super().__init__(command, sender)
 
     def __str__(self):

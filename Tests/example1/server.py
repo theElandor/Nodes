@@ -3,6 +3,7 @@ import sys
 import Nodes.utils as utils
 import Nodes.initializers as initializers
 import os
+from Nodes.const import Command
 
 # GRAPH CREATION
 G = nx.Graph()
@@ -14,7 +15,7 @@ print(f"Nodes: {N} \nEdges: {len(edges)}")
 nodes = [x+1 for x in range(N)]
 G.add_nodes_from(nodes)
 G.add_edges_from(edges)
-utils.draw_graph(G)
+#utils.draw_graph(G)
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")
@@ -22,6 +23,6 @@ print(client)
 init = initializers.Initializer(client, "localhost", 65000, G, shell=False)
 init.initialize_clients()
 init.setup_clients()
-init.wakeup(3)
-#init.wakeup_all()
+#init.wakeup(3)
+init.wakeup_all(2)
 init.wait_for_number_of_messages()

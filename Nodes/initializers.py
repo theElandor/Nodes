@@ -7,12 +7,12 @@ from prettytable import PrettyTable
 import os
 import abc
 import datetime
-from typing import Optional
 import queue
 from datetime import timedelta
 from Nodes.messages import Message
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
 from Nodes.messages import WakeupAllMessage
+
 
 class Initializer(metaclass=abc.ABCMeta):
     def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
@@ -64,7 +64,7 @@ class Initializer(metaclass=abc.ABCMeta):
             table.add_row([key, val])
         return table.__str__()
     
-    def receive_message(self, timeout: Optional[float] =None) -> Optional[str]:
+    def receive_message(self, timeout:float=None) -> Message:
         """!Get a message from the queue.
         
         @param timeout (int): How long to wait for the message.
@@ -77,7 +77,7 @@ class Initializer(metaclass=abc.ABCMeta):
             return None
 
     def initialize_clients(self):
-        """!Method that initializes all of the nodes of the graph.
+        """!Initialize all of the nodes of the graph.
 
         This method creates a process for each client (node), comunicating
         what is the port that they should use to wait for messages. Then,
