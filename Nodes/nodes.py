@@ -296,7 +296,7 @@ class Node:
                 else: raise ValueError()
         self.cleanup()
         self._send_total_messages()
-
+        
 class RingNode(Node):
     """!Class that encapsulates primitives and protocols used in a Ring-shaped network.
 
