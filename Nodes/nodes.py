@@ -401,7 +401,12 @@ class RingNode(Node):
             self._log(f"Elected {self.state}")
 
     def leader_election_atw_protocol(self):
-        """!Leader election: All the way version."""
+        """!Leader election: All the way version.
+
+        In this version of the protocol, we don't make the FIFO
+        assumption, so nodes must discover the ringsize before
+        trying to elect themselves as leader or follower.
+        """
         self._send_start_of_protocol()
         self.state = State.ASLEEP
         while True:
