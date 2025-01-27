@@ -12,10 +12,11 @@ from datetime import timedelta
 from Nodes.messages import Message
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
 from Nodes.messages import WakeupAllMessage
-
+import time
+import matplotlib.pyplot as plt
 
 class Initializer(metaclass=abc.ABCMeta):
-    def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
+    def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None, visualizer=False):
         """!Initializer initializer :)
         
         @param  HOSTNAME (str): IP address of the initalizer.
@@ -25,6 +26,7 @@ class Initializer(metaclass=abc.ABCMeta):
                 - True: The command is executed through a shell (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
                 - False: The command is executed directly without a shell. 
                 This is safer and more efficient but may cause issues with shell-specific commands.
+        @param visualizer (bool): turn on/off visualization
         @return None
         """
         ## Initializer node hostname.
@@ -55,9 +57,25 @@ class Initializer(metaclass=abc.ABCMeta):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         self.s.bind(("", self.PORT))
         self.listener = MessageListener(self.s, self.message_queue)
-        self.listener.start()
+        self.listener.start()        
+        self.visualizer_port = None
+        if visualizer:
+            # self.visualizer = Visualizer(self.G, self.ports[-1]+1)
+            # self.visualizer.start()
+            # time.sleep(10)
+            self.vs = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.visualizer_port = self.ports[-1]+1
+            self.vs.bind(("", self.visualizer_port))
+            self.vs_queue = queue.Queue()
+            self.vs_listener = MessageListener(self.vs, self.vs_queue)
+            self.vs_listener.start()
+            plt.ion()
+            self.fig, self.ax = plt.subplots()
+            self.pos = nx.spring_layout(self.G)
+            self.message_display_time = 1000
 
     def __str__(self):
+        """!Convert node to string."""
         table = PrettyTable()
         table.field_names = ["Node", "Port"]
         for key, val in self.DNS.items():
@@ -73,6 +91,18 @@ class Initializer(metaclass=abc.ABCMeta):
         """
         try:
             return self.message_queue.get(timeout=timeout)
+        except queue.Empty:
+            return None
+        
+    def receive_message_vs(self, timeout:float=None) -> Message:
+        """!Get a message from the queue.
+
+        @param timeout (int): How long to wait for the message.
+
+        @return message (str): The message if one was received, None if timeout occured.        
+        """
+        try:
+            return self.vs_queue.get(timeout=timeout)
         except queue.Empty:
             return None
 
@@ -105,7 +135,50 @@ class Initializer(metaclass=abc.ABCMeta):
                 if ready_clients == len(self.ports):
                     print(f"All {ready_clients} clients are ready")
                     break
+
+    def visualize_queue(self):
+        """!Visualize all messages in the queue at the same time."""
+        # Clear the plot before drawing all messages
+        self.ax.clear()
+
+        # Draw the base graph
+        nx.draw(self.G, self.pos, ax=self.ax, with_labels=True,
+                node_color='lightblue', node_size=500, font_size=10)
+
+        # Process all messages in the queue
+        while not self.vs_queue.empty():
+            data = self.vs_queue.get()  # Get the next message from the queue
+            try:
+                message = Message.deserialize(data)  # Deserialize the message
+                print(f"Processing message: {message}, Queue size: {self.vs_queue.qsize()}")
+
+                # Extract sender, receiver, and command from the message
+                sender = message.payload.sender
+                receiver = message.receiver
+                command = message.payload.command
+                origin = message.payload.origin
+
+                # Draw the message as an arrow from sender to receiver
+                if sender in self.pos and receiver in self.pos:
+                    self.ax.annotate(command+f" {origin}",
+                                    xy=self.pos[receiver], xycoords='data',
+                                    xytext=self.pos[sender], textcoords='data',
+                                    arrowprops=dict(arrowstyle="->", color="red", lw=2),
+                                    fontsize=6, color="red")
+
+            except Exception as e:
+                print(f"Error processing message: {e}")
+        # Display the final plot with all messages
+        plt.draw()
+        plt.pause(0.1)  # Pause briefly to allow the plot to update
     
+    def start_visualization(self):
+        while True:
+            if not self.vs_queue.empty():  # Only update the plot if there are messages in the queue
+                self.ax.clear()  # Clear the plot before redrawing
+                self.visualize_queue()  # Visualize all messages in the queue
+            time.sleep(5)  # Wait for 5 seconds before checking the queue again
+                
     def wait_for_number_of_messages(self):
         """!Wait for a message containing the number of messages from each node.
 
@@ -139,7 +212,14 @@ class Initializer(metaclass=abc.ABCMeta):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         for node, port in self.DNS.items():
             local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
-            message = SetupMessage("SETUP", node, list(self.G.edges(node)), local_dns, self.shell, self.exp_path)
+            message = SetupMessage("SETUP",
+                                   node,
+                                   list(self.G.edges(node)),
+                                   local_dns,
+                                   self.shell,
+                                   self.exp_path,
+                                   self.visualizer_port,
+                                   )
             s.sendto(message.serialize(), ("localhost", port))
             # capture confirmation message
         acks = 0

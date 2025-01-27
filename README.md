@@ -15,7 +15,8 @@ like scikitlearn, TensorFlow or PyTorch.
 + Must add a "run tests" script;
 + Need validation for read_graph function;
 + Fix BUFFER SIZE variable;
-+ Encapsulate initial decoding of WAKEUP message;
++ Refactor and make a separate module containing comunication classes
+  and functions;
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash

@@ -11,9 +11,10 @@ from Nodes.messages import LeaderElectionAtwMessage
 from Nodes.messages import LeaderElectionAFMessage
 from Nodes.messages import ControlledDistanceMessage
 from Nodes.messages import WakeupAllMessage
+from Nodes.messages import VisualizationMessage
 from Nodes.const import Command
 from Nodes.const import State
-
+import time
 
 class MessageListener(threading.Thread):
     """!Thread that continuously listens for incoming messages and puts them in a queue."""
@@ -88,6 +89,7 @@ class Node:
         self.exp_path:str = None
         ## Counts the number of messages sent during the execution of an algorithm.
         self.total_messages = 0
+        self.SD = 5
 
     def _print_info(self):
         """!Print basic informations about the node."""
@@ -157,15 +159,17 @@ class Node:
                 print(f"Error while deserializing message: {e}")
             ## Unique ID of the node.
             self.id = new_message.node
-            self.edges = new_message.edges            
-            self.local_dns = new_message.local_dns            
+            self.edges = new_message.edges
+            self.local_dns = new_message.local_dns
             self.shell = new_message.shell
             self.exp_path = new_message.exp_path
+            self.visualizer_port = new_message.visualizer_port
             self.setup = True
             self.reverse_local_dns = {}
             for key, val in self.local_dns.items():
                 self.reverse_local_dns[val] = key
             return
+        
     def _send(self, message:Message, port:int, log:bool=False):
         """Primitive to send messages.
 
@@ -179,7 +183,12 @@ class Node:
             self._log(f"Sending to: {self.reverse_local_dns[port]}) this message: {message}")
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         forward_socket.sendto(message.serialize(), ("localhost", port))
-
+        # want to replicate only node to node messages.
+        if port != self.BACK and self.visualizer_port:
+            time.sleep(self.SD)
+            v_message = VisualizationMessage(message, self.reverse_local_dns[port])
+            forward_socket.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
+            
     def _send_random(self, message:Message):
         """!Send given message to a random neighbor.
         
@@ -262,7 +271,6 @@ class Node:
             self.s.close()
         if self.log_file:
             self.log_file.close()
-
             
     def flooding_protocol(self):
         """!Flood information across the network.
@@ -309,7 +317,6 @@ class RingNode(Node):
         """!RingNode init function."""
         super().__init__(HOSTNAME, BACK, PORT)
         
-
     def _send_to_other(self, sender:int, message:str, silent=False):        
         """!Send given message to the "other" node.
 

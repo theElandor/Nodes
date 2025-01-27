@@ -18,7 +18,7 @@ class Message:
         return pickle.loads(data)
         
     def __str__(self):
-        return f"{self.command} from {self.sender}"
+        return f"{self.command} from {self.sender} "
 
 class WakeUpMessage(Message):
     """!Message used from the initializer to wakeup nodes."""
@@ -60,16 +60,24 @@ class FloodingMessage(Message):
 class SetupMessage(Message):
     """!Message used by the initializer during the setup procedure."""
     
-    def __init__(self, command:str, node:int, edges:list, local_dns:dict, shell:bool, exp_path:str, sender:int=None):
+    def __init__(self, command:str,
+                 node:int,
+                 edges:list,
+                 local_dns:dict,
+                 shell:bool,
+                 exp_path:str,
+                 visualizer_port:int=None,
+                 sender:int=None):
         super().__init__(command, sender)
         self.node = node
         self.edges = edges
         self.local_dns = local_dns
         self.shell = shell
         self.exp_path = exp_path
+        self.visualizer_port = visualizer_port
     
     def __str__(self):
-        return super().__str__() + f"{self.edges}\n{self.local_dns}\n{self.shell}\n{self.exp_path}"
+        return super().__str__() + f"{self.edges}\n{self.local_dns}\n{self.shell}\n{self.exp_path}\n{self.visualizer_port}"
 
 class CountMessage(Message):
     """!Message used in the count protocol."""
@@ -117,4 +125,16 @@ class ControlledDistanceMessage(Message):
         rep = super().__str__()
         rep += f" Origin: {self.origin} "
         rep += f" Limit: {self.limit}"
-        return rep    
+        return rep
+
+class VisualizationMessage(Message):
+    """!Message used in the leader election controlled distance protocol."""
+    def __init__(self, payload:Message, receiver:int):
+        super().__init__("VIS", payload.sender)
+        self.payload = payload
+        self.receiver = receiver
+
+    def __str__(self):
+        rep = str(self.payload)
+        rep += f" Receiver: {self.receiver} "
+        return rep
