@@ -1,21 +1,21 @@
 import networkx as nx
 import Nodes.utils as utils
-from Nodes.nodes import MessageListener
 import subprocess as sp
 import socket
 from prettytable import PrettyTable
 import os
-import abc
 import datetime
 import queue
 from datetime import timedelta
 from Nodes.messages import Message
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
 from Nodes.messages import WakeupAllMessage
-import time
+from Nodes.message_handler import MessageListener
+from Nodes.comunication import ComunicationManager
 import matplotlib.pyplot as plt
 
-class Initializer(metaclass=abc.ABCMeta):
+
+class Initializer(ComunicationManager):
     def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None, visualizer=False):
         """!Initializer initializer :)
         
@@ -29,6 +29,7 @@ class Initializer(metaclass=abc.ABCMeta):
         @param visualizer (bool): turn on/off visualization
         @return None
         """
+        super().__init__()
         ## Initializer node hostname.
         self.HOSTNAME:str = HOSTNAME
         ## Initializer port
@@ -47,22 +48,16 @@ class Initializer(metaclass=abc.ABCMeta):
         self.client:str = client
         ## Boolean
         self.shell:bool = shell
-        ## Message queue to store incoming messages
-        self.message_queue: queue.Queue = queue.Queue()
-
+        
         if not log_path:
             self.log_path = os.path.join(os.path.split(self.client)[0], "logs")
 
         ## Initialize message listener
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         self.s.bind(("", self.PORT))
-        self.listener = MessageListener(self.s, self.message_queue)
-        self.listener.start()        
+        self.start_listener(self.s, self.message_queue)
         self.visualizer_port = None
         if visualizer:
-            # self.visualizer = Visualizer(self.G, self.ports[-1]+1)
-            # self.visualizer.start()
-            # time.sleep(10)
             self.vs = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.visualizer_port = self.ports[-1]+1
             self.vs.bind(("", self.visualizer_port))
@@ -70,9 +65,8 @@ class Initializer(metaclass=abc.ABCMeta):
             self.vs_listener = MessageListener(self.vs, self.vs_queue)
             self.vs_listener.start()
             plt.ion()
-            self.fig, self.ax = plt.subplots()
+            self.fig, self.ax = plt.subplots(figsize=(12, 10))
             self.pos = nx.spring_layout(self.G)
-            self.message_display_time = 1000
 
     def __str__(self):
         """!Convert node to string."""
@@ -81,30 +75,6 @@ class Initializer(metaclass=abc.ABCMeta):
         for key, val in self.DNS.items():
             table.add_row([key, val])
         return table.__str__()
-    
-    def receive_message(self, timeout:float=None) -> Message:
-        """!Get a message from the queue.
-        
-        @param timeout (int): How long to wait for the message.
-        
-        @return message (str): The message if one was received, None if timeout occured.        
-        """
-        try:
-            return self.message_queue.get(timeout=timeout)
-        except queue.Empty:
-            return None
-        
-    def receive_message_vs(self, timeout:float=None) -> Message:
-        """!Get a message from the queue.
-
-        @param timeout (int): How long to wait for the message.
-
-        @return message (str): The message if one was received, None if timeout occured.        
-        """
-        try:
-            return self.vs_queue.get(timeout=timeout)
-        except queue.Empty:
-            return None
 
     def initialize_clients(self):
         """!Initialize all of the nodes of the graph.
@@ -136,14 +106,15 @@ class Initializer(metaclass=abc.ABCMeta):
                     print(f"All {ready_clients} clients are ready")
                     break
 
-    def visualize_queue(self):
+    def visualize_queue(self, cycle):
+        colors = ["red","blue"]
         """!Visualize all messages in the queue at the same time."""
         # Clear the plot before drawing all messages
         self.ax.clear()
 
         # Draw the base graph
         nx.draw(self.G, self.pos, ax=self.ax, with_labels=True,
-                node_color='lightblue', node_size=500, font_size=10)
+                node_color='lightblue', node_size=300, font_size=10)
 
         # Process all messages in the queue
         while not self.vs_queue.empty():
@@ -161,23 +132,24 @@ class Initializer(metaclass=abc.ABCMeta):
                 # Draw the message as an arrow from sender to receiver
                 if sender in self.pos and receiver in self.pos:
                     self.ax.annotate(command+f" {origin}",
-                                    xy=self.pos[receiver], xycoords='data',
-                                    xytext=self.pos[sender], textcoords='data',
-                                    arrowprops=dict(arrowstyle="->", color="red", lw=2),
-                                    fontsize=6, color="red")
+                                     xy=self.pos[receiver], xycoords='data',
+                                     xytext=self.pos[sender], textcoords='data',
+                                     arrowprops=dict(arrowstyle="->", color=colors[cycle % len(colors)], lw=2),
+                                     fontsize=8, color="red")
 
             except Exception as e:
                 print(f"Error processing message: {e}")
         # Display the final plot with all messages
         plt.draw()
         plt.pause(0.1)  # Pause briefly to allow the plot to update
-    
+        
     def start_visualization(self):
+        cycle = 0
         while True:
             if not self.vs_queue.empty():  # Only update the plot if there are messages in the queue
                 self.ax.clear()  # Clear the plot before redrawing
-                self.visualize_queue()  # Visualize all messages in the queue
-            time.sleep(5)  # Wait for 5 seconds before checking the queue again
+                self.visualize_queue(cycle)  # Visualize all messages in the queue
+                cycle += 1
                 
     def wait_for_number_of_messages(self):
         """!Wait for a message containing the number of messages from each node.

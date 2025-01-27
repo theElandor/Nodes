@@ -3,7 +3,6 @@ import os
 from art import text2art
 import pause
 from datetime import datetime
-import threading
 import queue
 from Nodes.messages import Message, FloodingMessage
 from Nodes.messages import CountMessage, SetupMessage
@@ -14,40 +13,11 @@ from Nodes.messages import WakeupAllMessage
 from Nodes.messages import VisualizationMessage
 from Nodes.const import Command
 from Nodes.const import State
+from Nodes.comunication import ComunicationManager
 import time
 
-class MessageListener(threading.Thread):
-    """!Thread that continuously listens for incoming messages and puts them in a queue."""
-    
-    def __init__(self, socket: socket.socket, message_queue: queue.Queue):
-        """!Initialize the message listener thread.
-        
-        @param socket (socket): The socket to listen on.
-        @param message_queue (queue): Queue to store received messages.
 
-        @return None
-        """
-        super().__init__()
-        self.socket = socket
-        self.message_queue = message_queue
-        self.running = True
-        self.daemon = True  # Thread will exit when main program exits
-        
-    def run(self):
-        """!Listen for messages."""
-        while self.running:
-            try:
-                data, addr = self.socket.recvfrom(4096)  # Using standard buffer size
-                self.message_queue.put(data)
-            except socket.error:
-                if self.running:  # Only log if we're still meant to be running
-                    print("Socket error occurred in listener thread")
-                    
-    def stop(self):
-        """Stop the listener thread."""
-        self.running = False
-
-class Node:    
+class Node(ComunicationManager):
     """!Main class, encapsulate foundamental primitives."""
     
     def __init__(self, HOSTNAME:str, BACK:int, PORT:int):
@@ -59,6 +29,7 @@ class Node:
 
         @return None
         """
+        super().__init__()
         ## IP address of the node.
         self.HOSTNAME:str = HOSTNAME
         ## Port of the initializer (server).
@@ -71,12 +42,8 @@ class Node:
         self.setup:bool = False
         ## Flag that indicates where to write output (terminal or log file).
         self.log_file:bool = None
-        # Queue used by the listener to add incoming messages.
-        self.message_queue: queue.Queue = queue.Queue()
         # Socket used by the node to receive messages.
         self.s:socket = None
-        # Message listener that handles the message queue.
-        self.listener:MessageListener = None
         ## True if node outputs on terminal, false to use log files.
         self.shell:bool = None
         # Unique ID of the Node.
@@ -89,7 +56,7 @@ class Node:
         self.exp_path:str = None
         ## Counts the number of messages sent during the execution of an algorithm.
         self.total_messages = 0
-        self.SD = 5
+        self.SD = 1
 
     def _print_info(self):
         """!Print basic informations about the node."""
@@ -141,8 +108,7 @@ class Node:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # Accept UDP datagrams, on the given port, from any sender
         self.s.bind(("", self.PORT))
-        self.listener = MessageListener(self.s, self.message_queue)
-        self.listener.start()
+        self.start_listener(self.s, self.message_queue)
 
     def wait_for_instructions(self):
         """!This method is used to start listening for setup messages.
@@ -182,10 +148,11 @@ class Node:
         if log:
             self._log(f"Sending to: {self.reverse_local_dns[port]}) this message: {message}")
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        if port != self.BACK and self.visualizer_port:
+            time.sleep(self.SD)
         forward_socket.sendto(message.serialize(), ("localhost", port))
         # want to replicate only node to node messages.
         if port != self.BACK and self.visualizer_port:
-            time.sleep(self.SD)
             v_message = VisualizationMessage(message, self.reverse_local_dns[port])
             forward_socket.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
             
@@ -251,18 +218,6 @@ class Node:
                              message.second))
         return "WAKEUP"  # from now on it's like I received a wakeup message
         
-    def receive_message(self, timeout:float =None) -> Message:
-        """!Get a message from the queue.
-        
-        @param timeout (int): How long to wait for the message.
-        
-        @return message (str): The message if one was received, None if timeout occured.        
-        """
-        try:
-            return self.message_queue.get(timeout=timeout)
-        except queue.Empty:
-            return None
-
     def cleanup(self):
         """!Cleanup resources before shutting down."""
         if self.listener:
