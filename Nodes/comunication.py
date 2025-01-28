@@ -24,7 +24,7 @@ class ComunicationManager:
             Q = self.message_queue
         try:
             return Q.get(timeout=timeout)
-        except Q.Empty:
+        except Queue.Empty:
             return None
         
     def start_listener(self, s: socket.socket, message_queue: queue.Queue):

@@ -5,68 +5,68 @@ import socket
 from prettytable import PrettyTable
 import os
 import datetime
-import queue
 from datetime import timedelta
 from Nodes.messages import Message
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
 from Nodes.messages import WakeupAllMessage
 from Nodes.message_handler import MessageListener
 from Nodes.comunication import ComunicationManager
-import matplotlib.pyplot as plt
+from Nodes.visualizer import Visualizer
 
 
 class Initializer(ComunicationManager):
-    def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None, visualizer=False):
-        """!Initializer initializer :)
+    """!Sets up the network before the execution of the algorithm."""
+    
+    def __init__(self,
+                 client: str,
+                 HOSTNAME: str,
+                 PORT: int,
+                 G: nx.Graph,
+                 shell=True,
+                 log_path=None,
+                 visualizer=False):        
+        """!Initialize initializer.
         
         @param  HOSTNAME (str): IP address of the initalizer.
         @param  BACK (int): Port where the initializer is waiting for RDY messages.
         @param  G (nx.Graph): Graph structure to build.
         @param  shell (bool): Whether to use a new shell for each process. 
-                - True: The command is executed through a shell (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
+                - True: The command is executed through a shell
+                    (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
                 - False: The command is executed directly without a shell. 
-                This is safer and more efficient but may cause issues with shell-specific commands.
+                    This is safer and more efficient but may cause issues with
+                    shell-specific commands.
         @param visualizer (bool): turn on/off visualization
         @return None
         """
         super().__init__()
-        ## Initializer node hostname.
-        self.HOSTNAME:str = HOSTNAME
-        ## Initializer port
-        self.PORT:int = PORT
-        ## Maximum buffer size
+        # Initializer node hostname.
+        self.HOSTNAME: str = HOSTNAME
+        # Initializer port
+        self.PORT: int = PORT
+        # Maximum buffer size
         self.BUFFER_SIZE:int = 4096
-        ## Graph
-        self.G:nx.Graph = G
-        ## Number of nodes in the graph
-        self.N:int = G.number_of_nodes()
-        ## Available ports, one for each node of the graph
-        self.ports:list = [65432+x for x in range(self.N)] # one port for each node
-        ## DNS server holding tuples <node:port>
-        self.DNS:dict = {node:port for node,port in zip(G.nodes(), self.ports)}
-        ## path of the client file
-        self.client:str = client
-        ## Boolean
-        self.shell:bool = shell
-        
+        # Graph
+        self.G: nx.Graph = G
+        # Number of nodes in the graph
+        self.N: int = G.number_of_nodes()
+        # Available ports, one for each node of the graph
+        self.ports: list = [65432+x for x in range(self.N)] # one port for each node
+        # DNS server holding tuples <node:port>
+        self.DNS: dict = {node:port for node,port in zip(G.nodes(), self.ports)}
+        # path of the client file
+        self.client: str = client
+        # Boolean
+        self.shell: bool = shell
         if not log_path:
             self.log_path = os.path.join(os.path.split(self.client)[0], "logs")
-
-        ## Initialize message listener
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         self.s.bind(("", self.PORT))
         self.start_listener(self.s, self.message_queue)
         self.visualizer_port = None
         if visualizer:
-            self.vs = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.visualizer_port = self.ports[-1]+1
-            self.vs.bind(("", self.visualizer_port))
-            self.vs_queue = queue.Queue()
-            self.vs_listener = MessageListener(self.vs, self.vs_queue)
-            self.vs_listener.start()
-            plt.ion()
-            self.fig, self.ax = plt.subplots(figsize=(12, 10))
-            self.pos = nx.spring_layout(self.G)
+            self.visualizer = Visualizer(self.visualizer_port, self.G)
 
     def __str__(self):
         """!Convert node to string."""
@@ -88,9 +88,15 @@ class Initializer(ComunicationManager):
         self.exp_path = utils.init_logs(self.log_path)
         for port in self.ports:
             if self.shell:
-                process = sp.Popen(f'start cmd /K {command+str(port)}', stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+                process = sp.Popen(f'start cmd /K {command+str(port)}',
+                                   stdout=sp.DEVNULL,
+                                   stderr=sp.DEVNULL)
             else:
-                full_command = ["python3", self.client, "localhost", str(self.PORT), str(port)]
+                full_command = ["python3",
+                                self.client,
+                                "localhost",
+                                str(self.PORT),
+                                str(port)]
                 process = sp.Popen(full_command)
         ready_clients = 0
         while 1: # wait for RDY messages
@@ -105,51 +111,6 @@ class Initializer(ComunicationManager):
                 if ready_clients == len(self.ports):
                     print(f"All {ready_clients} clients are ready")
                     break
-
-    def visualize_queue(self, cycle):
-        colors = ["red","blue"]
-        """!Visualize all messages in the queue at the same time."""
-        # Clear the plot before drawing all messages
-        self.ax.clear()
-
-        # Draw the base graph
-        nx.draw(self.G, self.pos, ax=self.ax, with_labels=True,
-                node_color='lightblue', node_size=300, font_size=10)
-
-        # Process all messages in the queue
-        while not self.vs_queue.empty():
-            data = self.vs_queue.get()  # Get the next message from the queue
-            try:
-                message = Message.deserialize(data)  # Deserialize the message
-                print(f"Processing message: {message}, Queue size: {self.vs_queue.qsize()}")
-
-                # Extract sender, receiver, and command from the message
-                sender = message.payload.sender
-                receiver = message.receiver
-                command = message.payload.command
-                origin = message.payload.origin
-
-                # Draw the message as an arrow from sender to receiver
-                if sender in self.pos and receiver in self.pos:
-                    self.ax.annotate(command+f" {origin}",
-                                     xy=self.pos[receiver], xycoords='data',
-                                     xytext=self.pos[sender], textcoords='data',
-                                     arrowprops=dict(arrowstyle="->", color=colors[cycle % len(colors)], lw=2),
-                                     fontsize=8, color="red")
-
-            except Exception as e:
-                print(f"Error processing message: {e}")
-        # Display the final plot with all messages
-        plt.draw()
-        plt.pause(0.1)  # Pause briefly to allow the plot to update
-        
-    def start_visualization(self):
-        cycle = 0
-        while True:
-            if not self.vs_queue.empty():  # Only update the plot if there are messages in the queue
-                self.ax.clear()  # Clear the plot before redrawing
-                self.visualize_queue(cycle)  # Visualize all messages in the queue
-                cycle += 1
                 
     def wait_for_number_of_messages(self):
         """!Wait for a message containing the number of messages from each node.

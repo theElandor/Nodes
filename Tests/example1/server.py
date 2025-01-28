@@ -24,6 +24,5 @@ init = initializers.Initializer(client, "localhost", 65000, G, shell=False, visu
 init.initialize_clients()
 init.setup_clients()
 init.wakeup(3)
-init.start_visualization()
-#init.wakeup_all(2)
+init.visualizer.start_visualization()
 init.wait_for_number_of_messages()
