@@ -16,6 +16,7 @@ class Visualizer(ComunicationManager):
         plt.ion()
         self.fig, self.ax = plt.subplots(figsize=(12, 10))
         self.pos = nx.spring_layout(self.G)
+        self._eov_received = 0
         
     def _visualize_queue(self, cycle):
         colors = ["red", "blue"]
@@ -38,6 +39,13 @@ class Visualizer(ComunicationManager):
                 sender = message.payload.sender
                 receiver = message.receiver
                 command = message.payload.command
+                if command == "EOV":
+                    print("Received End of Visualization.")
+                    self._eov_received += 1
+                    print(self._eov_received, len(self.G))
+                    if self._eov_received == len(self.G):
+                        return False
+                    continue
                 origin = message.payload.origin
 
                 # Draw the message as an arrow from sender to receiver
@@ -50,14 +58,17 @@ class Visualizer(ComunicationManager):
 
             except Exception as e:
                 print(f"Error processing message: {e}")
+                return False
         # Display the final plot with all messages
         plt.draw()
         plt.pause(0.1)  # Pause briefly to allow the plot to update
+        return True
 
     def start_visualization(self):
         cycle = 0
         while True:
             if not self.message_queue.empty():  # Only update the plot if there are messages in the queue
                 self.ax.clear()  # Clear the plot before redrawing
-                self._visualize_queue(cycle)  # Visualize all messages in the queue
-                cycle += 1        
+                if not self._visualize_queue(cycle): # Visualize all messages in the queue
+                    break 
+                cycle += 1

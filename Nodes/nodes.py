@@ -11,6 +11,7 @@ from Nodes.messages import LeaderElectionAFMessage
 from Nodes.messages import ControlledDistanceMessage
 from Nodes.messages import WakeupAllMessage
 from Nodes.messages import VisualizationMessage
+from Nodes.messages import EndOfVisualizationMessage
 from Nodes.const import Command
 from Nodes.const import State
 from Nodes.comunication import ComunicationManager
@@ -136,7 +137,7 @@ class Node(ComunicationManager):
                 self.reverse_local_dns[val] = key
             return
         
-    def _send(self, message:Message, port:int, log:bool=False):
+    def _send(self, message: Message, port: int, log: bool=False):
         """Primitive to send messages.
 
         @param message (Message): message object to send
@@ -155,9 +156,18 @@ class Node(ComunicationManager):
         if port != self.BACK and self.visualizer_port:
             v_message = VisualizationMessage(message, self.reverse_local_dns[port])
             forward_socket.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
+
+    def _send_eov(self):
+        if not self.visualizer_port:
+            return
+        else:
+            eov_message = EndOfVisualizationMessage()
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            v_message = VisualizationMessage(eov_message, -1)
+            s.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
             
     def _send_random(self, message:Message):
-        """!Send given message to a random neighbor.
+        """!Send given message to the first neighbor in the DNS list.
         
         @param message (str): message to send.        
 
@@ -183,13 +193,24 @@ class Node(ComunicationManager):
             self._send(message, address)
             self.total_messages += 1
 
-    def _send_to_all_except(self,sender:int, message:Message, silent:bool=False):
+    def _send_to_all_except(self, sender: int, message: Message, silent: bool=False):
         for v, address in self.local_dns.items():
             if v == sender: continue
             if not silent:
                 self._log(str(message))
             self._send(message, address)
             self.total_messages += 1
+            
+    def _send_to_missing(self, senders: list, message: Message, silent: bool=False):
+        s = set(senders)
+        assert len(s) == len(senders)-1
+        for v, address in self.local_dns.items():
+            if v not in s: 
+                if not silent:
+                    self._log(str(message))
+                
+                self._send(message, address)
+                self.total_messages += 1
 
     def _send_total_messages(self):
         """!Send total number of messages sent to the initializer."""
@@ -226,6 +247,7 @@ class Node(ComunicationManager):
             self.s.close()
         if self.log_file:
             self.log_file.close()
+        self._send_eov()
             
     def flooding_protocol(self):
         """!Flood information across the network.
@@ -259,7 +281,58 @@ class Node(ComunicationManager):
                 else: raise ValueError()
         self.cleanup()
         self._send_total_messages()
-        
+
+    # def min_finding_protocol(self):
+    #     """!Minimum finding with saturation protocol."""
+    #     self._send_start_of_protocol()
+    #     self.state = State.ASLEEP
+    #     while True:
+    #         data = self.receive_message()
+    #         if not data: continue
+    #         try:
+    #             message = Message.deserialize(data)
+    #         except Exception as e:
+    #             self._log(f"Min finding -> Error processing message: {e}")
+    #         self._log(str(message))
+    #         command = message.command
+    #         if command == Command.START_AT:
+    #             command = self._start_at(message)
+    #         if command == Command.WAKEUP:
+    #             if self.state == State.ASLEEP:
+    #                 # if I am a leaf
+    #                 if len(self._get_neighbors()) == 1:
+    #                     new_message = MinFindingMessage(Command.SAT, self.id, self.id)
+    #                     self._send_random(new_message)
+    #                     self.state = State.AWAKE
+    #                     self._log("AWAKE now")
+    #                 else:
+    #                     # internal nodes do nothing on wakeup
+    #                     pass
+    #         elif command == Command.SAT:
+    #             # first SAT that I received
+    #             if self.state == State.ASLEEP:
+    #                 self.state = State.AWAKE
+    #                 self._log("AWAKE now")
+    #                 self.min_for_now = self.id
+    #                 self.received = [message.sender]
+                    
+    #             if self.state == State.AWAKE:
+    #                 self.received.append(message.sender)
+    #                 self.min_for_now = min(self.min_for_now, message.value)
+    #                 if len(self.received) == len(self._get_neighbors())-1:
+    #                     self.state = State.PROCESSING
+    #                     self._log("Now processing...")
+    #                     new_message = MinFindingMessage(Command.SAT, self.min_for_now, self.id)
+    #                     self._send_to_missing(self.received, new_message)
+
+    #             if self.state == State.PROCESSING:
+    #                 self.state = State.SATURATED
+    #                 self._log("Saturated")
+    #                 final_min = min(self.min_for_now, message.value)
+    #                 self._log(f"Found minf: {final_min}")
+    #                 new_message = MinFindingMessage(Command.NOTIFY, final_min, self.id)
+                    
+
 class RingNode(Node):
     """!Class that encapsulates primitives and protocols used in a Ring-shaped network.
 

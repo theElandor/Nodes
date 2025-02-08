@@ -9,7 +9,7 @@ from datetime import timedelta
 from Nodes.messages import Message
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
 from Nodes.messages import WakeupAllMessage
-from Nodes.message_handler import MessageListener
+from Nodes.messages import EndOfVisualizationMessage
 from Nodes.comunication import ComunicationManager
 from Nodes.visualizer import Visualizer
 
@@ -111,8 +111,8 @@ class Initializer(ComunicationManager):
                 if ready_clients == len(self.ports):
                     print(f"All {ready_clients} clients are ready")
                     break
-                
-    def wait_for_number_of_messages(self):
+
+    def wait_for_termination(self):
         """!Wait for a message containing the number of messages from each node.
 
         Method that opens a socket to wait for a message from all nodes

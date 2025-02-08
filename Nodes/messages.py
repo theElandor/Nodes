@@ -29,6 +29,7 @@ class WakeUpMessage(Message):
     def __str__(self):
         return super().__str__()
 
+
 class WakeupAllMessage(Message):    
     """!Message used to wake up all nodes at the same time."""
     
@@ -129,7 +130,7 @@ class ControlledDistanceMessage(Message):
 
 class VisualizationMessage(Message):
     """!Message used in the leader election controlled distance protocol."""
-    def __init__(self, payload:Message, receiver:int):
+    def __init__(self, payload: Message, receiver: int):
         super().__init__("VIS", payload.sender)
         self.payload = payload
         self.receiver = receiver
@@ -138,3 +139,24 @@ class VisualizationMessage(Message):
         rep = str(self.payload)
         rep += f" Receiver: {self.receiver} "
         return rep
+
+
+class MinFindingMessage(Message):
+    """!Message used in the count protocol."""
+    
+    def __init__(self, command, value: int, sender:int=None):
+        super().__init__(command, sender)
+        self.value = value
+        
+    def __str__(self):
+        return super().__str__() + f"Sender: {self.sender}, Counter: {self.counter}"
+    
+
+class EndOfVisualizationMessage(Message):
+    """!Message used to terminate the live visualization."""
+    
+    def __init__(self, command="EOV", sender:int = None):
+        super().__init__(command, sender)
+        
+    def __str__(self):
+        return super().__str__()
