@@ -3,7 +3,6 @@ import os
 from art import text2art
 import pause
 from datetime import datetime
-import threading
 import queue
 from Nodes.messages import Message, FloodingMessage
 from Nodes.messages import CountMessage, SetupMessage
@@ -11,42 +10,15 @@ from Nodes.messages import LeaderElectionAtwMessage
 from Nodes.messages import LeaderElectionAFMessage
 from Nodes.messages import ControlledDistanceMessage
 from Nodes.messages import WakeupAllMessage
+from Nodes.messages import VisualizationMessage
+from Nodes.messages import EndOfVisualizationMessage
 from Nodes.const import Command
 from Nodes.const import State
+from Nodes.comunication import ComunicationManager
+import time
 
 
-class MessageListener(threading.Thread):
-    """!Thread that continuously listens for incoming messages and puts them in a queue."""
-    
-    def __init__(self, socket: socket.socket, message_queue: queue.Queue):
-        """!Initialize the message listener thread.
-        
-        @param socket (socket): The socket to listen on.
-        @param message_queue (queue): Queue to store received messages.
-
-        @return None
-        """
-        super().__init__()
-        self.socket = socket
-        self.message_queue = message_queue
-        self.running = True
-        self.daemon = True  # Thread will exit when main program exits
-        
-    def run(self):
-        """!Listen for messages."""
-        while self.running:
-            try:
-                data, addr = self.socket.recvfrom(4096)  # Using standard buffer size
-                self.message_queue.put(data)
-            except socket.error:
-                if self.running:  # Only log if we're still meant to be running
-                    print("Socket error occurred in listener thread")
-                    
-    def stop(self):
-        """Stop the listener thread."""
-        self.running = False
-
-class Node:    
+class Node(ComunicationManager):
     """!Main class, encapsulate foundamental primitives."""
     
     def __init__(self, HOSTNAME:str, BACK:int, PORT:int):
@@ -58,6 +30,7 @@ class Node:
 
         @return None
         """
+        super().__init__()
         ## IP address of the node.
         self.HOSTNAME:str = HOSTNAME
         ## Port of the initializer (server).
@@ -70,12 +43,8 @@ class Node:
         self.setup:bool = False
         ## Flag that indicates where to write output (terminal or log file).
         self.log_file:bool = None
-        # Queue used by the listener to add incoming messages.
-        self.message_queue: queue.Queue = queue.Queue()
         # Socket used by the node to receive messages.
         self.s:socket = None
-        # Message listener that handles the message queue.
-        self.listener:MessageListener = None
         ## True if node outputs on terminal, false to use log files.
         self.shell:bool = None
         # Unique ID of the Node.
@@ -88,6 +57,7 @@ class Node:
         self.exp_path:str = None
         ## Counts the number of messages sent during the execution of an algorithm.
         self.total_messages = 0
+        self.SD = 1
 
     def _print_info(self):
         """!Print basic informations about the node."""
@@ -139,8 +109,7 @@ class Node:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # Accept UDP datagrams, on the given port, from any sender
         self.s.bind(("", self.PORT))
-        self.listener = MessageListener(self.s, self.message_queue)
-        self.listener.start()
+        self.start_listener(self.s, self.message_queue)
 
     def wait_for_instructions(self):
         """!This method is used to start listening for setup messages.
@@ -157,16 +126,18 @@ class Node:
                 print(f"Error while deserializing message: {e}")
             ## Unique ID of the node.
             self.id = new_message.node
-            self.edges = new_message.edges            
-            self.local_dns = new_message.local_dns            
+            self.edges = new_message.edges
+            self.local_dns = new_message.local_dns
             self.shell = new_message.shell
             self.exp_path = new_message.exp_path
+            self.visualizer_port = new_message.visualizer_port
             self.setup = True
             self.reverse_local_dns = {}
             for key, val in self.local_dns.items():
                 self.reverse_local_dns[val] = key
             return
-    def _send(self, message:Message, port:int, log:bool=False):
+        
+    def _send(self, message: Message, port: int, log: bool=False):
         """Primitive to send messages.
 
         @param message (Message): message object to send
@@ -178,10 +149,25 @@ class Node:
         if log:
             self._log(f"Sending to: {self.reverse_local_dns[port]}) this message: {message}")
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        if port != self.BACK and self.visualizer_port:
+            time.sleep(self.SD)
         forward_socket.sendto(message.serialize(), ("localhost", port))
+        # want to replicate only node to node messages.
+        if port != self.BACK and self.visualizer_port:
+            v_message = VisualizationMessage(message, self.reverse_local_dns[port])
+            forward_socket.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
 
+    def _send_eov(self):
+        if not self.visualizer_port:
+            return
+        else:
+            eov_message = EndOfVisualizationMessage()
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            v_message = VisualizationMessage(eov_message, -1)
+            s.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
+            
     def _send_random(self, message:Message):
-        """!Send given message to a random neighbor.
+        """!Send given message to the first neighbor in the DNS list.
         
         @param message (str): message to send.        
 
@@ -207,13 +193,24 @@ class Node:
             self._send(message, address)
             self.total_messages += 1
 
-    def _send_to_all_except(self,sender:int, message:Message, silent:bool=False):
+    def _send_to_all_except(self, sender: int, message: Message, silent: bool=False):
         for v, address in self.local_dns.items():
             if v == sender: continue
             if not silent:
                 self._log(str(message))
             self._send(message, address)
             self.total_messages += 1
+            
+    def _send_to_missing(self, senders: list, message: Message, silent: bool=False):
+        s = set(senders)
+        assert len(s) == len(senders)-1
+        for v, address in self.local_dns.items():
+            if v not in s: 
+                if not silent:
+                    self._log(str(message))
+                
+                self._send(message, address)
+                self.total_messages += 1
 
     def _send_total_messages(self):
         """!Send total number of messages sent to the initializer."""
@@ -242,18 +239,6 @@ class Node:
                              message.second))
         return "WAKEUP"  # from now on it's like I received a wakeup message
         
-    def receive_message(self, timeout:float =None) -> Message:
-        """!Get a message from the queue.
-        
-        @param timeout (int): How long to wait for the message.
-        
-        @return message (str): The message if one was received, None if timeout occured.        
-        """
-        try:
-            return self.message_queue.get(timeout=timeout)
-        except queue.Empty:
-            return None
-
     def cleanup(self):
         """!Cleanup resources before shutting down."""
         if self.listener:
@@ -262,7 +247,7 @@ class Node:
             self.s.close()
         if self.log_file:
             self.log_file.close()
-
+        self._send_eov()
             
     def flooding_protocol(self):
         """!Flood information across the network.
@@ -309,7 +294,6 @@ class RingNode(Node):
         """!RingNode init function."""
         super().__init__(HOSTNAME, BACK, PORT)
         
-
     def _send_to_other(self, sender:int, message:str, silent=False):        
         """!Send given message to the "other" node.
 

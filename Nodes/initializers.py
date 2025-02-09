@@ -1,80 +1,80 @@
 import networkx as nx
 import Nodes.utils as utils
-from Nodes.nodes import MessageListener
 import subprocess as sp
 import socket
 from prettytable import PrettyTable
 import os
-import abc
 import datetime
-import queue
 from datetime import timedelta
 from Nodes.messages import Message
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
 from Nodes.messages import WakeupAllMessage
+from Nodes.messages import EndOfVisualizationMessage
+from Nodes.comunication import ComunicationManager
+from Nodes.visualizer import Visualizer
 
 
-class Initializer(metaclass=abc.ABCMeta):
-    def __init__(self, client:str, HOSTNAME:str, PORT:int, G:nx.Graph, shell=True, log_path=None):
-        """!Initializer initializer :)
+class Initializer(ComunicationManager):
+    """!Sets up the network before the execution of the algorithm."""
+    
+    def __init__(self,
+                 client: str,
+                 HOSTNAME: str,
+                 PORT: int,
+                 G: nx.Graph,
+                 shell=True,
+                 log_path=None,
+                 visualizer=False):        
+        """!Initialize initializer.
         
         @param  HOSTNAME (str): IP address of the initalizer.
         @param  BACK (int): Port where the initializer is waiting for RDY messages.
         @param  G (nx.Graph): Graph structure to build.
         @param  shell (bool): Whether to use a new shell for each process. 
-                - True: The command is executed through a shell (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
+                - True: The command is executed through a shell
+                    (e.g., `cmd.exe` on Windows, `/bin/sh` on Unix).
                 - False: The command is executed directly without a shell. 
-                This is safer and more efficient but may cause issues with shell-specific commands.
+                    This is safer and more efficient but may cause issues with
+                    shell-specific commands.
+        @param visualizer (bool): turn on/off visualization
         @return None
         """
-        ## Initializer node hostname.
-        self.HOSTNAME:str = HOSTNAME
-        ## Initializer port
-        self.PORT:int = PORT
-        ## Maximum buffer size
+        super().__init__()
+        # Initializer node hostname.
+        self.HOSTNAME: str = HOSTNAME
+        # Initializer port
+        self.PORT: int = PORT
+        # Maximum buffer size
         self.BUFFER_SIZE:int = 4096
-        ## Graph
-        self.G:nx.Graph = G
-        ## Number of nodes in the graph
-        self.N:int = G.number_of_nodes()
-        ## Available ports, one for each node of the graph
-        self.ports:list = [65432+x for x in range(self.N)] # one port for each node
-        ## DNS server holding tuples <node:port>
-        self.DNS:dict = {node:port for node,port in zip(G.nodes(), self.ports)}
-        ## path of the client file
-        self.client:str = client
-        ## Boolean
-        self.shell:bool = shell
-        ## Message queue to store incoming messages
-        self.message_queue: queue.Queue = queue.Queue()
-
+        # Graph
+        self.G: nx.Graph = G
+        # Number of nodes in the graph
+        self.N: int = G.number_of_nodes()
+        # Available ports, one for each node of the graph
+        self.ports: list = [65432+x for x in range(self.N)] # one port for each node
+        # DNS server holding tuples <node:port>
+        self.DNS: dict = {node:port for node,port in zip(G.nodes(), self.ports)}
+        # path of the client file
+        self.client: str = client
+        # Boolean
+        self.shell: bool = shell
         if not log_path:
             self.log_path = os.path.join(os.path.split(self.client)[0], "logs")
-
-        ## Initialize message listener
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         self.s.bind(("", self.PORT))
-        self.listener = MessageListener(self.s, self.message_queue)
-        self.listener.start()
+        self.start_listener(self.s, self.message_queue)
+        self.visualizer_port = None
+        if visualizer:
+            self.visualizer_port = self.ports[-1]+1
+            self.visualizer = Visualizer(self.visualizer_port, self.G)
 
     def __str__(self):
+        """!Convert node to string."""
         table = PrettyTable()
         table.field_names = ["Node", "Port"]
         for key, val in self.DNS.items():
             table.add_row([key, val])
         return table.__str__()
-    
-    def receive_message(self, timeout:float=None) -> Message:
-        """!Get a message from the queue.
-        
-        @param timeout (int): How long to wait for the message.
-        
-        @return message (str): The message if one was received, None if timeout occured.        
-        """
-        try:
-            return self.message_queue.get(timeout=timeout)
-        except queue.Empty:
-            return None
 
     def initialize_clients(self):
         """!Initialize all of the nodes of the graph.
@@ -88,9 +88,15 @@ class Initializer(metaclass=abc.ABCMeta):
         self.exp_path = utils.init_logs(self.log_path)
         for port in self.ports:
             if self.shell:
-                process = sp.Popen(f'start cmd /K {command+str(port)}', stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+                process = sp.Popen(f'start cmd /K {command+str(port)}',
+                                   stdout=sp.DEVNULL,
+                                   stderr=sp.DEVNULL)
             else:
-                full_command = ["python3", self.client, "localhost", str(self.PORT), str(port)]
+                full_command = ["python3",
+                                self.client,
+                                "localhost",
+                                str(self.PORT),
+                                str(port)]
                 process = sp.Popen(full_command)
         ready_clients = 0
         while 1: # wait for RDY messages
@@ -105,8 +111,8 @@ class Initializer(metaclass=abc.ABCMeta):
                 if ready_clients == len(self.ports):
                     print(f"All {ready_clients} clients are ready")
                     break
-    
-    def wait_for_number_of_messages(self):
+
+    def wait_for_termination(self):
         """!Wait for a message containing the number of messages from each node.
 
         Method that opens a socket to wait for a message from all nodes
@@ -139,7 +145,14 @@ class Initializer(metaclass=abc.ABCMeta):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         for node, port in self.DNS.items():
             local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
-            message = SetupMessage("SETUP", node, list(self.G.edges(node)), local_dns, self.shell, self.exp_path)
+            message = SetupMessage("SETUP",
+                                   node,
+                                   list(self.G.edges(node)),
+                                   local_dns,
+                                   self.shell,
+                                   self.exp_path,
+                                   self.visualizer_port,
+                                   )
             s.sendto(message.serialize(), ("localhost", port))
             # capture confirmation message
         acks = 0

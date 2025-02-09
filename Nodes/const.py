@@ -17,6 +17,7 @@ class Command(str, Enum):
     TERM = "TERM"
     END = "END"
     FORWARD = "FWD"
+    SAT = "SAT"
 
 class State(str, Enum):
     """!Enumerator for states used in protocols."""
@@ -28,3 +29,5 @@ class State(str, Enum):
     LEADER = "LEADER"
     FOLLOWER = "FOLLOWER"
     DONE = "DONE"
+    PROCESSING = "PROCESSING"
+    SATURATED = "SATURATED"
