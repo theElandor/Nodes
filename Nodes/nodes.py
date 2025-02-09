@@ -282,57 +282,6 @@ class Node(ComunicationManager):
         self.cleanup()
         self._send_total_messages()
 
-    # def min_finding_protocol(self):
-    #     """!Minimum finding with saturation protocol."""
-    #     self._send_start_of_protocol()
-    #     self.state = State.ASLEEP
-    #     while True:
-    #         data = self.receive_message()
-    #         if not data: continue
-    #         try:
-    #             message = Message.deserialize(data)
-    #         except Exception as e:
-    #             self._log(f"Min finding -> Error processing message: {e}")
-    #         self._log(str(message))
-    #         command = message.command
-    #         if command == Command.START_AT:
-    #             command = self._start_at(message)
-    #         if command == Command.WAKEUP:
-    #             if self.state == State.ASLEEP:
-    #                 # if I am a leaf
-    #                 if len(self._get_neighbors()) == 1:
-    #                     new_message = MinFindingMessage(Command.SAT, self.id, self.id)
-    #                     self._send_random(new_message)
-    #                     self.state = State.AWAKE
-    #                     self._log("AWAKE now")
-    #                 else:
-    #                     # internal nodes do nothing on wakeup
-    #                     pass
-    #         elif command == Command.SAT:
-    #             # first SAT that I received
-    #             if self.state == State.ASLEEP:
-    #                 self.state = State.AWAKE
-    #                 self._log("AWAKE now")
-    #                 self.min_for_now = self.id
-    #                 self.received = [message.sender]
-                    
-    #             if self.state == State.AWAKE:
-    #                 self.received.append(message.sender)
-    #                 self.min_for_now = min(self.min_for_now, message.value)
-    #                 if len(self.received) == len(self._get_neighbors())-1:
-    #                     self.state = State.PROCESSING
-    #                     self._log("Now processing...")
-    #                     new_message = MinFindingMessage(Command.SAT, self.min_for_now, self.id)
-    #                     self._send_to_missing(self.received, new_message)
-
-    #             if self.state == State.PROCESSING:
-    #                 self.state = State.SATURATED
-    #                 self._log("Saturated")
-    #                 final_min = min(self.min_for_now, message.value)
-    #                 self._log(f"Found minf: {final_min}")
-    #                 new_message = MinFindingMessage(Command.NOTIFY, final_min, self.id)
-                    
-
 class RingNode(Node):
     """!Class that encapsulates primitives and protocols used in a Ring-shaped network.
 

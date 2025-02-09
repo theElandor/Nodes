@@ -5,7 +5,7 @@ import Nodes.initializers as initializers
 import os
 
 # GRAPH CREATION
-G = nx.erdos_renyi_graph(20, 0.5, seed=1, directed=False)
+G = nx.erdos_renyi_graph(7, 0.5, seed=1, directed=False)
 n = G.number_of_nodes()
 m = G.number_of_edges()
 #utils.draw_graph(G)
@@ -21,5 +21,5 @@ init.initialize_clients()
 init.setup_clients()
 init.wakeup(5)
 #init.wakeup_all(2)
-init.start_visualization()
+init.visualizer.start_visualization()
 init.wait_for_termination()
