@@ -2,3 +2,5 @@ __pycache__/
 Tests/example1/logs/
 Tests/example2/logs/
 Tests/logs/
+Nodes/__pycache__/
+Nodes/Protocols/__pycache__/
