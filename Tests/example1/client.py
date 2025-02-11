@@ -1,12 +1,10 @@
 import sys
-from Nodes.nodes import RingNode
+from Nodes.Nodes.RingNode import RingNode
+from Nodes.Protocols.LeaderElectionControlledDistance import LeaderElectionControlledDistance
 
 if len(sys.argv) != 4:
     raise ValueError('Please provide HOST, initializer PORT and local PORT NUMBER.')
 NODE = RingNode(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
-NODE.send_RDY()
-NODE.bind_to_port()
-NODE.wait_for_instructions()
-NODE._print_info()
-NODE.leader_election_controlled_distance_protocol()
-
+NODE.print_info()
+proto = LeaderElectionControlledDistance(NODE)
+proto.run()
