@@ -3,7 +3,7 @@ from Nodes.const import Command, State
 from Nodes.messages import Message, LeaderElectionAtwMessage
 from Nodes.Nodes.RingNode import RingNode
 
-class LeaderElectionAtwProtocol(Protocol):
+class LeaderElectionAtw(Protocol):
     """!Implementation of the leader election protocol."""
 
     def __init__(self, node: RingNode):

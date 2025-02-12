@@ -1,5 +1,4 @@
 # Nodes
-
 This framework aims to streamline research and education in distributed algorithms and distributed AI. 
 It provides a simple and intuitive interface for developing distributed algorithms by merely defining the 
 behavior of individual nodes and the graph structure. It is also suited for integration with ML and DL libraries
@@ -12,11 +11,8 @@ like scikitlearn, TensorFlow or PyTorch.
 ## Open Issues
 ### General
 + Add Linux support;
-+ Must add a "run tests" script;
-+ Need validation for read_graph function;
-+ Fix BUFFER SIZE variable;
-+ Refactor and make a separate module containing comunication classes
-  and functions;
++ Fix can't escape problem;
++ Add non-live visualization of algorithm;
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash
