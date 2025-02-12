@@ -67,6 +67,8 @@ class Initializer(ComunicationManager):
         if visualizer:
             self.visualizer_port = self.ports[-1]+1
             self.visualizer = Visualizer(self.visualizer_port, self.G)
+        self.initialize_clients()
+        self.setup_clients()        
 
     def __str__(self):
         """!Convert node to string."""
