@@ -18,6 +18,9 @@ class Command(str, Enum):
     END = "END"
     FORWARD = "FWD"
     SAT = "SAT"
+    Q = "Q"
+    YES = "YES"
+    NO = "NO"
 
 class State(str, Enum):
     """!Enumerator for states used in protocols."""
@@ -31,3 +34,5 @@ class State(str, Enum):
     DONE = "DONE"
     PROCESSING = "PROCESSING"
     SATURATED = "SATURATED"
+    IDLE = "IDLE"
+    ACTIVE = "ACTIVE"    

@@ -242,7 +242,18 @@ class Node(ComunicationManager):
         self._send(message, address)
         self.total_messages += 1
 
-    def send_to_all(self, message:Message, silent=False):
+    def send_to(self, message: Message, target: int):
+        """!Send a message to target node.
+        @param message (Message): message to send.
+        @param target (int): target node.
+
+        @return None        
+        """
+        self._send(message, self.local_dns[target])
+        self.total_messages += 1
+
+
+    def send_to_all(self, message:Message):
         """!Send given message to all neighbors.
 
         This primitive is used to send the given message to
@@ -252,18 +263,15 @@ class Node(ComunicationManager):
 
         @return None
         """
+        print(len(self.local_dns.items()))
         for v, address in self.local_dns.items():
-            if not silent:
-                self.log(str(message))
             self._send(message, address)
             self.total_messages += 1
 
-    def send_to_all_except(self, sender: int, message: Message, silent: bool=False):
+    def send_to_all_except(self, sender: int, message: Message):
         """!Send given message to all neighbors except the sender."""
         for v, address in self.local_dns.items():
-            if v == sender: continue
-            if not silent:
-                self.log(str(message))
+            if v == sender: continue            
             self._send(message, address)
             self.total_messages += 1
             

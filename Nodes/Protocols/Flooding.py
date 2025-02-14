@@ -29,5 +29,6 @@ class Flooding(Protocol):
             else:
                 raise ValueError()
 
-    def cleanup(self):
+    def cleanup(self):        
         self.node._send_total_messages()
+    
