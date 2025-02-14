@@ -95,29 +95,33 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">Initializer Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Sets up the network before the execution of the algorithm.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Initializer:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_nodes_1_1initializers_1_1_initializer.png" alt=""/>
- </div></div>
+  <img src="class_nodes_1_1initializers_1_1_initializer.png" usemap="#Initializer_map" alt=""/>
+  <map id="Initializer_map" name="Initializer_map">
+<area href="class_nodes_1_1comunication_1_1_comunication_manager.html" title="Encapsulate comunication utilities." alt="ComunicationManager" shape="rect" coords="0,0,139,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3327940d2b8598dae19fbca65b09f217" id="r_a3327940d2b8598dae19fbca65b09f217"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3327940d2b8598dae19fbca65b09f217">__init__</a> (self, str <a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a>, str <a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>, nx.Graph <a class="el" href="#ab892b6eaa2237016a1493b3596934688">G</a>, <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a>=True, <a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a>=None)</td></tr>
-<tr class="memdesc:a3327940d2b8598dae19fbca65b09f217"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> initializer :)  <br /></td></tr>
-<tr class="separator:a3327940d2b8598dae19fbca65b09f217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13df3442894ff062e08b261da04a60f6" id="r_a13df3442894ff062e08b261da04a60f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13df3442894ff062e08b261da04a60f6">__init__</a> (self, str <a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a>, str <a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>, nx.Graph <a class="el" href="#ab892b6eaa2237016a1493b3596934688">G</a>, <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a>=True, <a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a>=None, <a class="el" href="#adb95368c48467e7ecc8311cf5da4c062">visualizer</a>=False)</td></tr>
+<tr class="memdesc:a13df3442894ff062e08b261da04a60f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize initializer.  <br /></td></tr>
+<tr class="separator:a13df3442894ff062e08b261da04a60f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40b37c981a056437fd94276341c63fe8" id="r_a40b37c981a056437fd94276341c63fe8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40b37c981a056437fd94276341c63fe8">__str__</a> (self)</td></tr>
+<tr class="memdesc:a40b37c981a056437fd94276341c63fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert node to string.  <br /></td></tr>
 <tr class="separator:a40b37c981a056437fd94276341c63fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a574780314adb11f36f894e4ed1c411ab" id="r_a574780314adb11f36f894e4ed1c411ab"><td class="memItemLeft" align="right" valign="top">Optional[str]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a574780314adb11f36f894e4ed1c411ab">receive_message</a> (self, Optional[float] timeout=None)</td></tr>
-<tr class="memdesc:a574780314adb11f36f894e4ed1c411ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a message from the queue.  <br /></td></tr>
-<tr class="separator:a574780314adb11f36f894e4ed1c411ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6841f84faac255a5dfc05049fbeed3e" id="r_ae6841f84faac255a5dfc05049fbeed3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6841f84faac255a5dfc05049fbeed3e">initialize_clients</a> (self)</td></tr>
-<tr class="memdesc:ae6841f84faac255a5dfc05049fbeed3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that initializes all of the nodes of the graph.  <br /></td></tr>
+<tr class="memdesc:ae6841f84faac255a5dfc05049fbeed3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all of the nodes of the graph.  <br /></td></tr>
 <tr class="separator:ae6841f84faac255a5dfc05049fbeed3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3ea9392b73529c059a4d53251b1d9f2" id="r_af3ea9392b73529c059a4d53251b1d9f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3ea9392b73529c059a4d53251b1d9f2">wait_for_number_of_messages</a> (self)</td></tr>
-<tr class="memdesc:af3ea9392b73529c059a4d53251b1d9f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for a message containing the number of messages from each node.  <br /></td></tr>
-<tr class="separator:af3ea9392b73529c059a4d53251b1d9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37595ff9518d33c66daa420209ec70ba" id="r_a37595ff9518d33c66daa420209ec70ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37595ff9518d33c66daa420209ec70ba">wait_for_termination</a> (self)</td></tr>
+<tr class="memdesc:a37595ff9518d33c66daa420209ec70ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for a message containing the number of messages from each node.  <br /></td></tr>
+<tr class="separator:a37595ff9518d33c66daa420209ec70ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74ae263e75b4c2a7445595acfb820340" id="r_a74ae263e75b4c2a7445595acfb820340"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74ae263e75b4c2a7445595acfb820340">setup_clients</a> (self)</td></tr>
 <tr class="memdesc:a74ae263e75b4c2a7445595acfb820340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide usefull information to nodes after initialization.  <br /></td></tr>
 <tr class="separator:a74ae263e75b4c2a7445595acfb820340"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,52 +131,56 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab539094b081a8cd3d7902f6877f57141" id="r_ab539094b081a8cd3d7902f6877f57141"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab539094b081a8cd3d7902f6877f57141">wakeup_all</a> (self, int delta)</td></tr>
 <tr class="memdesc:ab539094b081a8cd3d7902f6877f57141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the absolute wakeup time to the nodes.  <br /></td></tr>
 <tr class="separator:ab539094b081a8cd3d7902f6877f57141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_nodes_1_1comunication_1_1_comunication_manager"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_nodes_1_1comunication_1_1_comunication_manager')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html">ComunicationManager</a></td></tr>
+<tr class="memitem:a87e9686329b6602910429601ac44b75c inherit pub_methods_class_nodes_1_1comunication_1_1_comunication_manager" id="r_a87e9686329b6602910429601ac44b75c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_nodes_1_1messages_1_1_message.html">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a87e9686329b6602910429601ac44b75c">receive_message</a> (self, float timeout=None, queue.Queue Q=None)</td></tr>
+<tr class="memdesc:a87e9686329b6602910429601ac44b75c inherit pub_methods_class_nodes_1_1comunication_1_1_comunication_manager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a message from the queue.  <br /></td></tr>
+<tr class="separator:a87e9686329b6602910429601ac44b75c inherit pub_methods_class_nodes_1_1comunication_1_1_comunication_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05e8519ceeabaca78867906738049c51 inherit pub_methods_class_nodes_1_1comunication_1_1_comunication_manager" id="r_a05e8519ceeabaca78867906738049c51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a05e8519ceeabaca78867906738049c51">start_listener</a> (self, socket.socket s, queue.Queue <a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a35f36dc063a991f65a570a5dfa68cd36">message_queue</a>)</td></tr>
+<tr class="separator:a05e8519ceeabaca78867906738049c51 inherit pub_methods_class_nodes_1_1comunication_1_1_comunication_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aeb83097cf1a9938f9fb206559361d700" id="r_aeb83097cf1a9938f9fb206559361d700"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a> = HOSTNAME</td></tr>
-<tr class="memdesc:aeb83097cf1a9938f9fb206559361d700"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> node hostname.  <br /></td></tr>
 <tr class="separator:aeb83097cf1a9938f9fb206559361d700"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a> = PORT</td></tr>
-<tr class="memdesc:a6dde884e19bdc8f342ffec8fc17e7c91"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> port.  <br /></td></tr>
 <tr class="separator:a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd8d62179f75714af34ae50caa397a73" id="r_acd8d62179f75714af34ae50caa397a73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd8d62179f75714af34ae50caa397a73">BUFFER_SIZE</a> = 4096</td></tr>
-<tr class="memdesc:acd8d62179f75714af34ae50caa397a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum buffer size.  <br /></td></tr>
 <tr class="separator:acd8d62179f75714af34ae50caa397a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab892b6eaa2237016a1493b3596934688" id="r_ab892b6eaa2237016a1493b3596934688"><td class="memItemLeft" align="right" valign="top">nx.Graph&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab892b6eaa2237016a1493b3596934688">G</a> = G</td></tr>
-<tr class="memdesc:ab892b6eaa2237016a1493b3596934688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Graph.  <br /></td></tr>
 <tr class="separator:ab892b6eaa2237016a1493b3596934688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7722c8ecbb62d99aee7ce68b1752f337" id="r_a7722c8ecbb62d99aee7ce68b1752f337"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7722c8ecbb62d99aee7ce68b1752f337">N</a> = G.number_of_nodes()</td></tr>
-<tr class="memdesc:a7722c8ecbb62d99aee7ce68b1752f337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of nodes in the graph.  <br /></td></tr>
 <tr class="separator:a7722c8ecbb62d99aee7ce68b1752f337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1727dd10541fc3f639dd2a323d5958be" id="r_a1727dd10541fc3f639dd2a323d5958be"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1727dd10541fc3f639dd2a323d5958be">ports</a> = [65432+x for x in range(self.N)]</td></tr>
-<tr class="memdesc:a1727dd10541fc3f639dd2a323d5958be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available ports, one for each node of the graph.  <br /></td></tr>
 <tr class="separator:a1727dd10541fc3f639dd2a323d5958be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae36a0205bcbcad637536f02bf6da7d04" id="r_ae36a0205bcbcad637536f02bf6da7d04"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae36a0205bcbcad637536f02bf6da7d04">DNS</a> = {node:port for node,port in zip(G.nodes(), self.ports)}</td></tr>
-<tr class="memdesc:ae36a0205bcbcad637536f02bf6da7d04"><td class="mdescLeft">&#160;</td><td class="mdescRight">DNS server holding tuples &lt;node:port&gt;  <br /></td></tr>
 <tr class="separator:ae36a0205bcbcad637536f02bf6da7d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a285ab2eac3a34c09303eca6543753e83" id="r_a285ab2eac3a34c09303eca6543753e83"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a> = client</td></tr>
-<tr class="memdesc:a285ab2eac3a34c09303eca6543753e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">path of the client file  <br /></td></tr>
 <tr class="separator:a285ab2eac3a34c09303eca6543753e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3d4fbb9cf8a069dc079bb329a7e58b9" id="r_ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a> = shell</td></tr>
-<tr class="memdesc:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean.  <br /></td></tr>
 <tr class="separator:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35f36dc063a991f65a570a5dfa68cd36" id="r_a35f36dc063a991f65a570a5dfa68cd36"><td class="memItemLeft" align="right" valign="top">queue.Queue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35f36dc063a991f65a570a5dfa68cd36">message_queue</a> = queue.Queue()</td></tr>
-<tr class="memdesc:a35f36dc063a991f65a570a5dfa68cd36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message queue to store incoming messages.  <br /></td></tr>
-<tr class="separator:a35f36dc063a991f65a570a5dfa68cd36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc5db119bfad5e0486768006c6be2f4e" id="r_adc5db119bfad5e0486768006c6be2f4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a> = os.path.join(os.path.split(self.client)[0], &quot;logs&quot;)</td></tr>
 <tr class="separator:adc5db119bfad5e0486768006c6be2f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3691308f2a4c2f6983f2880d32e29c84" id="r_a3691308f2a4c2f6983f2880d32e29c84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3691308f2a4c2f6983f2880d32e29c84">s</a> = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td></tr>
-<tr class="memdesc:a3691308f2a4c2f6983f2880d32e29c84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize message listener.  <br /></td></tr>
 <tr class="separator:a3691308f2a4c2f6983f2880d32e29c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e027ffa043575312851d123228ae8eb" id="r_a6e027ffa043575312851d123228ae8eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e027ffa043575312851d123228ae8eb">listener</a> = <a class="el" href="class_nodes_1_1nodes_1_1_message_listener.html">MessageListener</a>(self.s, self.message_queue)</td></tr>
-<tr class="separator:a6e027ffa043575312851d123228ae8eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a617ab8801afa0e555acfa96c572d13df" id="r_a617ab8801afa0e555acfa96c572d13df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a617ab8801afa0e555acfa96c572d13df">message_queue</a></td></tr>
+<tr class="separator:a617ab8801afa0e555acfa96c572d13df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96483653bb1e65983bb5502634a1ddc0" id="r_a96483653bb1e65983bb5502634a1ddc0"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96483653bb1e65983bb5502634a1ddc0">visualizer_port</a> = None</td></tr>
+<tr class="separator:a96483653bb1e65983bb5502634a1ddc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb95368c48467e7ecc8311cf5da4c062" id="r_adb95368c48467e7ecc8311cf5da4c062"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb95368c48467e7ecc8311cf5da4c062">visualizer</a> = <a class="el" href="class_nodes_1_1visualizer_1_1_visualizer.html">Visualizer</a>(self.visualizer_port, self.G)</td></tr>
+<tr class="separator:adb95368c48467e7ecc8311cf5da4c062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2a36aae87a86f29406d0f98243473f0" id="r_aa2a36aae87a86f29406d0f98243473f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2a36aae87a86f29406d0f98243473f0">exp_path</a> = <a class="el" href="namespace_nodes_1_1utils.html#a35c836af404f78732a35e33b5211bafe">utils.init_logs</a>(self.log_path)</td></tr>
 <tr class="separator:aa2a36aae87a86f29406d0f98243473f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html">ComunicationManager</a></td></tr>
+<tr class="memitem:a35f36dc063a991f65a570a5dfa68cd36 inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager" id="r_a35f36dc063a991f65a570a5dfa68cd36"><td class="memItemLeft" align="right" valign="top">queue.Queue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a35f36dc063a991f65a570a5dfa68cd36">message_queue</a> = queue.Queue()</td></tr>
+<tr class="separator:a35f36dc063a991f65a570a5dfa68cd36 inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40bb3897b070b57ebef383b57defae0e inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager" id="r_a40bb3897b070b57ebef383b57defae0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_nodes_1_1message__handler_1_1_message_listener.html">MessageListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a40bb3897b070b57ebef383b57defae0e">listener</a> = None</td></tr>
+<tr class="separator:a40bb3897b070b57ebef383b57defae0e inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3327940d2b8598dae19fbca65b09f217" name="a3327940d2b8598dae19fbca65b09f217"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3327940d2b8598dae19fbca65b09f217">&#9670;&#160;</a></span>__init__()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sets up the network before the execution of the algorithm. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a13df3442894ff062e08b261da04a60f6" name="a13df3442894ff062e08b261da04a60f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13df3442894ff062e08b261da04a60f6">&#9670;&#160;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,12 +218,17 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>log_path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>log_path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>visualizer</em></span><span class="paramdefsep"> = </span><span class="paramdefval">False</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> initializer :) </p>
+<p>Initialize initializer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">HOSTNAME</td><td>(str): IP address of the initalizer. </td></tr>
@@ -226,10 +239,13 @@ Public Attributes</h2></td></tr>
 <li>False: The command is executed directly without a shell. This is safer and more efficient but may cause issues with shell-specific commands. </li>
 </ul>
 </td></tr>
+    <tr><td class="paramname">visualizer</td><td>(bool): turn on/off visualization </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#abdd362d5f799ad16b5d6700efe590290">ComunicationManager</a>.</p>
 
 </div>
 </div>
@@ -249,6 +265,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Convert node to string. </p>
+
 </div>
 </div>
 <a id="ae6841f84faac255a5dfc05049fbeed3e" name="ae6841f84faac255a5dfc05049fbeed3e"></a>
@@ -266,40 +284,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Method that initializes all of the nodes of the graph. </p>
+<p>Initialize all of the nodes of the graph. </p>
 <p>This method creates a process for each client (node), comunicating what is the port that they should use to wait for messages. Then, it waits for a confirmation message (RDY) from all of them. <br  />
  </p>
-
-</div>
-</div>
-<a id="a574780314adb11f36f894e4ed1c411ab" name="a574780314adb11f36f894e4ed1c411ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a574780314adb11f36f894e4ed1c411ab">&#9670;&#160;</a></span>receive_message()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"> Optional[str] receive_message </td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Optional[float] </td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get a message from the queue. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">timeout</td><td>(int): How long to wait for the message.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>message (str): The message if one was received, None if timeout occured. <br  />
- </dd></dl>
 
 </div>
 </div>
@@ -329,14 +316,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af3ea9392b73529c059a4d53251b1d9f2" name="af3ea9392b73529c059a4d53251b1d9f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3ea9392b73529c059a4d53251b1d9f2">&#9670;&#160;</a></span>wait_for_number_of_messages()</h2>
+<a id="a37595ff9518d33c66daa420209ec70ba" name="a37595ff9518d33c66daa420209ec70ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37595ff9518d33c66daa420209ec70ba">&#9670;&#160;</a></span>wait_for_termination()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">wait_for_number_of_messages </td>
+          <td class="memname">wait_for_termination </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
           <td></td>
@@ -424,8 +411,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Maximum buffer size. </p>
-
 </div>
 </div>
 <a id="a285ab2eac3a34c09303eca6543753e83" name="a285ab2eac3a34c09303eca6543753e83"></a>
@@ -440,8 +425,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>path of the client file </p>
-
 </div>
 </div>
 <a id="ae36a0205bcbcad637536f02bf6da7d04" name="ae36a0205bcbcad637536f02bf6da7d04"></a>
@@ -455,8 +438,6 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>DNS server holding tuples &lt;node:port&gt; </p>
 
 </div>
 </div>
@@ -486,8 +467,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Graph. </p>
-
 </div>
 </div>
 <a id="aeb83097cf1a9938f9fb206559361d700" name="aeb83097cf1a9938f9fb206559361d700"></a>
@@ -498,22 +477,6 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">str HOSTNAME = HOSTNAME</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> node hostname. </p>
-
-</div>
-</div>
-<a id="a6e027ffa043575312851d123228ae8eb" name="a6e027ffa043575312851d123228ae8eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e027ffa043575312851d123228ae8eb">&#9670;&#160;</a></span>listener</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">listener = <a class="el" href="class_nodes_1_1nodes_1_1_message_listener.html">MessageListener</a>(self.s, self.message_queue)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -534,19 +497,17 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a35f36dc063a991f65a570a5dfa68cd36" name="a35f36dc063a991f65a570a5dfa68cd36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35f36dc063a991f65a570a5dfa68cd36">&#9670;&#160;</a></span>message_queue</h2>
+<a id="a617ab8801afa0e555acfa96c572d13df" name="a617ab8801afa0e555acfa96c572d13df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a617ab8801afa0e555acfa96c572d13df">&#9670;&#160;</a></span>message_queue</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">queue.Queue message_queue = queue.Queue()</td>
+          <td class="memname">message_queue</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Message queue to store incoming messages. </p>
 
 </div>
 </div>
@@ -562,8 +523,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of nodes in the graph. </p>
-
 </div>
 </div>
 <a id="a6dde884e19bdc8f342ffec8fc17e7c91" name="a6dde884e19bdc8f342ffec8fc17e7c91"></a>
@@ -577,8 +536,6 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p><a class="el" href="class_nodes_1_1initializers_1_1_initializer.html">Initializer</a> port. </p>
 
 </div>
 </div>
@@ -594,8 +551,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Available ports, one for each node of the graph. </p>
-
 </div>
 </div>
 <a id="a3691308f2a4c2f6983f2880d32e29c84" name="a3691308f2a4c2f6983f2880d32e29c84"></a>
@@ -609,8 +564,6 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Initialize message listener. </p>
 
 </div>
 </div>
@@ -626,7 +579,33 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Boolean. </p>
+</div>
+</div>
+<a id="adb95368c48467e7ecc8311cf5da4c062" name="adb95368c48467e7ecc8311cf5da4c062"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb95368c48467e7ecc8311cf5da4c062">&#9670;&#160;</a></span>visualizer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">visualizer = <a class="el" href="class_nodes_1_1visualizer_1_1_visualizer.html">Visualizer</a>(self.visualizer_port, self.G)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96483653bb1e65983bb5502634a1ddc0" name="a96483653bb1e65983bb5502634a1ddc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96483653bb1e65983bb5502634a1ddc0">&#9670;&#160;</a></span>visualizer_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">list visualizer_port = None</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

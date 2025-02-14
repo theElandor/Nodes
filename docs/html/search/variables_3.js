@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['edges_0',['edges',['../class_nodes_1_1messages_1_1_setup_message.html#a5fa67019b889650b66f9d78490bf661b',1,'Nodes.messages.SetupMessage.edges'],['../class_nodes_1_1nodes_1_1_node.html#a83f612859c2dda54db3ca0fb16f5fac5',1,'Nodes.nodes.Node.edges']]],
-  ['election_5fcommand_1',['ELECTION_COMMAND',['../namespace_nodes_1_1nodes.html#af4177a029b04b029cbf90d7a320a4493',1,'Nodes::nodes']]],
-  ['end_5fcommand_2',['END_COMMAND',['../namespace_nodes_1_1nodes.html#a82aea3e640953f278a8f401764dbf8b1',1,'Nodes::nodes']]],
-  ['exp_5fpath_3',['exp_path',['../class_nodes_1_1initializers_1_1_initializer.html#aa2a36aae87a86f29406d0f98243473f0',1,'Nodes.initializers.Initializer.exp_path'],['../class_nodes_1_1messages_1_1_setup_message.html#aa2a36aae87a86f29406d0f98243473f0',1,'Nodes.messages.SetupMessage.exp_path'],['../class_nodes_1_1nodes_1_1_node.html#ad1e3155c173718c915909744ff64575e',1,'Nodes.nodes.Node.exp_path']]]
+  ['candidate_0',['CANDIDATE',['../class_nodes_1_1const_1_1_state.html#ab9a6fbf60a862a1e5256e61bd54dddc2',1,'Nodes::const::State']]],
+  ['client_1',['client',['../class_nodes_1_1initializers_1_1_initializer.html#a285ab2eac3a34c09303eca6543753e83',1,'Nodes::initializers::Initializer']]],
+  ['command_2',['command',['../class_nodes_1_1messages_1_1_message.html#a9e0992eae3950adccaf4847fbff4231d',1,'Nodes::messages::Message']]],
+  ['count_3',['COUNT',['../class_nodes_1_1const_1_1_command.html#abf7c48e4f9ab181e4fe2bf5dbc5da947',1,'Nodes::const::Command']]],
+  ['counter_4',['counter',['../class_nodes_1_1messages_1_1_flooding_message.html#a61f7b3cbcedea4bae0c663c892d5d07f',1,'Nodes.messages.FloodingMessage.counter'],['../class_nodes_1_1messages_1_1_leader_election_atw_message.html#a61f7b3cbcedea4bae0c663c892d5d07f',1,'Nodes.messages.LeaderElectionAtwMessage.counter']]]
 ];

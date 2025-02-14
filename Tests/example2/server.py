@@ -1,5 +1,4 @@
 import networkx as nx
-import sys
 import Nodes.utils as utils
 import Nodes.initializers as initializers
 import os

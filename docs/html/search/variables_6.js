@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['hostname_0',['HOSTNAME',['../class_nodes_1_1initializers_1_1_initializer.html#aeb83097cf1a9938f9fb206559361d700',1,'Nodes.initializers.Initializer.HOSTNAME'],['../class_nodes_1_1nodes_1_1_node.html#aeb83097cf1a9938f9fb206559361d700',1,'Nodes.nodes.Node.HOSTNAME']]],
-  ['hour_1',['hour',['../class_nodes_1_1messages_1_1_wakeup_all_message.html#a2f5f64dc14f3bf36059a21ca80fec1e5',1,'Nodes::messages::WakeupAllMessage']]]
+  ['fig_0',['fig',['../class_nodes_1_1visualizer_1_1_visualizer.html#a64aa603bc3c6c1587e7c6542452481ac',1,'Nodes::visualizer::Visualizer']]],
+  ['follower_1',['FOLLOWER',['../class_nodes_1_1const_1_1_state.html#a33cc126513407e2ffd48b31186094075',1,'Nodes::const::State']]],
+  ['forth_2',['FORTH',['../class_nodes_1_1const_1_1_command.html#ad6a7cfbef9e884695215d5aa43cd448e',1,'Nodes::const::Command']]],
+  ['forward_3',['FORWARD',['../class_nodes_1_1const_1_1_command.html#a8138e6e303ccb9c4eefb3c36beea6c5c',1,'Nodes::const::Command']]]
 ];

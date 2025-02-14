@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['cleanup_0',['cleanup',['../class_nodes_1_1nodes_1_1_node.html#a37fb1155ee1039a3244d04bb04ae15e3',1,'Nodes::nodes::Node']]],
-  ['count_5fprotocol_1',['count_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#a98156a830870d6ee2d88263239acb724',1,'Nodes::nodes::RingNode']]]
+  ['get_5flocal_5fdns_0',['get_local_dns',['../namespace_nodes_1_1utils.html#a902798d69a3c4e982d69e35ae0687111',1,'Nodes::utils']]]
 ];

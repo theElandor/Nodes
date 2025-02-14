@@ -1,12 +1,20 @@
 var searchData=
 [
-  ['read_5fgraph_0',['read_graph',['../namespace_nodes_1_1utils.html#ab43642473847c904a73d0d5f94040d20',1,'Nodes::utils']]],
-  ['readme_2emd_1',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
-  ['ready_5fcommand_2',['READY_COMMAND',['../namespace_nodes_1_1nodes.html#a091cf233299f89e2307cdbcaa876d838',1,'Nodes::nodes']]],
-  ['receive_5fmessage_3',['receive_message',['../class_nodes_1_1initializers_1_1_initializer.html#a574780314adb11f36f894e4ed1c411ab',1,'Nodes.initializers.Initializer.receive_message()'],['../class_nodes_1_1nodes_1_1_node.html#a574780314adb11f36f894e4ed1c411ab',1,'Nodes.nodes.Node.receive_message(self, Optional[float] timeout=None)']]],
-  ['reverse_5flocal_5fdns_4',['reverse_local_dns',['../class_nodes_1_1nodes_1_1_node.html#ac1830d2fefd4f3c73b288d09671b4b8e',1,'Nodes::nodes::Node']]],
-  ['ringnode_5',['RingNode',['../class_nodes_1_1nodes_1_1_ring_node.html',1,'Nodes::nodes']]],
-  ['ringsize_6',['ringsize',['../class_nodes_1_1nodes_1_1_ring_node.html#ad9022ab6c0800df8e19fc4a166f50685',1,'Nodes::nodes::RingNode']]],
-  ['run_7',['run',['../class_nodes_1_1nodes_1_1_message_listener.html#a08060e0924949738f75a0cdd8b49cef4',1,'Nodes::nodes::MessageListener']]],
-  ['running_8',['running',['../class_nodes_1_1nodes_1_1_message_listener.html#a36f7b6be7108281af77939ceaec42fd6',1,'Nodes::nodes::MessageListener']]]
+  ['s_0',['s',['../class_nodes_1_1initializers_1_1_initializer.html#a3691308f2a4c2f6983f2880d32e29c84',1,'Nodes.initializers.Initializer.s'],['../class_nodes_1_1visualizer_1_1_visualizer.html#a3691308f2a4c2f6983f2880d32e29c84',1,'Nodes.visualizer.Visualizer.s']]],
+  ['sat_1',['SAT',['../class_nodes_1_1const_1_1_command.html#aede5eed98c243e8bed4c3564c5f34630',1,'Nodes::const::Command']]],
+  ['saturated_2',['SATURATED',['../class_nodes_1_1const_1_1_state.html#a70055bfc7c31b335578fef2b785d0943',1,'Nodes::const::State']]],
+  ['second_3',['second',['../class_nodes_1_1messages_1_1_wakeup_all_message.html#acfd440223f806c44323dbd1053b99123',1,'Nodes::messages::WakeupAllMessage']]],
+  ['sender_4',['sender',['../class_nodes_1_1messages_1_1_message.html#a1556ceaf385ac2dfc67cce65fee47ecd',1,'Nodes::messages::Message']]],
+  ['serialize_5',['serialize',['../class_nodes_1_1messages_1_1_message.html#a91a5039f9ffa0329541709eec278fcd3',1,'Nodes::messages::Message']]],
+  ['setup_6',['SETUP',['../class_nodes_1_1const_1_1_command.html#ac66633727c3e21361096bd60fc5b96c0',1,'Nodes::const::Command']]],
+  ['setup_5fclients_7',['setup_clients',['../class_nodes_1_1initializers_1_1_initializer.html#a74ae263e75b4c2a7445595acfb820340',1,'Nodes::initializers::Initializer']]],
+  ['setupmessage_8',['SetupMessage',['../class_nodes_1_1messages_1_1_setup_message.html',1,'Nodes::messages']]],
+  ['shell_9',['shell',['../class_nodes_1_1initializers_1_1_initializer.html#ae3d4fbb9cf8a069dc079bb329a7e58b9',1,'Nodes.initializers.Initializer.shell'],['../class_nodes_1_1messages_1_1_setup_message.html#ae3d4fbb9cf8a069dc079bb329a7e58b9',1,'Nodes.messages.SetupMessage.shell']]],
+  ['socket_10',['socket',['../class_nodes_1_1message__handler_1_1_message_listener.html#a84edc84c8145e7997b70f9919ce44d68',1,'Nodes::message_handler::MessageListener']]],
+  ['start_5fat_11',['START_AT',['../class_nodes_1_1const_1_1_command.html#ad124c83cd1adfe0091382cc6150fa8a0',1,'Nodes::const::Command']]],
+  ['start_5flistener_12',['start_listener',['../class_nodes_1_1comunication_1_1_comunication_manager.html#a05e8519ceeabaca78867906738049c51',1,'Nodes::comunication::ComunicationManager']]],
+  ['start_5fprotocol_13',['START_PROTOCOL',['../class_nodes_1_1const_1_1_command.html#a72771b7bcccc48a9455791186fe551f9',1,'Nodes::const::Command']]],
+  ['start_5fvisualization_14',['start_visualization',['../class_nodes_1_1visualizer_1_1_visualizer.html#aea9d59981a383428272dc7165bfe2901',1,'Nodes::visualizer::Visualizer']]],
+  ['state_15',['State',['../class_nodes_1_1const_1_1_state.html',1,'Nodes::const']]],
+  ['stop_16',['stop',['../class_nodes_1_1message__handler_1_1_message_listener.html#a2f39781a0bb89a6705efdc8d4c527def',1,'Nodes::message_handler::MessageListener']]]
 ];

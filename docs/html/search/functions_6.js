@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['init_5flogs_0',['init_logs',['../namespace_nodes_1_1utils.html#a35c836af404f78732a35e33b5211bafe',1,'Nodes::utils']]],
-  ['initialize_5fclients_1',['initialize_clients',['../class_nodes_1_1initializers_1_1_initializer.html#ae6841f84faac255a5dfc05049fbeed3e',1,'Nodes::initializers::Initializer']]]
+  ['wait_5ffor_5ftermination_0',['wait_for_termination',['../class_nodes_1_1initializers_1_1_initializer.html#a37595ff9518d33c66daa420209ec70ba',1,'Nodes::initializers::Initializer']]],
+  ['wakeup_1',['wakeup',['../class_nodes_1_1initializers_1_1_initializer.html#acec386101adb8fe5e52de07df4e5d279',1,'Nodes::initializers::Initializer']]],
+  ['wakeup_5fall_2',['wakeup_all',['../class_nodes_1_1initializers_1_1_initializer.html#ab539094b081a8cd3d7902f6877f57141',1,'Nodes::initializers::Initializer']]]
 ];

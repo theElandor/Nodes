@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['deserialize_0',['deserialize',['../class_nodes_1_1messages_1_1_message.html#a4476a356eeb2aa12d036bae5b01ab6d3',1,'Nodes::messages::Message']]],
-  ['draw_5fgraph_1',['draw_graph',['../namespace_nodes_1_1utils.html#a90c6f2c7fbf5b13a5766ffd9acfd22fa',1,'Nodes::utils']]]
+  ['init_5flogs_0',['init_logs',['../namespace_nodes_1_1utils.html#a35c836af404f78732a35e33b5211bafe',1,'Nodes::utils']]],
+  ['initialize_5fclients_1',['initialize_clients',['../class_nodes_1_1initializers_1_1_initializer.html#ae6841f84faac255a5dfc05049fbeed3e',1,'Nodes::initializers::Initializer']]]
 ];

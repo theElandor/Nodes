@@ -263,7 +263,6 @@ class Node(ComunicationManager):
 
         @return None
         """
-        print(len(self.local_dns.items()))
         for v, address in self.local_dns.items():
             self._send(message, address)
             self.total_messages += 1
