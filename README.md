@@ -5,12 +5,13 @@ behavior of individual nodes and the graph structure. It is also suited for inte
 like scikitlearn, TensorFlow or PyTorch.
 ## Implemented Algorithms
 + Flooding on connected graph;
++ Spanning tree "Shout";
 + Leader election "All the Way";
 + Leader election "As far as it can";
 + Leader election "Controlled Distance";
 ## Open Issues
 ### General
-+ Add Linux support;
++ Must add and test on Linux, only tested for Windows now;
 + Fix can't escape problem;
 + Add non-live visualization of algorithm;
 ## Quickstart
