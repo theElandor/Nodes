@@ -22,6 +22,8 @@ class Command(str, Enum):
     YES = "YES"
     NO = "NO"
     COUNT_M = "COUNT_M"
+    RETURN = "RETURN"
+    BACK_EDGE = "BACK_EDGE"
 
 
 class State(str, Enum):
@@ -38,3 +40,4 @@ class State(str, Enum):
     SATURATED = "SATURATED"
     IDLE = "IDLE"
     ACTIVE = "ACTIVE"    
+    VISITED = "VISITED"
