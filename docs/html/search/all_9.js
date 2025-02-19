@@ -7,5 +7,6 @@ var searchData=
   ['initialize_5fclients_4',['initialize_clients',['../class_nodes_1_1initializers_1_1_initializer.html#ae6841f84faac255a5dfc05049fbeed3e',1,'Nodes::initializers::Initializer']]],
   ['initializer_5',['Initializer',['../class_nodes_1_1initializers_1_1_initializer.html',1,'Nodes::initializers']]],
   ['initializers_2epy_6',['initializers.py',['../initializers_8py.html',1,'']]],
-  ['issues_7',['Open Issues',['../index.html#autotoc_md2',1,'']]]
+  ['insert_5fmessage_7',['insert_message',['../class_nodes_1_1comunication_1_1_comunication_manager.html#aa4db684fb3de3eaffb18e3c8086432dd',1,'Nodes::comunication::ComunicationManager']]],
+  ['issues_8',['Open Issues',['../index.html#autotoc_md2',1,'']]]
 ];

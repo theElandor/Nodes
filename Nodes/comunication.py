@@ -27,6 +27,10 @@ class ComunicationManager:
         except queue.Queue.Empty:
             return None
         
+    def insert_message(self, data):
+        """!Primitive used to place manually a message in the message queue of the listener."""
+        self.listener.message_queue.put(data)
+        
     def start_listener(self, s: socket.socket, message_queue: queue.Queue):
         self.listener = MessageListener(s, message_queue)
         self.listener.start()

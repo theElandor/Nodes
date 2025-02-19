@@ -161,3 +161,14 @@ class EndOfVisualizationMessage(Message):
         
     def __str__(self):
         return super().__str__()
+
+class TerminationMessage(Message):
+    """!Termination message used by nodes to comunicate end of computation."""
+    def __init__(self, command:str, payload:str, sender:int = None):
+        super().__init__(command, sender)
+        self.command = command
+        self.payload = payload
+
+    def __str__(self):
+        base = super().__str__()
+        return base + "\n" + self.payload

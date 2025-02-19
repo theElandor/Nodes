@@ -98,6 +98,7 @@ class LeaderElectionControlledDistance(Protocol):
                 self.state = State.FOLLOWER
                 self.node.log("Elected FOLLOWER")
                 return True            
-    
+            
     def cleanup(self):
-        self.node._send_total_messages()
+        super().cleanup()
+        self.node.send_total_messages()

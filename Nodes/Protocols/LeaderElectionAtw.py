@@ -82,7 +82,7 @@ class LeaderElectionAtw(Protocol):
                 self.ringsize = message.counter
                 self.known = True
                 self._leader_election_atw_check()
-
+            
     def cleanup(self):
-        self.node.log("Leader election protocol is done.")
-        self.node._send_total_messages()
+        super().cleanup()
+        self.node.send_total_messages()

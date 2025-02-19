@@ -51,7 +51,7 @@ class Dft(Protocol):
                 return self.visit()
             if message.command == Command.BACK_EDGE:
                 return self.visit()
-
+            
     def cleanup(self):
-        self.node.log(f"My neighbors in the ST are: {self.tree_neigs}")
-        self.node._send_total_messages()
+        super().cleanup()
+        self.node.send_total_messages()

@@ -50,4 +50,5 @@ class LeaderElectionAsFar(Protocol):
                 return True
             
     def cleanup(self):
-        self.node._send_total_messages()
+        super().cleanup()
+        self.node.send_total_messages()
