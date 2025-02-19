@@ -288,7 +288,7 @@ class Node(ComunicationManager):
 
     def _send_total_messages(self):
         """!Send total number of messages sent to the initializer."""
-        message = CountMessage("COUNT",self.total_messages, self.id)
+        message = CountMessage(Command.COUNT_M,self.total_messages, self.id)
         self._send(message, self.back)
 
     def _send_start_of_protocol(self):

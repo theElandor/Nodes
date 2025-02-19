@@ -36,7 +36,7 @@ class Shout(Protocol):
                 else:
                     self.node.send_to_all_except(message.sender, Message(Command.Q, self.node.id))
                     self.state = State.ACTIVE
-        if self.state == State.ACTIVE:
+        elif self.state == State.ACTIVE:
             if message.command == Command.Q:                
                 self.node.send_to(Message(Command.NO, self.node.id), message.sender)
             if message.command == Command.YES:

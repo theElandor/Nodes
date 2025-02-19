@@ -21,6 +21,8 @@ class Command(str, Enum):
     Q = "Q"
     YES = "YES"
     NO = "NO"
+    COUNT_M = "COUNT_M"
+
 
 class State(str, Enum):
     """!Enumerator for states used in protocols."""

@@ -11,6 +11,7 @@ m = G.number_of_edges()
 utils.draw_graph(G)
 print(f"Nodes: {n}")
 print(f"Edges: {m}")
+print(f"Expected n. of messages: {(4*m)-(2*n)+2}")
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")
