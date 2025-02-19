@@ -116,6 +116,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a87e9686329b6602910429601ac44b75c" id="r_a87e9686329b6602910429601ac44b75c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_nodes_1_1messages_1_1_message.html">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87e9686329b6602910429601ac44b75c">receive_message</a> (self, float timeout=None, queue.Queue Q=None)</td></tr>
 <tr class="memdesc:a87e9686329b6602910429601ac44b75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a message from the queue.  <br /></td></tr>
 <tr class="separator:a87e9686329b6602910429601ac44b75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4db684fb3de3eaffb18e3c8086432dd" id="r_aa4db684fb3de3eaffb18e3c8086432dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4db684fb3de3eaffb18e3c8086432dd">insert_message</a> (self, data)</td></tr>
+<tr class="memdesc:aa4db684fb3de3eaffb18e3c8086432dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive used to place manually a message in the message queue of the listener.  <br /></td></tr>
+<tr class="separator:aa4db684fb3de3eaffb18e3c8086432dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05e8519ceeabaca78867906738049c51" id="r_a05e8519ceeabaca78867906738049c51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05e8519ceeabaca78867906738049c51">start_listener</a> (self, socket.socket s, queue.Queue <a class="el" href="#a35f36dc063a991f65a570a5dfa68cd36">message_queue</a>)</td></tr>
 <tr class="separator:a05e8519ceeabaca78867906738049c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -149,6 +152,29 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa4db684fb3de3eaffb18e3c8086432dd" name="aa4db684fb3de3eaffb18e3c8086432dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4db684fb3de3eaffb18e3c8086432dd">&#9670;&#160;</a></span>insert_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">insert_message </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Primitive used to place manually a message in the message queue of the listener. </p>
+
+</div>
+</div>
 <a id="a87e9686329b6602910429601ac44b75c" name="a87e9686329b6602910429601ac44b75c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a87e9686329b6602910429601ac44b75c">&#9670;&#160;</a></span>receive_message()</h2>
 
