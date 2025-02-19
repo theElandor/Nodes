@@ -7,6 +7,7 @@ from art import text2art
 from Nodes.messages import *
 import time
 import os
+import sys
 
 class Node(ComunicationManager):
     """!Main class, encapsulate foundamental primitives."""
@@ -79,7 +80,7 @@ class Node(ComunicationManager):
         """!Return the unique ID of the node."""
         return self._id
 
-    @property    
+    @property
     def edges(self):
         """!Return the connections of the node."""
         return self._edges
@@ -187,7 +188,7 @@ class Node(ComunicationManager):
         # Accept UDP datagrams, on the given port, from any sender
         self._in_socket.bind(("", self.port))
         self.start_listener(self._in_socket, self.message_queue)
-
+    
     def wait_for_instructions(self):
         """!This method is used to start listening for setup messages."""
         assert self.in_socket is not None, "You need to bind to a valid socket first!"
@@ -210,7 +211,7 @@ class Node(ComunicationManager):
             for key, val in self.local_dns.items():
                 self.reverse_local_dns[val] = key
             return
-        
+            
     def _send(self, message: Message, port: int, log: bool=False):
         """Primitive to send messages.
 
@@ -262,7 +263,6 @@ class Node(ComunicationManager):
         self._send(message, self.local_dns[target])
         self.total_messages += 1
 
-
     def send_to_all(self, message:Message):
         """!Send given message to all neighbors.
 
@@ -296,7 +296,12 @@ class Node(ComunicationManager):
                 self._send(message, address)
                 self.total_messages += 1
 
-    def _send_total_messages(self):
+    def _send_end_of_protocol(self):
+        """!Send termination message back to initializer at the end of the protocol."""
+        message = TerminationMessage(Command.END_PROTOCOL, "", self.id)
+        self._send(message, self.back)
+
+    def send_total_messages(self):
         """!Send total number of messages sent to the initializer."""
         message = CountMessage(Command.COUNT_M,self.total_messages, self.id)
         self._send(message, self.back)
@@ -305,7 +310,7 @@ class Node(ComunicationManager):
         """!Send SOP message to the initializer."""
         message = Message("SOP", self.port)
         self._send(message, self.back)
-
+    
     def _start_at(self, message:WakeupAllMessage):
         """!Decode the WAKEUP or START_AT message.
 

@@ -24,6 +24,9 @@ class Command(str, Enum):
     COUNT_M = "COUNT_M"
     RETURN = "RETURN"
     BACK_EDGE = "BACK_EDGE"
+    
+    ERROR = "ERROR"
+    END_PROTOCOL = "EOP"
 
 
 class State(str, Enum):

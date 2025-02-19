@@ -56,6 +56,8 @@ class Shout(Protocol):
                     self.node.log(str(self.tree_neigs))
                     self.node.log(str(self.parent))
                     return True
-
+                
     def cleanup(self):
-        self.node._send_total_messages()
+        super().cleanup()
+        self.node.send_total_messages()
+

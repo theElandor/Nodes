@@ -6,9 +6,7 @@ from prettytable import PrettyTable
 import os
 import datetime
 from datetime import timedelta
-from Nodes.messages import Message
-from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
-from Nodes.messages import WakeupAllMessage
+from Nodes.messages import *
 from Nodes.comunication import ComunicationManager
 from Nodes.visualizer import Visualizer
 from Nodes.const import Command
@@ -115,22 +113,38 @@ class Initializer(ComunicationManager):
                     break
 
     def wait_for_termination(self):
-        """!Wait for a message containing the number of messages from each node.
-
-        Method that opens a socket to wait for a message from all nodes
-        containing the number of messages sent by the node.
-        If it obtains this information from all of the nodes, it prints the sum.
-        """
-        received_messages = 0
-        counts = []
+        """!Wait for termination messages by nodes in the network."""
+        EOP_received = 0
         while 1: # wait for RDY messages    
             data = self.receive_message()
-            message = CountMessage.deserialize(data)
-            counts.append(message.counter)
-            received_messages += 1
-            if received_messages == self.N:
-                print(f"The protocol used {sum(counts)} messages!")
+            message = TerminationMessage.deserialize(data)            
+            if message.command == Command.END_PROTOCOL:
+                EOP_received += 1
+                if EOP_received == self.N:
+                    print("Received EOP from all nodes in the network.")
+                    break
+            elif message.command == Command.ERROR:
+                payload = message.payload
+                print(f"A node crashed with the following error: {payload}")
                 break
+            else:
+                # put the message back in the queue if it's not a termination message.
+                self.insert_message(data)
+    
+    def wait_for_number_of_messages(self):
+        """!Wait for message containing number of messages from nodes in the network."""
+        counts_received = 0
+        total_count = 0
+        while 1: # wait for RDY messages            
+            data = self.receive_message()
+            message = CountMessage.deserialize(data)
+            total_count += message.counter
+            counts_received += 1
+            if counts_received == self.N:
+                print("Received message count from all nodes.")
+                print(f"Total number of messages: {total_count}")
+                break
+                
 
     def setup_clients(self):
         """!Provide usefull information to nodes after initialization.
