@@ -11,9 +11,11 @@ m = G.number_of_edges()
 utils.draw_graph(G)
 print(f"Nodes: {n}")
 print(f"Edges: {m}")
+print(f"Expected n. of messages: {(4*m)-(2*n)+2}")
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")
 init = initializers.Initializer(client, "localhost", 65000, G, shell=False)
 init.wakeup(5)
+#init.wakeup_all(1)
 init.wait_for_termination()

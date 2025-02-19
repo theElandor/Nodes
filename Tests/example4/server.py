@@ -1,4 +1,5 @@
 import networkx as nx
+import sys
 import Nodes.utils as utils
 import Nodes.initializers as initializers
 import os
@@ -10,7 +11,6 @@ m = G.number_of_edges()
 utils.draw_graph(G)
 print(f"Nodes: {n}")
 print(f"Edges: {m}")
-print(f"With flood algorithm, we expect {(2*m)-(n-1)} messages.")
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")

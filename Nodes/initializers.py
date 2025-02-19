@@ -9,9 +9,9 @@ from datetime import timedelta
 from Nodes.messages import Message
 from Nodes.messages import SetupMessage, CountMessage, WakeUpMessage
 from Nodes.messages import WakeupAllMessage
-from Nodes.messages import EndOfVisualizationMessage
 from Nodes.comunication import ComunicationManager
 from Nodes.visualizer import Visualizer
+from Nodes.const import Command
 
 
 class Initializer(ComunicationManager):
@@ -143,12 +143,10 @@ class Initializer(ComunicationManager):
         + A boolean (True if logging on terminal, False to log on files)
         + The path of the experiment directory (needed for logging)
         """
-        ready_clients = 0
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
         for node, port in self.DNS.items():
             local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
-            message = SetupMessage("SETUP",
-                                   node,
+            message = SetupMessage(node,
                                    list(self.G.edges(node)),
                                    local_dns,
                                    self.shell,

@@ -154,8 +154,18 @@ class Node(ComunicationManager):
                 self._log_file = open(path, "a")
             self.log_file.write(message + "\n")
 
-    def get_neighbors(self):
-        return [(key, val) for key, val in self.local_dns.items()]
+    def get_neighbors(self, id_only=False) -> list:
+        """!Return the neighboring nodes (tuple with id and port).
+        
+        @param id_only (bool): if set to True, it will return a list with
+            only the IDs of the neighboring nodes.
+        
+        @return list
+        """
+        if not id_only:
+            return [(key, val) for key, val in self.local_dns.items()]
+        else:
+            return list(self.local_dns.keys())
 
     def send_RDY(self):
         """!Send RDY message to initializer.
@@ -288,7 +298,7 @@ class Node(ComunicationManager):
 
     def _send_total_messages(self):
         """!Send total number of messages sent to the initializer."""
-        message = CountMessage("COUNT",self.total_messages, self.id)
+        message = CountMessage(Command.COUNT_M,self.total_messages, self.id)
         self._send(message, self.back)
 
     def _send_start_of_protocol(self):

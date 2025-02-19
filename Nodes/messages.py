@@ -61,14 +61,15 @@ class FloodingMessage(Message):
 class SetupMessage(Message):
     """!Message used by the initializer during the setup procedure."""
     
-    def __init__(self, command:str,
+    def __init__(self,
                  node:int,
                  edges:list,
                  local_dns:dict,
                  shell:bool,
                  exp_path:str,
                  visualizer_port:int=None,
-                 sender:int=None):
+                 sender:int=None,
+                 command:str=Command.SETUP):
         super().__init__(command, sender)
         self.node = node
         self.edges = edges
