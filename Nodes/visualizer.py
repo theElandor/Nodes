@@ -1,9 +1,8 @@
 from Nodes.comunication import ComunicationManager
-from Nodes.messages import Message
 import matplotlib.pyplot as plt
 import socket
 import networkx as nx
-
+from Nodes.messages import Message, VisualizationMessage
 
 class Visualizer(ComunicationManager):
     def __init__(self, port: int, G: nx.Graph):
@@ -16,7 +15,7 @@ class Visualizer(ComunicationManager):
         plt.ion()
         self.fig, self.ax = plt.subplots(figsize=(12, 10))
         self.pos = nx.spring_layout(self.G)
-        self._eov_received = 0
+        self._eov_received = 0        
         
     def _visualize_queue(self, cycle):
         colors = ["red", "blue"]
@@ -31,34 +30,34 @@ class Visualizer(ComunicationManager):
         # Process all messages in the queue
         while not self.message_queue.empty():
             data = self.message_queue.get()  # Get the next message from the queue
-            try:
-                message = Message.deserialize(data)  # Deserialize the message
-                print(f"Processing message: {message}, Queue size: {self.message_queue.qsize()}")
+            #try:
+            message = VisualizationMessage.deserialize(data)  # Deserialize the message
+            print(f"Processing message: {message}, Queue size: {self.message_queue.qsize()}")
 
-                # Extract sender, receiver, and command from the message
-                sender = message.payload.sender
-                receiver = message.receiver
-                command = message.payload.command
-                if command == "EOV":
-                    print("Received End of Visualization.")
-                    self._eov_received += 1
-                    print(self._eov_received, len(self.G))
-                    if self._eov_received == len(self.G):
-                        return False
-                    continue
-                origin = message.payload.origin
+            # Extract sender, receiver, and command from the message
+            sender = message.payload.sender
+            receiver = message.receiver
+            command = message.payload.command
+            if command == "EOV":
+                print("Received End of Visualization.")
+                self._eov_received += 1
+                print(self._eov_received, len(self.G))
+                if self._eov_received == len(self.G):
+                    return False
+                continue
+            origin = message.payload.origin
 
-                # Draw the message as an arrow from sender to receiver
-                if sender in self.pos and receiver in self.pos:
-                    self.ax.annotate(command+f" {origin}",
-                                     xy=self.pos[receiver], xycoords='data',
-                                     xytext=self.pos[sender], textcoords='data',
-                                     arrowprops=dict(arrowstyle="->", color=colors[cycle % len(colors)], lw=2),
-                                     fontsize=8, color="red")
+            # Draw the message as an arrow from sender to receiver
+            if sender in self.pos and receiver in self.pos:
+                self.ax.annotate(command+f" {origin}",
+                                    xy=self.pos[receiver], xycoords='data',
+                                    xytext=self.pos[sender], textcoords='data',
+                                    arrowprops=dict(arrowstyle="->", color=colors[cycle % len(colors)], lw=2),
+                                    fontsize=8, color="red")
 
-            except Exception as e:
-                print(f"Error processing message: {e}")
-                return False
+            # except Exception as e:
+            #     print(f"Error processing message: {e}")
+            #     return False
         # Display the final plot with all messages
         plt.draw()
         plt.pause(0.1)  # Pause briefly to allow the plot to update

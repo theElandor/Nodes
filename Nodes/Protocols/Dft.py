@@ -3,6 +3,23 @@ from Nodes.Protocols.Protocol import Protocol
 from Nodes.messages import Message
 from Nodes.const import Command, State
 
+@Message.register
+class DftMessageV(Message):
+    def __init__(self, command, origin, sender):
+        super().__init__(command, sender)
+        self.origin = origin
+    
+    def to_dict(self) -> dict:
+        data = super().to_dict()
+        data.update({
+            "origin": self.origin
+        })
+        return data
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["command"], data["origin"], data["sender"])
+
 class Dft(Protocol):
     def __init__(self, node: Node):
         super().__init__(node)
@@ -11,13 +28,15 @@ class Dft(Protocol):
         """!Primitive used during DFT protocol."""    
         if len(self.unvisited) > 0:
             next_node = self.unvisited.pop()
-            new_message = Message(Command.FORWARD, self.node.id)
+            new_message = DftMessageV(Command.FORWARD, self.node.id, self.node.id)
+            #new_message = Message(Command.FORWARD, self.node.id)
             self.node.send_to(new_message, next_node)
             self.state = State.VISITED
             return False
         else:
             if not self.initiator:
-                new_message = Message(Command.RETURN, self.node.id)
+                new_message = DftMessageV(Command.RETURN, self.node.id, self.node.id)
+                #new_message = Message(Command.RETURN, self.node.id)
                 self.node.send_to(new_message, self.entry)
             return True
 
@@ -44,7 +63,8 @@ class Dft(Protocol):
         elif self.state == State.VISITED:
             if message.command == Command.FORWARD:
                 self.unvisited.remove(message.sender)
-                new_message = Message(Command.BACK_EDGE, self.node.id)
+                new_message = DftMessageV(Command.BACK_EDGE, self.node.id, self.node.id)
+                #new_message = Message(Command.BACK_EDGE, self.node.id)
                 self.node.send_to(new_message, message.sender)
             if message.command == Command.RETURN:
                 self.tree_neigs.add(message.sender)
