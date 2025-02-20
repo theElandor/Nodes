@@ -14,7 +14,8 @@ print(f"With flood algorithm, we expect {(2*m)-(n-1)} messages.")
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")
-init = initializers.Initializer(client, "localhost", 65000, G, shell=False)
+init = initializers.Initializer(client, "localhost", 65000, G, shell=False, visualizer=True)
 init.wakeup(5)
+init.visualizer.start_visualization()
 init.wait_for_termination()
 init.wait_for_number_of_messages()
