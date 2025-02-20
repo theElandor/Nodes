@@ -8,7 +8,7 @@ import os
 G = nx.erdos_renyi_graph(7, 0.5, seed=1, directed=False)
 n = G.number_of_nodes()
 m = G.number_of_edges()
-utils.draw_graph(G)
+#utils.draw_graph(G)
 print(f"Nodes: {n}")
 print(f"Edges: {m}")
 print(f"Expected n. of messages: {(4*m)-(2*n)+2}")
