@@ -15,7 +15,6 @@ class LeaderElectionAtw(Protocol):
 
     def _leader_election_atw_check(self):
         """!Primitive for leader_election algorithm."""
-
         self.node.log(f"Count: {self.count}")
         self.node.log(f"Ringsize: {self.ringsize}")
         self.node.log(f"Min: {self.min}")

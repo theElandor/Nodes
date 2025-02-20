@@ -183,6 +183,18 @@ class LeaderElectionAtwMessage(Message):
         self.counter = counter
         self.origin = origin
 
+    def to_dict(self)->dict:
+        data = super().to_dict()
+        data.update({
+            "counter":self.counter,
+            "origin":self.origin
+        })
+        return data
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["command"], data["counter"], data["origin"], data["sender"])
+
     def __str__(self):
         rep = super().__str__()
         rep += f"Command: {self.command}, Sender:{self.sender}, "
@@ -196,6 +208,18 @@ class LeaderElectionAFMessage(Message):
     def __init__(self, command:str, sender, origin:int):
         super().__init__(command, sender)
         self.origin = origin
+
+    def to_dict(self) -> dict:
+        data = super().to_dict()
+        data.update({
+            "origin":self.origin
+        })
+        return data
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["command"], data["sender"], data["origin"])
+    
     def __str__(self):
         rep = super().__str__()
         rep += f"Origin: {self.origin}"
@@ -209,6 +233,18 @@ class ControlledDistanceMessage(Message):
         super().__init__(command, sender)
         self.origin = origin
         self.limit = limit
+
+    def to_dict(self) -> dict:
+        data = super().to_dict()
+        data.update({
+            "origin": self.origin,
+            "limit": self.limit
+        })
+        return data
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["command"], data["sender"], data["origin"], data["limit"])
 
     def __str__(self):
         rep = super().__str__()
