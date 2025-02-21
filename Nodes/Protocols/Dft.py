@@ -61,6 +61,8 @@ class Dft(Protocol):
                 self.unvisited.remove(self.entry)
                 return self.visit()
         elif self.state == State.VISITED:
+            if self.node.id == 3:
+                ciao
             if message.command == Command.FORWARD:
                 self.unvisited.remove(message.sender)
                 new_message = DftMessageV(Command.BACK_EDGE, self.node.id, self.node.id)

@@ -11,11 +11,10 @@ def error_handler(func):
         try:
             return func(self, *args, **kwargs)
         except Exception as e:
-            error_msg = f"Fatal error in node {self.node.id}: {str(e)}"
-            self.node.log(error_msg)
+            error_msg = f"Fatal error in node {self.node.id}: {str(e)}"            
             # Send error message to initializer
             error_message = TerminationMessage(Command.ERROR, error_msg, self.node.id)
-            self._send(error_message, self.node.back)
+            self.node.send_back(error_message)
             # Clean up resources
             self.cleanup()
             self.node.cleanup()
@@ -40,6 +39,10 @@ class Protocol(ABC):
                     continue
                 try:
                     message = Message.deserialize(data)
+                    if message.command == Command.ERROR:
+                        # received termination from server
+                        self.node.log("Exiting since I decoded a error message from the initializer.")
+                        exit(0)
                 except Exception as e:
                     self.node.log("Error while deserializing message: {e}")
                     continue

@@ -15,8 +15,7 @@ print(f"Edges: {m}")
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")
-init = initializers.Initializer(client, "localhost", 65000, G, shell=False, visualizer=True)
+init = initializers.Initializer(client, "localhost", 65000, G, shell=False)
 init.wakeup(5)
-init.visualizer.start_visualization()
 init.wait_for_termination()
 init.wait_for_number_of_messages()

@@ -263,6 +263,14 @@ class Node(ComunicationManager):
         self._send(message, self.local_dns[target])
         self.total_messages += 1
 
+    def send_back(self, message:Message):
+        """!Send message back to initializer (server).
+        @param message (Message): message to send.
+
+        @return None
+        """
+        self._send(message, self.back)        
+
     def send_to_all(self, message:Message):
         """!Send given message to all neighbors.
 

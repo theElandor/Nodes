@@ -126,7 +126,8 @@ class Initializer(ComunicationManager):
             elif message.command == Command.ERROR:
                 payload = message.payload
                 print(f"A node crashed with the following error: {payload}")
-                break
+                self.send_termination()
+                exit(0)
             else:
                 # put the message back in the queue if it's not a termination message.
                 self.insert_message(data)
@@ -157,7 +158,7 @@ class Initializer(ComunicationManager):
         + A boolean (True if logging on terminal, False to log on files)
         + The path of the experiment directory (needed for logging)
         """
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         for node, port in self.DNS.items():
             local_dns = utils.get_local_dns(self.DNS, node, list(self.G.edges(node)))
             message = SetupMessage(node,
@@ -223,3 +224,8 @@ class Initializer(ComunicationManager):
             message = WakeupAllMessage(year, month,day,hour, minute, second)
             wake_up_socket.sendto(message.serialize(), ("localhost", port))
 
+    def send_termination(self):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        termination_message = TerminationMessage(Command.ERROR, "node crash")
+        for node, port in self.DNS.items():
+            s.sendto(termination_message.serialize(), ("localhost", port))
