@@ -227,10 +227,15 @@ class Node(ComunicationManager):
         if port != self.back and self.visualizer_port:
             time.sleep(self.sleep_delay)
         forward_socket.sendto(message.serialize(), ("localhost", port))
-        # want to replicate only node to node messages.
-        if port != self.back and self.visualizer_port:
-            v_message = VisualizationMessage(message, self.reverse_local_dns[port])
-            forward_socket.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
+        # We want to replicate only node to node messages or error messages
+        if self.visualizer_port:
+            if port != self.back or (port == self.back and message.command == Command.ERROR):
+                if port != self.back:
+                    receiver = self.reverse_local_dns[port]
+                else:
+                    receiver = -1
+                v_message = VisualizationMessage(message, receiver)
+                forward_socket.sendto(v_message.serialize(), ("localhost", self.visualizer_port))
 
     def _send_eov(self):
         """!Send a termination message to the visualizer."""
@@ -269,7 +274,7 @@ class Node(ComunicationManager):
 
         @return None
         """
-        self._send(message, self.back)        
+        self._send(message, self.back)
 
     def send_to_all(self, message:Message):
         """!Send given message to all neighbors.

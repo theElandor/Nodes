@@ -24,7 +24,7 @@ class ComunicationManager:
             Q = self.message_queue
         try:
             return Q.get(timeout=timeout)
-        except queue.Queue.Empty:
+        except queue.Empty:
             return None
         
     def insert_message(self, data):

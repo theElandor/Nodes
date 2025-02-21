@@ -31,7 +31,7 @@ class Protocol(ABC):
 
     @error_handler
     def run(self):
-        """!Run the specified protocol."""        
+        """!Main loop of the node that decodes messages."""
         try:
             while True:
                 data = self.node.receive_message()
@@ -64,5 +64,11 @@ class Protocol(ABC):
         pass
     
     def cleanup(self):
+        """!Send end of protocol to the initializer.
+        
+        Override this method if you want more control on the cleanup phase,
+        for example if you want to send some stats to the server at the 
+        end of the computation.
+        """
         self.node._send_end_of_protocol()
         

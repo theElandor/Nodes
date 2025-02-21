@@ -225,7 +225,9 @@ class Initializer(ComunicationManager):
             wake_up_socket.sendto(message.serialize(), ("localhost", port))
 
     def send_termination(self):
+        """!Send termination message to all of the nodes in the network."""        
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         termination_message = TerminationMessage(Command.ERROR, "node crash")
         for node, port in self.DNS.items():
             s.sendto(termination_message.serialize(), ("localhost", port))
+    

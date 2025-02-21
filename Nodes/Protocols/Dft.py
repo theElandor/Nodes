@@ -29,14 +29,12 @@ class Dft(Protocol):
         if len(self.unvisited) > 0:
             next_node = self.unvisited.pop()
             new_message = DftMessageV(Command.FORWARD, self.node.id, self.node.id)
-            #new_message = Message(Command.FORWARD, self.node.id)
             self.node.send_to(new_message, next_node)
             self.state = State.VISITED
             return False
         else:
             if not self.initiator:
                 new_message = DftMessageV(Command.RETURN, self.node.id, self.node.id)
-                #new_message = Message(Command.RETURN, self.node.id)
                 self.node.send_to(new_message, self.entry)
             return True
 
@@ -61,12 +59,9 @@ class Dft(Protocol):
                 self.unvisited.remove(self.entry)
                 return self.visit()
         elif self.state == State.VISITED:
-            if self.node.id == 3:
-                ciao
             if message.command == Command.FORWARD:
                 self.unvisited.remove(message.sender)
                 new_message = DftMessageV(Command.BACK_EDGE, self.node.id, self.node.id)
-                #new_message = Message(Command.BACK_EDGE, self.node.id)
                 self.node.send_to(new_message, message.sender)
             if message.command == Command.RETURN:
                 self.tree_neigs.add(message.sender)
