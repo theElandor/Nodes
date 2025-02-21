@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import socket
 import networkx as nx
 from Nodes.messages import Message, VisualizationMessage
-from Nodes.const import Command
+from Nodes.const import Command, VisualizerState
 
 class Visualizer(ComunicationManager):
     def __init__(self, port: int, G: nx.Graph):
@@ -18,7 +18,7 @@ class Visualizer(ComunicationManager):
         self.pos = nx.spring_layout(self.G)
         self._eov_received = 0        
         
-    def _visualize_queue(self, cycle):
+    def _visualize_queue(self, cycle) -> VisualizerState:
         colors = ["red", "blue"]
         """!Visualize all messages in the queue at the same time."""
         # Clear the plot before drawing all messages
@@ -40,14 +40,14 @@ class Visualizer(ComunicationManager):
                 receiver = message.receiver
                 command = message.payload.command
                 if command == Command.ERROR:
-                    print("Received error message from server.")
-                    return False
+                    print("Received an error message. Terminating the protocol.")
+                    return VisualizerState.EXTERNAL_ERROR
                 if command == "EOV":
                     print("Received End of Visualization.")
                     self._eov_received += 1
                     print(self._eov_received, len(self.G))
                     if self._eov_received == len(self.G):
-                        return False
+                        return VisualizerState.SUCCESS
                     continue
                 origin = message.payload.origin
 
@@ -61,17 +61,20 @@ class Visualizer(ComunicationManager):
 
             except Exception as e:
                 print(f"Error processing message: {e}")
-                return False
+                return VisualizerState.INTERNAL_ERROR
         # Display the final plot with all messages
         plt.draw()
         plt.pause(0.1)  # Pause briefly to allow the plot to update
-        return True
+        return VisualizerState.CONTINUE
 
-    def start_visualization(self):
+    def start_visualization(self) -> VisualizerState:
         cycle = 0
         while True:
             if not self.message_queue.empty():  # Only update the plot if there are messages in the queue
                 self.ax.clear()  # Clear the plot before redrawing
-                if not self._visualize_queue(cycle): # Visualize all messages in the queue
-                    break
-                cycle += 1
+                current_state = self._visualize_queue(cycle)
+                if current_state == VisualizerState.CONTINUE:
+                    cycle += 1
+                else:
+                    return current_state
+        

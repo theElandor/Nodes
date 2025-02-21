@@ -9,7 +9,7 @@ from datetime import timedelta
 from Nodes.messages import *
 from Nodes.comunication import ComunicationManager
 from Nodes.visualizer import Visualizer
-from Nodes.const import Command
+from Nodes.const import Command, VisualizerState
 
 
 class Initializer(ComunicationManager):
@@ -230,4 +230,16 @@ class Initializer(ComunicationManager):
         termination_message = TerminationMessage(Command.ERROR, "node crash")
         for node, port in self.DNS.items():
             s.sendto(termination_message.serialize(), ("localhost", port))
-    
+
+    def start_visualization(self):        
+        assert self.visualizer, "Specify visualizer=True in the constructor to use this method."
+        state = self.visualizer.start_visualization()
+        if state == VisualizerState.INTERNAL_ERROR:
+            print("Sending termination")
+            self.send_termination()
+            exit(0)
+        elif state == VisualizerState.EXTERNAL_ERROR:
+            # error is alredy being handled from server
+            pass
+        elif state == VisualizerState.SUCCESS:
+            print("End of visualization.")            

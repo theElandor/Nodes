@@ -44,3 +44,10 @@ class State(str, Enum):
     IDLE = "IDLE"
     ACTIVE = "ACTIVE"    
     VISITED = "VISITED"
+
+class VisualizerState(str, Enum):
+    INTERNAL_ERROR = "INTERNAL_ERROR"
+    EXTERNAL_ERROR = "EXTERNAL_ERROR"
+    SUCCESS = "SUCCESS"
+    CONTINUE = "CONTINUE"
+    
