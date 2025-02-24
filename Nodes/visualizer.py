@@ -26,7 +26,7 @@ class Visualizer(ComunicationManager):
 
         # Draw the base graph
         nx.draw(self.G, self.pos, ax=self.ax, with_labels=True,
-                node_color='lightblue', node_size=300, font_size=10)
+                node_color='lightblue', node_size=300, font_size=22)
 
         # Process all messages in the queue
         while not self.message_queue.empty():
@@ -57,7 +57,7 @@ class Visualizer(ComunicationManager):
                                         xy=self.pos[receiver], xycoords='data',
                                         xytext=self.pos[sender], textcoords='data',
                                         arrowprops=dict(arrowstyle="->", color=colors[cycle % len(colors)], lw=2),
-                                        fontsize=8, color="red")
+                                        fontsize=16, color="red")
 
             except Exception as e:
                 print(f"Error processing message: {e}")

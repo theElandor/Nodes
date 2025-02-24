@@ -18,20 +18,3 @@ class RingNode(Node):
                 self._send(message, address)
                 break
         self.total_messages += 1
-
-    def send_back(self, sender: int, message: Message, silent=False):
-        """!Primitive that sends given message the specified node.
-
-        This primitive is basically the same as a standard _send,
-        but it is more readable and automatically increases
-        self.total_messages.
-
-        @param sender (Node): target node.
-        @param message (str): message to send.
-        @return None
-        """
-        port = self.local_dns[sender]       
-        if not silent:
-            self.log(f"Sending to: {sender}({port}) this message: "+str(message))
-        self._send(message, port)
-        self.total_messages += 1

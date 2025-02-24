@@ -31,7 +31,7 @@ class LeaderElectionControlledDistance(Protocol):
         self.node.log(f"Process message received {limit}")
         if limit == 0:# end of travel
             new_message = ControlledDistanceMessage(Command.BACK, self.node.id, origin, -1)
-            self.node.send_back(sender, new_message)
+            self.node.send_to(new_message, sender)
         else:
             new_message = ControlledDistanceMessage(Command.FORTH, self.node.id, origin, limit)
             self.node.send_to_other(sender, new_message)
