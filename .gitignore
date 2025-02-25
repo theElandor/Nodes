@@ -3,5 +3,6 @@ Tests/example1/logs/
 Tests/example2/logs/
 Tests/example3/logs/
 Tests/example4/logs/
+Tests/example5/logs/
 Nodes/__pycache__/
 Nodes/Protocols/__pycache__/
