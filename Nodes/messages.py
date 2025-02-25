@@ -7,13 +7,18 @@ class Message:
     def __init__(self, command:str, sender:int=None):
         self.command = command
         self.sender = sender
+        self.seq_number = None #used in fifo mode
 
     def to_dict(self) -> dict:
-        return {
+        data = {
             "type": self.__class__.__name__,
             "command": self.command,
             "sender": self.sender
         }
+        # add sequence number information if added by the node (fifo mode)
+        if self.seq_number is not None:
+            data["seq_number"] = self.seq_number
+        return data
 
     def serialize(self) -> bytes:
         """!Serialize to bytes before network transmission."""
@@ -30,7 +35,10 @@ class Message:
             raise ValueError(f"Unknown message type: {msg_type}")
         
         msg_class = Message._message_types[msg_type]
-        return msg_class.from_dict(json_data)
+        obj =  msg_class.from_dict(json_data)
+        if "seq_number" in json_data:
+            obj.seq_number = json_data["seq_number"]
+        return obj
     
     @classmethod
     def register(cls, message_class):
@@ -42,7 +50,10 @@ class Message:
     @classmethod
     def from_dict(cls, data: dict):
         """!Create message instance from dictionary."""
-        return cls(data["command"], data["sender"])
+        msg = cls(data["command"], data["sender"])
+        if "seq_number" in data:
+            msg.seq_number = data["seq_number"]
+        return msg
         
     def __str__(self):
         return f"{self.command} from {self.sender} "

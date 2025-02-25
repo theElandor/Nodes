@@ -12,7 +12,7 @@ import sys
 class Node(ComunicationManager):
     """!Main class, encapsulate foundamental primitives."""
     
-    def __init__(self, hostname:str, back:int, port:int):
+    def __init__(self, hostname:str, back:int, port:int, fifo=False):
         """!Node base initializer.
 
         @param HOSTNAME (str): IP of the initalizer.
@@ -23,27 +23,38 @@ class Node(ComunicationManager):
         """
         super().__init__()        
         self._hostname:str = hostname        
-        self._back:int = back        
+        self._back:int = back
         self._port:int = port
+        self._fifo:bool = fifo
         self._in_socket = None
         self._setup:bool = False                
         self._log_file:bool = None
-        self._shell:bool = None        
-        self._id:int = None        
-        self._edges:dict = None    
-        self._local_dns:dict = None        
-        self._exp_path:str = None      
+        self._shell:bool = None
+        self._id:int = None
+        self._edges:dict = None
+        self._local_dns:dict = None
+        self._reverse_local_dns:dict = None
+        self._exp_path:str = None
         self._visualizer_port = None
-        self._total_messages = 0        
+        self._total_messages = 0
         self._sleep_delay = 1
+        # ========== parameters needed for fifo mode ========
+        if fifo:
+            self.send_sequence = {}
+            self.recv_sequence = {}
+        # ========== initialization sequence ================
         self.send_RDY()
         self.bind_to_port()
-        self.wait_for_instructions()
+        self.wait_for_instructions()        
 
     @property
     def hostname(self):
         """!Return IP address of the node."""
         return self._hostname
+    
+    @property
+    def fifo(self):
+        return self._fifo
     
     @property
     def back(self):
@@ -134,6 +145,7 @@ class Node(ComunicationManager):
         res = f"\nHostname: {self.hostname}\n"
         res += f"Invoker port: {self.back}\n"
         res += f"Listening on port {self.port}\n"
+        res += f"Fifo mode: {self.fifo}\n"
         if self.setup:
             res += (f"ID: {self.id}\n")
             res += (f"Edges: {self.edges}\n")
@@ -178,7 +190,7 @@ class Node(ComunicationManager):
 
         @return None
         """
-        message = Message("RDY", self.port)
+        message = Message(Command.READY, self.port)
         self._send(message, self.back)
 
     def bind_to_port(self):
@@ -226,6 +238,15 @@ class Node(ComunicationManager):
         forward_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         if port != self.back and self.visualizer_port:
             time.sleep(self.sleep_delay)
+        # ============= additional information for FIFO mode ===============
+        if self.fifo and port != self.back: # we only want to track node-node messages.
+            target_id = self.reverse_local_dns[port]
+            if target_id not in self.send_sequence:
+                self.send_sequence[target_id] = 0
+            
+            message.seq_number = self.send_sequence[target_id]            
+            self.send_sequence[target_id] += 1
+        # ============= sending to target and visualizer if needed ============
         forward_socket.sendto(message.serialize(), ("localhost", port))
         # We want to replicate only node to node messages or error messages
         if self.visualizer_port:

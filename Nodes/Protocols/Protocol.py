@@ -46,7 +46,22 @@ class Protocol(ABC):
                 except Exception as e:
                     self.node.log("Error while deserializing message: {e}")
                     continue
-                self.node.log(str(message))
+                self.node.log(str(message))                
+                # ========= FIFO mode check ===========
+                # usually server-node messages have a Null Sender.
+                # We want don't want to check those.
+                if self.node.fifo and message.sender is not None:
+                    sender_id = message.sender
+                    if sender_id not in self.node.recv_sequence:
+                        self.node.recv_sequence[sender_id] = 0
+                    expected_sequence_number = self.node.recv_sequence[sender_id]
+                    if message.seq_number != expected_sequence_number:
+                        self.node.log(f"Out of order message received. Expected {expected_sequence_number}, got {message.seq_number}. Requeueing.")
+                        # Put the message back in the queue for later processing
+                        self.node.insert_message(data)
+                        continue
+                    else:
+                        self.node.recv_sequence[sender_id] += 1
                 if self.handle_message(message):
                     break
         finally:
