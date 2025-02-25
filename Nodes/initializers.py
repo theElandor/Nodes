@@ -102,7 +102,7 @@ class Initializer(ComunicationManager):
         while 1: # wait for RDY messages
             data = self.receive_message()
             new_message = Message.deserialize(data)
-            if new_message.command != "RDY":
+            if new_message.command != Command.READY:
                 print(f"Something went wrong during initialization.")
                 exit(0)
             else:
