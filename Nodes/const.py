@@ -24,7 +24,9 @@ class Command(str, Enum):
     COUNT_M = "COUNT_M"
     RETURN = "RETURN"
     BACK_EDGE = "BACK_EDGE"
-    
+    REQUEST = "REQUEST"
+    REPLY = "REPLY"
+    RELEASE = "RELEASE"
     ERROR = "ERROR"
     END_PROTOCOL = "EOP"
 
@@ -42,8 +44,9 @@ class State(str, Enum):
     PROCESSING = "PROCESSING"
     SATURATED = "SATURATED"
     IDLE = "IDLE"
-    ACTIVE = "ACTIVE"    
+    ACTIVE = "ACTIVE"
     VISITED = "VISITED"
+    CS = "CRITICAL_SECTION"
 
 class VisualizerState(str, Enum):
     INTERNAL_ERROR = "INTERNAL_ERROR"
