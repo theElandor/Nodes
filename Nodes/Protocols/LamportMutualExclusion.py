@@ -47,7 +47,7 @@ class LamportMutualExclusion(Protocol):
     
     def access_CS(self):
         self.using_CS = True
-        print("Accessed CS...")        
+        print(f"{self.node.id} Accessed CS...")
         t = random.randint(1,4)
         self.LC += 1 # increment logical clock
         time.sleep(t)
@@ -62,7 +62,7 @@ class LamportMutualExclusion(Protocol):
             self.node.send_to_all(new_message)
 
     def setup(self):
-        random.seed(12)
+        random.seed((self.node.id +1)*20)
         self.LC = 0
         self.CS_counter = 0
         self.using_CS = False
@@ -73,6 +73,7 @@ class LamportMutualExclusion(Protocol):
         self.ends = set()
         t1 = random.randint(1,4)
         t2 = random.randint(5,8)
+        print(t1,t2)
         x1 = threading.Thread(target = self.request_CS, args=(t1,))
         x2 = threading.Thread(target = self.request_CS, args=(t2,))
         x1.start()
