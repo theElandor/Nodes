@@ -48,7 +48,7 @@ class LamportMutualExclusion(Protocol):
     def access_CS(self):
         self.using_CS = True
         print("Accessed CS...")        
-        t = random.randint(1,3)
+        t = random.randint(1,4)
         self.LC += 1 # increment logical clock
         time.sleep(t)
         print("Released CS...")
@@ -57,8 +57,12 @@ class LamportMutualExclusion(Protocol):
         new_message = MutualExclusionMessage(Command.RELEASE, self.LC, self.node.id)
         heapq.heappop(self.CS_requests) # top element is my request if I accessed the resource
         self.node.send_to_all(new_message)
+        if self.CS_counter == 2:
+            new_message = Message(Command.END, self.node.id)
+            self.node.send_to_all(new_message)
 
     def setup(self):
+        random.seed(12)
         self.LC = 0
         self.CS_counter = 0
         self.using_CS = False
@@ -66,6 +70,7 @@ class LamportMutualExclusion(Protocol):
         self.CS_requests = []
         # stores Reply and Release messages from other nodes
         self.history = {n:[] for n in self.node.get_neighbors(id_only=True)}
+        self.ends = set()
         t1 = random.randint(1,4)
         t2 = random.randint(5,8)
         x1 = threading.Thread(target = self.request_CS, args=(t1,))
@@ -74,6 +79,8 @@ class LamportMutualExclusion(Protocol):
         x2.start()
     
     def access_check(self):
+        if len(self.CS_requests) == 0:
+            return
         heapq.heapify(self.CS_requests)
         top_timestamp, top_id = self.CS_requests[0]
         if top_id != self.node.id: return
@@ -85,7 +92,12 @@ class LamportMutualExclusion(Protocol):
 
     def handle_message(self, message:Message) -> bool:
         assert message.command != Command.START_AT, "This protocol does not support simultaneous wakeup."
-        self.LC = max(self.LC, message.timestamp)+1 # update logical clock
+        if message.command == Command.END:
+            self.ends.add(message.sender)
+            if len(self.ends) == len(self.node.get_neighbors(id_only=True)):
+                return True
+        else:
+            self.LC = max(self.LC, message.timestamp)+1 # update logical clock
         if message.command == Command.REQUEST:
             heapq.heappush(self.CS_requests, (message.timestamp, message.sender))
             new_message = MutualExclusionMessage(Command.REPLY, self.LC, self.node.id)
@@ -98,6 +110,5 @@ class LamportMutualExclusion(Protocol):
             self.history[message.sender].append(message.timestamp)
             self.access_check()
 
-    
     def cleanup(self):
         super().cleanup()
