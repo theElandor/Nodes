@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://theelandor.github.io/NodesLogo.JPG" alt="Nodes" width=250/>
+  <img src="https://theelandor.github.io/NodesLogo.JPG" alt="Nodes" width=400/>
 </p>
 
 This framework aims at helping researchers and developers who want to test and play with distributed algorithms.
