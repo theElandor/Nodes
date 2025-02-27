@@ -14,11 +14,6 @@ like scikitlearn, TensorFlow or PyTorch.
 + Leader election "All the Way";
 + Leader election "As far as it can";
 + Leader election "Controlled Distance";
-## Open Issues
-If you want to become a contributor, here's a list of possible improvements:
-### General
-+ Must add and test on Linux, only tested for Windows now;
-+ Add non-live visualization of algorithm;
 ## Quickstart
 Clone/fork the repo and install the Nodes package in developer mode:
 ```bash
