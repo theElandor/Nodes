@@ -1,4 +1,4 @@
-# Nodes
+![alt text](http://url/to/img.png)
 This framework aims at helping researchers and developers who want to test and play with distributed algorithms.
 It provides a simple and intuitive interface to define the
 behavior of individual nodes and the graph structure, and it takes care of the rest. Because of its simplicity, it is easily extendible in its capabilities. It is also suited for integration with ML and DL libraries
