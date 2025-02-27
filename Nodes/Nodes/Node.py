@@ -312,21 +312,30 @@ class Node(ComunicationManager):
             self.total_messages += 1
 
     def send_to_all_except(self, sender: int, message: Message):
-        """!Send given message to all neighbors except the sender."""
+        """!Send given message to all neighbors except the sender.
+        
+        @param sender (int): node to exclude.
+        @param message (Message): message to send.
+
+        @return None
+        """
         for v, address in self.local_dns.items():
             if v == sender: continue            
             self._send(message, address)
             self.total_messages += 1
             
-    def send_to_missing(self, senders: list, message: Message, silent: bool=False):
-        """!Send given message to all neighbors except the ones in the list."""
+    def send_to_missing(self, senders: list, message: Message):
+        """!Send given message to all neighbors except the ones in the list.
+        
+        @param senders (list): nodes to exclude
+        @param message (Message): message to send
+
+        @return None
+        """
         s = set(senders)
         assert len(s) == len(senders)-1
         for v, address in self.local_dns.items():
-            if v not in s: 
-                if not silent:
-                    self.log(str(message))
-                
+            if v not in s:
                 self._send(message, address)
                 self.total_messages += 1
 
@@ -342,7 +351,7 @@ class Node(ComunicationManager):
 
     def _send_start_of_protocol(self):
         """!Send SOP message to the initializer."""
-        message = Message("SOP", self.port)
+        message = Message(Command.START_PROTOCOL, self.port)
         self._send(message, self.back)
     
     def _start_at(self, message:WakeupAllMessage):

@@ -38,35 +38,85 @@ class Initializer(ComunicationManager):
         @return None
         """
         super().__init__()
-        # Initializer node hostname.
-        self.HOSTNAME: str = HOSTNAME
-        # Initializer port
-        self.PORT: int = PORT
-        # Maximum buffer size
-        self.BUFFER_SIZE:int = 4096
-        # Graph
-        self.G: nx.Graph = G
-        # Number of nodes in the graph
-        self.N: int = G.number_of_nodes()
-        # Available ports, one for each node of the graph
-        self.ports: list = [65432+x for x in range(self.N)] # one port for each node
-        # DNS server holding tuples <node:port>
-        self.DNS: dict = {node:port for node,port in zip(G.nodes(), self.ports)}
-        # path of the client file
-        self.client: str = client
-        # Boolean
-        self.shell: bool = shell
-        if not log_path:
-            self.log_path = os.path.join(os.path.split(self.client)[0], "logs")
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
-        self.s.bind(("", self.PORT))
-        self.start_listener(self.s, self.message_queue)
-        self.visualizer_port = None
+        self._HOSTNAME: str = HOSTNAME
+        self._PORT: int = PORT
+        self._G: nx.Graph = G
+        self._ports: list = [65432+x for x in range(self.number_of_nodes())] # one port for each node        
+        self._DNS: dict = {node:port for node,port in zip(G.nodes(), self.ports)}        
+        self._client: str = client        
+        self._shell: bool = shell
+        
+        if not log_path: self._log_path = os.path.join(os.path.split(self.client)[0], "logs")
+        else: self._log_path = None
+
+        self._s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)        
+        self._s.bind(("", self.PORT))
+        self.start_listener(self._s, self.message_queue)
+
+        self._visualizer_port = None
+        self._visualizer = None
         if visualizer:
-            self.visualizer_port = self.ports[-1]+1
-            self.visualizer = Visualizer(self.visualizer_port, self.G)
+            self._visualizer_port = self.ports[-1]+1
+            self._visualizer = Visualizer(self.visualizer_port, self.G)
+        
         self.initialize_clients()
         self.setup_clients()        
+
+    @property
+    def HOSTNAME(self):
+        """!Return server hostname."""
+        return self._HOSTNAME
+    
+    @property
+    def PORT(self):
+        """!Return server listener port."""
+        return self._PORT
+    
+    @property
+    def G(self):
+        """!Return network structure."""
+        return self._G
+    
+    @property
+    def ports(self):
+        """!Return ports used by the client nodes."""
+        return self._ports
+    
+    @property
+    def DNS(self):
+        """!Return DNS (nodeID : Port)"""
+        return self._DNS
+    
+    @property
+    def client(self):
+        """!Return path to client file."""
+        return self._client
+    
+    @property
+    def shell(self):
+        """!Return True if each node should get a separate terminal."""
+        return self._shell
+    
+    @property
+    def log_path(self):
+        """!Return root path to log files."""
+        return self._log_path
+    
+    @property
+    def s(self):
+        """!Return socket used by the server to send messages."""
+        return self._s
+
+    @property
+    def visualizer_port(self):
+        """!Return visualizer port if visualizer is active."""
+        return self._visualizer_port
+    
+    @property
+    def visualizer(self):
+        """!Return visualizer if activated."""
+        return self._visualizer
+    
 
     def __str__(self):
         """!Convert node to string."""
@@ -75,6 +125,10 @@ class Initializer(ComunicationManager):
         for key, val in self.DNS.items():
             table.add_row([key, val])
         return table.__str__()
+    
+    def number_of_nodes(self) -> int:
+        """Return number of nodes in the network."""
+        return self.G.number_of_nodes()
 
     def initialize_clients(self):
         """!Initialize all of the nodes of the graph.
@@ -120,7 +174,7 @@ class Initializer(ComunicationManager):
             message = TerminationMessage.deserialize(data)            
             if message.command == Command.END_PROTOCOL:
                 EOP_received += 1
-                if EOP_received == self.N:
+                if EOP_received == self.number_of_nodes():
                     print("Received EOP from all nodes in the network.")
                     break
             elif message.command == Command.ERROR:
@@ -141,7 +195,7 @@ class Initializer(ComunicationManager):
             message = CountMessage.deserialize(data)
             total_count += message.counter
             counts_received += 1
-            if counts_received == self.N:
+            if counts_received == self.number_of_nodes():
                 print("Received message count from all nodes.")
                 print(f"Total number of messages: {total_count}")
                 break
@@ -176,7 +230,7 @@ class Initializer(ComunicationManager):
                 data = self.receive_message()
                 if not data: continue
                 ans_message = Message.deserialize(data)
-                if ans_message.command != "SOP":
+                if ans_message.command != Command.START_PROTOCOL:
                     print("Something went wrong during clients setup.")
                     break
                 else:
@@ -231,7 +285,8 @@ class Initializer(ComunicationManager):
         for node, port in self.DNS.items():
             s.sendto(termination_message.serialize(), ("localhost", port))
 
-    def start_visualization(self):        
+    def start_visualization(self):
+        """!Communicate to the visualizer to start the visualization loop."""
         assert self.visualizer, "Specify visualizer=True in the constructor to use this method."
         state = self.visualizer.start_visualization()
         if state == VisualizerState.INTERNAL_ERROR:
