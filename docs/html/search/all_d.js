@@ -1,5 +1,30 @@
 var searchData=
 [
-  ['open_20issues_0',['Open Issues',['../index.html#autotoc_md2',1,'']]],
-  ['origin_1',['origin',['../class_nodes_1_1messages_1_1_flooding_message.html#a06dbc3a3eb5aaab80edf32ea607f1ef3',1,'Nodes.messages.FloodingMessage.origin'],['../class_nodes_1_1messages_1_1_leader_election_atw_message.html#a06dbc3a3eb5aaab80edf32ea607f1ef3',1,'Nodes.messages.LeaderElectionAtwMessage.origin'],['../class_nodes_1_1messages_1_1_controlled_distance_message.html#a06dbc3a3eb5aaab80edf32ea607f1ef3',1,'Nodes.messages.ControlledDistanceMessage.origin']]]
+  ['no_0',['NO',['../class_nodes_1_1const_1_1_command.html#aa60ea323476713901c3d941289485531',1,'Nodes::const::Command']]],
+  ['node_1',['Node',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html',1,'Nodes::Nodes::Node']]],
+  ['node_2',['node',['../class_nodes_1_1messages_1_1_setup_message.html#ae0682e96cacac1e6c208357a99dbd6d0',1,'Nodes.messages.SetupMessage.node'],['../class_nodes_1_1_protocols_1_1_protocol_1_1_protocol.html#ae0682e96cacac1e6c208357a99dbd6d0',1,'Nodes.Protocols.Protocol.Protocol.node']]],
+  ['node_2epy_3',['Node.py',['../_node_8py.html',1,'']]],
+  ['nodes_4',['Nodes',['../namespace_nodes.html',1,'Nodes'],['../index.html',1,'Nodes']]],
+  ['nodes_3a_3acomunication_5',['comunication',['../namespace_nodes_1_1comunication.html',1,'Nodes']]],
+  ['nodes_3a_3aconst_6',['const',['../namespace_nodes_1_1const.html',1,'Nodes']]],
+  ['nodes_3a_3ainitializers_7',['initializers',['../namespace_nodes_1_1initializers.html',1,'Nodes']]],
+  ['nodes_3a_3amessage_5fhandler_8',['message_handler',['../namespace_nodes_1_1message__handler.html',1,'Nodes']]],
+  ['nodes_3a_3amessages_9',['messages',['../namespace_nodes_1_1messages.html',1,'Nodes']]],
+  ['nodes_3a_3anodes_10',['Nodes',['../namespace_nodes_1_1_nodes.html',1,'Nodes']]],
+  ['nodes_3a_3anodes_3a_3anode_11',['Node',['../namespace_nodes_1_1_nodes_1_1_node.html',1,'Nodes::Nodes']]],
+  ['nodes_3a_3anodes_3a_3aringnode_12',['RingNode',['../namespace_nodes_1_1_nodes_1_1_ring_node.html',1,'Nodes::Nodes']]],
+  ['nodes_3a_3aprotocols_13',['Protocols',['../namespace_nodes_1_1_protocols.html',1,'Nodes']]],
+  ['nodes_3a_3aprotocols_3a_3acount_14',['Count',['../namespace_nodes_1_1_protocols_1_1_count.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3adft_15',['Dft',['../namespace_nodes_1_1_protocols_1_1_dft.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3aflooding_16',['Flooding',['../namespace_nodes_1_1_protocols_1_1_flooding.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3alamportmutualexclusion_17',['LamportMutualExclusion',['../namespace_nodes_1_1_protocols_1_1_lamport_mutual_exclusion.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3aleaderelectionasfar_18',['LeaderElectionAsFar',['../namespace_nodes_1_1_protocols_1_1_leader_election_as_far.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3aleaderelectionatw_19',['LeaderElectionAtw',['../namespace_nodes_1_1_protocols_1_1_leader_election_atw.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3aleaderelectioncontrolleddistance_20',['LeaderElectionControlledDistance',['../namespace_nodes_1_1_protocols_1_1_leader_election_controlled_distance.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3aprotocol_21',['Protocol',['../namespace_nodes_1_1_protocols_1_1_protocol.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3ashout_22',['Shout',['../namespace_nodes_1_1_protocols_1_1_shout.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3autils_23',['utils',['../namespace_nodes_1_1utils.html',1,'Nodes']]],
+  ['nodes_3a_3avisualizer_24',['visualizer',['../namespace_nodes_1_1visualizer.html',1,'Nodes']]],
+  ['notify_25',['NOTIFY',['../class_nodes_1_1const_1_1_command.html#ac471fdd6f29718e79b56bce555003958',1,'Nodes::const::Command']]],
+  ['number_5fof_5fnodes_26',['number_of_nodes',['../class_nodes_1_1initializers_1_1_initializer.html#ac41407280ec0c3cc722b151ce3b4019b',1,'Nodes::initializers::Initializer']]]
 ];

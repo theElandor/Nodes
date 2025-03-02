@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['visualizationmessage_0',['VisualizationMessage',['../class_nodes_1_1messages_1_1_visualization_message.html',1,'Nodes::messages']]],
-  ['visualizer_1',['Visualizer',['../class_nodes_1_1visualizer_1_1_visualizer.html',1,'Nodes::visualizer']]]
+  ['protocol_0',['Protocol',['../class_nodes_1_1_protocols_1_1_protocol_1_1_protocol.html',1,'Nodes::Protocols::Protocol']]]
 ];

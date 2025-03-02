@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['s_0',['s',['../class_nodes_1_1initializers_1_1_initializer.html#a3691308f2a4c2f6983f2880d32e29c84',1,'Nodes.initializers.Initializer.s'],['../class_nodes_1_1visualizer_1_1_visualizer.html#a3691308f2a4c2f6983f2880d32e29c84',1,'Nodes.visualizer.Visualizer.s']]],
-  ['sat_1',['SAT',['../class_nodes_1_1const_1_1_command.html#aede5eed98c243e8bed4c3564c5f34630',1,'Nodes::const::Command']]],
-  ['saturated_2',['SATURATED',['../class_nodes_1_1const_1_1_state.html#a70055bfc7c31b335578fef2b785d0943',1,'Nodes::const::State']]],
-  ['second_3',['second',['../class_nodes_1_1messages_1_1_wakeup_all_message.html#acfd440223f806c44323dbd1053b99123',1,'Nodes::messages::WakeupAllMessage']]],
-  ['sender_4',['sender',['../class_nodes_1_1messages_1_1_message.html#a1556ceaf385ac2dfc67cce65fee47ecd',1,'Nodes::messages::Message']]],
-  ['setup_5',['SETUP',['../class_nodes_1_1const_1_1_command.html#ac66633727c3e21361096bd60fc5b96c0',1,'Nodes::const::Command']]],
-  ['shell_6',['shell',['../class_nodes_1_1initializers_1_1_initializer.html#ae3d4fbb9cf8a069dc079bb329a7e58b9',1,'Nodes.initializers.Initializer.shell'],['../class_nodes_1_1messages_1_1_setup_message.html#ae3d4fbb9cf8a069dc079bb329a7e58b9',1,'Nodes.messages.SetupMessage.shell']]],
-  ['socket_7',['socket',['../class_nodes_1_1message__handler_1_1_message_listener.html#a84edc84c8145e7997b70f9919ce44d68',1,'Nodes::message_handler::MessageListener']]],
-  ['start_5fat_8',['START_AT',['../class_nodes_1_1const_1_1_command.html#ad124c83cd1adfe0091382cc6150fa8a0',1,'Nodes::const::Command']]],
-  ['start_5fprotocol_9',['START_PROTOCOL',['../class_nodes_1_1const_1_1_command.html#a72771b7bcccc48a9455791186fe551f9',1,'Nodes::const::Command']]]
+  ['ready_0',['READY',['../class_nodes_1_1const_1_1_command.html#aa4b07abfb74f782c20b102147f938e24',1,'Nodes::const::Command']]],
+  ['receiver_1',['receiver',['../class_nodes_1_1messages_1_1_visualization_message.html#aa62518c35778e094f1beb0cbfd287247',1,'Nodes::messages::VisualizationMessage']]],
+  ['recv_5fsequence_2',['recv_sequence',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#aafa75f86147f021e21e0c6be3c1e33b3',1,'Nodes::Nodes::Node::Node']]],
+  ['release_3',['RELEASE',['../class_nodes_1_1const_1_1_command.html#a3ad3739f909fd760c279e5bd62475ad5',1,'Nodes::const::Command']]],
+  ['reply_4',['REPLY',['../class_nodes_1_1const_1_1_command.html#ad5f2bfc556e840237726d01dcdaa76d5',1,'Nodes::const::Command']]],
+  ['request_5',['REQUEST',['../class_nodes_1_1const_1_1_command.html#a2cc76f8949c696ec74de87192f79768a',1,'Nodes::const::Command']]],
+  ['return_6',['RETURN',['../class_nodes_1_1const_1_1_command.html#ab014356f284cded3a4c21783e2f0826c',1,'Nodes::const::Command']]],
+  ['ringsize_7',['ringsize',['../class_nodes_1_1_protocols_1_1_leader_election_atw_1_1_leader_election_atw.html#ad9022ab6c0800df8e19fc4a166f50685',1,'Nodes::Protocols::LeaderElectionAtw::LeaderElectionAtw']]],
+  ['running_8',['running',['../class_nodes_1_1message__handler_1_1_message_listener.html#a36f7b6be7108281af77939ceaec42fd6',1,'Nodes::message_handler::MessageListener']]]
 ];

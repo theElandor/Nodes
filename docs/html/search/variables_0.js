@@ -1,4 +1,30 @@
 var searchData=
 [
-  ['_5feov_5freceived_0',['_eov_received',['../class_nodes_1_1visualizer_1_1_visualizer.html#a033bb6055918b45ca7231b2c0f675fe6',1,'Nodes::visualizer::Visualizer']]]
+  ['_5fback_0',['_back',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ad124c773cba92e2aa43db47c39e911c4',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fclient_1',['_client',['../class_nodes_1_1initializers_1_1_initializer.html#ac41e8c9611f3fb61cc933befcf4cc155',1,'Nodes::initializers::Initializer']]],
+  ['_5fdns_2',['_DNS',['../class_nodes_1_1initializers_1_1_initializer.html#ad8f0e3d69cc9f06a9997b9ab0e3b9862',1,'Nodes::initializers::Initializer']]],
+  ['_5fedges_3',['_edges',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#aaf2ba8db6343a80574e1af3c7eb2cbe7',1,'Nodes::Nodes::Node::Node']]],
+  ['_5feov_5freceived_4',['_eov_received',['../class_nodes_1_1visualizer_1_1_visualizer.html#a033bb6055918b45ca7231b2c0f675fe6',1,'Nodes::visualizer::Visualizer']]],
+  ['_5fexp_5fpath_5',['_exp_path',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a4714304f89dda4f153de0c23c1394355',1,'Nodes::Nodes::Node::Node']]],
+  ['_5ffifo_6',['_fifo',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a9ab3c2095f77a9b82171719c3e38e09c',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fg_7',['_G',['../class_nodes_1_1initializers_1_1_initializer.html#a167055db9e9ef0c0bdfde2a02d461dc9',1,'Nodes.initializers.Initializer._G'],['../class_nodes_1_1visualizer_1_1_visualizer.html#a167055db9e9ef0c0bdfde2a02d461dc9',1,'Nodes.visualizer.Visualizer._G']]],
+  ['_5fhostname_8',['_HOSTNAME',['../class_nodes_1_1initializers_1_1_initializer.html#ac134e709ff90bb1f32353270a7a94772',1,'Nodes::initializers::Initializer']]],
+  ['_5fhostname_9',['_hostname',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ab2f504a630f81db6b196b3259249c8b0',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fid_10',['_id',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a16857ed9e195eac0e20e389fd4a68da2',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fin_5fsocket_11',['_in_socket',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#abc5befa2c612d8a5d40f1bca677b2183',1,'Nodes::Nodes::Node::Node']]],
+  ['_5flocal_5fdns_12',['_local_dns',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a189ab8f6a17cde386b01f2f308f4bdd0',1,'Nodes::Nodes::Node::Node']]],
+  ['_5flog_5ffile_13',['_log_file',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ae7d20ae79e75b8f75419ba835e1b8259',1,'Nodes::Nodes::Node::Node']]],
+  ['_5flog_5fpath_14',['_log_path',['../class_nodes_1_1initializers_1_1_initializer.html#a1668791f73e4b98808d8c1b84dab3f25',1,'Nodes::initializers::Initializer']]],
+  ['_5fmessage_5ftypes_15',['_message_types',['../class_nodes_1_1messages_1_1_message.html#a6ec0dd07307b06304e79662f6997b5be',1,'Nodes::messages::Message']]],
+  ['_5fport_16',['_PORT',['../class_nodes_1_1initializers_1_1_initializer.html#ad79ba1336e5c4124bef9cd8ecbdeebb4',1,'Nodes.initializers.Initializer._PORT'],['../class_nodes_1_1visualizer_1_1_visualizer.html#a26254f886d2dced3476c09635a7e5d5b',1,'Nodes.visualizer.Visualizer._PORT']]],
+  ['_5fport_17',['_port',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a5cc37d2eb4f4e3fce88c482586cbe058',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fports_18',['_ports',['../class_nodes_1_1initializers_1_1_initializer.html#ab68fbd82d50147418e68c8287617ba97',1,'Nodes::initializers::Initializer']]],
+  ['_5freverse_5flocal_5fdns_19',['_reverse_local_dns',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a57dc54a4c3ee9c1e69bff896a00a72c5',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fs_20',['_s',['../class_nodes_1_1initializers_1_1_initializer.html#a9ccaac534a99b8103b7cb3fcf07210fb',1,'Nodes.initializers.Initializer._s'],['../class_nodes_1_1visualizer_1_1_visualizer.html#a9ccaac534a99b8103b7cb3fcf07210fb',1,'Nodes.visualizer.Visualizer._s']]],
+  ['_5fsetup_21',['_setup',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ac1383df709cef4460038e0caee0283ec',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fshell_22',['_shell',['../class_nodes_1_1initializers_1_1_initializer.html#a3e816e21c2c5eed9632a37570c108793',1,'Nodes.initializers.Initializer._shell'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a3e816e21c2c5eed9632a37570c108793',1,'Nodes.Nodes.Node.Node._shell']]],
+  ['_5fsleep_5fdelay_23',['_sleep_delay',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a6cbcefc717c9c972aa05613dc8b2afd5',1,'Nodes::Nodes::Node::Node']]],
+  ['_5ftotal_5fmessages_24',['_total_messages',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a392d68efb07529f2a66789b19b8a0258',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fvisualizer_25',['_visualizer',['../class_nodes_1_1initializers_1_1_initializer.html#a30451a065cc9eb8225b8225e72014f9c',1,'Nodes::initializers::Initializer']]],
+  ['_5fvisualizer_5fport_26',['_visualizer_port',['../class_nodes_1_1initializers_1_1_initializer.html#aef642b47586c50cb456026fb013c22c6',1,'Nodes.initializers.Initializer._visualizer_port'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#aeab5088c505604880b946f363a81c901',1,'Nodes.Nodes.Node.Node._visualizer_port']]]
 ];

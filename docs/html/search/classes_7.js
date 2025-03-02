@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['terminationmessage_0',['TerminationMessage',['../class_nodes_1_1messages_1_1_termination_message.html',1,'Nodes::messages']]]
+  ['node_0',['Node',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html',1,'Nodes::Nodes::Node']]]
 ];

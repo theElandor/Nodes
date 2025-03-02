@@ -8,22 +8,46 @@ from Nodes.const import Command, VisualizerState
 class Visualizer(ComunicationManager):
     def __init__(self, port: int, G: nx.Graph):
         super().__init__()
-        self.PORT = port
-        self.G = G
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.s.bind(("", self.PORT))
+        self._PORT = port
+        self._G = G
+        self._s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self._s.bind(("", self.PORT))
         self.start_listener(self.s, self.message_queue)
         plt.ion()
         self.fig, self.ax = plt.subplots(figsize=(12, 10))
         self.pos = nx.spring_layout(self.G)
-        self._eov_received = 0        
-        
+        self._eov_received = 0
+    
+    @property
+    def PORT(self) -> int:
+        """!Get the port number of the visualizer."""
+        return self._PORT
+    
+    @property
+    def G(self) -> nx.Graph:
+        """!Get the graph that the visualizer is visualizing."""
+        return self._G
+    
+    @property
+    def s(self) -> socket.socket:
+        """!Get the socket used by the visualizer."""
+        return self._s
+    
+
     def _visualize_queue(self, cycle) -> VisualizerState:
-        colors = ["red", "blue"]
-        """!Visualize all messages in the queue at the same time."""
+        """!Visualize all messages in the queue at the same time.
+        
+        This function processes all messages in the queue and draws them on the plot.
+        It will draw an arrow from the sender to the receiver for each message.
+        This method will also display the command of the message next to the arrow.
+
+        @param cycle: The current cycle of the visualization
+
+        @return None
+        """        
+        colors = ["red", "blue"]        
         # Clear the plot before drawing all messages
         self.ax.clear()
-
         # Draw the base graph
         nx.draw(self.G, self.pos, ax=self.ax, with_labels=True,
                 node_color='lightblue', node_size=300, font_size=22)
@@ -47,6 +71,8 @@ class Visualizer(ComunicationManager):
                     self._eov_received += 1
                     print(self._eov_received, len(self.G))
                     if self._eov_received == len(self.G):
+                        plt.draw()
+                        plt.pause(0.2)  # Pause briefly to allow the plot to update
                         return VisualizerState.SUCCESS
                     continue
                 origin = message.payload.origin
@@ -64,10 +90,14 @@ class Visualizer(ComunicationManager):
                 return VisualizerState.INTERNAL_ERROR
         # Display the final plot with all messages
         plt.draw()
-        plt.pause(0.1)  # Pause briefly to allow the plot to update
+        plt.pause(0.2)  # Pause briefly to allow the plot to update
         return VisualizerState.CONTINUE
 
     def start_visualization(self) -> VisualizerState:
+        """!Start the visualization of the messages in the queue.
+
+        @return current_state: The current state of the visualization
+        """
         cycle = 0
         while True:
             if not self.message_queue.empty():  # Only update the plot if there are messages in the queue

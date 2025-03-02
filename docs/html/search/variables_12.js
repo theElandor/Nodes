@@ -1,4 +1,19 @@
 var searchData=
 [
-  ['term_0',['TERM',['../class_nodes_1_1const_1_1_command.html#a8be280dd125e8d78fec79638a66231a9',1,'Nodes::const::Command']]]
+  ['s_0',['s',['../class_nodes_1_1visualizer_1_1_visualizer.html#a3691308f2a4c2f6983f2880d32e29c84',1,'Nodes::visualizer::Visualizer']]],
+  ['sat_1',['SAT',['../class_nodes_1_1const_1_1_command.html#aede5eed98c243e8bed4c3564c5f34630',1,'Nodes::const::Command']]],
+  ['saturated_2',['SATURATED',['../class_nodes_1_1const_1_1_state.html#a70055bfc7c31b335578fef2b785d0943',1,'Nodes::const::State']]],
+  ['second_3',['second',['../class_nodes_1_1messages_1_1_wakeup_all_message.html#acfd440223f806c44323dbd1053b99123',1,'Nodes::messages::WakeupAllMessage']]],
+  ['send_5fsequence_4',['send_sequence',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#aca1de4e13bb1d72a5a9fff52791c46a8',1,'Nodes.Nodes.Node.Node.send_sequence'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#adca2e30d54e8544ec35f6adf03cdd90c',1,'Nodes.Nodes.Node.Node.send_sequence']]],
+  ['sender_5',['sender',['../class_nodes_1_1messages_1_1_message.html#a1556ceaf385ac2dfc67cce65fee47ecd',1,'Nodes::messages::Message']]],
+  ['seq_5fnumber_6',['seq_number',['../class_nodes_1_1messages_1_1_message.html#aa2b3b71b957c07259a70181dd530f828',1,'Nodes::messages::Message']]],
+  ['setup_7',['SETUP',['../class_nodes_1_1const_1_1_command.html#ac66633727c3e21361096bd60fc5b96c0',1,'Nodes::const::Command']]],
+  ['setup_8',['setup',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a8a65760006525449580a9fd3c3f49b22',1,'Nodes::Nodes::Node::Node']]],
+  ['shell_9',['shell',['../class_nodes_1_1initializers_1_1_initializer.html#ae3d4fbb9cf8a069dc079bb329a7e58b9',1,'Nodes.initializers.Initializer.shell'],['../class_nodes_1_1messages_1_1_setup_message.html#ae3d4fbb9cf8a069dc079bb329a7e58b9',1,'Nodes.messages.SetupMessage.shell'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ae3d4fbb9cf8a069dc079bb329a7e58b9',1,'Nodes.Nodes.Node.Node.shell']]],
+  ['sleep_5fdelay_10',['sleep_delay',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a538fdc10c677860bb012023ab19f86e8',1,'Nodes::Nodes::Node::Node']]],
+  ['socket_11',['socket',['../class_nodes_1_1message__handler_1_1_message_listener.html#a84edc84c8145e7997b70f9919ce44d68',1,'Nodes::message_handler::MessageListener']]],
+  ['start_5fat_12',['START_AT',['../class_nodes_1_1const_1_1_command.html#ad124c83cd1adfe0091382cc6150fa8a0',1,'Nodes::const::Command']]],
+  ['start_5fprotocol_13',['START_PROTOCOL',['../class_nodes_1_1const_1_1_command.html#a72771b7bcccc48a9455791186fe551f9',1,'Nodes::const::Command']]],
+  ['state_14',['state',['../class_nodes_1_1_protocols_1_1_count_1_1_count.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Nodes.Protocols.Count.Count.state'],['../class_nodes_1_1_protocols_1_1_dft_1_1_dft.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Nodes.Protocols.Dft.Dft.state'],['../class_nodes_1_1_protocols_1_1_flooding_1_1_flooding.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Nodes.Protocols.Flooding.Flooding.state'],['../class_nodes_1_1_protocols_1_1_leader_election_as_far_1_1_leader_election_as_far.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Nodes.Protocols.LeaderElectionAsFar.LeaderElectionAsFar.state'],['../class_nodes_1_1_protocols_1_1_leader_election_atw_1_1_leader_election_atw.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Nodes.Protocols.LeaderElectionAtw.LeaderElectionAtw.state'],['../class_nodes_1_1_protocols_1_1_leader_election_controlled_distance_1_1_leader_election_controlled_distance.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Nodes.Protocols.LeaderElectionControlledDistance.LeaderElectionControlledDistance.state'],['../class_nodes_1_1_protocols_1_1_shout_1_1_shout.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Nodes.Protocols.Shout.Shout.state']]],
+  ['success_15',['SUCCESS',['../class_nodes_1_1const_1_1_visualizer_state.html#a38b8e1223e0a0c6a13dd79ba41e1ccee',1,'Nodes::const::VisualizerState']]]
 ];

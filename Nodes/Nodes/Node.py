@@ -225,7 +225,7 @@ class Node(ComunicationManager):
             return
             
     def _send(self, message: Message, port: int, log: bool=False):
-        """Primitive to send messages.
+        """!Primitive to send messages.
 
         @param message (Message): message object to send
         @param port (int): target port

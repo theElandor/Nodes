@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['leader_5felection_5faf_5fprotocol_0',['leader_election_AF_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#a0c1b10d4a6b7894f98aeea6d8dffe502',1,'Nodes::nodes::RingNode']]],
-  ['leader_5felection_5fatw_5fprotocol_1',['leader_election_atw_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#ac9ae62e2ec39335d502e700e8e471bfb',1,'Nodes::nodes::RingNode']]],
-  ['leader_5felection_5fcontrolled_5fdistance_5fprotocol_2',['leader_election_controlled_distance_protocol',['../class_nodes_1_1nodes_1_1_ring_node.html#a4d388c7b8a775a74099a372a4e3bef7e',1,'Nodes::nodes::RingNode']]]
+  ['g_0',['G',['../class_nodes_1_1initializers_1_1_initializer.html#aeb7d281c50525c32a8063efd5041286c',1,'Nodes.initializers.Initializer.G()'],['../class_nodes_1_1visualizer_1_1_visualizer.html#ac37be37838aaade4538da17441acfdf2',1,'Nodes.visualizer.Visualizer.G()']]],
+  ['get_5flocal_5fdns_1',['get_local_dns',['../namespace_nodes_1_1utils.html#a902798d69a3c4e982d69e35ae0687111',1,'Nodes::utils']]],
+  ['get_5fneighbors_2',['get_neighbors',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a10f651848d7891bd3d690affbddac2ae',1,'Nodes::Nodes::Node::Node']]]
 ];

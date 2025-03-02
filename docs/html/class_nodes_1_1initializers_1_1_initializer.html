@@ -91,6 +91,7 @@ $(function(){ initResizable(false); });
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_nodes_1_1initializers_1_1_initializer-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Initializer Class Reference</div></div>
 </div><!--header-->
@@ -110,12 +111,47 @@ Inheritance diagram for Initializer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a13df3442894ff062e08b261da04a60f6" id="r_a13df3442894ff062e08b261da04a60f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13df3442894ff062e08b261da04a60f6">__init__</a> (self, str <a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a>, str <a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>, nx.Graph <a class="el" href="#ab892b6eaa2237016a1493b3596934688">G</a>, <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a>=True, <a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a>=None, <a class="el" href="#adb95368c48467e7ecc8311cf5da4c062">visualizer</a>=False)</td></tr>
+<tr class="memitem:a13df3442894ff062e08b261da04a60f6" id="r_a13df3442894ff062e08b261da04a60f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13df3442894ff062e08b261da04a60f6">__init__</a> (self, str <a class="el" href="#a2831d62341e389eb5c2db0d431606a23">client</a>, str <a class="el" href="#af3ff270e6c51ee56c027e8d8803891a4">HOSTNAME</a>, int <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a>, nx.Graph <a class="el" href="#aeb7d281c50525c32a8063efd5041286c">G</a>, <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a>=True, <a class="el" href="#a5cf5989af7deb3e40bfaaef80947e3e1">log_path</a>=None, <a class="el" href="#adb95368c48467e7ecc8311cf5da4c062">visualizer</a>=False)</td></tr>
 <tr class="memdesc:a13df3442894ff062e08b261da04a60f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize initializer.  <br /></td></tr>
 <tr class="separator:a13df3442894ff062e08b261da04a60f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ff270e6c51ee56c027e8d8803891a4" id="r_af3ff270e6c51ee56c027e8d8803891a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3ff270e6c51ee56c027e8d8803891a4">HOSTNAME</a> (self)</td></tr>
+<tr class="memdesc:af3ff270e6c51ee56c027e8d8803891a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return server hostname.  <br /></td></tr>
+<tr class="separator:af3ff270e6c51ee56c027e8d8803891a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b3ffb8de9dcfb00063df8d257c0112" id="r_a62b3ffb8de9dcfb00063df8d257c0112"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62b3ffb8de9dcfb00063df8d257c0112">PORT</a> (self)</td></tr>
+<tr class="memdesc:a62b3ffb8de9dcfb00063df8d257c0112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return server listener port.  <br /></td></tr>
+<tr class="separator:a62b3ffb8de9dcfb00063df8d257c0112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb7d281c50525c32a8063efd5041286c" id="r_aeb7d281c50525c32a8063efd5041286c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb7d281c50525c32a8063efd5041286c">G</a> (self)</td></tr>
+<tr class="memdesc:aeb7d281c50525c32a8063efd5041286c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return network structure.  <br /></td></tr>
+<tr class="separator:aeb7d281c50525c32a8063efd5041286c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17780c9d5320dd268f578f519ea149b" id="r_ae17780c9d5320dd268f578f519ea149b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae17780c9d5320dd268f578f519ea149b">ports</a> (self)</td></tr>
+<tr class="memdesc:ae17780c9d5320dd268f578f519ea149b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return ports used by the client nodes.  <br /></td></tr>
+<tr class="separator:ae17780c9d5320dd268f578f519ea149b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45901190522db22c5cabfeb9cc9fa19b" id="r_a45901190522db22c5cabfeb9cc9fa19b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45901190522db22c5cabfeb9cc9fa19b">DNS</a> (self)</td></tr>
+<tr class="memdesc:a45901190522db22c5cabfeb9cc9fa19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return DNS (nodeID : Port)  <br /></td></tr>
+<tr class="separator:a45901190522db22c5cabfeb9cc9fa19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2831d62341e389eb5c2db0d431606a23" id="r_a2831d62341e389eb5c2db0d431606a23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2831d62341e389eb5c2db0d431606a23">client</a> (self)</td></tr>
+<tr class="memdesc:a2831d62341e389eb5c2db0d431606a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return path to client file.  <br /></td></tr>
+<tr class="separator:a2831d62341e389eb5c2db0d431606a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7c6c379652f18dcf5190c53548d46e" id="r_a6e7c6c379652f18dcf5190c53548d46e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e7c6c379652f18dcf5190c53548d46e">shell</a> (self)</td></tr>
+<tr class="memdesc:a6e7c6c379652f18dcf5190c53548d46e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return True if each node should get a separate terminal.  <br /></td></tr>
+<tr class="separator:a6e7c6c379652f18dcf5190c53548d46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf5989af7deb3e40bfaaef80947e3e1" id="r_a5cf5989af7deb3e40bfaaef80947e3e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cf5989af7deb3e40bfaaef80947e3e1">log_path</a> (self)</td></tr>
+<tr class="memdesc:a5cf5989af7deb3e40bfaaef80947e3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return root path to log files.  <br /></td></tr>
+<tr class="separator:a5cf5989af7deb3e40bfaaef80947e3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0076869f7e1fd52b498161746fab4ff5" id="r_a0076869f7e1fd52b498161746fab4ff5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0076869f7e1fd52b498161746fab4ff5">s</a> (self)</td></tr>
+<tr class="memdesc:a0076869f7e1fd52b498161746fab4ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return socket used by the server to send messages.  <br /></td></tr>
+<tr class="separator:a0076869f7e1fd52b498161746fab4ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee039a4a90edef0b9b3356094ddc135c" id="r_aee039a4a90edef0b9b3356094ddc135c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee039a4a90edef0b9b3356094ddc135c">visualizer_port</a> (self)</td></tr>
+<tr class="memdesc:aee039a4a90edef0b9b3356094ddc135c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return visualizer port if visualizer is active.  <br /></td></tr>
+<tr class="separator:aee039a4a90edef0b9b3356094ddc135c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cfc716bef852fabd98d0280840c0530" id="r_a8cfc716bef852fabd98d0280840c0530"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cfc716bef852fabd98d0280840c0530">visualizer</a> (self)</td></tr>
+<tr class="memdesc:a8cfc716bef852fabd98d0280840c0530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return visualizer if activated.  <br /></td></tr>
+<tr class="separator:a8cfc716bef852fabd98d0280840c0530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40b37c981a056437fd94276341c63fe8" id="r_a40b37c981a056437fd94276341c63fe8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40b37c981a056437fd94276341c63fe8">__str__</a> (self)</td></tr>
 <tr class="memdesc:a40b37c981a056437fd94276341c63fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert node to string.  <br /></td></tr>
 <tr class="separator:a40b37c981a056437fd94276341c63fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac41407280ec0c3cc722b151ce3b4019b" id="r_ac41407280ec0c3cc722b151ce3b4019b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac41407280ec0c3cc722b151ce3b4019b">number_of_nodes</a> (self)</td></tr>
+<tr class="separator:ac41407280ec0c3cc722b151ce3b4019b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6841f84faac255a5dfc05049fbeed3e" id="r_ae6841f84faac255a5dfc05049fbeed3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6841f84faac255a5dfc05049fbeed3e">initialize_clients</a> (self)</td></tr>
 <tr class="memdesc:ae6841f84faac255a5dfc05049fbeed3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all of the nodes of the graph.  <br /></td></tr>
 <tr class="separator:ae6841f84faac255a5dfc05049fbeed3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +170,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab539094b081a8cd3d7902f6877f57141" id="r_ab539094b081a8cd3d7902f6877f57141"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab539094b081a8cd3d7902f6877f57141">wakeup_all</a> (self, int delta)</td></tr>
 <tr class="memdesc:ab539094b081a8cd3d7902f6877f57141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the absolute wakeup time to the nodes.  <br /></td></tr>
 <tr class="separator:ab539094b081a8cd3d7902f6877f57141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d7aaab848b1210f1c9952651ab3d2b1" id="r_a3d7aaab848b1210f1c9952651ab3d2b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d7aaab848b1210f1c9952651ab3d2b1">send_termination</a> (self)</td></tr>
+<tr class="memdesc:a3d7aaab848b1210f1c9952651ab3d2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send termination message to all of the nodes in the network.  <br /></td></tr>
+<tr class="separator:a3d7aaab848b1210f1c9952651ab3d2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea9d59981a383428272dc7165bfe2901" id="r_aea9d59981a383428272dc7165bfe2901"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea9d59981a383428272dc7165bfe2901">start_visualization</a> (self)</td></tr>
+<tr class="memdesc:aea9d59981a383428272dc7165bfe2901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Communicate to the visualizer to start the visualization loop.  <br /></td></tr>
+<tr class="separator:aea9d59981a383428272dc7165bfe2901"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_nodes_1_1comunication_1_1_comunication_manager"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_nodes_1_1comunication_1_1_comunication_manager')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html">ComunicationManager</a></td></tr>
 <tr class="memitem:a87e9686329b6602910429601ac44b75c inherit pub_methods_class_nodes_1_1comunication_1_1_comunication_manager" id="r_a87e9686329b6602910429601ac44b75c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_nodes_1_1messages_1_1_message.html">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a87e9686329b6602910429601ac44b75c">receive_message</a> (self, float timeout=None, queue.Queue Q=None)</td></tr>
 <tr class="memdesc:a87e9686329b6602910429601ac44b75c inherit pub_methods_class_nodes_1_1comunication_1_1_comunication_manager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a message from the queue.  <br /></td></tr>
@@ -146,41 +188,50 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aeb83097cf1a9938f9fb206559361d700" id="r_aeb83097cf1a9938f9fb206559361d700"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb83097cf1a9938f9fb206559361d700">HOSTNAME</a> = HOSTNAME</td></tr>
-<tr class="separator:aeb83097cf1a9938f9fb206559361d700"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a> = PORT</td></tr>
+<tr class="memitem:a6dde884e19bdc8f342ffec8fc17e7c91" id="r_a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a></td></tr>
 <tr class="separator:a6dde884e19bdc8f342ffec8fc17e7c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd8d62179f75714af34ae50caa397a73" id="r_acd8d62179f75714af34ae50caa397a73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd8d62179f75714af34ae50caa397a73">BUFFER_SIZE</a> = 4096</td></tr>
-<tr class="separator:acd8d62179f75714af34ae50caa397a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab892b6eaa2237016a1493b3596934688" id="r_ab892b6eaa2237016a1493b3596934688"><td class="memItemLeft" align="right" valign="top">nx.Graph&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab892b6eaa2237016a1493b3596934688">G</a> = G</td></tr>
-<tr class="separator:ab892b6eaa2237016a1493b3596934688"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7722c8ecbb62d99aee7ce68b1752f337" id="r_a7722c8ecbb62d99aee7ce68b1752f337"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7722c8ecbb62d99aee7ce68b1752f337">N</a> = G.number_of_nodes()</td></tr>
-<tr class="separator:a7722c8ecbb62d99aee7ce68b1752f337"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1727dd10541fc3f639dd2a323d5958be" id="r_a1727dd10541fc3f639dd2a323d5958be"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1727dd10541fc3f639dd2a323d5958be">ports</a> = [65432+x for x in range(self.N)]</td></tr>
-<tr class="separator:a1727dd10541fc3f639dd2a323d5958be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae36a0205bcbcad637536f02bf6da7d04" id="r_ae36a0205bcbcad637536f02bf6da7d04"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae36a0205bcbcad637536f02bf6da7d04">DNS</a> = {node:port for node,port in zip(G.nodes(), self.ports)}</td></tr>
-<tr class="separator:ae36a0205bcbcad637536f02bf6da7d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a285ab2eac3a34c09303eca6543753e83" id="r_a285ab2eac3a34c09303eca6543753e83"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a285ab2eac3a34c09303eca6543753e83">client</a> = client</td></tr>
-<tr class="separator:a285ab2eac3a34c09303eca6543753e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3d4fbb9cf8a069dc079bb329a7e58b9" id="r_ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a> = shell</td></tr>
-<tr class="separator:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc5db119bfad5e0486768006c6be2f4e" id="r_adc5db119bfad5e0486768006c6be2f4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc5db119bfad5e0486768006c6be2f4e">log_path</a> = os.path.join(os.path.split(self.client)[0], &quot;logs&quot;)</td></tr>
-<tr class="separator:adc5db119bfad5e0486768006c6be2f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3691308f2a4c2f6983f2880d32e29c84" id="r_a3691308f2a4c2f6983f2880d32e29c84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3691308f2a4c2f6983f2880d32e29c84">s</a> = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td></tr>
-<tr class="separator:a3691308f2a4c2f6983f2880d32e29c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617ab8801afa0e555acfa96c572d13df" id="r_a617ab8801afa0e555acfa96c572d13df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a617ab8801afa0e555acfa96c572d13df">message_queue</a></td></tr>
 <tr class="separator:a617ab8801afa0e555acfa96c572d13df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96483653bb1e65983bb5502634a1ddc0" id="r_a96483653bb1e65983bb5502634a1ddc0"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96483653bb1e65983bb5502634a1ddc0">visualizer_port</a> = None</td></tr>
-<tr class="separator:a96483653bb1e65983bb5502634a1ddc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb95368c48467e7ecc8311cf5da4c062" id="r_adb95368c48467e7ecc8311cf5da4c062"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb95368c48467e7ecc8311cf5da4c062">visualizer</a> = <a class="el" href="class_nodes_1_1visualizer_1_1_visualizer.html">Visualizer</a>(self.visualizer_port, self.G)</td></tr>
-<tr class="separator:adb95368c48467e7ecc8311cf5da4c062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2a36aae87a86f29406d0f98243473f0" id="r_aa2a36aae87a86f29406d0f98243473f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2a36aae87a86f29406d0f98243473f0">exp_path</a> = <a class="el" href="namespace_nodes_1_1utils.html#a35c836af404f78732a35e33b5211bafe">utils.init_logs</a>(self.log_path)</td></tr>
 <tr class="separator:aa2a36aae87a86f29406d0f98243473f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a965d3aaf532842d02995e58c647e0" id="r_ac5a965d3aaf532842d02995e58c647e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5a965d3aaf532842d02995e58c647e0">ports</a></td></tr>
+<tr class="separator:ac5a965d3aaf532842d02995e58c647e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3d4fbb9cf8a069dc079bb329a7e58b9" id="r_ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a></td></tr>
+<tr class="separator:ae3d4fbb9cf8a069dc079bb329a7e58b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36a0205bcbcad637536f02bf6da7d04" id="r_ae36a0205bcbcad637536f02bf6da7d04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae36a0205bcbcad637536f02bf6da7d04">DNS</a></td></tr>
+<tr class="separator:ae36a0205bcbcad637536f02bf6da7d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb95368c48467e7ecc8311cf5da4c062" id="r_adb95368c48467e7ecc8311cf5da4c062"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb95368c48467e7ecc8311cf5da4c062">visualizer</a></td></tr>
+<tr class="separator:adb95368c48467e7ecc8311cf5da4c062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html">ComunicationManager</a></td></tr>
 <tr class="memitem:a35f36dc063a991f65a570a5dfa68cd36 inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager" id="r_a35f36dc063a991f65a570a5dfa68cd36"><td class="memItemLeft" align="right" valign="top">queue.Queue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a35f36dc063a991f65a570a5dfa68cd36">message_queue</a> = queue.Queue()</td></tr>
 <tr class="separator:a35f36dc063a991f65a570a5dfa68cd36 inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40bb3897b070b57ebef383b57defae0e inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager" id="r_a40bb3897b070b57ebef383b57defae0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_nodes_1_1message__handler_1_1_message_listener.html">MessageListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nodes_1_1comunication_1_1_comunication_manager.html#a40bb3897b070b57ebef383b57defae0e">listener</a> = None</td></tr>
 <tr class="separator:a40bb3897b070b57ebef383b57defae0e inherit pub_attribs_class_nodes_1_1comunication_1_1_comunication_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ac134e709ff90bb1f32353270a7a94772" id="r_ac134e709ff90bb1f32353270a7a94772"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac134e709ff90bb1f32353270a7a94772">_HOSTNAME</a> = <a class="el" href="#af3ff270e6c51ee56c027e8d8803891a4">HOSTNAME</a></td></tr>
+<tr class="separator:ac134e709ff90bb1f32353270a7a94772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad79ba1336e5c4124bef9cd8ecbdeebb4" id="r_ad79ba1336e5c4124bef9cd8ecbdeebb4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad79ba1336e5c4124bef9cd8ecbdeebb4">_PORT</a> = <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a></td></tr>
+<tr class="separator:ad79ba1336e5c4124bef9cd8ecbdeebb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167055db9e9ef0c0bdfde2a02d461dc9" id="r_a167055db9e9ef0c0bdfde2a02d461dc9"><td class="memItemLeft" align="right" valign="top">nx.Graph&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a167055db9e9ef0c0bdfde2a02d461dc9">_G</a> = <a class="el" href="#aeb7d281c50525c32a8063efd5041286c">G</a></td></tr>
+<tr class="separator:a167055db9e9ef0c0bdfde2a02d461dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab68fbd82d50147418e68c8287617ba97" id="r_ab68fbd82d50147418e68c8287617ba97"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab68fbd82d50147418e68c8287617ba97">_ports</a> = [65432+x for x in range(self.number_of_nodes())]</td></tr>
+<tr class="separator:ab68fbd82d50147418e68c8287617ba97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8f0e3d69cc9f06a9997b9ab0e3b9862" id="r_ad8f0e3d69cc9f06a9997b9ab0e3b9862"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8f0e3d69cc9f06a9997b9ab0e3b9862">_DNS</a> = {node:port for node,port in zip(G.nodes(), self.ports)}</td></tr>
+<tr class="separator:ad8f0e3d69cc9f06a9997b9ab0e3b9862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac41e8c9611f3fb61cc933befcf4cc155" id="r_ac41e8c9611f3fb61cc933befcf4cc155"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac41e8c9611f3fb61cc933befcf4cc155">_client</a> = <a class="el" href="#a2831d62341e389eb5c2db0d431606a23">client</a></td></tr>
+<tr class="separator:ac41e8c9611f3fb61cc933befcf4cc155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e816e21c2c5eed9632a37570c108793" id="r_a3e816e21c2c5eed9632a37570c108793"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e816e21c2c5eed9632a37570c108793">_shell</a> = <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a></td></tr>
+<tr class="separator:a3e816e21c2c5eed9632a37570c108793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1668791f73e4b98808d8c1b84dab3f25" id="r_a1668791f73e4b98808d8c1b84dab3f25"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1668791f73e4b98808d8c1b84dab3f25">_log_path</a> = os.path.join(os.path.split(self.client)[0], &quot;logs&quot;)</td></tr>
+<tr class="separator:a1668791f73e4b98808d8c1b84dab3f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ccaac534a99b8103b7cb3fcf07210fb" id="r_a9ccaac534a99b8103b7cb3fcf07210fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ccaac534a99b8103b7cb3fcf07210fb">_s</a> = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td></tr>
+<tr class="separator:a9ccaac534a99b8103b7cb3fcf07210fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef642b47586c50cb456026fb013c22c6" id="r_aef642b47586c50cb456026fb013c22c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef642b47586c50cb456026fb013c22c6">_visualizer_port</a> = None</td></tr>
+<tr class="separator:aef642b47586c50cb456026fb013c22c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30451a065cc9eb8225b8225e72014f9c" id="r_a30451a065cc9eb8225b8225e72014f9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30451a065cc9eb8225b8225e72014f9c">_visualizer</a> = None</td></tr>
+<tr class="separator:a30451a065cc9eb8225b8225e72014f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sets up the network before the execution of the algorithm. </p>
@@ -275,6 +326,82 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a2831d62341e389eb5c2db0d431606a23" name="a2831d62341e389eb5c2db0d431606a23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2831d62341e389eb5c2db0d431606a23">&#9670;&#160;</a></span>client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">client </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return path to client file. </p>
+
+</div>
+</div>
+<a id="a45901190522db22c5cabfeb9cc9fa19b" name="a45901190522db22c5cabfeb9cc9fa19b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45901190522db22c5cabfeb9cc9fa19b">&#9670;&#160;</a></span>DNS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DNS </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return DNS (nodeID : Port) </p>
+
+</div>
+</div>
+<a id="aeb7d281c50525c32a8063efd5041286c" name="aeb7d281c50525c32a8063efd5041286c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb7d281c50525c32a8063efd5041286c">&#9670;&#160;</a></span>G()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">G </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return network structure. </p>
+
+</div>
+</div>
+<a id="af3ff270e6c51ee56c027e8d8803891a4" name="af3ff270e6c51ee56c027e8d8803891a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3ff270e6c51ee56c027e8d8803891a4">&#9670;&#160;</a></span>HOSTNAME()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HOSTNAME </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return server hostname. </p>
+
+</div>
+</div>
 <a id="ae6841f84faac255a5dfc05049fbeed3e" name="ae6841f84faac255a5dfc05049fbeed3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6841f84faac255a5dfc05049fbeed3e">&#9670;&#160;</a></span>initialize_clients()</h2>
 
@@ -293,6 +420,118 @@ Public Attributes</h2></td></tr>
 <p>Initialize all of the nodes of the graph. </p>
 <p>This method creates a process for each client (node), comunicating what is the port that they should use to wait for messages. Then, it waits for a confirmation message (RDY) from all of them. <br  />
  </p>
+
+</div>
+</div>
+<a id="a5cf5989af7deb3e40bfaaef80947e3e1" name="a5cf5989af7deb3e40bfaaef80947e3e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf5989af7deb3e40bfaaef80947e3e1">&#9670;&#160;</a></span>log_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">log_path </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return root path to log files. </p>
+
+</div>
+</div>
+<a id="ac41407280ec0c3cc722b151ce3b4019b" name="ac41407280ec0c3cc722b151ce3b4019b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac41407280ec0c3cc722b151ce3b4019b">&#9670;&#160;</a></span>number_of_nodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int number_of_nodes </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Return number of nodes in the network.</pre> 
+</div>
+</div>
+<a id="a62b3ffb8de9dcfb00063df8d257c0112" name="a62b3ffb8de9dcfb00063df8d257c0112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62b3ffb8de9dcfb00063df8d257c0112">&#9670;&#160;</a></span>PORT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PORT </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return server listener port. </p>
+
+</div>
+</div>
+<a id="ae17780c9d5320dd268f578f519ea149b" name="ae17780c9d5320dd268f578f519ea149b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae17780c9d5320dd268f578f519ea149b">&#9670;&#160;</a></span>ports()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ports </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return ports used by the client nodes. </p>
+
+</div>
+</div>
+<a id="a0076869f7e1fd52b498161746fab4ff5" name="a0076869f7e1fd52b498161746fab4ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0076869f7e1fd52b498161746fab4ff5">&#9670;&#160;</a></span>s()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">s </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return socket used by the server to send messages. </p>
+
+</div>
+</div>
+<a id="a3d7aaab848b1210f1c9952651ab3d2b1" name="a3d7aaab848b1210f1c9952651ab3d2b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7aaab848b1210f1c9952651ab3d2b1">&#9670;&#160;</a></span>send_termination()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">send_termination </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send termination message to all of the nodes in the network. </p>
 
 </div>
 </div>
@@ -319,6 +558,82 @@ Public Attributes</h2></td></tr>
 <li>A boolean (True if logging on terminal, False to log on files)</li>
 <li>The path of the experiment directory (needed for logging) </li>
 </ul>
+
+</div>
+</div>
+<a id="a6e7c6c379652f18dcf5190c53548d46e" name="a6e7c6c379652f18dcf5190c53548d46e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e7c6c379652f18dcf5190c53548d46e">&#9670;&#160;</a></span>shell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">shell </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return True if each node should get a separate terminal. </p>
+
+</div>
+</div>
+<a id="aea9d59981a383428272dc7165bfe2901" name="aea9d59981a383428272dc7165bfe2901"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea9d59981a383428272dc7165bfe2901">&#9670;&#160;</a></span>start_visualization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">start_visualization </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Communicate to the visualizer to start the visualization loop. </p>
+
+</div>
+</div>
+<a id="a8cfc716bef852fabd98d0280840c0530" name="a8cfc716bef852fabd98d0280840c0530"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cfc716bef852fabd98d0280840c0530">&#9670;&#160;</a></span>visualizer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">visualizer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return visualizer if activated. </p>
+
+</div>
+</div>
+<a id="aee039a4a90edef0b9b3356094ddc135c" name="aee039a4a90edef0b9b3356094ddc135c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee039a4a90edef0b9b3356094ddc135c">&#9670;&#160;</a></span>visualizer_port()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">visualizer_port </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return visualizer port if visualizer is active. </p>
 
 </div>
 </div>
@@ -423,30 +738,244 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="acd8d62179f75714af34ae50caa397a73" name="acd8d62179f75714af34ae50caa397a73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd8d62179f75714af34ae50caa397a73">&#9670;&#160;</a></span>BUFFER_SIZE</h2>
+<a id="ac41e8c9611f3fb61cc933befcf4cc155" name="ac41e8c9611f3fb61cc933befcf4cc155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac41e8c9611f3fb61cc933befcf4cc155">&#9670;&#160;</a></span>_client</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int BUFFER_SIZE = 4096</td>
+          <td class="memname">str _client = <a class="el" href="#a2831d62341e389eb5c2db0d431606a23">client</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a285ab2eac3a34c09303eca6543753e83" name="a285ab2eac3a34c09303eca6543753e83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a285ab2eac3a34c09303eca6543753e83">&#9670;&#160;</a></span>client</h2>
+<a id="ad8f0e3d69cc9f06a9997b9ab0e3b9862" name="ad8f0e3d69cc9f06a9997b9ab0e3b9862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8f0e3d69cc9f06a9997b9ab0e3b9862">&#9670;&#160;</a></span>_DNS</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">str client = client</td>
+          <td class="memname">dict _DNS = {node:port for node,port in zip(G.nodes(), self.ports)}</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a167055db9e9ef0c0bdfde2a02d461dc9" name="a167055db9e9ef0c0bdfde2a02d461dc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a167055db9e9ef0c0bdfde2a02d461dc9">&#9670;&#160;</a></span>_G</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nx.Graph _G = <a class="el" href="#aeb7d281c50525c32a8063efd5041286c">G</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac134e709ff90bb1f32353270a7a94772" name="ac134e709ff90bb1f32353270a7a94772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac134e709ff90bb1f32353270a7a94772">&#9670;&#160;</a></span>_HOSTNAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str _HOSTNAME = <a class="el" href="#af3ff270e6c51ee56c027e8d8803891a4">HOSTNAME</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1668791f73e4b98808d8c1b84dab3f25" name="a1668791f73e4b98808d8c1b84dab3f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1668791f73e4b98808d8c1b84dab3f25">&#9670;&#160;</a></span>_log_path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">_log_path = os.path.join(os.path.split(self.client)[0], &quot;logs&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad79ba1336e5c4124bef9cd8ecbdeebb4" name="ad79ba1336e5c4124bef9cd8ecbdeebb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad79ba1336e5c4124bef9cd8ecbdeebb4">&#9670;&#160;</a></span>_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _PORT = <a class="el" href="#a6dde884e19bdc8f342ffec8fc17e7c91">PORT</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab68fbd82d50147418e68c8287617ba97" name="ab68fbd82d50147418e68c8287617ba97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab68fbd82d50147418e68c8287617ba97">&#9670;&#160;</a></span>_ports</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list _ports = [65432+x for x in range(self.number_of_nodes())]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ccaac534a99b8103b7cb3fcf07210fb" name="a9ccaac534a99b8103b7cb3fcf07210fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ccaac534a99b8103b7cb3fcf07210fb">&#9670;&#160;</a></span>_s</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">_s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e816e21c2c5eed9632a37570c108793" name="a3e816e21c2c5eed9632a37570c108793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e816e21c2c5eed9632a37570c108793">&#9670;&#160;</a></span>_shell</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool _shell = <a class="el" href="#ae3d4fbb9cf8a069dc079bb329a7e58b9">shell</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30451a065cc9eb8225b8225e72014f9c" name="a30451a065cc9eb8225b8225e72014f9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30451a065cc9eb8225b8225e72014f9c">&#9670;&#160;</a></span>_visualizer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">_visualizer = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef642b47586c50cb456026fb013c22c6" name="aef642b47586c50cb456026fb013c22c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef642b47586c50cb456026fb013c22c6">&#9670;&#160;</a></span>_visualizer_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _visualizer_port = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -458,7 +987,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DNS = {node:port for node,port in zip(G.nodes(), self.ports)}</td>
+          <td class="memname">DNS</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -479,48 +1008,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab892b6eaa2237016a1493b3596934688" name="ab892b6eaa2237016a1493b3596934688"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab892b6eaa2237016a1493b3596934688">&#9670;&#160;</a></span>G</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">nx.Graph G = G</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aeb83097cf1a9938f9fb206559361d700" name="aeb83097cf1a9938f9fb206559361d700"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb83097cf1a9938f9fb206559361d700">&#9670;&#160;</a></span>HOSTNAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">str HOSTNAME = HOSTNAME</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="adc5db119bfad5e0486768006c6be2f4e" name="adc5db119bfad5e0486768006c6be2f4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc5db119bfad5e0486768006c6be2f4e">&#9670;&#160;</a></span>log_path</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">log_path = os.path.join(os.path.split(self.client)[0], &quot;logs&quot;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a617ab8801afa0e555acfa96c572d13df" name="a617ab8801afa0e555acfa96c572d13df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a617ab8801afa0e555acfa96c572d13df">&#9670;&#160;</a></span>message_queue</h2>
 
@@ -535,20 +1022,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a7722c8ecbb62d99aee7ce68b1752f337" name="a7722c8ecbb62d99aee7ce68b1752f337"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7722c8ecbb62d99aee7ce68b1752f337">&#9670;&#160;</a></span>N</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int N = G.number_of_nodes()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a6dde884e19bdc8f342ffec8fc17e7c91" name="a6dde884e19bdc8f342ffec8fc17e7c91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6dde884e19bdc8f342ffec8fc17e7c91">&#9670;&#160;</a></span>PORT</h2>
 
@@ -556,35 +1029,21 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">PORT = PORT</td>
+          <td class="memname">PORT</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a1727dd10541fc3f639dd2a323d5958be" name="a1727dd10541fc3f639dd2a323d5958be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1727dd10541fc3f639dd2a323d5958be">&#9670;&#160;</a></span>ports</h2>
+<a id="ac5a965d3aaf532842d02995e58c647e0" name="ac5a965d3aaf532842d02995e58c647e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5a965d3aaf532842d02995e58c647e0">&#9670;&#160;</a></span>ports</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">list ports = [65432+x for x in range(self.N)]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3691308f2a4c2f6983f2880d32e29c84" name="a3691308f2a4c2f6983f2880d32e29c84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3691308f2a4c2f6983f2880d32e29c84">&#9670;&#160;</a></span>s</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</td>
+          <td class="memname">ports</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -598,7 +1057,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">shell = shell</td>
+          <td class="memname">shell</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -612,21 +1071,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">visualizer = <a class="el" href="class_nodes_1_1visualizer_1_1_visualizer.html">Visualizer</a>(self.visualizer_port, self.G)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a96483653bb1e65983bb5502634a1ddc0" name="a96483653bb1e65983bb5502634a1ddc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96483653bb1e65983bb5502634a1ddc0">&#9670;&#160;</a></span>visualizer_port</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">list visualizer_port = None</td>
+          <td class="memname">visualizer</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -634,7 +1079,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/eros/Documenti/Nodes/Nodes/<a class="el" href="initializers_8py.html">initializers.py</a></li>
+<li>C:/Users/web/Documenti/Nodes/Nodes/<a class="el" href="initializers_8py.html">initializers.py</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

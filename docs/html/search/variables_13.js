@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['value_0',['value',['../class_nodes_1_1messages_1_1_min_finding_message.html#afcc7a4b78ecd8fa7e713f8cfa0f51017',1,'Nodes::messages::MinFindingMessage']]],
-  ['visited_1',['VISITED',['../class_nodes_1_1const_1_1_state.html#ac9ad38ebe2fe005cb30fcdf17a42f3e6',1,'Nodes::const::State']]],
-  ['visualizer_2',['visualizer',['../class_nodes_1_1initializers_1_1_initializer.html#adb95368c48467e7ecc8311cf5da4c062',1,'Nodes::initializers::Initializer']]],
-  ['visualizer_5fport_3',['visualizer_port',['../class_nodes_1_1initializers_1_1_initializer.html#a96483653bb1e65983bb5502634a1ddc0',1,'Nodes.initializers.Initializer.visualizer_port'],['../class_nodes_1_1messages_1_1_setup_message.html#a4613f0e258c89c93a5f2421e0ce46cb8',1,'Nodes.messages.SetupMessage.visualizer_port']]]
+  ['term_0',['TERM',['../class_nodes_1_1const_1_1_command.html#a8be280dd125e8d78fec79638a66231a9',1,'Nodes::const::Command']]],
+  ['timestamp_1',['timestamp',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_mutual_exclusion_message.html#a71e24db6312e99e75bdc49e89d65948e',1,'Nodes::Protocols::LamportMutualExclusion::MutualExclusionMessage']]],
+  ['tree_5fneigs_2',['tree_neigs',['../class_nodes_1_1_protocols_1_1_dft_1_1_dft.html#a9af81781dfe282b10ca2dd62b23b0d6c',1,'Nodes.Protocols.Dft.Dft.tree_neigs'],['../class_nodes_1_1_protocols_1_1_shout_1_1_shout.html#a9af81781dfe282b10ca2dd62b23b0d6c',1,'Nodes.Protocols.Shout.Shout.tree_neigs']]]
 ];

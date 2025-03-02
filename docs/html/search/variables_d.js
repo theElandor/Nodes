@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['origin_0',['origin',['../class_nodes_1_1messages_1_1_flooding_message.html#a06dbc3a3eb5aaab80edf32ea607f1ef3',1,'Nodes.messages.FloodingMessage.origin'],['../class_nodes_1_1messages_1_1_leader_election_atw_message.html#a06dbc3a3eb5aaab80edf32ea607f1ef3',1,'Nodes.messages.LeaderElectionAtwMessage.origin'],['../class_nodes_1_1messages_1_1_controlled_distance_message.html#a06dbc3a3eb5aaab80edf32ea607f1ef3',1,'Nodes.messages.ControlledDistanceMessage.origin']]]
+  ['no_0',['NO',['../class_nodes_1_1const_1_1_command.html#aa60ea323476713901c3d941289485531',1,'Nodes::const::Command']]],
+  ['node_1',['node',['../class_nodes_1_1messages_1_1_setup_message.html#ae0682e96cacac1e6c208357a99dbd6d0',1,'Nodes.messages.SetupMessage.node'],['../class_nodes_1_1_protocols_1_1_protocol_1_1_protocol.html#ae0682e96cacac1e6c208357a99dbd6d0',1,'Nodes.Protocols.Protocol.Protocol.node']]],
+  ['notify_2',['NOTIFY',['../class_nodes_1_1const_1_1_command.html#ac471fdd6f29718e79b56bce555003958',1,'Nodes::const::Command']]]
 ];

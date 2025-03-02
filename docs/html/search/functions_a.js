@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['wait_5ffor_5finstructions_0',['wait_for_instructions',['../class_nodes_1_1nodes_1_1_node.html#ab6a1033744075eb30c97193e28911345',1,'Nodes::nodes::Node']]],
-  ['wait_5ffor_5fnumber_5fof_5fmessages_1',['wait_for_number_of_messages',['../class_nodes_1_1initializers_1_1_initializer.html#af3ea9392b73529c059a4d53251b1d9f2',1,'Nodes::initializers::Initializer']]],
-  ['wakeup_2',['wakeup',['../class_nodes_1_1initializers_1_1_initializer.html#acec386101adb8fe5e52de07df4e5d279',1,'Nodes::initializers::Initializer']]],
-  ['wakeup_5fall_3',['wakeup_all',['../class_nodes_1_1initializers_1_1_initializer.html#ab539094b081a8cd3d7902f6877f57141',1,'Nodes::initializers::Initializer']]]
+  ['local_5fdns_0',['local_dns',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ae314b34584a62b46d8f271e39ef732ad',1,'Nodes::Nodes::Node::Node']]],
+  ['log_1',['log',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#adee7b0ff14a161faf4ad5fd39ded2a52',1,'Nodes::Nodes::Node::Node']]],
+  ['log_5ffile_2',['log_file',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#abc64b82803b4054e558e82f0ca5e1c00',1,'Nodes::Nodes::Node::Node']]],
+  ['log_5fpath_3',['log_path',['../class_nodes_1_1initializers_1_1_initializer.html#a5cf5989af7deb3e40bfaaef80947e3e1',1,'Nodes::initializers::Initializer']]]
 ];

@@ -87,11 +87,13 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title"><a class="el" href="namespace_nodes.html">Nodes</a> </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__c_1_2_users_2eros_2_documenti_2_nodes_2_r_e_a_d_m_e"></a></p>
-<p>This framework aims to streamline research and education in distributed algorithms and distributed AI. It provides a simple and intuitive interface for developing distributed algorithms by merely defining the behavior of individual nodes and the graph structure. It is also suited for integration with ML and DL libraries like scikitlearn, TensorFlow or PyTorch. </p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Implemented Algorithms</h1>
+<div class="textblock"><p align="center"><a class="anchor" id="md__c_1_2_users_2web_2_documenti_2_nodes_2_r_e_a_d_m_e"></a> </p>
+<p><img src="https://theelandor.github.io/NodesLogo.JPG" alt="Nodes" width="400/" class="inline"/> </p>
+<p>This framework aims at helping researchers and developers who want to test and play with distributed algorithms. It provides a simple and intuitive interface to define the behavior of individual nodes and the graph structure, and it takes care of the rest. Because of its simplicity, it is easily extendible in its capabilities. It is also suited for integration with ML and DL libraries like scikitlearn, TensorFlow or PyTorch. </p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Implemented Algorithms</h2>
 <ul>
+<li>Lamport's Mutual Exclusion;</li>
 <li>Flooding on connected graph;</li>
 <li>Spanning tree "Shout";</li>
 <li>Spanning tree "Dft" (Depth First Traversal);</li>
@@ -99,21 +101,137 @@ Implemented Algorithms</h1>
 <li>Leader election "As far as it can";</li>
 <li>Leader election "Controlled Distance"; </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Open Issues</h1>
-<h2><a class="anchor" id="autotoc_md3"></a>
-General</h2>
-<ul>
-<li>Must add and test on Linux, only tested for Windows now;</li>
-<li>Fix can't escape problem;</li>
-<li>Add non-live visualization of algorithm; </li>
-</ul>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Quickstart</h1>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Quickstart</h2>
 <p>Clone/fork the repo and install the <a class="el" href="namespace_nodes.html">Nodes</a> package in developer mode: </p><div class="fragment"><div class="line">cd Nodes</div>
 <div class="line">python3 -m pip install -e .</div>
-</div><!-- fragment --><p> You can find an example (client and server files) contained in the <b>Tests</b> directory. To run the first example: </p><div class="fragment"><div class="line">cd Tests\example1</div>
+</div><!-- fragment --><p> You can find several examples (client and server files) contained in the <b>Tests</b> directory. You can find the full documentation in the docs/ folder. To run the first example: </p><div class="fragment"><div class="line">cd Tests\example1</div>
 <div class="line">python3 server.py network.txt</div>
+</div><!-- fragment --><p> Below you can find another example (example3) with some comments to help you become familiar with the framework. </p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Server</h2>
+<div class="fragment"><div class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</div>
+<div class="line"><span class="keyword">import</span> sys</div>
+<div class="line"><span class="keyword">import</span> <a class="code hl_namespace" href="namespace_nodes_1_1utils.html">Nodes.utils</a> <span class="keyword">as</span> utils</div>
+<div class="line"><span class="keyword">import</span> <a class="code hl_namespace" href="namespace_nodes_1_1initializers.html">Nodes.initializers</a> <span class="keyword">as</span> initializers</div>
+<div class="line"><span class="keyword">import</span> os</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#create any graph you like with networkx</span></div>
+<div class="line">G = nx.erdos_renyi_graph(7, 0.5, seed=1, directed=<span class="keyword">False</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#print some metrics of interest</span></div>
+<div class="line">n = G.number_of_nodes()</div>
+<div class="line">m = G.number_of_edges()</div>
+<div class="line">print(f<span class="stringliteral">&quot;Nodes: {n}&quot;</span>)</div>
+<div class="line">print(f<span class="stringliteral">&quot;Edges: {m}&quot;</span>)</div>
+<div class="line">print(f<span class="stringliteral">&quot;Expected n. of messages: {(4*m)-(2*n)+2}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#specify the path of the client absolute path</span></div>
+<div class="line">client = os.path.abspath(<span class="stringliteral">&quot;./client.py&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#create the initializer object</span></div>
+<div class="line">init = initializers.Initializer(client, <span class="stringliteral">&quot;localhost&quot;</span>, 65000, G, shell=<span class="keyword">False</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#wakeup node with ID=5</span></div>
+<div class="line">init.wakeup(5)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#wait for protocol termination</span></div>
+<div class="line">init.wait_for_termination()</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#wait for messages containing total messages used during the protocol.</span></div>
+<div class="line">init.wait_for_number_of_messages()</div>
+<div class="ttc" id="anamespace_nodes_1_1initializers_html"><div class="ttname"><a href="namespace_nodes_1_1initializers.html">Nodes.initializers</a></div><div class="ttdef"><b>Definition</b> initializers.py:1</div></div>
+<div class="ttc" id="anamespace_nodes_1_1utils_html"><div class="ttname"><a href="namespace_nodes_1_1utils.html">Nodes.utils</a></div><div class="ttdef"><b>Definition</b> utils.py:1</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
+Client</h2>
+<p>Here's an example client.py file. In this case, we want to create a node running the <b>Shout</b> protocol, which is alredy implemented in the <b>Protocols</b> package. Alternatively, you can define your custom protocol directly in the client.py file for convenience.</p>
+<div class="fragment"><div class="line"><span class="keyword">import</span> sys</div>
+<div class="line"><span class="keyword">from</span> <a class="code hl_namespace" href="namespace_nodes_1_1_nodes_1_1_node.html">Nodes.Nodes.Node</a> <span class="keyword">import</span> Node</div>
+<div class="line"><span class="keyword">from</span> <a class="code hl_namespace" href="namespace_nodes_1_1_protocols_1_1_shout.html">Nodes.Protocols.Shout</a> <span class="keyword">import</span> Shout</div>
+<div class="line"><span class="keywordflow">if</span> len(sys.argv) != 4:</div>
+<div class="line">    <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&#39;Please provide HOST, initializer PORT and local PORT NUMBER.&#39;</span>)</div>
+<div class="line">NODE = Node(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#create the protocol object</span></div>
+<div class="line">proto = Shout(NODE)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#run the protocol</span></div>
+<div class="line">proto.run()</div>
+<div class="ttc" id="anamespace_nodes_1_1_nodes_1_1_node_html"><div class="ttname"><a href="namespace_nodes_1_1_nodes_1_1_node.html">Nodes.Nodes.Node</a></div><div class="ttdef"><b>Definition</b> Node.py:1</div></div>
+<div class="ttc" id="anamespace_nodes_1_1_protocols_1_1_shout_html"><div class="ttname"><a href="namespace_nodes_1_1_protocols_1_1_shout.html">Nodes.Protocols.Shout</a></div><div class="ttdef"><b>Definition</b> Shout.py:1</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
+Protocol</h2>
+<p>This is a possibile implementation of the Shout protocol, used to create a spanning tree in a undirected graph in a distributed way. As you can see, it is similar to pseudo-code. To create your custom protocol, always override these 3 methods:</p>
+<ul>
+<li><code>setup()</code>: setup procedure that each node executes at the beginning of the protocol. It is usefull to initialize variables or start parallel threads (see example5);</li>
+<li><code>handle_message()</code>: this method should be the core of the protocol. You have to specify for each possibile combination of state and message what the node should do. Remember that you can find some useful tokens in the <code><a class="el" href="namespace_nodes_1_1const.html">Nodes.const</a></code> package to avoid typos in strings. When the node has locally terminated the computation, just return <code>True</code>.</li>
+<li><code>cleanup()</code>: you can optionally override this method to send extra information or log variables at the end of the protocol. In this case, we send the total number of messages sent by the node during the computation.</li>
+</ul>
+<div class="fragment"><div class="line"><span class="keyword">from</span> <a class="code hl_namespace" href="namespace_nodes_1_1_protocols_1_1_protocol.html">Nodes.Protocols.Protocol</a> <span class="keyword">import</span> Protocol</div>
+<div class="line"><span class="keyword">from</span> <a class="code hl_namespace" href="namespace_nodes_1_1messages.html">Nodes.messages</a> <span class="keyword">import</span> Message</div>
+<div class="line"><span class="keyword">from</span> <a class="code hl_namespace" href="namespace_nodes_1_1const.html">Nodes.const</a> <span class="keyword">import</span> Command, State</div>
+<div class="line"><span class="keyword">from</span> <a class="code hl_namespace" href="namespace_nodes_1_1_nodes_1_1_node.html">Nodes.Nodes.Node</a> <span class="keyword">import</span> Node</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>Shout(Protocol):</div>
+<div class="line">    <span class="keyword">def </span>__init__(self, node: Node):</div>
+<div class="line">        super().__init__(node)</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">def </span>setup(self):</div>
+<div class="line">        self.state = State.IDLE        </div>
+<div class="line">        self.counter = <span class="keywordtype">None</span></div>
+<div class="line">        self.parent = <span class="keywordtype">None</span></div>
+<div class="line">        self.tree_neigs = set()</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">def </span>handle_message(self, message: Message) -&gt; bool:</div>
+<div class="line">        <span class="keyword">assert</span> message.command != Command.START_AT, <span class="stringliteral">&quot;This protocol supports only 1 initiator.&quot;</span></div>
+<div class="line">        <span class="keywordflow">if</span> self.state == State.IDLE:</div>
+<div class="line">            <span class="keywordflow">if</span> message.command == Command.WAKEUP:                </div>
+<div class="line">                self.node.log(<span class="stringliteral">&quot;I am the root.&quot;</span>)</div>
+<div class="line">                self.counter = 0</div>
+<div class="line">                self.state = State.ACTIVE</div>
+<div class="line">                self.node.send_to_all(Message(Command.Q, self.node.id))</div>
+<div class="line">            <span class="keywordflow">if</span> message.command == Command.Q:</div>
+<div class="line">                self.node.log(<span class="stringliteral">&quot;I am a child.&quot;</span>)</div>
+<div class="line">                self.parent = message.sender</div>
+<div class="line">                self.tree_neigs.add(message.sender)</div>
+<div class="line">                self.counter = 1</div>
+<div class="line">                self.node.send_to(Message(Command.YES, self.node.id), self.parent)</div>
+<div class="line">                <span class="keywordflow">if</span> self.counter == len(self.node.get_neighbors()):</div>
+<div class="line">                    self.state = State.DONE</div>
+<div class="line">                    self.node.log(<span class="stringliteral">&quot;Computation Done.&quot;</span>)</div>
+<div class="line">                    self.node.log(str(self.tree_neigs))</div>
+<div class="line">                    self.node.log(str(self.parent))</div>
+<div class="line">                    <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line">                <span class="keywordflow">else</span>:</div>
+<div class="line">                    self.node.send_to_all_except(message.sender, Message(Command.Q, self.node.id))</div>
+<div class="line">                    self.state = State.ACTIVE</div>
+<div class="line">        <span class="keywordflow">elif</span> self.state == State.ACTIVE:</div>
+<div class="line">            <span class="keywordflow">if</span> message.command == Command.Q:                </div>
+<div class="line">                self.node.send_to(Message(Command.NO, self.node.id), message.sender)</div>
+<div class="line">            <span class="keywordflow">if</span> message.command == Command.YES:</div>
+<div class="line">                self.tree_neigs.add(message.sender)</div>
+<div class="line">                self.counter += 1</div>
+<div class="line">                <span class="keywordflow">if</span> self.counter == len(self.node.get_neighbors()):</div>
+<div class="line">                    self.state = State.DONE</div>
+<div class="line">                    self.node.log(<span class="stringliteral">&quot;Computation Done.&quot;</span>)</div>
+<div class="line">                    self.node.log(str(self.tree_neigs))</div>
+<div class="line">                    self.node.log(str(self.parent))</div>
+<div class="line">                    <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line">            <span class="keywordflow">if</span> message.command == Command.NO:</div>
+<div class="line">                self.counter += 1</div>
+<div class="line">                <span class="keywordflow">if</span> self.counter == len(self.node.get_neighbors()):</div>
+<div class="line">                    self.state = State.DONE</div>
+<div class="line">                    self.node.log(<span class="stringliteral">&quot;Computation Done.&quot;</span>)</div>
+<div class="line">                    self.node.log(str(self.tree_neigs))</div>
+<div class="line">                    self.node.log(str(self.parent))</div>
+<div class="line">                    <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line">                </div>
+<div class="line">    <span class="keyword">def </span>cleanup(self):</div>
+<div class="line">        super().cleanup()</div>
+<div class="line">        self.node.send_total_messages()</div>
+<div class="ttc" id="anamespace_nodes_1_1_protocols_1_1_protocol_html"><div class="ttname"><a href="namespace_nodes_1_1_protocols_1_1_protocol.html">Nodes.Protocols.Protocol</a></div><div class="ttdef"><b>Definition</b> Protocol.py:1</div></div>
+<div class="ttc" id="anamespace_nodes_1_1const_html"><div class="ttname"><a href="namespace_nodes_1_1const.html">Nodes.const</a></div><div class="ttdef"><b>Definition</b> const.py:1</div></div>
+<div class="ttc" id="anamespace_nodes_1_1messages_html"><div class="ttname"><a href="namespace_nodes_1_1messages.html">Nodes.messages</a></div><div class="ttdef"><b>Definition</b> messages.py:1</div></div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
