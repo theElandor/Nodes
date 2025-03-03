@@ -12,7 +12,7 @@ import sys
 class Node(ComunicationManager):
     """!Main class, encapsulate foundamental primitives."""
     
-    def __init__(self, hostname:str, back:int, port:int, fifo=False):
+    def __init__(self, hostname:str, back:int, port:int, fifo=False, sleep_delay=1):
         """!Node base initializer.
 
         @param HOSTNAME (str): IP of the initalizer.
@@ -37,7 +37,7 @@ class Node(ComunicationManager):
         self._exp_path:str = None
         self._visualizer_port = None
         self._total_messages = 0
-        self._sleep_delay = 1
+        self._sleep_delay = sleep_delay
         # ========== parameters needed for fifo mode ========
         if fifo:
             self.send_sequence = {}
