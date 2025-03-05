@@ -34,6 +34,7 @@ class LamportMutualExclusion(Protocol):
     the end of the waiting time, simulating access to the critical section.
     With Lamport's mutual exclusion algorithm, nodes should be able to coordinate
     to not access the CS at the same time.
+    https://www.cs.fsu.edu/~xyuan/cop5611/lecture8.html
     """
     def __init__(self, node: Node):
         super().__init__(node)
