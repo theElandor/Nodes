@@ -20,7 +20,7 @@ G.add_edges_from(edges)
 # FRAMEWORK
 client = os.path.abspath("./client.py")
 init = initializers.Initializer(client, "localhost", 65000, G, shell=False, visualizer=True)
-init.wakeup(3)
+init.wakeup(1)
 init.start_visualization()
 init.wait_for_termination()
 init.wait_for_number_of_messages()
