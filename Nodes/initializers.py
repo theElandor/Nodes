@@ -60,7 +60,7 @@ class Initializer(ComunicationManager):
             self._visualizer = Visualizer(self.visualizer_port, self.G)
         
         self.initialize_clients()
-        self.setup_clients()        
+        self.setup_clients()
 
     @property
     def HOSTNAME(self):
