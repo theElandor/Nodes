@@ -1,19 +1,15 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.1
 Name: Nodes
 Version: 1.0.0
 Summary: Distributed Algorithms Python Framework
+Home-page: UNKNOWN
 Author: Matteo Eros Lugli
 Author-email: 283122@studenti.unimore.it
+License: UNKNOWN
+Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Requires-Python: >=3.7, <4
-Requires-Dist: networkx
-Requires-Dist: matplotlib
-Requires-Dist: art
-Requires-Dist: pause
-Dynamic: author
-Dynamic: author-email
-Dynamic: classifier
-Dynamic: requires-dist
-Dynamic: requires-python
-Dynamic: summary
+
+UNKNOWN
+

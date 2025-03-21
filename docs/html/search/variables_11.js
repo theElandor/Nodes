@@ -8,5 +8,6 @@ var searchData=
   ['request_5',['REQUEST',['../class_nodes_1_1const_1_1_command.html#a2cc76f8949c696ec74de87192f79768a',1,'Nodes::const::Command']]],
   ['return_6',['RETURN',['../class_nodes_1_1const_1_1_command.html#ab014356f284cded3a4c21783e2f0826c',1,'Nodes::const::Command']]],
   ['ringsize_7',['ringsize',['../class_nodes_1_1_protocols_1_1_leader_election_atw_1_1_leader_election_atw.html#ad9022ab6c0800df8e19fc4a166f50685',1,'Nodes::Protocols::LeaderElectionAtw::LeaderElectionAtw']]],
-  ['running_8',['running',['../class_nodes_1_1message__handler_1_1_message_listener.html#a36f7b6be7108281af77939ceaec42fd6',1,'Nodes::message_handler::MessageListener']]]
+  ['role_8',['role',['../class_nodes_1_1_protocols_1_1_bully_1_1_bully_protocol.html#aeeb925ed9cbab42036db907783d8fe56',1,'Nodes::Protocols::Bully::BullyProtocol']]],
+  ['running_9',['running',['../class_nodes_1_1message__handler_1_1_message_listener.html#a36f7b6be7108281af77939ceaec42fd6',1,'Nodes::message_handler::MessageListener']]]
 ];

@@ -16,6 +16,7 @@ var searchData=
   ['ringnode_13',['RingNode',['../class_nodes_1_1_nodes_1_1_ring_node_1_1_ring_node.html',1,'Nodes::Nodes::RingNode']]],
   ['ringnode_2epy_14',['RingNode.py',['../_ring_node_8py.html',1,'']]],
   ['ringsize_15',['ringsize',['../class_nodes_1_1_protocols_1_1_leader_election_atw_1_1_leader_election_atw.html#ad9022ab6c0800df8e19fc4a166f50685',1,'Nodes::Protocols::LeaderElectionAtw::LeaderElectionAtw']]],
-  ['run_16',['run',['../class_nodes_1_1message__handler_1_1_message_listener.html#a08060e0924949738f75a0cdd8b49cef4',1,'Nodes.message_handler.MessageListener.run()'],['../class_nodes_1_1_protocols_1_1_protocol_1_1_protocol.html#a08060e0924949738f75a0cdd8b49cef4',1,'Nodes.Protocols.Protocol.Protocol.run()']]],
-  ['running_17',['running',['../class_nodes_1_1message__handler_1_1_message_listener.html#a36f7b6be7108281af77939ceaec42fd6',1,'Nodes::message_handler::MessageListener']]]
+  ['role_16',['role',['../class_nodes_1_1_protocols_1_1_bully_1_1_bully_protocol.html#aeeb925ed9cbab42036db907783d8fe56',1,'Nodes::Protocols::Bully::BullyProtocol']]],
+  ['run_17',['run',['../class_nodes_1_1message__handler_1_1_message_listener.html#a08060e0924949738f75a0cdd8b49cef4',1,'Nodes.message_handler.MessageListener.run()'],['../class_nodes_1_1_protocols_1_1_protocol_1_1_protocol.html#a08060e0924949738f75a0cdd8b49cef4',1,'Nodes.Protocols.Protocol.Protocol.run()']]],
+  ['running_18',['running',['../class_nodes_1_1message__handler_1_1_message_listener.html#a36f7b6be7108281af77939ceaec42fd6',1,'Nodes::message_handler::MessageListener']]]
 ];

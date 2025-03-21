@@ -24,7 +24,8 @@ var searchData=
   ['_5fsetup_21',['_setup',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ac1383df709cef4460038e0caee0283ec',1,'Nodes::Nodes::Node::Node']]],
   ['_5fshell_22',['_shell',['../class_nodes_1_1initializers_1_1_initializer.html#a3e816e21c2c5eed9632a37570c108793',1,'Nodes.initializers.Initializer._shell'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a3e816e21c2c5eed9632a37570c108793',1,'Nodes.Nodes.Node.Node._shell']]],
   ['_5fsleep_5fdelay_23',['_sleep_delay',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a6cbcefc717c9c972aa05613dc8b2afd5',1,'Nodes::Nodes::Node::Node']]],
-  ['_5ftotal_5fmessages_24',['_total_messages',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a392d68efb07529f2a66789b19b8a0258',1,'Nodes::Nodes::Node::Node']]],
-  ['_5fvisualizer_25',['_visualizer',['../class_nodes_1_1initializers_1_1_initializer.html#a30451a065cc9eb8225b8225e72014f9c',1,'Nodes::initializers::Initializer']]],
-  ['_5fvisualizer_5fport_26',['_visualizer_port',['../class_nodes_1_1initializers_1_1_initializer.html#aef642b47586c50cb456026fb013c22c6',1,'Nodes.initializers.Initializer._visualizer_port'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#aeab5088c505604880b946f363a81c901',1,'Nodes.Nodes.Node.Node._visualizer_port']]]
+  ['_5fstop_5fevent_24',['_stop_event',['../class_nodes_1_1_protocols_1_1_bully_1_1_bully_protocol.html#a2c9373a2aa1f4cdf3e6c936e81b17267',1,'Nodes::Protocols::Bully::BullyProtocol']]],
+  ['_5ftotal_5fmessages_25',['_total_messages',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#a392d68efb07529f2a66789b19b8a0258',1,'Nodes::Nodes::Node::Node']]],
+  ['_5fvisualizer_26',['_visualizer',['../class_nodes_1_1initializers_1_1_initializer.html#a30451a065cc9eb8225b8225e72014f9c',1,'Nodes::initializers::Initializer']]],
+  ['_5fvisualizer_5fport_27',['_visualizer_port',['../class_nodes_1_1initializers_1_1_initializer.html#aef642b47586c50cb456026fb013c22c6',1,'Nodes.initializers.Initializer._visualizer_port'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#aeab5088c505604880b946f363a81c901',1,'Nodes.Nodes.Node.Node._visualizer_port']]]
 ];

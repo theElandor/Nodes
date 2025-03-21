@@ -12,6 +12,7 @@ Unofficial paper: https://theelandor.github.io/prova/Matteo_Lugli_Nodes.pdf
 + Flooding on connected graph;
 + Spanning tree "Shout";
 + Spanning tree "Dft" (Depth First Traversal);
++ Leader election "Bully";
 + Leader election "All the Way";
 + Leader election "As far as it can";
 + Leader election "Controlled Distance";
