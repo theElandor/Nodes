@@ -190,6 +190,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae5f7faabf72f4981cbf7dd1246e72df6" id="r_ae5f7faabf72f4981cbf7dd1246e72df6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5f7faabf72f4981cbf7dd1246e72df6">send_to</a> (self, <a class="el" href="class_nodes_1_1messages_1_1_message.html">Message</a> message, int target)</td></tr>
 <tr class="memdesc:ae5f7faabf72f4981cbf7dd1246e72df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to target node.  <br /></td></tr>
 <tr class="separator:ae5f7faabf72f4981cbf7dd1246e72df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bcff311acdf05e0ec319de236ba7caa" id="r_a3bcff311acdf05e0ec319de236ba7caa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bcff311acdf05e0ec319de236ba7caa">send_to_me</a> (self, <a class="el" href="class_nodes_1_1messages_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a3bcff311acdf05e0ec319de236ba7caa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to myself.  <br /></td></tr>
+<tr class="separator:a3bcff311acdf05e0ec319de236ba7caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a315415da22875ff1a779ce3e640b33" id="r_a4a315415da22875ff1a779ce3e640b33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a315415da22875ff1a779ce3e640b33">send_back</a> (self, <a class="el" href="class_nodes_1_1messages_1_1_message.html">Message</a> message)</td></tr>
 <tr class="memdesc:a4a315415da22875ff1a779ce3e640b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send message back to initializer (server).  <br /></td></tr>
 <tr class="separator:a4a315415da22875ff1a779ce3e640b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1038,6 +1041,38 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+</div>
+</div>
+<a id="a3bcff311acdf05e0ec319de236ba7caa" name="a3bcff311acdf05e0ec319de236ba7caa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bcff311acdf05e0ec319de236ba7caa">&#9670;&#160;</a></span>send_to_me()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">send_to_me </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_nodes_1_1messages_1_1_message.html">Message</a></td>          <td class="paramname"><span class="paramname"><em>message</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to myself. </p>
+<p>This function is similar to the insert_message method of the communication manager, but is's safer since is goes through the _send primitive, that serializes the data. Since it is used for control procedure and not as a proper "message", the total message count is not incremented. Make sure to increment it yourself if your protocol requires that.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>(Message): message to send.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None <br  />
+ </dd></dl>
 
 </div>
 </div>

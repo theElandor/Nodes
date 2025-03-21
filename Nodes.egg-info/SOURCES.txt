@@ -1,10 +1,13 @@
 README.md
 setup.py
 Nodes/__init__.py
+Nodes/comunication.py
+Nodes/const.py
 Nodes/initializers.py
+Nodes/message_handler.py
 Nodes/messages.py
-Nodes/nodes.py
 Nodes/utils.py
+Nodes/visualizer.py
 Nodes.egg-info/PKG-INFO
 Nodes.egg-info/SOURCES.txt
 Nodes.egg-info/dependency_links.txt

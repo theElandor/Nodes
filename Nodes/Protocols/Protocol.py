@@ -35,7 +35,7 @@ class Protocol(ABC):
         try:
             while True:
                 data = self.node.receive_message()
-                if not data:
+                if not data:                    
                     continue
                 try:
                     message = Message.deserialize(data)
@@ -46,7 +46,7 @@ class Protocol(ABC):
                 except Exception as e:
                     self.node.log("Error while deserializing message: {e}")
                     continue
-                self.node.log(str(message))                
+                self.node.log(str(message))            
                 # ========= FIFO mode check ===========
                 # usually server-node messages have a Null Sender.
                 # We want don't want to check those.

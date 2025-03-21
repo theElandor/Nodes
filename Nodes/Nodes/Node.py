@@ -288,6 +288,23 @@ class Node(ComunicationManager):
         """
         self._send(message, self.local_dns[target])
         self.total_messages += 1
+    
+    def send_to_me(self, message: Message):
+        """!Send a message to myself.
+
+        This function is similar to the insert_message
+        method of the communication manager, but is's safer
+        since is goes through the _send primitive, that
+        serializes the data. Since it is used for control
+        procedure and not as a proper "message", the total
+        message count is not incremented. Make sure to increment
+        it yourself if your protocol requires that.
+
+        @param message (Message): message to send.
+
+        @return None        
+        """
+        self._send(message, self.port)
 
     def send_back(self, message:Message):
         """!Send message back to initializer (server).

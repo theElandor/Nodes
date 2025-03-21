@@ -1,4 +1,5 @@
-networkx
-matplotlib
 art
+matplotlib
+networkx
 pause
+prettytable

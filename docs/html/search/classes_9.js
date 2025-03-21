@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ringnode_0',['RingNode',['../class_nodes_1_1_nodes_1_1_ring_node_1_1_ring_node.html',1,'Nodes::Nodes::RingNode']]]
+  ['protocol_0',['Protocol',['../class_nodes_1_1_protocols_1_1_protocol_1_1_protocol.html',1,'Nodes::Protocols::Protocol']]]
 ];
