@@ -42,5 +42,6 @@ def init_logs(path):
 		os.makedirs(path)
 	experiment = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 	experiment_path = os.path.join(path, experiment)
-	os.makedirs(experiment_path)
+	if not os.path.isdir(experiment_path):
+		os.makedirs(experiment_path)
 	return experiment_path

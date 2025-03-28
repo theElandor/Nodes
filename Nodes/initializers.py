@@ -198,7 +198,7 @@ class Initializer(ComunicationManager):
             if counts_received == self.number_of_nodes():
                 print("Received message count from all nodes.")
                 print(f"Total number of messages: {total_count}")
-                break
+                return total_count
                 
 
     def setup_clients(self):
@@ -298,3 +298,12 @@ class Initializer(ComunicationManager):
             pass
         elif state == VisualizerState.SUCCESS:
             print("End of visualization.")            
+
+    def close(self):
+        """!Close the socket connection"""
+        try:
+            self.listener.stop()
+            self.s.close()
+            print("Socket successfully closed.")
+        except Exception as e:
+            print(f"Error closing socket: {e}")
