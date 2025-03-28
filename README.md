@@ -158,3 +158,52 @@ class Shout(Protocol):
         super().cleanup()
         self.node.send_total_messages()
 ```
+
+## Example Usage
+The following script runs a simulation to evaluate the number of messages exchanged in different leader election protocols by varying the number of nodes in a ring network. It initializes the network, executes each protocol, collects message counts, and stores the results in a Pandas DataFrame. Finally, it generates a comparison plot (comparison.png) using Seaborn to visualize the message complexity across protocols. To run the simulation, simply execute the script, and the results will be saved 
+automatically.
+This demonstrates how the framework can be paired with python's data analysis tools in a very simple and efficient way.
+```python
+import networkx as nx
+import Nodes.initializers as initializers
+import os
+import random
+import seaborn as sb
+import matplotlib.pyplot as plt
+import Nodes.utils as utils
+import pandas as pd
+
+n_nodes = [5*i for i in range(1,10)]
+clients = [
+    ("./ControlledDistance.py", "Controlled Distance"),
+    ("./AllTheWay.py", "All The Way"),
+    ("./AsFar.py", "As Far As It Can"),
+]
+df = pd.DataFrame(columns=["Protocol", "Nodes", "Messages"])
+PORT = 65000
+for CLIENT_PATH, PROTOCOL_NAME in clients:
+    for n in n_nodes:
+        node_ids = list(range(n))
+        random.shuffle(node_ids)
+        G = nx.cycle_graph(node_ids)
+        n = G.number_of_nodes()
+        m = G.number_of_edges()
+        print(f"Nodes: {n}")
+        print(f"Edges: {m}")
+        client = os.path.abspath(CLIENT_PATH)
+        init = initializers.Initializer(client, "localhost", PORT, G, shell=False)
+        init.wakeup(random.choice([_ for _ in range(n)]))
+        init.wait_for_termination()
+        messages = init.wait_for_number_of_messages()
+        df.loc[len(df)] = [PROTOCOL_NAME, n, messages]
+        init.close()
+print(df)
+sb.set_style("whitegrid")
+fig, ax = plt.subplots(figsize=(8, 4))
+sb.lineplot(data=df, x="Nodes", y="Messages", hue="Protocol",marker='o', ax=ax, color="b")
+plt.title("Message Comparison of Leader Election Algorithms")
+plt.savefig("comparison.png", bbox_inches="tight", dpi=300)
+```
+<p align="center">
+  <img src="https://theelandor.github.io/comparison.png" alt="Nodes" width=600/>
+</p>
