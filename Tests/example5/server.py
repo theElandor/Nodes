@@ -5,9 +5,10 @@ import Nodes.initializers as initializers
 import os
 
 # GRAPH CREATION
-G = nx.complete_graph(3)
+G = nx.complete_graph(5)
 
 # FRAMEWORK
 client = os.path.abspath("./client.py")
 init = initializers.Initializer(client, "localhost", 65000, G, shell=False)
 init.wait_for_termination()
+init.wait_for_number_of_messages()

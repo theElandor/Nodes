@@ -7,5 +7,6 @@ Tests/example5/logs/
 Tests/example6/logs/
 Simulations/LeaderElections/logs/
 Simulations/LeaderElections/logs/
+Simulations/Lamport/logs/
 Nodes/__pycache__/
 Nodes/Protocols/__pycache__/

@@ -1,4 +1,3 @@
-
 from datetime import datetime
 import socket
 import pause
@@ -279,15 +278,17 @@ class Node(ComunicationManager):
         self._send(message, address)
         self.total_messages += 1
 
-    def send_to(self, message: Message, target: int):
+    def send_to(self, message: Message, target: int, count=True):
         """!Send a message to target node.
         @param message (Message): message to send.
         @param target (int): target node.
+        @param count (bool): if set to False, does not increase the message count.
 
         @return None        
         """
         self._send(message, self.local_dns[target])
-        self.total_messages += 1
+        if count:
+            self.total_messages += 1
     
     def send_to_me(self, message: Message):
         """!Send a message to myself.
@@ -314,38 +315,43 @@ class Node(ComunicationManager):
         """
         self._send(message, self.back)
 
-    def send_to_all(self, message:Message):
+    def send_to_all(self, message:Message, count=True):
         """!Send given message to all neighbors.
 
         This primitive is used to send the given message to
         all neighbors.
 
         @param message (Message): message to send.
+        @param count (bool): if set to False, does not increase the message count.
 
         @return None
         """
         for v, address in self.local_dns.items():
             self._send(message, address)
-            self.total_messages += 1
+            if count:
+                self.total_messages += 1
 
-    def send_to_all_except(self, sender: int, message: Message):
+    def send_to_all_except(self, sender: int, message: Message, count=True):
         """!Send given message to all neighbors except the sender.
         
         @param sender (int): node to exclude.
         @param message (Message): message to send.
+        @param count (bool): if set to False, does not increase the message count.
 
         @return None
         """
         for v, address in self.local_dns.items():
             if v == sender: continue            
             self._send(message, address)
-            self.total_messages += 1
+            if count:
+                self.total_messages += 1
             
-    def send_to_missing(self, senders: list, message: Message):
+    def send_to_missing(self, senders: list, message: Message, count=True):
         """!Send given message to all neighbors except the ones in the list.
         
         @param senders (list): nodes to exclude
         @param message (Message): message to send
+        @param count (bool): if set to False, does not increase the message count.
 
         @return None
         """
@@ -354,7 +360,8 @@ class Node(ComunicationManager):
         for v, address in self.local_dns.items():
             if v not in s:
                 self._send(message, address)
-                self.total_messages += 1
+                if count:
+                    self.total_messages += 1
 
     def _send_end_of_protocol(self):
         """!Send termination message back to initializer at the end of the protocol."""

@@ -36,7 +36,11 @@ class LamportMutualExclusion(Protocol):
     to not access the CS at the same time.
     https://www.cs.fsu.edu/~xyuan/cop5611/lecture8.html
     """
-    def __init__(self, node: Node):
+    def __init__(self, node: Node, silent=False):
+        """
+        @param silent (bool): if set to False, disables the debugging prints.
+        """
+        self.silent = silent
         super().__init__(node)
 
     def request_CS(self, t:int):
@@ -48,11 +52,13 @@ class LamportMutualExclusion(Protocol):
     
     def access_CS(self):
         self.using_CS = True
-        print(f"{self.node.id} accessed CS...")
-        t = random.randint(1,4)
+        if not self.silent:
+            print(f"{self.node.id} accessed CS...")
+        t = random.randint(1,2)
         self.LC += 1 # increment logical clock
         time.sleep(t)
-        print(f"{self.node.id} released CS...")
+        if not self.silent:
+            print(f"{self.node.id} released CS...")
         self.using_CS = False
         self.CS_counter += 1
         new_message = MutualExclusionMessage(Command.RELEASE, self.LC, self.node.id)
@@ -60,7 +66,7 @@ class LamportMutualExclusion(Protocol):
         self.node.send_to_all(new_message)
         if self.CS_counter == 2:
             new_message = Message(Command.END, self.node.id)
-            self.node.send_to_all(new_message)
+            self.node.send_to_all(new_message, count=False)
 
     def setup(self):
         random.seed((self.node.id +1)*32)
@@ -72,9 +78,10 @@ class LamportMutualExclusion(Protocol):
         # stores Reply and Release messages from other nodes
         self.history = {n:[] for n in self.node.get_neighbors(id_only=True)}
         self.ends = set()
-        t1 = random.randint(1,4)
+        t1 = random.randint(1,3)
         t2 = random.randint(5,8)
-        print(t1,t2)
+        if not self.silent:
+            print(t1,t2)
         x1 = threading.Thread(target = self.request_CS, args=(t1,))
         x2 = threading.Thread(target = self.request_CS, args=(t2,))
         x1.start()
@@ -94,17 +101,21 @@ class LamportMutualExclusion(Protocol):
 
     def handle_message(self, message:Message) -> bool:
         assert message.command != Command.START_AT, "This protocol does not support simultaneous wakeup."
+        assert message.command in [Command.REQUEST, Command.RELEASE, Command.REPLY, Command.END], "Unknown message type."
         if message.command == Command.END:
             self.ends.add(message.sender)
             if len(self.ends) == len(self.node.get_neighbors(id_only=True)):
                 return True
         else:
             self.LC = max(self.LC, message.timestamp)+1 # update logical clock
-        if message.command == Command.REQUEST:
+        if message.command == Command.REQUEST:        
             heapq.heappush(self.CS_requests, (message.timestamp, message.sender))
-            new_message = MutualExclusionMessage(Command.REPLY, self.LC, self.node.id)
-            self.node.send_to(new_message, message.sender)
+            if not self.using_CS:
+                new_message = MutualExclusionMessage(Command.REPLY, self.LC, self.node.id)
+                self.node.send_to(new_message, message.sender)
         if message.command == Command.RELEASE:
+            # If I receive a release, then for sure the coresponding request
+            # is the top of the priority queue
             self.history[message.sender].append(message.timestamp)
             heapq.heappop(self.CS_requests)
             self.access_check()
@@ -114,3 +125,4 @@ class LamportMutualExclusion(Protocol):
 
     def cleanup(self):
         super().cleanup()
+        self.node.send_total_messages()
