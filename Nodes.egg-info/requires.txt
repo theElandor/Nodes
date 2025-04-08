@@ -1,5 +1,5 @@
-art
-matplotlib
 networkx
+matplotlib
+art
 pause
 prettytable

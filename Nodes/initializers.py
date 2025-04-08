@@ -170,21 +170,24 @@ class Initializer(ComunicationManager):
         """!Wait for termination messages by nodes in the network."""
         EOP_received = 0
         while 1: # wait for RDY messages    
-            data = self.receive_message()
-            message = TerminationMessage.deserialize(data)            
-            if message.command == Command.END_PROTOCOL:
-                EOP_received += 1
-                if EOP_received == self.number_of_nodes():
-                    print("Received EOP from all nodes in the network.")
-                    break
-            elif message.command == Command.ERROR:
-                payload = message.payload
-                print(f"A node crashed with the following error: {payload}")
+            try:
+                data = self.receive_message()
+                message = TerminationMessage.deserialize(data)            
+                if message.command == Command.END_PROTOCOL:
+                    EOP_received += 1
+                    if EOP_received == self.number_of_nodes():
+                        print("Received EOP from all nodes in the network.")
+                        break
+                elif message.command == Command.ERROR:
+                    payload = message.payload
+                    print(f"A node crashed with the following error: {payload}")
+                    self.send_termination()
+                    exit(0)
+                else:
+                    # put the message back in the queue if it's not a termination message.
+                    self.insert_message(data)
+            except KeyboardInterrupt:
                 self.send_termination()
-                exit(0)
-            else:
-                # put the message back in the queue if it's not a termination message.
-                self.insert_message(data)
     
     def wait_for_number_of_messages(self):
         """!Wait for message containing number of messages from nodes in the network."""
