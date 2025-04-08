@@ -47,6 +47,7 @@ class State(str, Enum):
     ACTIVE = "ACTIVE"
     VISITED = "VISITED"
     CS = "CRITICAL_SECTION"
+    REQUESTING = "REQUESTING"
 
 class VisualizerState(str, Enum):
     INTERNAL_ERROR = "INTERNAL_ERROR"

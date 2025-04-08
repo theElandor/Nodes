@@ -7,8 +7,9 @@ It provides a simple and intuitive interface to define the
 behavior of individual nodes and the graph structure, and it takes care of the rest. Because of its simplicity, it is easily extendible in its capabilities. It is also suited for integration with ML and DL libraries
 like scikitlearn, TensorFlow or PyTorch.  
 Unofficial paper: https://theelandor.github.io/prova/Matteo_Lugli_Nodes.pdf
-## Implemented Algorithms
+## Implemented Algorithms and Simulations
 + Lamport's Mutual Exclusion;
++ Ricard & Agrawala's Mutual Exclusion;
 + Flooding on connected graph;
 + Spanning tree "Shout";
 + Spanning tree "Dft" (Depth First Traversal);
