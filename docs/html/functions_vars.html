@@ -142,8 +142,9 @@ $(function(){ initResizable(false); });
 <li>COUNT_M&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#a97db67ca8e74164a3d55d49c9bf312da">Command</a></li>
 <li>counter&#160;:&#160;<a class="el" href="class_nodes_1_1messages_1_1_count_message.html#a61f7b3cbcedea4bae0c663c892d5d07f">CountMessage</a>, <a class="el" href="class_nodes_1_1messages_1_1_flooding_message.html#a61f7b3cbcedea4bae0c663c892d5d07f">FloodingMessage</a>, <a class="el" href="class_nodes_1_1messages_1_1_leader_election_atw_message.html#a61f7b3cbcedea4bae0c663c892d5d07f">LeaderElectionAtwMessage</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_shout_1_1_shout.html#a617a47c70795bcff659815ad0efd2266">Shout</a></li>
 <li>CS&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_state.html#a51240c4dec3a787d0eff0a3fff426992">State</a></li>
-<li>CS_counter&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#a1813e2f07588979a5f2df3cfbed84bb0">LamportMutualExclusion</a></li>
+<li>CS_counter&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#a1813e2f07588979a5f2df3cfbed84bb0">LamportMutualExclusion</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#a1813e2f07588979a5f2df3cfbed84bb0">RicardMutualExclusion</a></li>
 <li>CS_requests&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#aabd8f9a5f8954f20856b167096913b0a">LamportMutualExclusion</a></li>
+<li>current_request_lc&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#a3d31a4db0768fcbab717bab48823dccb">RicardMutualExclusion</a></li>
 </ul>
 
 
@@ -151,6 +152,7 @@ $(function(){ initResizable(false); });
 <li>daemon&#160;:&#160;<a class="el" href="class_nodes_1_1message__handler_1_1_message_listener.html#a7c64b27e9ca8a8ee9834802da582d25d">MessageListener</a></li>
 <li>day&#160;:&#160;<a class="el" href="class_nodes_1_1messages_1_1_wakeup_all_message.html#ae8bf5a756cf15252b4e514a258bbbde9">WakeupAllMessage</a></li>
 <li>DEFEATED&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_state.html#a7b59581616c0e7b3b054c87e597f7c18">State</a></li>
+<li>delayed&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#ad261a3d2ec529e06fb18f8506e105029">RicardMutualExclusion</a></li>
 <li>DNS&#160;:&#160;<a class="el" href="class_nodes_1_1initializers_1_1_initializer.html#ae36a0205bcbcad637536f02bf6da7d04">Initializer</a></li>
 <li>DONE&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_state.html#a361aeb4f308086606dced73df6957b3d">State</a></li>
 </ul>
@@ -161,7 +163,7 @@ $(function(){ initResizable(false); });
 <li>ELECTION&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#aad299a406734b43336d571922222d441">Command</a></li>
 <li>END&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#a648c23d4531ddc629af00dc755579355">Command</a></li>
 <li>END_PROTOCOL&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#ad3df3be7c5f16c322b0d92b8515485e5">Command</a></li>
-<li>ends&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#aa08e756c72ac23bffa0470d6f18294d1">LamportMutualExclusion</a></li>
+<li>ends&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#aa08e756c72ac23bffa0470d6f18294d1">LamportMutualExclusion</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#aa08e756c72ac23bffa0470d6f18294d1">RicardMutualExclusion</a></li>
 <li>entry&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_dft_1_1_dft.html#a7b89b4915906de1ad87dc1a92067d400">Dft</a></li>
 <li>ERROR&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#a1ed9b930ef210137e40aba24f35b00f6">Command</a></li>
 <li>exp_path&#160;:&#160;<a class="el" href="class_nodes_1_1initializers_1_1_initializer.html#aa2a36aae87a86f29406d0f98243473f0">Initializer</a>, <a class="el" href="class_nodes_1_1messages_1_1_setup_message.html#aa2a36aae87a86f29406d0f98243473f0">SetupMessage</a></li>
@@ -203,7 +205,7 @@ $(function(){ initResizable(false); });
 
 
 <h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
-<li>LC&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e">LamportMutualExclusion</a></li>
+<li>LC&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e">LamportMutualExclusion</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e">RicardMutualExclusion</a></li>
 <li>LEADER&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_state.html#a6d88c43628fa57103c5eef6be619d629">State</a></li>
 <li>leader&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_count_1_1_count.html#a65a376218b0e773c13e64489af462c2c">Count</a></li>
 <li>limit&#160;:&#160;<a class="el" href="class_nodes_1_1messages_1_1_controlled_distance_message.html#a6e8e21280adfab4d1a5b4275b3aea590">ControlledDistanceMessage</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_controlled_distance_1_1_leader_election_controlled_distance.html#a093d9695bc7f56e2e457d8ccf15652c1">LeaderElectionControlledDistance</a></li>
@@ -251,11 +253,13 @@ $(function(){ initResizable(false); });
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>READY&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#aa4b07abfb74f782c20b102147f938e24">Command</a></li>
+<li>received_replies&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#ac53ff841016dde5ccf02f6bab9da676c">RicardMutualExclusion</a></li>
 <li>receiver&#160;:&#160;<a class="el" href="class_nodes_1_1messages_1_1_visualization_message.html#aa62518c35778e094f1beb0cbfd287247">VisualizationMessage</a></li>
 <li>recv_sequence&#160;:&#160;<a class="el" href="class_nodes_1_1_nodes_1_1_node_1_1_node.html#aafa75f86147f021e21e0c6be3c1e33b3">Node</a></li>
 <li>RELEASE&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#a3ad3739f909fd760c279e5bd62475ad5">Command</a></li>
 <li>REPLY&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#ad5f2bfc556e840237726d01dcdaa76d5">Command</a></li>
 <li>REQUEST&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#a2cc76f8949c696ec74de87192f79768a">Command</a></li>
+<li>REQUESTING&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_state.html#a4b72afa8f5f34c94391bdc56a8856b98">State</a></li>
 <li>RETURN&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#ab014356f284cded3a4c21783e2f0826c">Command</a></li>
 <li>ringsize&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_atw_1_1_leader_election_atw.html#ad9022ab6c0800df8e19fc4a166f50685">LeaderElectionAtw</a></li>
 <li>role&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_bully_1_1_bully_protocol.html#aeeb925ed9cbab42036db907783d8fe56">BullyProtocol</a></li>
@@ -274,11 +278,12 @@ $(function(){ initResizable(false); });
 <li>SETUP&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#ac66633727c3e21361096bd60fc5b96c0">Command</a></li>
 <li>setup&#160;:&#160;<a class="el" href="class_nodes_1_1_nodes_1_1_node_1_1_node.html#a8a65760006525449580a9fd3c3f49b22">Node</a></li>
 <li>shell&#160;:&#160;<a class="el" href="class_nodes_1_1initializers_1_1_initializer.html#ae3d4fbb9cf8a069dc079bb329a7e58b9">Initializer</a>, <a class="el" href="class_nodes_1_1messages_1_1_setup_message.html#ae3d4fbb9cf8a069dc079bb329a7e58b9">SetupMessage</a>, <a class="el" href="class_nodes_1_1_nodes_1_1_node_1_1_node.html#ae3d4fbb9cf8a069dc079bb329a7e58b9">Node</a></li>
+<li>silent&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#ad3b30a4c790299b3affccd8a9bf9bd17">LamportMutualExclusion</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#ad3b30a4c790299b3affccd8a9bf9bd17">RicardMutualExclusion</a></li>
 <li>sleep_delay&#160;:&#160;<a class="el" href="class_nodes_1_1_nodes_1_1_node_1_1_node.html#a538fdc10c677860bb012023ab19f86e8">Node</a></li>
 <li>socket&#160;:&#160;<a class="el" href="class_nodes_1_1message__handler_1_1_message_listener.html#a84edc84c8145e7997b70f9919ce44d68">MessageListener</a></li>
 <li>START_AT&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#ad124c83cd1adfe0091382cc6150fa8a0">Command</a></li>
 <li>START_PROTOCOL&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_command.html#a72771b7bcccc48a9455791186fe551f9">Command</a></li>
-<li>state&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_bully_1_1_bully_protocol.html#adc6e5733fc3c22f0a7b2914188c49c90">BullyProtocol</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_count_1_1_count.html#adc6e5733fc3c22f0a7b2914188c49c90">Count</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_dft_1_1_dft.html#adc6e5733fc3c22f0a7b2914188c49c90">Dft</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_flooding_1_1_flooding.html#adc6e5733fc3c22f0a7b2914188c49c90">Flooding</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_as_far_1_1_leader_election_as_far.html#adc6e5733fc3c22f0a7b2914188c49c90">LeaderElectionAsFar</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_atw_1_1_leader_election_atw.html#adc6e5733fc3c22f0a7b2914188c49c90">LeaderElectionAtw</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_controlled_distance_1_1_leader_election_controlled_distance.html#adc6e5733fc3c22f0a7b2914188c49c90">LeaderElectionControlledDistance</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_shout_1_1_shout.html#adc6e5733fc3c22f0a7b2914188c49c90">Shout</a></li>
+<li>state&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_bully_1_1_bully_protocol.html#adc6e5733fc3c22f0a7b2914188c49c90">BullyProtocol</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_count_1_1_count.html#adc6e5733fc3c22f0a7b2914188c49c90">Count</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_dft_1_1_dft.html#adc6e5733fc3c22f0a7b2914188c49c90">Dft</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_flooding_1_1_flooding.html#adc6e5733fc3c22f0a7b2914188c49c90">Flooding</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_as_far_1_1_leader_election_as_far.html#adc6e5733fc3c22f0a7b2914188c49c90">LeaderElectionAsFar</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_atw_1_1_leader_election_atw.html#adc6e5733fc3c22f0a7b2914188c49c90">LeaderElectionAtw</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_leader_election_controlled_distance_1_1_leader_election_controlled_distance.html#adc6e5733fc3c22f0a7b2914188c49c90">LeaderElectionControlledDistance</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#adc6e5733fc3c22f0a7b2914188c49c90">RicardMutualExclusion</a>, <a class="el" href="class_nodes_1_1_protocols_1_1_shout_1_1_shout.html#adc6e5733fc3c22f0a7b2914188c49c90">Shout</a></li>
 <li>SUCCESS&#160;:&#160;<a class="el" href="class_nodes_1_1const_1_1_visualizer_state.html#a38b8e1223e0a0c6a13dd79ba41e1ccee">VisualizerState</a></li>
 </ul>
 
@@ -292,7 +297,7 @@ $(function(){ initResizable(false); });
 
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
 <li>unvisited&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_dft_1_1_dft.html#ac883793f34f21f9b92b631d705b45d76">Dft</a></li>
-<li>using_CS&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#aa739f0aeb97d39b37d49cc83e8cc8499">LamportMutualExclusion</a></li>
+<li>using_CS&#160;:&#160;<a class="el" href="class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#a30d711f6ea9235c6281313f9039a6be3">LamportMutualExclusion</a></li>
 </ul>
 
 

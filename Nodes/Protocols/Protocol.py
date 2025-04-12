@@ -44,8 +44,7 @@ class Protocol(ABC):
                         self.node.log("Exiting since I decoded a error message from the initializer.")
                         exit(0)
                 except Exception as e:
-                    self.node.log("Error while deserializing message: {e}")
-                    continue
+                    raise RuntimeError(f"Error while deserializing message: {e}") from e
                 self.node.log(str(message))
                 # ========= FIFO mode check ===========
                 # usually server-node messages have a Null Sender.

@@ -1,0 +1,116 @@
+
+ .----------------. 
+| .--------------. |
+| |     ____     | |
+| |   .' __ '.   | |
+| |   | (__) |   | |
+| |   .`____'.   | |
+| |  | (____) |  | |
+| |  `.______.'  | |
+| |              | |
+| '--------------' |
+ '----------------' 
+
+
+Hostname: localhost
+Invoker port: 65000
+Listening on port 65440
+Fifo mode: True
+ID: 8
+Edges: [[8, 0], [8, 1], [8, 2], [8, 3], [8, 4], [8, 5], [8, 6], [8, 7], [8, 9], [8, 10], [8, 11], [8, 12], [8, 13], [8, 14], [8, 15], [8, 16], [8, 17], [8, 18], [8, 19]]
+DNS: {0: 65432, 1: 65433, 2: 65434, 3: 65435, 4: 65436, 5: 65437, 6: 65438, 7: 65439, 9: 65441, 10: 65442, 11: 65443, 12: 65444, 13: 65445, 14: 65446, 15: 65447, 16: 65448, 17: 65449, 18: 65450, 19: 65451}
+REQUEST from 0 
+REQUEST from 3 
+REQUEST from 6 
+REQUEST from 4 
+REQUEST from 15 
+REQUEST from 19 
+REQUEST from 18 
+REQUEST from 1 
+REQUEST from 2 
+REQUEST from 5 
+REQUEST from 7 
+REQUEST from 14 
+REQUEST from 10 
+REPLY from 11 
+REPLY from 9 
+REQUEST from 13 
+REQUEST from 9 
+REPLY from 16 
+REPLY from 17 
+REQUEST from 12 
+REPLY from 0 
+REQUEST from 11 
+REQUEST from 16 
+REQUEST from 17 
+REPLY from 3 
+REQUEST from 0 
+REPLY from 4 
+REQUEST from 4 
+REQUEST from 3 
+REPLY from 6 
+REPLY from 15 
+REPLY from 18 
+REQUEST from 6 
+REQUEST from 18 
+REPLY from 19 
+REPLY from 1 
+REQUEST from 1 
+REQUEST from 19 
+REQUEST from 15 
+REPLY from 2 
+REPLY from 5 
+REPLY from 7 
+REPLY from 13 
+REQUEST from 7 
+REQUEST from 2 
+REQUEST from 5 
+REPLY from 14 
+REQUEST from 13 
+REPLY from 12 
+REQUEST from 12 
+REPLY from 10 
+REQUEST from 14 
+REQUEST from 9 
+REQUEST from 10 
+REPLY from 11 
+REPLY from 16 
+REQUEST from 11 
+REPLY from 17 
+REPLY from 0 
+END from 0 
+REQUEST from 16 
+REPLY from 4 
+END from 4 
+REPLY from 3 
+END from 3 
+REPLY from 6 
+END from 6 
+REPLY from 18 
+END from 18 
+REQUEST from 17 
+REPLY from 1 
+END from 1 
+REPLY from 15 
+END from 15 
+REPLY from 19 
+END from 19 
+REPLY from 2 
+END from 2 
+REPLY from 5 
+END from 5 
+REPLY from 7 
+END from 7 
+REPLY from 13 
+END from 13 
+REPLY from 12 
+END from 12 
+REPLY from 14 
+END from 14 
+REPLY from 10 
+END from 10 
+REPLY from 9 
+END from 9 
+END from 11 
+END from 16 
+END from 17 

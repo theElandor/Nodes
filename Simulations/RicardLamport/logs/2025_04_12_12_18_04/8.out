@@ -1,0 +1,66 @@
+
+ .----------------. 
+| .--------------. |
+| |     ____     | |
+| |   .' __ '.   | |
+| |   | (__) |   | |
+| |   .`____'.   | |
+| |  | (____) |  | |
+| |  `.______.'  | |
+| |              | |
+| '--------------' |
+ '----------------' 
+
+
+Hostname: localhost
+Invoker port: 65000
+Listening on port 65440
+Fifo mode: True
+ID: 8
+Edges: [[8, 0], [8, 1], [8, 2], [8, 3], [8, 4], [8, 5], [8, 6], [8, 7], [8, 9]]
+DNS: {0: 65432, 1: 65433, 2: 65434, 3: 65435, 4: 65436, 5: 65437, 6: 65438, 7: 65439, 9: 65441}
+REQUEST from 4 
+REQUEST from 0 
+REQUEST from 3 
+REQUEST from 6 
+REQUEST from 1 
+REPLY from 0 
+REQUEST from 5 
+REQUEST from 2 
+REQUEST from 7 
+REPLY from 9 
+REQUEST from 9 
+REPLY from 4 
+REPLY from 3 
+REQUEST from 0 
+REQUEST from 4 
+REPLY from 6 
+REQUEST from 3 
+REPLY from 1 
+REQUEST from 1 
+REPLY from 2 
+REQUEST from 6 
+REPLY from 5 
+REQUEST from 2 
+REQUEST from 5 
+REPLY from 7 
+REQUEST from 9 
+REQUEST from 7 
+END from 0 
+END from 4 
+END from 3 
+REPLY from 0 
+REPLY from 3 
+REPLY from 4 
+END from 1 
+REPLY from 1 
+REPLY from 6 
+END from 6 
+REPLY from 2 
+END from 2 
+REPLY from 5 
+END from 5 
+REPLY from 9 
+END from 9 
+REPLY from 7 
+END from 7 

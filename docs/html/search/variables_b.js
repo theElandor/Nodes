@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lc_0',['LC',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e',1,'Nodes::Protocols::LamportMutualExclusion::LamportMutualExclusion']]],
+  ['lc_0',['LC',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e',1,'Nodes.Protocols.LamportMutualExclusion.LamportMutualExclusion.LC'],['../class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e',1,'Nodes.Protocols.RicardMutualExclusion.RicardMutualExclusion.LC']]],
   ['leader_1',['LEADER',['../class_nodes_1_1const_1_1_state.html#a6d88c43628fa57103c5eef6be619d629',1,'Nodes::const::State']]],
   ['leader_2',['leader',['../class_nodes_1_1_protocols_1_1_count_1_1_count.html#a65a376218b0e773c13e64489af462c2c',1,'Nodes::Protocols::Count::Count']]],
   ['limit_3',['limit',['../class_nodes_1_1messages_1_1_controlled_distance_message.html#a6e8e21280adfab4d1a5b4275b3aea590',1,'Nodes.messages.ControlledDistanceMessage.limit'],['../class_nodes_1_1_protocols_1_1_leader_election_controlled_distance_1_1_leader_election_controlled_distance.html#a093d9695bc7f56e2e457d8ccf15652c1',1,'Nodes.Protocols.LeaderElectionControlledDistance.LeaderElectionControlledDistance.limit']]],

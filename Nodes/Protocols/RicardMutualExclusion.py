@@ -12,11 +12,10 @@ class MutualExclusionMessage(Message):
     def __init__(self, command,timestamp:int, sender):
         super().__init__(command, sender)
         self.timestamp = timestamp
-
     def to_dict(self) -> dict:
         data = super().to_dict()
         data.update({
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
         })
         return data
 

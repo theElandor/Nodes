@@ -1,6 +1,6 @@
 from Nodes.Protocols.Protocol import Protocol
 from Nodes.Nodes import Node
-from Nodes.const import Command,State
+from Nodes.const import Command
 from Nodes.messages import Message
 import heapq
 import threading
@@ -16,7 +16,7 @@ class MutualExclusionMessage(Message):
     def to_dict(self) -> dict:
         data = super().to_dict()
         data.update({
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
         })
         return data
 
@@ -44,7 +44,9 @@ class LamportMutualExclusion(Protocol):
         super().__init__(node)
 
     def request_CS(self, t:int):
-        time.sleep(t)
+        while True:
+            time.sleep(t)
+            if not self.using_CS: break
         self.LC += 1 #increment logical clock
         new_message = MutualExclusionMessage(Command.REQUEST, self.LC, self.node.id)
         heapq.heappush(self.CS_requests, (self.LC, self.node.id))
@@ -80,8 +82,6 @@ class LamportMutualExclusion(Protocol):
         self.ends = set()
         t1 = random.randint(1,3)
         t2 = random.randint(5,8)
-        if not self.silent:
-            print(t1,t2)
         x1 = threading.Thread(target = self.request_CS, args=(t1,))
         x2 = threading.Thread(target = self.request_CS, args=(t2,))
         x1.start()

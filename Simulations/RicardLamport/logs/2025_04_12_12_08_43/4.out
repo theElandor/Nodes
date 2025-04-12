@@ -1,0 +1,91 @@
+
+ .----------------. 
+| .--------------. |
+| |   _    _     | |
+| |  | |  | |    | |
+| |  | |__| |_   | |
+| |  |____   _|  | |
+| |      _| |_   | |
+| |     |_____|  | |
+| |              | |
+| '--------------' |
+ '----------------' 
+
+
+Hostname: localhost
+Invoker port: 65000
+Listening on port 65436
+Fifo mode: True
+ID: 4
+Edges: [[4, 0], [4, 1], [4, 2], [4, 3], [4, 5], [4, 6], [4, 7], [4, 8], [4, 9], [4, 10], [4, 11], [4, 12], [4, 13], [4, 14]]
+DNS: {0: 65432, 1: 65433, 2: 65434, 3: 65435, 5: 65437, 6: 65438, 7: 65439, 8: 65440, 9: 65441, 10: 65442, 11: 65443, 12: 65444, 13: 65445, 14: 65446}
+REQUEST from 3 
+REPLY from 1 
+REPLY from 2 
+REQUEST from 6 
+REQUEST from 0 
+REPLY from 5 
+REPLY from 6 
+REPLY from 7 
+REPLY from 8 
+REPLY from 9 
+REPLY from 10 
+REPLY from 11 
+REPLY from 12 
+REPLY from 14 
+REPLY from 13 
+REQUEST from 2 
+REQUEST from 9 
+REQUEST from 12 
+REQUEST from 5 
+REQUEST from 8 
+REQUEST from 13 
+REQUEST from 14 
+REQUEST from 10 
+REQUEST from 1 
+REQUEST from 7 
+REPLY from 0 
+REQUEST from 11 
+REPLY from 3 
+REQUEST from 0 
+REPLY from 3 
+REQUEST from 3 
+REPLY from 6 
+REPLY from 1 
+REQUEST from 6 
+REPLY from 2 
+REPLY from 5 
+REQUEST from 2 
+REQUEST from 5 
+REQUEST from 1 
+REPLY from 7 
+REPLY from 8 
+REPLY from 9 
+REQUEST from 9 
+REPLY from 10 
+REQUEST from 7 
+REPLY from 12 
+REPLY from 13 
+REQUEST from 8 
+REQUEST from 10 
+REQUEST from 13 
+REQUEST from 12 
+REPLY from 14 
+REPLY from 11 
+REQUEST from 14 
+REPLY from 0 
+END from 0 
+END from 3 
+END from 6 
+REQUEST from 11 
+END from 2 
+END from 5 
+END from 1 
+END from 9 
+END from 7 
+END from 8 
+END from 10 
+END from 13 
+END from 12 
+END from 14 
+END from 11 

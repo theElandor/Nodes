@@ -55,39 +55,41 @@ class Visualizer(ComunicationManager):
         # Process all messages in the queue
         while not self.message_queue.empty():
             data = self.message_queue.get()  # Get the next message from the queue
+            print(data)
             try:
                 message = Message.deserialize(data)  # Deserialize the message
                 print(f"Processing message: {message}, Queue size: {self.message_queue.qsize()}")
-
-                # Extract sender, receiver, and command from the message
-                sender = message.payload.sender
-                receiver = message.receiver
-                command = message.payload.command
-                if command == Command.ERROR:
-                    print("Received an error message. Terminating the protocol.")
-                    return VisualizerState.EXTERNAL_ERROR
-                if command == "EOV":
-                    print("Received End of Visualization.")
-                    self._eov_received += 1
-                    print(self._eov_received, len(self.G))
-                    if self._eov_received == len(self.G):
-                        plt.draw()
-                        plt.pause(0.2)  # Pause briefly to allow the plot to update
-                        return VisualizerState.SUCCESS
-                    continue
-                origin = message.payload.origin
-
-                # Draw the message as an arrow from sender to receiver
-                if sender in self.pos and receiver in self.pos:
-                    self.ax.annotate(command+f" {origin}",
-                                        xy=self.pos[receiver], xycoords='data',
-                                        xytext=self.pos[sender], textcoords='data',
-                                        arrowprops=dict(arrowstyle="->", color=colors[cycle % len(colors)], lw=2),
-                                        fontsize=16, color="red")
-
             except Exception as e:
                 print(f"Error processing message: {e}")
                 return VisualizerState.INTERNAL_ERROR
+                # Extract sender, receiver, and command from the message
+            sender = message.payload.sender
+            receiver = message.receiver
+            command = message.payload.command
+            if command == Command.ERROR:
+                print("Received an error message. Terminating the protocol.")
+                return VisualizerState.EXTERNAL_ERROR
+            if command == "EOV":
+                print("Received End of Visualization.")
+                self._eov_received += 1
+                print(self._eov_received, len(self.G))
+                if self._eov_received == len(self.G):
+                    plt.draw()
+                    plt.pause(0.2)  # Pause briefly to allow the plot to update
+                    return VisualizerState.SUCCESS
+                continue
+            try:
+                origin = message.payload.origin
+            except:
+                origin = ""
+
+            # Draw the message as an arrow from sender to receiver
+            if sender in self.pos and receiver in self.pos:
+                self.ax.annotate(command+f" {origin}",
+                                    xy=self.pos[receiver], xycoords='data',
+                                    xytext=self.pos[sender], textcoords='data',
+                                    arrowprops=dict(arrowstyle="->", color=colors[cycle % len(colors)], lw=2),
+                                    fontsize=16, color="red")
         # Display the final plot with all messages
         plt.draw()
         plt.pause(0.2)  # Pause briefly to allow the plot to update

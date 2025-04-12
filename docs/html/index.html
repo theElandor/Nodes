@@ -89,11 +89,13 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p align="center"><a class="anchor" id="md__c_1_2_users_2web_2_documenti_2_nodes_2_r_e_a_d_m_e"></a> </p>
 <p><img src="https://theelandor.github.io/NodesLogo.JPG" alt="Nodes" width="400/" class="inline"/> </p>
-<p>This framework aims at helping researchers and developers who want to test and play with distributed algorithms. It provides a simple and intuitive interface to define the behavior of individual nodes and the graph structure, and it takes care of the rest. Because of its simplicity, it is easily extendible in its capabilities. It is also suited for integration with ML and DL libraries like scikitlearn, TensorFlow or PyTorch. </p>
+<p>This framework aims at helping researchers and developers who want to test and play with distributed algorithms. It provides a simple and intuitive interface to define the behavior of individual nodes and the graph structure, and it takes care of the rest. Because of its simplicity, it is easily extendible in its capabilities. It is also suited for integration with ML and DL libraries like scikitlearn, TensorFlow or PyTorch. <br  />
+ Unofficial paper: <a href="https://theelandor.github.io/prova/Matteo_Lugli_Nodes.pdf">https://theelandor.github.io/prova/Matteo_Lugli_Nodes.pdf</a> </p>
 <h2><a class="anchor" id="autotoc_md0"></a>
-Implemented Algorithms</h2>
+Implemented Algorithms and Simulations</h2>
 <ul>
 <li>Lamport's Mutual Exclusion;</li>
+<li>Ricard &amp; Agrawala's Mutual Exclusion;</li>
 <li>Flooding on connected graph;</li>
 <li>Spanning tree "Shout";</li>
 <li>Spanning tree "Dft" (Depth First Traversal);</li>
@@ -233,7 +235,75 @@ Protocol</h2>
 <div class="ttc" id="anamespace_nodes_1_1_protocols_1_1_protocol_html"><div class="ttname"><a href="namespace_nodes_1_1_protocols_1_1_protocol.html">Nodes.Protocols.Protocol</a></div><div class="ttdef"><b>Definition</b> Protocol.py:1</div></div>
 <div class="ttc" id="anamespace_nodes_1_1const_html"><div class="ttname"><a href="namespace_nodes_1_1const.html">Nodes.const</a></div><div class="ttdef"><b>Definition</b> const.py:1</div></div>
 <div class="ttc" id="anamespace_nodes_1_1messages_html"><div class="ttname"><a href="namespace_nodes_1_1messages.html">Nodes.messages</a></div><div class="ttdef"><b>Definition</b> messages.py:1</div></div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
+Example Usage</h2>
+<p align="center">The following script runs a simulation to evaluate the number of messages exchanged in different leader election protocols by varying the number of nodes in a ring network. It initializes the network, executes each protocol, collects message counts, and stores the results in a Pandas DataFrame. Finally, it generates a comparison plot (comparison.png) using Seaborn to visualize the message complexity across protocols. To run the simulation, simply execute the script, and the results will be saved automatically. This demonstrates how the framework can be paired with python's data analysis tools in a very simple and efficient way. </p><div class="fragment"><div class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</div>
+<div class="line"><span class="keyword">import</span> <a class="code hl_namespace" href="namespace_nodes_1_1initializers.html">Nodes.initializers</a> <span class="keyword">as</span> initializers</div>
+<div class="line"><span class="keyword">import</span> os</div>
+<div class="line"><span class="keyword">import</span> random</div>
+<div class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sb</div>
+<div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div>
+<div class="line"><span class="keyword">import</span> <a class="code hl_namespace" href="namespace_nodes_1_1utils.html">Nodes.utils</a> <span class="keyword">as</span> utils</div>
+<div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div>
+<div class="line"> </div>
+<div class="line">n_nodes = [5*i <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(1,10)]</div>
+<div class="line">clients = [</div>
+<div class="line">    (<span class="stringliteral">&quot;./ControlledDistance.py&quot;</span>, <span class="stringliteral">&quot;Controlled Distance&quot;</span>),</div>
+<div class="line">    (<span class="stringliteral">&quot;./AllTheWay.py&quot;</span>, <span class="stringliteral">&quot;All The Way&quot;</span>),</div>
+<div class="line">    (<span class="stringliteral">&quot;./AsFar.py&quot;</span>, <span class="stringliteral">&quot;As Far As It Can&quot;</span>),</div>
+<div class="line">]</div>
+<div class="line">df = pd.DataFrame(columns=[<span class="stringliteral">&quot;Protocol&quot;</span>, <span class="stringliteral">&quot;Nodes&quot;</span>, <span class="stringliteral">&quot;Messages&quot;</span>])</div>
+<div class="line">PORT = 65000</div>
+<div class="line"><span class="keywordflow">for</span> CLIENT_PATH, PROTOCOL_NAME <span class="keywordflow">in</span> clients:</div>
+<div class="line">    <span class="keywordflow">for</span> n <span class="keywordflow">in</span> n_nodes:</div>
+<div class="line">        node_ids = list(range(n))</div>
+<div class="line">        random.shuffle(node_ids)</div>
+<div class="line">        G = nx.cycle_graph(node_ids)</div>
+<div class="line">        n = G.number_of_nodes()</div>
+<div class="line">        m = G.number_of_edges()</div>
+<div class="line">        print(f<span class="stringliteral">&quot;Nodes: {n}&quot;</span>)</div>
+<div class="line">        print(f<span class="stringliteral">&quot;Edges: {m}&quot;</span>)</div>
+<div class="line">        client = os.path.abspath(CLIENT_PATH)</div>
+<div class="line">        init = initializers.Initializer(client, <span class="stringliteral">&quot;localhost&quot;</span>, PORT, G, shell=<span class="keyword">False</span>)</div>
+<div class="line">        init.wakeup(random.choice([_ <span class="keywordflow">for</span> _ <span class="keywordflow">in</span> range(n)]))</div>
+<div class="line">        init.wait_for_termination()</div>
+<div class="line">        messages = init.wait_for_number_of_messages()</div>
+<div class="line">        df.loc[len(df)] = [PROTOCOL_NAME, n, messages]</div>
+<div class="line">        init.close()</div>
+<div class="line">print(df)</div>
+<div class="line">sb.set_style(<span class="stringliteral">&quot;whitegrid&quot;</span>)</div>
+<div class="line">fig, ax = plt.subplots(figsize=(8, 4))</div>
+<div class="line">sb.lineplot(data=df, x=<span class="stringliteral">&quot;Nodes&quot;</span>, y=<span class="stringliteral">&quot;Messages&quot;</span>, hue=<span class="stringliteral">&quot;Protocol&quot;</span>,marker=<span class="stringliteral">&#39;o&#39;</span>, ax=ax, color=<span class="stringliteral">&quot;b&quot;</span>)</div>
+<div class="line">plt.title(<span class="stringliteral">&quot;Message Comparison of Leader Election Algorithms&quot;</span>)</div>
+<div class="line">plt.savefig(<span class="stringliteral">&quot;comparison.png&quot;</span>, bbox_inches=<span class="stringliteral">&quot;tight&quot;</span>, dpi=300)</div>
+</div><!-- fragment --> <p><img src="https://theelandor.github.io/comparison.png" alt="Nodes" width="600/" class="inline"/> </p>
+<p align="center">This other script will plot number of nodes vs number of messages used in a simple simulation where nodes try to access a critical section leveraging <b>Lamport's Mutual Exclusion</b>. The script is very concise and similar to the previous one. As expected, the number of messages scales quadratically with the number of nodes in the network. </p><div class="fragment"><div class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</div>
+<div class="line"><span class="keyword">import</span> <a class="code hl_namespace" href="namespace_nodes_1_1initializers.html">Nodes.initializers</a> <span class="keyword">as</span> initializers</div>
+<div class="line"><span class="keyword">import</span> os</div>
+<div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div>
+<div class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sb</div>
+<div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div>
+<div class="line">n_nodes = [5*i <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(1,11)]</div>
+<div class="line">CLIENT_PATH = <span class="stringliteral">&quot;./client.py&quot;</span></div>
+<div class="line">df = pd.DataFrame(columns=[<span class="stringliteral">&quot;Nodes&quot;</span>, <span class="stringliteral">&quot;Messages&quot;</span>])</div>
+<div class="line">PORT = 65000</div>
+<div class="line"><span class="keywordflow">for</span> i,n <span class="keywordflow">in</span> enumerate(n_nodes):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;{i}/{len(n_nodes)} simulations done.&quot;</span>)</div>
+<div class="line">    G = nx.complete_graph(n)</div>
+<div class="line">    client = os.path.abspath(CLIENT_PATH)</div>
+<div class="line">    init = initializers.Initializer(client, <span class="stringliteral">&quot;localhost&quot;</span>, PORT, G, shell=<span class="keyword">False</span>)</div>
+<div class="line">    init.wait_for_termination()</div>
+<div class="line">    messages = init.wait_for_number_of_messages()</div>
+<div class="line">    df.loc[len(df)] = [n, messages]</div>
+<div class="line">    init.close()</div>
+<div class="line">print(df)</div>
+<div class="line">sb.set_style(<span class="stringliteral">&quot;whitegrid&quot;</span>)</div>
+<div class="line">fig, ax = plt.subplots(figsize=(8, 4))</div>
+<div class="line">sb.lineplot(data=df, x=<span class="stringliteral">&quot;Nodes&quot;</span>, y=<span class="stringliteral">&quot;Messages&quot;</span>, marker=<span class="stringliteral">&#39;o&#39;</span>, ax=ax, color=<span class="stringliteral">&quot;b&quot;</span>)</div>
+<div class="line">plt.title(<span class="stringliteral">&quot;Number of Messages vs Number of Nodes in LME&quot;</span>)</div>
+<div class="line">plt.savefig(<span class="stringliteral">&quot;lamport.png&quot;</span>, bbox_inches=<span class="stringliteral">&quot;tight&quot;</span>, dpi=300)</div>
+</div><!-- fragment --> <p><img src="Simulations\Lamport\lamport.png" alt="Lamport Mutual Exclusion" width="600/" class="inline"/> </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 <!-- start footer part -->

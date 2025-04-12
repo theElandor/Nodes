@@ -33,12 +33,11 @@ class Message:
         # Get the message class from registry by class name only
         if msg_type not in Message._message_types:
             raise ValueError(f"Unknown message type: {msg_type}")
-        
-        msg_class = Message._message_types[msg_type]
+        msg_class = Message._message_types[msg_type]        
         obj =  msg_class.from_dict(json_data)
         if "seq_number" in json_data:
             obj.seq_number = json_data["seq_number"]
-        return obj
+        return obj    
     
     @classmethod
     def register(cls, message_class):
@@ -282,7 +281,7 @@ class ControlledDistanceMessage(Message):
 
 @Message.register
 class VisualizationMessage(Message):
-    """!Message used in the leader election controlled distance protocol."""
+    """!Wrapper used by the visualizer to plot message passing."""
     def __init__(self, payload: Message, receiver: int):
         super().__init__("VIS", payload.sender)
         self.payload = payload
@@ -298,7 +297,7 @@ class VisualizationMessage(Message):
 
     @classmethod
     def from_dict(cls, data):
-        payload_data = data["payload"]
+        payload_data = data["payload"]        
         payload_type = Message._message_types[payload_data["type"]]
         payload = payload_type.from_dict(payload_data)
         return cls(payload, data["receiver"])

@@ -6,7 +6,6 @@ import os
 
 # GRAPH CREATION
 G = nx.complete_graph(5)
-
 # FRAMEWORK
 client = os.path.abspath("./client.py")
 init = initializers.Initializer(client, "localhost", 65000, G, shell=False)

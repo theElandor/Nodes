@@ -9,5 +9,5 @@ var searchData=
   ['minfindingmessage_6',['MinFindingMessage',['../class_nodes_1_1messages_1_1_min_finding_message.html',1,'Nodes::messages']]],
   ['minute_7',['minute',['../class_nodes_1_1messages_1_1_wakeup_all_message.html#a75acdc9c24284efec730c7666f2b1e45',1,'Nodes::messages::WakeupAllMessage']]],
   ['month_8',['month',['../class_nodes_1_1messages_1_1_wakeup_all_message.html#ade079186a24b67d34714f590c039cd28',1,'Nodes::messages::WakeupAllMessage']]],
-  ['mutualexclusionmessage_9',['MutualExclusionMessage',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_mutual_exclusion_message.html',1,'Nodes::Protocols::LamportMutualExclusion']]]
+  ['mutualexclusionmessage_9',['MutualExclusionMessage',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_mutual_exclusion_message.html',1,'MutualExclusionMessage'],['../class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_mutual_exclusion_message.html',1,'MutualExclusionMessage']]]
 ];
