@@ -2,7 +2,7 @@ var searchData=
 [
   ['lamportmutualexclusion_0',['LamportMutualExclusion',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html',1,'Nodes::Protocols::LamportMutualExclusion']]],
   ['lamportmutualexclusion_2epy_1',['LamportMutualExclusion.py',['../_lamport_mutual_exclusion_8py.html',1,'']]],
-  ['lc_2',['LC',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e',1,'Nodes::Protocols::LamportMutualExclusion::LamportMutualExclusion']]],
+  ['lc_2',['LC',['../class_nodes_1_1_protocols_1_1_lamport_mutual_exclusion_1_1_lamport_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e',1,'Nodes.Protocols.LamportMutualExclusion.LamportMutualExclusion.LC'],['../class_nodes_1_1_protocols_1_1_ricard_mutual_exclusion_1_1_ricard_mutual_exclusion.html#ab6b0e122171f9216c3df783926b3495e',1,'Nodes.Protocols.RicardMutualExclusion.RicardMutualExclusion.LC']]],
   ['leader_3',['LEADER',['../class_nodes_1_1const_1_1_state.html#a6d88c43628fa57103c5eef6be619d629',1,'Nodes::const::State']]],
   ['leader_4',['leader',['../class_nodes_1_1_protocols_1_1_count_1_1_count.html#a65a376218b0e773c13e64489af462c2c',1,'Nodes::Protocols::Count::Count']]],
   ['leaderelectionafmessage_5',['LeaderElectionAFMessage',['../class_nodes_1_1messages_1_1_leader_election_a_f_message.html',1,'Nodes::messages']]],

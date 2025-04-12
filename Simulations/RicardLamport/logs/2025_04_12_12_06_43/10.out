@@ -1,0 +1,154 @@
+
+ .----------------.  .----------------. 
+| .--------------. || .--------------. |
+| |     __       | || |     ____     | |
+| |    /  |      | || |   .'    '.   | |
+| |    `| |      | || |  |  .--.  |  | |
+| |     | |      | || |  | |    | |  | |
+| |    _| |_     | || |  |  `--'  |  | |
+| |   |_____|    | || |   '.____.'   | |
+| |              | || |              | |
+| '--------------' || '--------------' |
+ '----------------'  '----------------' 
+
+
+Hostname: localhost
+Invoker port: 65000
+Listening on port 65442
+Fifo mode: True
+ID: 10
+Edges: [[10, 0], [10, 1], [10, 2], [10, 3], [10, 4], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 11], [10, 12], [10, 13], [10, 14], [10, 15], [10, 16], [10, 17], [10, 18], [10, 19]]
+DNS: {0: 65432, 1: 65433, 2: 65434, 3: 65435, 4: 65436, 5: 65437, 6: 65438, 7: 65439, 8: 65440, 9: 65441, 11: 65443, 12: 65444, 13: 65445, 14: 65446, 15: 65447, 16: 65448, 17: 65449, 18: 65450, 19: 65451}
+REQUEST from 4 
+REQUEST from 3 
+REQUEST from 0 
+REQUEST from 15 
+REQUEST from 18 
+REQUEST from 19 
+REQUEST from 6 
+REQUEST from 2 
+REQUEST from 1 
+REPLY from 1 
+REPLY from 4 
+REPLY from 2 
+REPLY from 6 
+REPLY from 5 
+REQUEST from 7 
+REQUEST from 12 
+REQUEST from 8 
+REPLY from 3 
+REQUEST from 9 
+REPLY from 9 
+REPLY from 13 
+REQUEST from 13 
+REQUEST from 5 
+REPLY from 15 
+REPLY from 14 
+REQUEST from 14 
+REPLY from 11 
+REPLY from 7 
+REPLY from 12 
+REPLY from 17 
+REPLY from 16 
+REPLY from 8 
+REPLY from 18 
+REPLY from 19 
+RELEASE from 0 
+REPLY from 0 
+REQUEST from 17 
+REQUEST from 16 
+REQUEST from 11 
+RELEASE from 3 
+REQUEST from 1 
+REQUEST from 12 
+REQUEST from 9 
+REQUEST from 0 
+REPLY from 1 
+REPLY from 2 
+REPLY from 3 
+REPLY from 5 
+REQUEST from 6 
+REPLY from 6 
+REPLY from 7 
+REPLY from 0 
+REPLY from 8 
+REPLY from 9 
+REPLY from 11 
+REPLY from 12 
+REPLY from 13 
+REPLY from 14 
+REQUEST from 13 
+REPLY from 15 
+REPLY from 16 
+REPLY from 17 
+REPLY from 18 
+REPLY from 19 
+REQUEST from 18 
+RELEASE from 4 
+REPLY from 4 
+REQUEST from 2 
+REQUEST from 4 
+REQUEST from 5 
+REQUEST from 7 
+REQUEST from 16 
+REQUEST from 14 
+REQUEST from 3 
+REQUEST from 11 
+REQUEST from 8 
+REQUEST from 17 
+REQUEST from 19 
+REQUEST from 15 
+RELEASE from 18 
+RELEASE from 19 
+RELEASE from 6 
+RELEASE from 15 
+RELEASE from 1 
+RELEASE from 2 
+RELEASE from 7 
+RELEASE from 8 
+RELEASE from 12 
+RELEASE from 13 
+RELEASE from 14 
+RELEASE from 9 
+RELEASE from 5 
+RELEASE from 11 
+RELEASE from 16 
+RELEASE from 17 
+RELEASE from 1 
+END from 1 
+RELEASE from 12 
+END from 12 
+RELEASE from 9 
+END from 9 
+RELEASE from 0 
+END from 0 
+RELEASE from 6 
+END from 6 
+RELEASE from 13 
+END from 13 
+RELEASE from 18 
+END from 18 
+RELEASE from 2 
+END from 2 
+RELEASE from 4 
+END from 4 
+RELEASE from 5 
+END from 5 
+RELEASE from 7 
+END from 7 
+RELEASE from 14 
+END from 14 
+RELEASE from 16 
+END from 16 
+RELEASE from 3 
+END from 3 
+RELEASE from 17 
+END from 17 
+RELEASE from 19 
+END from 19 
+RELEASE from 11 
+END from 11 
+RELEASE from 8 
+END from 8 
+RELEASE from 15 
+END from 15 

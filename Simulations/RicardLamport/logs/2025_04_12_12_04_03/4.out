@@ -1,0 +1,22 @@
+
+ .----------------. 
+| .--------------. |
+| |   _    _     | |
+| |  | |  | |    | |
+| |  | |__| |_   | |
+| |  |____   _|  | |
+| |      _| |_   | |
+| |     |_____|  | |
+| |              | |
+| '--------------' |
+ '----------------' 
+
+
+Hostname: localhost
+Invoker port: 65000
+Listening on port 65436
+Fifo mode: True
+ID: 4
+Edges: [[4, 0], [4, 1], [4, 2], [4, 3]]
+DNS: {0: 65432, 1: 65433, 2: 65434, 3: 65435}
+Exiting since I decoded a error message from the initializer.

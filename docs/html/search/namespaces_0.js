@@ -19,7 +19,8 @@ var searchData=
   ['nodes_3a_3aprotocols_3a_3aleaderelectionatw_16',['LeaderElectionAtw',['../namespace_nodes_1_1_protocols_1_1_leader_election_atw.html',1,'Nodes::Protocols']]],
   ['nodes_3a_3aprotocols_3a_3aleaderelectioncontrolleddistance_17',['LeaderElectionControlledDistance',['../namespace_nodes_1_1_protocols_1_1_leader_election_controlled_distance.html',1,'Nodes::Protocols']]],
   ['nodes_3a_3aprotocols_3a_3aprotocol_18',['Protocol',['../namespace_nodes_1_1_protocols_1_1_protocol.html',1,'Nodes::Protocols']]],
-  ['nodes_3a_3aprotocols_3a_3ashout_19',['Shout',['../namespace_nodes_1_1_protocols_1_1_shout.html',1,'Nodes::Protocols']]],
-  ['nodes_3a_3autils_20',['utils',['../namespace_nodes_1_1utils.html',1,'Nodes']]],
-  ['nodes_3a_3avisualizer_21',['visualizer',['../namespace_nodes_1_1visualizer.html',1,'Nodes']]]
+  ['nodes_3a_3aprotocols_3a_3aricardmutualexclusion_19',['RicardMutualExclusion',['../namespace_nodes_1_1_protocols_1_1_ricard_mutual_exclusion.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3ashout_20',['Shout',['../namespace_nodes_1_1_protocols_1_1_shout.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3autils_21',['utils',['../namespace_nodes_1_1utils.html',1,'Nodes']]],
+  ['nodes_3a_3avisualizer_22',['visualizer',['../namespace_nodes_1_1visualizer.html',1,'Nodes']]]
 ];

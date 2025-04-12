@@ -2,7 +2,7 @@ var searchData=
 [
   ['id_0',['id',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#aba303485588abb149a4521cde1a38a06',1,'Nodes::Nodes::Node::Node']]],
   ['idle_1',['IDLE',['../class_nodes_1_1const_1_1_state.html#aca9875d9ebaed71daa3b6749322d4fcb',1,'Nodes::const::State']]],
-  ['implemented_20algorithms_2',['Implemented Algorithms',['../index.html#autotoc_md0',1,'']]],
+  ['implemented_20algorithms_20and_20simulations_2',['Implemented Algorithms and Simulations',['../index.html#autotoc_md0',1,'']]],
   ['in_5fsocket_3',['in_socket',['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#acd30d8ffca00dee3dbecefd69059ca1c',1,'Nodes.Nodes.Node.Node.in_socket'],['../class_nodes_1_1_nodes_1_1_node_1_1_node.html#ad73cf9fe7c1f0fc657879ae08e582ad3',1,'Nodes.Nodes.Node.Node.in_socket(self)']]],
   ['inform_4',['INFORM',['../class_nodes_1_1const_1_1_command.html#a8ea9b4e32be20437d8582e57f8d24c0b',1,'Nodes::const::Command']]],
   ['init_5flogs_5',['init_logs',['../namespace_nodes_1_1utils.html#a35c836af404f78732a35e33b5211bafe',1,'Nodes::utils']]],

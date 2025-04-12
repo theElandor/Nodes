@@ -23,9 +23,10 @@ var searchData=
   ['nodes_3a_3aprotocols_3a_3aleaderelectionatw_20',['LeaderElectionAtw',['../namespace_nodes_1_1_protocols_1_1_leader_election_atw.html',1,'Nodes::Protocols']]],
   ['nodes_3a_3aprotocols_3a_3aleaderelectioncontrolleddistance_21',['LeaderElectionControlledDistance',['../namespace_nodes_1_1_protocols_1_1_leader_election_controlled_distance.html',1,'Nodes::Protocols']]],
   ['nodes_3a_3aprotocols_3a_3aprotocol_22',['Protocol',['../namespace_nodes_1_1_protocols_1_1_protocol.html',1,'Nodes::Protocols']]],
-  ['nodes_3a_3aprotocols_3a_3ashout_23',['Shout',['../namespace_nodes_1_1_protocols_1_1_shout.html',1,'Nodes::Protocols']]],
-  ['nodes_3a_3autils_24',['utils',['../namespace_nodes_1_1utils.html',1,'Nodes']]],
-  ['nodes_3a_3avisualizer_25',['visualizer',['../namespace_nodes_1_1visualizer.html',1,'Nodes']]],
-  ['notify_26',['NOTIFY',['../class_nodes_1_1const_1_1_command.html#ac471fdd6f29718e79b56bce555003958',1,'Nodes::const::Command']]],
-  ['number_5fof_5fnodes_27',['number_of_nodes',['../class_nodes_1_1initializers_1_1_initializer.html#ac41407280ec0c3cc722b151ce3b4019b',1,'Nodes::initializers::Initializer']]]
+  ['nodes_3a_3aprotocols_3a_3aricardmutualexclusion_23',['RicardMutualExclusion',['../namespace_nodes_1_1_protocols_1_1_ricard_mutual_exclusion.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3aprotocols_3a_3ashout_24',['Shout',['../namespace_nodes_1_1_protocols_1_1_shout.html',1,'Nodes::Protocols']]],
+  ['nodes_3a_3autils_25',['utils',['../namespace_nodes_1_1utils.html',1,'Nodes']]],
+  ['nodes_3a_3avisualizer_26',['visualizer',['../namespace_nodes_1_1visualizer.html',1,'Nodes']]],
+  ['notify_27',['NOTIFY',['../class_nodes_1_1const_1_1_command.html#ac471fdd6f29718e79b56bce555003958',1,'Nodes::const::Command']]],
+  ['number_5fof_5fnodes_28',['number_of_nodes',['../class_nodes_1_1initializers_1_1_initializer.html#ac41407280ec0c3cc722b151ce3b4019b',1,'Nodes::initializers::Initializer']]]
 ];

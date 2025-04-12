@@ -1,0 +1,84 @@
+
+ .----------------. 
+| .--------------. |
+| |    ______    | |
+| |   / ____ `.  | |
+| |   `'  __) |  | |
+| |   _  |__ '.  | |
+| |  | \____) |  | |
+| |   \______.'  | |
+| |              | |
+| '--------------' |
+ '----------------' 
+
+
+Hostname: localhost
+Invoker port: 65000
+Listening on port 65435
+Fifo mode: True
+ID: 3
+Edges: [[3, 0], [3, 1], [3, 2], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8], [3, 9]]
+DNS: {0: 65432, 1: 65433, 2: 65434, 4: 65436, 5: 65437, 6: 65438, 7: 65439, 8: 65440, 9: 65441}
+REQUEST from 6 
+REPLY from 0 
+REPLY from 2 
+REQUEST from 0 
+REPLY from 5 
+REPLY from 1 
+REPLY from 7 
+REPLY from 6 
+REPLY from 8 
+REPLY from 9 
+REQUEST from 4 
+REPLY from 4 
+REQUEST from 2 
+REQUEST from 7 
+REQUEST from 1 
+REQUEST from 5 
+REQUEST from 8 
+REQUEST from 9 
+RELEASE from 0 
+REQUEST from 1 
+REQUEST from 9 
+REQUEST from 0 
+REQUEST from 6 
+RELEASE from 4 
+REQUEST from 2 
+REQUEST from 7 
+REQUEST from 5 
+REQUEST from 4 
+REPLY from 0 
+REPLY from 1 
+REPLY from 2 
+REPLY from 4 
+REPLY from 5 
+REPLY from 7 
+REQUEST from 8 
+REPLY from 8 
+REPLY from 9 
+RELEASE from 6 
+REPLY from 6 
+RELEASE from 1 
+RELEASE from 2 
+RELEASE from 5 
+RELEASE from 7 
+RELEASE from 8 
+RELEASE from 9 
+RELEASE from 1 
+END from 1 
+RELEASE from 9 
+END from 9 
+RELEASE from 0 
+END from 0 
+RELEASE from 6 
+END from 6 
+RELEASE from 4 
+END from 4 
+RELEASE from 2 
+END from 2 
+RELEASE from 5 
+END from 5 
+RELEASE from 7 
+END from 7 
+RELEASE from 8 
+END from 8 
